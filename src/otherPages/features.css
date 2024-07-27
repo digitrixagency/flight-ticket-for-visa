@@ -1,0 +1,16 @@
+.featuresBg {
+    background-color: #FAFBFF!important;
+}
+
+.card-img-top {
+    width: 140px;
+}
+
+.cardDiv {
+    border: none !important;
+    background-color: transparent !important;
+}
+
+.card-text {
+    max-width: 200px;
+}

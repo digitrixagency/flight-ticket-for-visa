@@ -1,3 +1,59 @@
-.navbar {
-  background-color: rgb(0 0 0) !important;
+.navbarDiv {
+  background-color: #000000;
+}
+
+.sign-up-button {
+  background-color: #3059EB !important;
+  color: white !important;
+  border-top: rgba(16, 238, 252, 1) solid 1px !important;
+  border-left: rgba(16, 238, 252, 1) solid 1px !important;
+  border-right: rgba(16, 238, 252, 1) solid 1px !important;
+  border-bottom: rgba(1, 106, 106, 1) solid 1px !important;
+  border-radius: 5px !important;
+  padding: 10px 20px !important;
+  font-size: 16px !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 5px rgb(0, 0, 0, 0.2) !important;
+}
+
+
+
+.backGroundImage {
+  background-image: url('./images/worldMap.png');
+  background-size: 750px 530px;
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: center;
+  background-attachment: local;
+}
+
+.img-fluid {
+  width: 275px !important;
+  height: 250px !important;
+}
+
+.fw-normal {
+  font-weight: 375 !important;
+}
+
+.positionDiv {
+  position: absolute;
+  bottom: 10%;
+  right: 23.5%;
+}
+
+.homePageBtn {
+  background: rgba(48, 89, 235, 1) !important;
+}
+
+.otImg {
+  position: absolute;
+  max-width: 300px !important;
+  max-height: 500px;
+  left: 32%;
+  z-index: 0;
+}
+
+.zIndex1 {
+  z-index: 1;
 }
