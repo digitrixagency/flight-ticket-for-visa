@@ -35,5 +35,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  },
+  "homepage": "https://github.com/Prashant9192/flight-ticket-for-visa.git",
+  "scriptss": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }
