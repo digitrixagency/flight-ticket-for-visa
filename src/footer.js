@@ -115,7 +115,7 @@ const footer = () => {
 
                                 <div className='detailDiv mb-3'>
                                     <details className='detailTab  py-2 px-3' open='true'>
-                                        <summary className='summaryInDetail'><p>What app can download videos from Pinterest?</p></summary>
+                                        <summary className='summaryInDetail'><p className='m-0'>What app can download videos from Pinterest?</p></summary>
                                         <div className='parDiv mt-3'>
                                             <p className='py-2 px-3 m-0'>There are several third-party apps available for downloading videos from Pinterest. However, using an online Pinterest video downloader tool like ours eliminates the need for any additional apps.</p>
                                         </div>
@@ -123,7 +123,7 @@ const footer = () => {
                                 </div>
                                 <div className='detailDiv mb-3'>
                                     <details className='detailTab  py-2 px-3'>
-                                        <summary className='summaryInDetail'><p>How to download video from link?</p></summary>
+                                        <summary className='summaryInDetail'><p className='m-0'>How to download video from link?</p></summary>
                                         <div className='parDiv mt-3'>
                                             <p className='py-2 px-3 m-0'>There are several third-party apps available for downloading videos from Pinterest. However, using an online Pinterest video downloader tool like ours eliminates the need for any additional apps.</p>
                                         </div>
@@ -131,7 +131,7 @@ const footer = () => {
                                 </div>
                                 <div className='detailDiv mb-3'>
                                     <details className='detailTab  py-2 px-3'>
-                                        <summary className='summaryInDetail'><p>How can I download a video?</p></summary>
+                                        <summary className='summaryInDetail'><p className='m-0'>How can I download a video?</p></summary>
                                         <div className='parDiv mt-3'>
                                             <p className='py-2 px-3 m-0'>There are several third-party apps available for downloading videos from Pinterest. However, using an online Pinterest video downloader tool like ours eliminates the need for any additional apps.</p>
                                         </div>
@@ -139,7 +139,7 @@ const footer = () => {
                                 </div>
                                 <div className='detailDiv mb-3'>
                                     <details className='detailTab  py-2 px-3'>
-                                        <summary className='summaryInDetail'><p>How to download Pinterest videos in gallery without any app?</p></summary>
+                                        <summary className='summaryInDetail'><p className='m-0'>How to download Pinterest videos in gallery without any app?</p></summary>
                                         <div className='parDiv mt-3'>
                                             <p className='py-2 px-3 m-0'>There are several third-party apps available for downloading videos from Pinterest. However, using an online Pinterest video downloader tool like ours eliminates the need for any additional apps.</p>
                                         </div>
@@ -147,7 +147,7 @@ const footer = () => {
                                 </div>
                                 <div className='detailDiv mb-3'>
                                     <details className='detailTab  py-2 px-3'>
-                                        <summary className='summaryInDetail'><p>Is it legal to download images from Pinterest?</p></summary>
+                                        <summary className='summaryInDetail'><p className='m-0'>Is it legal to download images from Pinterest?</p></summary>
                                         <div className='parDiv mt-3'>
                                             <p className='py-2 px-3 m-0'>There are several third-party apps available for downloading videos from Pinterest. However, using an online Pinterest video downloader tool like ours eliminates the need for any additional apps.</p>
                                         </div>
@@ -155,7 +155,7 @@ const footer = () => {
                                 </div>
                                 <div className='detailDiv mb-3'>
                                     <details className='detailTab  py-2 px-3'>
-                                        <summary className='summaryInDetail'><p>Where can I download the Pinterest app?</p></summary>
+                                        <summary className='summaryInDetail'><p className='m-0'>Where can I download the Pinterest app?</p></summary>
                                         <div className='parDiv mt-3'>
                                             <p className='py-2 px-3 m-0'>There are several third-party apps available for downloading videos from Pinterest. However, using an online Pinterest video downloader tool like ours eliminates the need for any additional apps.</p>
                                         </div>
@@ -163,7 +163,7 @@ const footer = () => {
                                 </div>
                                 <div className='detailDiv mb-3'>
                                     <details className='detailTab  py-2 px-3'>
-                                        <summary className='summaryInDetail'><p>How to download reels from Pinterest?</p></summary>
+                                        <summary className='summaryInDetail'><p className='m-0'>How to download reels from Pinterest?</p></summary>
                                         <div className='parDiv mt-3'>
                                             <p className='py-2 px-3 m-0'>There are several third-party apps available for downloading videos from Pinterest. However, using an online Pinterest video downloader tool like ours eliminates the need for any additional apps.</p>
                                         </div>
@@ -171,7 +171,7 @@ const footer = () => {
                                 </div>
                                 <div className='detailDiv mb-3'>
                                     <details className='detailTab  py-2 px-3'>
-                                        <summary className='summaryInDetail'><p>How to download video in gallery?</p></summary>
+                                        <summary className='summaryInDetail'><p className='m-0'>How to download video in gallery?</p></summary>
                                         <div className='parDiv mt-3'>
                                             <p className='py-2 px-3 m-0'>There are several third-party apps available for downloading videos from Pinterest. However, using an online Pinterest video downloader tool like ours eliminates the need for any additional apps.</p>
                                         </div>
@@ -179,7 +179,7 @@ const footer = () => {
                                 </div>
                                 <div className='detailDiv mb-3'>
                                     <details className='detailTab  py-2 px-3'>
-                                        <summary className='summaryInDetail'><p>How do I download a video from a reel?</p></summary>
+                                        <summary className='summaryInDetail'><p className='m-0'>How do I download a video from a reel?</p></summary>
                                         <div className='parDiv mt-3'>
                                             <p className='py-2 px-3 m-0'>There are several third-party apps available for downloading videos from Pinterest. However, using an online Pinterest video downloader tool like ours eliminates the need for any additional apps.</p>
                                         </div>
@@ -187,7 +187,7 @@ const footer = () => {
                                 </div>
                                 <div className='detailDiv mb-3'>
                                     <details className='detailTab  py-2 px-3'>
-                                        <summary className='summaryInDetail'><p>How do I download videos from YouTube?</p></summary>
+                                        <summary className='summaryInDetail'><p className='m-0'>How do I download videos from YouTube?</p></summary>
                                         <div className='parDiv mt-3'>
                                             <p className='py-2 px-3 m-0'>There are several third-party apps available for downloading videos from Pinterest. However, using an online Pinterest video downloader tool like ours eliminates the need for any additional apps.</p>
                                         </div>
