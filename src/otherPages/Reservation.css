@@ -1,0 +1,22 @@
+.cardImage {
+    width: 270px;
+}
+
+.cardTextWidth {
+    width: 242px;
+    height: 128px;
+    overflow-x: overlay;
+    font-size: 21px;
+    line-height: 32px;
+    letter-spacing: -0.30000001192092896px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.cardTextWidth::-webkit-scrollbar {
+    width: 0;
+}
+
+.card {
+    background-color: #F1F5F9;
+}

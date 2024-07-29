@@ -1,0 +1,25 @@
+.stepImg {
+    width: 167px;
+    height: 166px;
+    top: 5713px;
+    left: 281px;
+    gap: 0px;
+    opacity: 0px;
+}
+
+.stepHeader {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 35px;
+    text-align: center;
+    color: #3059EB;
+}
+
+.nextStepImg {
+    width: 83px;
+    height: 82px;
+    top: 5797px;
+    left: 500px;
+    gap: 0px;
+    opacity: 0px;
+}

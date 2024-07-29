@@ -57,3 +57,280 @@
 .zIndex1 {
   z-index: 1;
 }
+
+.footerBg1 {
+  background-color: rgba(0, 0, 0, 1);
+  border-radius: 60px 60px 0 0;
+}
+
+.footerBg2 {
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.FAQImg {
+  width: 350px;
+  height: 427.48px;
+  top: 7352px;
+  left: 242px;
+  gap: 0px;
+  /* border-radius: 147px 0px 0px 0px; */
+  opacity: 0px;
+}
+
+.hrStyle {
+  background: linear-gradient(90deg, #6DDCFF 0%, #7F60F9 100%) !important;
+  margin: 0;
+  height: 2px;
+}
+
+.footerFoot {
+  width: 80% !important;
+  /* height: 306px; */
+  /* top: 7970px; */
+  gap: 0px;
+  border: 1px 0px 0px 0px;
+  opacity: 0px;
+}
+
+.logoImg {
+  /* font-family: Inter; */
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 54.56px;
+  text-align: start;
+  color: rgba(48, 89, 235, 1);
+}
+
+.textUL {
+  width: 328px;
+  height: 78px;
+  top: 8078px;
+  left: 237px;
+  gap: 0px;
+  opacity: 0px;
+  color: rgba(255, 255, 255, 1);
+}
+
+.linkIfoot {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 40px;
+  text-align: left;
+  /* width: 87px; */
+  /* height: 25px; */
+  top: 8030px;
+  left: 665px;
+  gap: 0px;
+  opacity: 0px;
+  color: rgba(255, 255, 255, 1);
+  text-decoration: none;
+}
+
+
+.plansHeader {
+  color: rgba(48, 89, 235, 1);
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 66px;
+  text-align: center;
+}
+
+.plansSubHeader {
+  color: rgba(255, 255, 255, 1);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  text-align: center;
+}
+
+.planTitle {
+  /* //styleName: Semi-bold/18px; */
+  color: rgba(255, 255, 255, 1);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  text-align: left;
+  width: 122.78px;
+  height: 25.23px;
+  top: 6323.07px;
+  left: 271.43px;
+  gap: 0px;
+  opacity: 0px;
+  margin-bottom: 2.5rem;
+}
+
+.planPrice {
+  color: rgba(113, 113, 122, 1);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  /* width: 93.12px; */
+  height: 20.18px;
+  top: 6398.75px;
+  left: 384.88px;
+  gap: 0px;
+  opacity: 0px;
+  margin-bottom: 4rem;
+}
+
+.planAmount {
+  color: rgba(255, 255, 255, 1);
+  font-size: 75px;
+  font-weight: 400;
+  line-height: 66px;
+  text-align: left;
+  width: 114.29px;
+  height: 55.5px;
+  top: 6366.8px;
+  left: 270.59px;
+  gap: 0px;
+  opacity: 0px;
+}
+
+.planText {
+  color: rgba(161, 161, 170, 1);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  height: 21px;
+  top: 6437px;
+  left: 271px;
+  gap: 0px;
+  opacity: 0px;
+  border-width: 1px;
+  padding-bottom: 10px;
+
+}
+
+.oneLine {
+  /* width: 244.71px; */
+  height: 2px;
+  top: 6472.76px;
+  left: 271.43px;
+  gap: 0px;
+  border-width: 1px;
+  border-style: solid none none none;
+  border-color: rgba(39, 39, 42, 1);
+  background-color: rgba(39, 39, 42, 1);
+}
+
+.plansBG {
+  background: rgba(24, 24, 27, 1);
+  border-radius: 6px;
+  height: 100%;
+}
+
+.plansBG2 {
+  background: rgba(24, 24, 27, 1);
+  border-radius: 6px;
+  height: 100%;
+}
+
+
+
+.PlanList {
+  list-style: none;
+}
+
+.PlanList li {
+  color: rgba(255, 255, 255, 1);
+  font-size: 18px;
+}
+
+.orderDiv {
+  width: 100%;
+  background: linear-gradient(90deg, #6DDCFF 0%, #7F60F9 100%);
+  border-radius: 10px;
+  border: 2px solid transparent;
+}
+
+.orderBtn {
+  width: 100%;
+  background: rgba(24, 24, 27, 1);
+  color: rgba(255, 255, 255, 1);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+
+.plansBG:hover {
+  background: linear-gradient(90deg, #6DDCFF 0%, #7F60F9 100%) !important;
+  border: 2px solid transparent;
+}
+
+.orderDiv:hover {
+  background: rgba(24, 24, 27, 1) !important;
+  border: none;
+}
+
+.orderBtn:hover {
+  background: linear-gradient(90deg, #6DDCFF 0%, #7F60F9 100%) !important;
+  border: none;
+}
+
+/* 
+.plansBgImp {
+  background: linear-gradient(90deg, #6DDCFF 0%, #7F60F9 100%) !important;
+  border: 2px solid transparent;
+}
+
+.orderDivImp {
+  background: rgba(24, 24, 27, 1) !important;
+  border: none;
+}
+
+.orderBtnImp {
+  background: linear-gradient(90deg, #6DDCFF 0%, #7F60F9 100%) !important;
+  border: none;
+} */
+.detailDiv {
+  width: 100%;
+  background: linear-gradient(90deg, #6DDCFF 0%, #7F60F9 100%);
+  border: 1px solid transparent;
+  border-radius: 10px;
+}
+
+.detailTab {
+  border-radius: 10px;
+  width: 100%;
+  background: #18181B;
+  color: #FFFFFF;
+}
+
+.detailTab[open] {
+  background: #000000;
+
+}
+
+.detailTab[open] .parDiv p {
+  background: #000000;
+}
+.summaryInDetail {
+
+  /* &::marker {
+    unicode-bidi: isolate;
+    font-variant-numeric: tabular-nums;
+    text-transform: none;
+    text-indent: 0px !important;
+    text-align: end !important;
+    text-align-last: start !important;
+  } */
+}
+
+.parDiv {
+  background: linear-gradient(90deg, #6DDCFF 0%, #7F60F9 100%);
+  /* border: 2px solid transparent; */
+  border-width: 1px;
+  border-style: solid none none none;
+  border-color: transparent;
+}
+
+.parDiv p {
+  background: #18181B;
+  color: #FFFFFF;
+}

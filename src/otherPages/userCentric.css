@@ -1,0 +1,53 @@
+.cardImage2 {
+    /* border: 2px solid #161616; */
+    background: transparent;
+    width: 32.76px;
+    height: 36.42px;
+    top: 5053.28px;
+    left: 376.21px;
+    gap: 0px;
+    /* border: 2px 0px 0px 0px solid #161616; */
+    opacity: 0px;
+    margin-bottom: 1.5rem;
+}
+
+.cardBG {
+    background-color: transparent;
+    border-radius: 0;
+}
+
+.card11 {
+    border-width: 1px;
+    border-style: none solid solid none;
+    border-color: #E4E4E7;
+}
+
+.card12 {
+    border-width: 1px;
+    border-style: none solid solid solid;
+    border-color: #E4E4E7;
+}
+
+.card13 {
+    border-width: 1px;
+    border-style: none none solid solid;
+    border-color: #E4E4E7;
+}
+
+.card21 {
+    border-width: 1px;
+    border-style: solid solid none none;
+    border-color: #E4E4E7;
+}
+
+.card22 {
+    border-width: 1px;
+    border-style:solid solid none solid;
+    border-color: #E4E4E7;
+}
+
+.card23 {
+    border-width: 1px;
+    border-style: solid none none solid;
+    border-color: #E4E4E7;
+}
