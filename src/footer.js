@@ -108,7 +108,7 @@ const footer = () => {
                             <div className='col-5'>
                                 <div className='text-center'>
                                     <p className='logoImg text-center'>Frequently Asked Questions?</p>
-                                    <img src={FAQ} className='FAQImg' />
+                                    <img src={FAQ} className='FAQImg mt-5 pt-4' />
                                 </div>
                             </div>
                             <div className='col-7'>
