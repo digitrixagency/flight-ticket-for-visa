@@ -1,0 +1,1297 @@
+.hideElementCls {
+  display: none;
+}
+
+/* small mobile */
+@media only screen and (max-width: 320px) {
+}
+
+/* medium mobile */
+@media only screen and (min-width: 200px) and (max-width: 299px) {
+}
+
+/* large mobile */
+@media only screen and (min-width: 320px) and (max-width: 374px) {
+  .navbarDiv div nav {
+    justify-content: space-between !important;
+  }
+
+  .smallMenuDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  nav > .logo {
+    margin: 10px 0 !important;
+  }
+
+  .smallMenuDiv button {
+    font-size: 30px;
+  }
+
+  .menuDiv {
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    background: black;
+    width: 70%;
+    top: 10.2%;
+    right: 2px;
+    /* padding: 30px 50px; */
+  }
+
+  .homeDivInDiv {
+    padding: 0 !important;
+  }
+
+  .homeDivInDiv > .row {
+    margin: 0 !important;
+  }
+  .homeDivInDiv > .row > div {
+    margin: 0 !important;
+    padding: 45px 0 0 0 !important;
+  }
+  .homeDivInDiv > .row > :nth-child(2) {
+    display: none !important;
+  }
+  .homeDivInDiv > .row > :nth-child(3) {
+    display: none !important;
+  }
+
+  .backGroundImage {
+    background: transparent;
+  }
+
+  .display-5 {
+    font-size: 28px;
+    font-weight: 400;
+  }
+
+  .textUnderTitlesHome {
+    font-size: 15px;
+    font-weight: 400;
+  }
+
+  .backGroundImage > .col-md-6 > .d-flex {
+    flex-direction: column;
+  }
+
+  .homePageBtn {
+    margin: 5px 0;
+    font-size: 20px !important;
+  }
+
+  .featuresDivInDiv {
+    padding: 0 !important;
+  }
+
+  .cardDiv > div > h2 {
+    font-size: 30px;
+  }
+
+  .cardDiv > div > .card-text {
+    font-size: 20px;
+    max-width: 300px;
+  }
+
+  .w-75 {
+    width: 100% !important;
+  }
+  .w-75 > .mx-5 {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .blueBoxClass {
+    /* display: none; */
+    width: 100% !important;
+    height: 230px !important;
+  }
+
+  .cardTextWidth {
+    width: auto !important;
+    height: auto !important;
+    font-size: 16px !important;
+    line-height: 20px !important;
+  }
+
+  .cardImage {
+    width: 100% !important;
+    height: auto;
+  }
+
+  .card11 {
+    border-style: none none solid none !important;
+  }
+  .card12 {
+    border-style: solid none solid none !important;
+  }
+  .card13 {
+    border-style: solid none solid none !important;
+  }
+  .card21 {
+    border-style: solid none solid none !important;
+  }
+  .card22 {
+    border-style: solid none solid none !important;
+  }
+  .card23 {
+    border-style: solid none none none !important;
+  }
+
+  .userCentricBg > .container > .w-75 > .d-flex {
+    flex-direction: column;
+  }
+
+  .nextStepImg {
+    rotate: 90deg;
+  }
+
+  .footerFoot > .d-flex {
+    flex-direction: column;
+  }
+  .footerFoot > .d-flex > .plansBG {
+    width: 100%;
+    margin: 0 0 15px 0 !important;
+  }
+  .faqRowDiv {
+    flex-direction: column;
+  }
+  .faqRowDiv > div {
+    width: 100%;
+  }
+
+  .FAQImg {
+    width: 100%;
+    height: auto;
+    margin: 1rem 0 !important;
+  }
+  .footerFoot {
+    width: 90% !important;
+    padding: 0;
+  }
+
+  .faqRowDiv > .col-7 {
+    margin-top: 1rem;
+  }
+
+  .footerBg3 > .container > .footerFoot > .row {
+    flex-direction: column;
+  }
+  .footerBg3 > .container > .footerFoot > .row > .col-5 {
+    width: 100%;
+  }
+  .footerBg3 > .container > .footerFoot > .row > .col-7 {
+    width: 100%;
+  }
+
+  .footerBg3 > .container > .footerFoot > .row > div {
+    padding: 0;
+  }
+
+  .linkFootDiv {
+    padding: 0 0 0 0px !important;
+  }
+
+  .linkIfoot {
+    font-size: 12px !important;
+  }
+
+  .menuDiv {
+    display: none;
+    position: fixed;
+    flex-direction: column;
+    background: black;
+    width: 70%;
+    height: 653px;
+    top: 6.4%;
+    right: 1px;
+  }
+
+  .navbarDiv {
+    position: fixed;
+    z-index: 100;
+  }
+  .smallMenuDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .smallMenuDiv button {
+    font-size: 30px;
+  }
+
+  .menuDiv > a {
+    text-align: left;
+    font-size: 20px;
+    margin: 15px 25px !important;
+  }
+
+  .menuDiv > a > span {
+    margin: 0 12px !important;
+  }
+
+  .menuDiv > button {
+    text-align: center;
+    font-size: 20px;
+    margin: 10px 45px !important;
+  }
+  .menuDiv > #closeButton {
+    text-align: end;
+    margin: 10px 20px !important;
+    font-size: 30px;
+  }
+
+  .homeContainerDiv {
+    padding: 3rem;
+  }
+  .detailTab {
+    height: 115px;
+  }
+  .detailTab[open] {
+    height: auto;
+  }
+  .summaryInDetail > p {
+    width: 80%;
+  }
+  .parDiv {
+    margin-top: 4.4rem !important;
+  }
+
+  .documentsBg > div > .w-75 > .row > .justify-content-end {
+    justify-content: unset !important;
+  }
+  .documentsBg > div > .w-75 > .row > .justify-content-start {
+    justify-content: unset !important;
+  }
+
+  .columnReverse {
+    flex-direction: column-reverse;
+    margin: 10px 0;
+  }
+
+  .textUL {
+    width: 100%;
+    height: auto;
+  }
+
+  .px-5 {
+    padding-right: 0rem !important;
+    padding-left: 0rem !important;
+  }
+
+  .homeDivInDiv > div {
+    padding-right: 3rem !important;
+    padding-left: 3rem !important;
+  }
+
+  .planPrice {
+    font-size: 16px;
+    line-height: 20px;
+    /* margin-bottom: 3rem; */
+  }
+
+  .planAmount {
+    font-size: 54px;
+  }
+
+  .planText {
+    font-size: 13px;
+  }
+
+  .PlanList li {
+    font-size: 14px;
+  }
+  .orderBtn {
+    font-size: 15px;
+  }
+}
+/* large mobile */
+@media only screen and (min-width: 375px) and (max-width: 424px) {
+  .navbarDiv div nav {
+    justify-content: space-between !important;
+  }
+
+  .smallMenuDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .smallMenuDiv button {
+    font-size: 30px;
+  }
+
+  .menuDiv {
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    background: black;
+    width: 70%;
+    top: 10.2%;
+    right: 2px;
+    /* padding: 30px 50px; */
+  }
+
+  .homeDivInDiv {
+    padding: 0 !important;
+  }
+
+  .homeDivInDiv > .row {
+    margin: 0 !important;
+  }
+  .homeDivInDiv > .row > div {
+    margin: 0 !important;
+    padding: 45px 0 0 0 !important;
+  }
+  .homeDivInDiv > .row > :nth-child(2) {
+    display: none !important;
+  }
+  .homeDivInDiv > .row > :nth-child(3) {
+    display: none !important;
+  }
+
+  .backGroundImage {
+    background: transparent;
+  }
+
+  .display-5 {
+    font-size: 30px;
+    font-weight: 400;
+  }
+
+  .textUnderTitlesHome {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .backGroundImage > .col-md-6 > .d-flex {
+    flex-direction: column;
+  }
+
+  .homePageBtn {
+    margin: 10px 0;
+    font-size: 20px !important;
+  }
+
+  .featuresDivInDiv {
+    padding: 0 !important;
+  }
+
+  .cardDiv > div > h2 {
+    font-size: 30px;
+  }
+
+  .cardDiv > div > .card-text {
+    font-size: 20px;
+    max-width: 300px;
+  }
+
+  .w-75 {
+    width: 100% !important;
+  }
+  .w-75 > .mx-5 {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .blueBoxClass {
+    /* display: none; */
+    width: 100% !important;
+    height: 230px !important;
+  }
+
+  .cardTextWidth {
+    width: auto !important;
+    height: auto !important;
+    font-size: 18px !important;
+    line-height: 25px !important;
+  }
+
+  .cardImage {
+    width: 100% !important;
+    height: auto;
+  }
+
+  .card11 {
+    border-style: none none solid none !important;
+  }
+  .card12 {
+    border-style: solid none solid none !important;
+  }
+  .card13 {
+    border-style: solid none solid none !important;
+  }
+  .card21 {
+    border-style: solid none solid none !important;
+  }
+  .card22 {
+    border-style: solid none solid none !important;
+  }
+  .card23 {
+    border-style: solid none none none !important;
+  }
+
+  .userCentricBg > .container > .w-75 > .d-flex {
+    flex-direction: column;
+  }
+
+  .nextStepImg {
+    rotate: 90deg;
+  }
+
+  .footerFoot > .d-flex {
+    flex-direction: column;
+  }
+  .footerFoot > .d-flex > .plansBG {
+    width: 100%;
+    margin: 0 0 15px 0 !important;
+  }
+  .faqRowDiv {
+    flex-direction: column;
+  }
+  .faqRowDiv > div {
+    width: 100%;
+  }
+
+  .FAQImg {
+    width: 275px;
+    height: auto;
+    margin: 1rem 0 !important;
+  }
+  .footerFoot {
+    width: 90% !important;
+  }
+
+  .faqRowDiv > .col-7 {
+    margin-top: 1rem;
+  }
+
+  .footerBg3 > .container > .footerFoot > .row {
+    flex-direction: column;
+  }
+  .footerBg3 > .container > .footerFoot > .row > .col-5 {
+    width: 100%;
+  }
+  .footerBg3 > .container > .footerFoot > .row > .col-7 {
+    width: 100%;
+  }
+
+  .linkFootDiv {
+    padding: 0 0 0 10px !important;
+  }
+
+  .linkIfoot {
+    font-size: 12px !important;
+  }
+
+  .menuDiv {
+    display: none;
+    position: fixed;
+    flex-direction: column;
+    background: black;
+    width: 70%;
+    height: 643px;
+    top: 8%;
+    right: 1px;
+  }
+  .navbarDiv {
+    position: fixed;
+    z-index: 100;
+  }
+  .smallMenuDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .smallMenuDiv button {
+    font-size: 30px;
+  }
+
+  .menuDiv > a {
+    text-align: left;
+    font-size: 20px;
+    margin: 15px 30px !important;
+  }
+
+  .menuDiv > a > span {
+    margin: 0 12px !important;
+  }
+
+  .menuDiv > button {
+    text-align: center;
+    font-size: 20px;
+    margin: 10px 45px !important;
+  }
+  .menuDiv > #closeButton {
+    text-align: end;
+    margin: 10px 20px !important;
+    font-size: 30px;
+  }
+
+  .homeContainerDiv {
+    padding: 3rem;
+  }
+  .detailTab {
+    height: 95px;
+  }
+  .detailTab[open] {
+    height: auto;
+  }
+  .summaryInDetail > p {
+    width: 200px;
+  }
+  .parDiv {
+    margin-top: 3rem !important;
+  }
+
+  .documentsBg > div > .w-75 > .row > .justify-content-end {
+    justify-content: unset !important;
+  }
+  .documentsBg > div > .w-75 > .row > .justify-content-start {
+    justify-content: unset !important;
+  }
+
+  .columnReverse {
+    flex-direction: column-reverse;
+    margin: 10px 0;
+  }
+
+  .textUL {
+    width: 100%;
+    height: auto;
+  }
+}
+/* large mobile */
+@media only screen and (min-width: 425px) and (max-width: 599px) {
+  .navbarDiv div nav {
+    justify-content: space-between !important;
+  }
+
+  .smallMenuDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .smallMenuDiv button {
+    font-size: 30px;
+  }
+
+  .menuDiv {
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    background: black;
+    width: 40%;
+    top: 10.2%;
+    right: 2px;
+    /* padding: 30px 50px; */
+  }
+
+  .homeDivInDiv {
+    padding: 0 !important;
+  }
+
+  .homeDivInDiv > .row {
+    margin: 0 !important;
+  }
+  .homeDivInDiv > .row > div {
+    margin: 0 !important;
+    padding: 45px 0 0 0 !important;
+  }
+  .homeDivInDiv > .row > :nth-child(2) {
+    display: none !important;
+  }
+  .homeDivInDiv > .row > :nth-child(3) {
+    display: none !important;
+  }
+
+  .backGroundImage {
+    background: transparent;
+  }
+
+  .display-5 {
+    font-size: 30px;
+    font-weight: 400;
+  }
+
+  .textUnderTitlesHome {
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  .backGroundImage > .col-md-6 > .d-flex {
+    flex-direction: column;
+  }
+
+  .homePageBtn {
+    margin: 10px 0;
+    font-size: 20px !important;
+  }
+
+  .featuresDivInDiv {
+    padding: 0 !important;
+  }
+
+  .cardDiv > div > h2 {
+    font-size: 30px;
+  }
+
+  .cardDiv > div > .card-text {
+    font-size: 20px;
+    max-width: 300px;
+  }
+
+  .w-75 {
+    width: 100% !important;
+  }
+  .w-75 > .mx-5 {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .blueBoxClass {
+    /* display: none; */
+    width: 365px !important;
+    height: 230px !important;
+  }
+
+  .cardTextWidth {
+    width: auto !important;
+    height: auto !important;
+    font-size: 18px !important;
+    line-height: 25px !important;
+  }
+
+  .cardImage {
+    width: 315px !important;
+    height: auto;
+  }
+
+  .card11 {
+    border-style: none none solid none !important;
+  }
+  .card12 {
+    border-style: solid none solid none !important;
+  }
+  .card13 {
+    border-style: solid none solid none !important;
+  }
+  .card21 {
+    border-style: solid none solid none !important;
+  }
+  .card22 {
+    border-style: solid none solid none !important;
+  }
+  .card23 {
+    border-style: solid none none none !important;
+  }
+
+  .userCentricBg > .container > .w-75 > .d-flex {
+    flex-direction: column;
+  }
+
+  .nextStepImg {
+    rotate: 90deg;
+  }
+
+  .footerFoot > .d-flex {
+    flex-direction: column;
+  }
+  .footerFoot > .d-flex > .plansBG {
+    width: 100%;
+    margin: 0 0 15px 0 !important;
+  }
+  .faqRowDiv {
+    flex-direction: column;
+  }
+  .faqRowDiv > div {
+    width: 100%;
+  }
+
+  .FAQImg {
+    width: 275px;
+    height: auto;
+    margin: 1rem 0 !important;
+  }
+  .footerFoot {
+    width: 90% !important;
+  }
+
+  .faqRowDiv > .col-7 {
+    margin-top: 1rem;
+  }
+
+  .footerBg3 > .container > .footerFoot > .row {
+    flex-direction: column;
+  }
+  .footerBg3 > .container > .footerFoot > .row > .col-5 {
+    width: 100%;
+  }
+  .footerBg3 > .container > .footerFoot > .row > .col-7 {
+    width: 100%;
+  }
+
+  .linkFootDiv {
+    padding: 0 0 0 10px !important;
+  }
+
+  .linkIfoot {
+    font-size: 12px !important;
+  }
+
+  .menuDiv {
+    display: none;
+    position: fixed;
+    flex-direction: column;
+    background: black;
+    width: 55%;
+    height: 643px;
+    top: 8%;
+    right: 1px;
+  }
+  .navbarDiv {
+    position: fixed;
+    z-index: 100;
+  }
+  .smallMenuDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .smallMenuDiv button {
+    font-size: 30px;
+  }
+
+  .menuDiv > a {
+    text-align: left;
+    font-size: 20px;
+    margin: 15px 30px !important;
+  }
+
+  .menuDiv > a > span {
+    margin: 0 12px !important;
+  }
+
+  .menuDiv > button {
+    text-align: center;
+    font-size: 20px;
+    margin: 10px 45px !important;
+  }
+  .menuDiv > #closeButton {
+    text-align: end;
+    margin: 10px 20px !important;
+    font-size: 30px;
+  }
+
+  .homeContainerDiv {
+    padding: 3rem;
+  }
+  .detailTab {
+    height: 70px;
+  }
+  .detailTab[open] {
+    height: auto;
+  }
+  .summaryInDetail > p {
+    width: 245px;
+  }
+  .parDiv {
+    margin-top: 2rem !important;
+  }
+
+  .documentsBg > div > .w-75 > .row > .justify-content-end {
+    justify-content: unset !important;
+  }
+  .documentsBg > div > .w-75 > .row > .justify-content-start {
+    justify-content: unset !important;
+  }
+
+  .columnReverse {
+    flex-direction: column-reverse;
+    margin: 10px 0;
+  }
+}
+
+/* tablet */
+@media only screen and (min-width: 600px) and (max-width: 767px) {
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .navbarDiv div nav {
+    justify-content: space-between !important;
+  }
+
+  .smallMenuDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .smallMenuDiv button {
+    font-size: 30px;
+  }
+  .menuDiv {
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    background: black;
+    width: 40%;
+    top: 10.2%;
+    right: 2px;
+    /* padding: 30px 50px; */
+  }
+
+  .menuDiv > a {
+    text-align: left;
+    font-size: 20px;
+    margin: 10px 70px !important;
+  }
+  .menuDiv > a > span {
+    margin: 0 12px !important;
+  }
+  .menuDiv > button {
+    text-align: center;
+    font-size: 20px;
+    margin: 10px 45px !important;
+  }
+  .menuDiv > #closeButton {
+    text-align: end;
+    margin: 10px 20px !important;
+    font-size: 30px;
+  }
+
+  .homeContainerDiv {
+    padding: 0px !important;
+  }
+
+  .homeContainerDiv .homeDivInDiv {
+    padding: 0px 20px !important;
+  }
+
+  .display-5 {
+    font-size: 25px;
+    font-weight: 400;
+  }
+
+  .display-6 {
+    font-size: 17px;
+    font-weight: 600 !important;
+  }
+
+  .textUnderTitlesHome {
+    font-size: 12px;
+    font-weight: 400;
+    width: 350px;
+  }
+
+  .backGroundImage {
+    background-size: 450px 330px;
+  }
+
+  .otImg {
+    max-width: 220px !important;
+    max-height: 270px;
+    left: 25%;
+    top: 28%;
+  }
+
+  .threeBtnInHome {
+    width: 370px;
+  }
+  .homePageBtn {
+    font-size: 10px !important;
+  }
+
+  .positionDiv {
+    bottom: 20%;
+    right: 15%;
+  }
+
+  .img-fluid {
+    width: 192.5px !important;
+    height: auto !important;
+  }
+
+  .featuresBg .featuresBgDiv {
+    padding: 0 !important;
+  }
+
+  .featuresBg .featuresBgDiv .featuresDivInDiv {
+    padding: 0 20px !important;
+  }
+  .cardDiv > div > h2 {
+    font-size: 16px;
+  }
+  .card-img-top {
+    width: 100px !important;
+  }
+
+  .card-text {
+    max-width: 160px !important;
+    font-size: 12px;
+  }
+
+  .w-75 {
+    width: 95% !important;
+  }
+
+  .w-75 > div > h1 {
+    font-size: 25px;
+  }
+  .w-75 > div > .fw-normal {
+    font-size: 12px;
+  }
+
+  .blueBoxClass {
+    width: 300px !important;
+    height: 200px !important;
+  }
+  .fw-medium {
+    font-size: 18px;
+    margin-bottom: 10px !important;
+  }
+
+  .docPTag {
+    font-size: small;
+  }
+
+  .cardImage {
+    width: 175px !important;
+  }
+
+  .cardTextWidth {
+    width: 165px !important;
+    height: 50px !important;
+    font-size: 12px !important;
+    line-height: 12px !important;
+  }
+
+  .cardImage2 {
+    margin-bottom: 0.5rem !important;
+  }
+
+  .cardBG > .card-body > h2 {
+    font-size: 25px;
+  }
+
+  .cardBG > .card-body > p {
+    font-size: 16px;
+    padding: 0 !important;
+    line-height: 20px;
+  }
+
+  .stepHeader {
+    font-size: 24px !important;
+  }
+
+  .stepText {
+    font-size: 12px;
+  }
+
+  .planTitle {
+    font-size: 15px;
+    width: 90px;
+    margin-bottom: 1.5rem;
+  }
+
+  .planPrice {
+    font-size: 13px;
+    margin-bottom: 2.5rem;
+  }
+  .planAmount {
+    font-size: 35px;
+  }
+
+  .planText {
+    font-size: 12px;
+  }
+
+  .PlanList li {
+    color: rgba(255, 255, 255, 1);
+    font-size: 12px;
+  }
+
+  .plansBG {
+    width: 40%;
+  }
+  .oneLine {
+    margin: 0.5rem 0;
+  }
+
+  .orderBtn {
+    font-size: 15px;
+    padding: 10px 15px !important;
+  }
+
+  .logoImg {
+    font-size: 25px;
+  }
+
+  .footerBg2 > .container > .footerFoot {
+    max-width: 760px;
+    margin: auto 10px;
+  }
+
+  .footerBg2 > .container > .footerFoot > .row {
+    width: 700px;
+  }
+
+  .FAQImg {
+    width: 265px;
+    height: auto;
+  }
+
+  details > summary {
+    font-size: 11px;
+  }
+
+  .parDiv > p {
+    font-size: 11px;
+  }
+
+  .textUL {
+    width: 240px;
+    font-size: 14px;
+  }
+
+  .linkFootDiv {
+    padding-left: 0px !important;
+  }
+
+  .linkIfoot {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .navbarDiv div nav {
+    padding: 0px 70px;
+  }
+
+  nav .logo {
+    padding: 18px 0 !important;
+    margin: 0 !important;
+  }
+
+  .display-5 {
+    font-weight: 400;
+    font-size: 30px;
+  }
+
+  .display-6 {
+    font-size: 27px;
+    font-weight: 600 !important;
+  }
+
+  .textUnderTitlesHome {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21.79px;
+    text-align: left;
+    width: 320px;
+    height: auto;
+  }
+
+  .homePageBtn {
+    font-size: 8px !important;
+  }
+
+  .backGroundImage {
+    background-size: 510px 415px;
+  }
+
+  .otImg {
+    left: 31%;
+  }
+
+  .img-fluid {
+    width: 220px !important;
+    height: 185px !important;
+  }
+
+  .positionDiv {
+    bottom: 30%;
+  }
+
+  .w-75 {
+    width: 80% !important;
+  }
+
+  .cardTextWidth {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    line-height: 20px !important;
+    letter-spacing: -0.30000001192092896px !important;
+    text-align: left !important;
+    width: 200px !important;
+    height: 63px !important;
+  }
+
+  .cardImage {
+    width: 195px !important;
+    height: auto;
+  }
+
+  .stepHeader {
+    font-size: 24px !important;
+  }
+
+  .logoImg {
+    font-size: 35px;
+  }
+
+  .planAmount {
+    font-size: 65px;
+  }
+
+  .planPrice {
+    font-size: 16px;
+  }
+  .planText {
+    font-size: 14px;
+  }
+
+  .oneLine {
+    margin: 0;
+  }
+  .PlanList li {
+    font-size: 15px;
+  }
+
+  .orderBtn {
+    font-size: 18px;
+    border-radius: 5px;
+  }
+
+  .FAQImg {
+    width: 285px;
+    margin-top: 10px !important;
+    height: auto;
+  }
+
+  .detailTab {
+    font-size: 12px;
+  }
+
+  .textUL {
+    width: 290px;
+  }
+
+  .linkFootDiv {
+    padding-left: 12px !important;
+  }
+
+  .linkIfoot {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+  .display-5 {
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 54.47px;
+    text-align: left;
+    width: 492px;
+    height: 108px;
+    top: 140px;
+    left: 238px;
+    gap: 0px;
+    opacity: 0px;
+  }
+
+  .display-6 {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 43.58px;
+    text-align: left;
+    width: 254px;
+    height: 44px;
+    top: 278px;
+    left: 238px;
+    gap: 0px;
+    opacity: 0px;
+  }
+
+  .textUnderTitlesHome {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.79px;
+    text-align: left;
+    width: 445px;
+    height: 70px;
+  }
+
+  .homePageBtn {
+    font-size: 13px !important;
+  }
+
+  .backGroundImage {
+    background-size: 645px 445px;
+  }
+  .otImg {
+    left: 31%;
+  }
+
+  .w-75 {
+    width: 83% !important;
+  }
+
+  .cardTextWidth {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    line-height: 20px !important;
+    letter-spacing: -0.30000001192092896px !important;
+    text-align: left !important;
+    width: 234px !important;
+    height: 63px !important;
+  }
+
+  .cardImage {
+    width: 250px !important;
+    height: auto;
+    top: 4529px;
+    left: 257px;
+    gap: 0px;
+    opacity: 0px;
+  }
+
+  .stepHeader {
+    font-size: 24px;
+  }
+
+  .card-body {
+    height: auto;
+    border-radius: 20px 0px 0px 0px;
+  }
+
+  .linkFootDiv {
+    padding-left: 1rem !important;
+  }
+}
+
+@media only screen and (min-width: 1400px) and (max-width: 1699px) {
+  .positionDiv {
+    bottom: 20%;
+  }
+}
+
+@media only screen and (min-width: 2560px) {
+  .positionDiv {
+    bottom: 20%;
+    right: 36%;
+  }
+}

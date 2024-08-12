@@ -17,7 +17,7 @@ const userCentric = () => {
                         <h1>Make every step user-centric</h1>
                         <h6 className='fw-normal'>Lorem ipsum dolor sit amet, consectetur adipis elit.</h6>
                     </div>
-                    <div className="row row-cols-2 row-cols-lg-3 g-0 g-lg-0">
+                    <div className="row row-cols-1 row-cols-lg-3 g-0 g-lg-0">
 
                         <div className="col-md-4">
                             <div className="card cardBG card11">

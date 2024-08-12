@@ -104,7 +104,7 @@ const footer = () => {
             <div className='container-fluid footerBg2 pt-5'>
                 <div className='container pb-5'>
                     <div className='container footerFoot'>
-                        <div className='row'>
+                        <div className='row faqRowDiv'>
                             <div className='col-5'>
                                 <div className='text-center'>
                                     <p className='logoImg text-center'>Frequently Asked Questions?</p>
@@ -199,7 +199,7 @@ const footer = () => {
                 </div>
             </div>
             <hr className='hrStyle' />
-            <div className='container-fluid footerBg2 pt-5'>
+            <div className='container-fluid footerBg3 pt-5'>
                 <div className='container pb-5'>
                     <div className='container footerFoot'>
                         <div className='row'>
@@ -213,8 +213,8 @@ const footer = () => {
                                 </div>
                             </div>
                             <div className='col-7'>
-                                <div className='row text-center g-1'>
-                                    <div className='col-4 text-start d-flex flex-column ps-5'>
+                                <div className='row text-center g-1 linkFootROwDiv'>
+                                    <div className='col-4 text-start d-flex flex-column ps-5 linkFootDiv'>
                                         <a href='#' className='linkIfoot'>Contact Us</a>
                                         <a href='#' className='linkIfoot'>Work With us</a>
                                         <a href='#' className='linkIfoot'>Terms of Services</a>
@@ -222,7 +222,7 @@ const footer = () => {
                                         <a href='#' className='linkIfoot'>Site Map</a>
                                         <a href='#' className='linkIfoot'>Trust</a>
                                     </div>
-                                    <div className='col-4 text-start d-flex flex-column ps-5'>
+                                    <div className='col-4 text-start d-flex flex-column ps-5 linkFootDiv'>
                                         <a href='#' className='linkIfoot'>About Us</a>
                                         <a href='#' className='linkIfoot'>Privacy Policy</a>
                                         <a href='#' className='linkIfoot'>Accessibility</a>
@@ -230,7 +230,7 @@ const footer = () => {
                                         <a href='#' className='linkIfoot'>Subscription</a>
                                         <a href='#' className='linkIfoot'>Legal</a>
                                     </div>
-                                    <div className='col-4 text-start d-flex flex-column ps-5'>
+                                    <div className='col-4 text-start d-flex flex-column ps-5 linkFootDiv'>
                                         <a href='#' className='linkIfoot'>DMCA Policy</a>
                                         <a href='#' className='linkIfoot'>Guest Posting</a>
                                         <a href='#' className='linkIfoot'>Blog/Articles</a>

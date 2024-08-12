@@ -11,6 +11,7 @@
     letter-spacing: -0.30000001192092896px;
     text-align: left;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .cardTextWidth::-webkit-scrollbar {

@@ -19,18 +19,18 @@ const steps = () => {
                         <div className='text-center'>
                             <img src={step1}  className='stepImg'/>
                             <h1 className='stepHeader'>Select Plan</h1>
-                            <p>Select from wide array of plans that best suits your needs.</p>
+                            <p className='stepText'>Select from wide array of plans that best suits your needs.</p>
                         </div>
                         <div><img src={nextStep} className='nextStepImg' /></div>
                         <div className='text-center'>
                             <img src={step2}  className='stepImg'/>
                             <h1 className='stepHeader'>Submit Travel Details & Pay</h1>
-                            <p>Provide all mandatory details and make the payment (s).</p></div>
+                            <p className='stepText'>Provide all mandatory details and make the payment (s).</p></div>
                         <div><img src={nextStep} className='nextStepImg' /></div>
                         <div className='text-center'>
                             <img src={step3}  className='stepImg'/>
                             <h1 className='stepHeader'>Document at Your Email</h1>
-                            <p>Select from wide array of plans that best suits your needs.</p>
+                            <p className='stepText'>Select from wide array of plans that best suits your needs.</p>
                         </div>
                     </div>
                 </div>

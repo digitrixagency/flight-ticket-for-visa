@@ -1,7 +1,19 @@
+#root {
+  margin: 0;
+  padding: 0;
+}
+
 .navbarDiv {
   background-color: #000000;
 }
 
+.smallMenuDiv {
+  display: none;
+}
+
+#closeButton {
+  display: none;
+}
 .sign-up-button {
   background-color: #3059EB !important;
   color: white !important;
@@ -64,6 +76,9 @@
 }
 
 .footerBg2 {
+  background-color: rgba(0, 0, 0, 1);
+}
+.footerBg3 {
   background-color: rgba(0, 0, 0, 1);
 }
 
@@ -381,4 +396,9 @@ summary p {
 .parDiv p {
   background: #18181B;
   color: #FFFFFF;
+}
+
+.menuDiv {
+  display: flex;
+  z-index: 10;
 }

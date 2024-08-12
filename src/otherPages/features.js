@@ -11,11 +11,11 @@ import img6 from '../images/bill.png';
 const Features = () => {
     return (
         <div className='container-fluid featuresBg mt-5 pt-5'>
-            <div className='container px-5 pb-5'>
-                <div className='container px-5'>
+            <div className='container featuresBgDiv px-5 pb-5'>
+                <div className='container featuresDivInDiv px-5'>
 
                     {/* <div className="row row-cols-2 row-cols-lg-3 g-3 g-lg-5 ms-4 me-5 mt-5"> */}
-                    <div className="row row-cols-2 row-cols-lg-3 g-3 g-lg-3">
+                    <div className="row row-cols-1 row-cols-lg-3 g-3 g-lg-3">
                         <div className="col-md-4">
                             <div className="card cardDiv d-flex align-items-center">
                                 <img src={img1} className="card-img-top" alt="..." />

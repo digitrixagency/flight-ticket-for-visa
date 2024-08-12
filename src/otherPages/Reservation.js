@@ -10,11 +10,11 @@ const Reservation = () => {
         <div className='container-fluid reservationBg mt-5 pt-5'>
             <div className='container pb-5'>
                 <div className='container w-75'>
-                    <div className='text-center mb-5'>
+                    <div className='text-center mb-5 mx-5'>
                         <h1>How To Get Flight Reservation for Visa</h1>
                         <h6 className='fw-normal'>Make birthday wishes extra special. With just a few clicks, you can easily add text with your own heartfelt messages and personal notes, making the birthday greeting truly unique and personalized. Spread joy and make someone's day truly special by customizing your birthday wishes with personalized text.</h6>
                     </div>
-                    <div className="row row-cols-2 row-cols-lg-3 g-3 g-lg-3">
+                    <div className="row row-cols-1 row-cols-lg-3 g-3 g-lg-3">
 
                         <div className="col-md-4">
                             <div className="card">
