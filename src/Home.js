@@ -4,7 +4,10 @@ import './responsive.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import mobileImage from './images/mobile.png'
 import ot from './images/ot.png'
-const Home = () => {
+const Home = ({ setIsHome2Active }) => {
+    const handleClick = () => {
+      setIsHome2Active(true); // This will trigger the component swap and hide Steps
+    };
     return (
         <div className='container homeContainerDiv px-5 pb-5'>
             <div className='container px-5 homeDivInDiv'>
@@ -16,7 +19,7 @@ const Home = () => {
                         <p className="lead textUnderTitlesHome">xyzwebsite.com offers fast, reliable flight and hotel reservations tailored for visa applications. Receive your verifiable itinerary within 4 to 8 hours, accepted worldwide.</p>
                         <p className='textUnderTitlesHome'>Trusted by thousands, we simplify visa processing with documents that meet embassy standards, ensuring a smooth travel planning experience.</p>
                         <div className="d-flex justify-content-between px-2 threeBtnInHome">
-                            <button type="button" className="btn btn-primary homePageBtn px-3">Flight Reservation</button>
+                            <button type="button" className="btn btn-primary homePageBtn px-3" onClick={handleClick}>Flight Reservation</button>
                             <button type="button" className="btn btn-primary homePageBtn px-4">Hotel Booking</button>
                             <button type="button" className="btn btn-primary homePageBtn px-4">Flight + Hotel</button>
                         </div>

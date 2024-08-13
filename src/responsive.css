@@ -309,6 +309,115 @@
   .orderBtn {
     font-size: 15px;
   }
+
+  .FlightReservation {
+    margin-top: 0 !important;
+    padding-top: 6rem !important;
+  }
+
+  #frHeader {
+    width: 270px;
+    font-size: 24px;
+  }
+
+  .frNumberDiv > span {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    font-size: 40px;
+    line-height: 50px;
+  }
+
+  .frWaveImgDiv {
+    margin: -10px -15px 0 -60px;
+  }
+
+  .frNumberDiv > p {
+    font-size: 15px;
+    margin-top: 30px;
+    width: 85px;
+  }
+  #frText {
+    width: 270px;
+    font-size: 14px;
+    height: 155px;
+  }
+  #frImg {
+    width: 100%;
+    height: auto;
+  }
+  #radioBtnDiv {
+    display: flex;
+    position: relative;
+    border: 1px solid #000000;
+    padding: 1.5rem 5px;
+    flex-direction: column;
+  }
+  .fitRow2 {
+    margin-bottom: 1rem;
+  }
+  #additionalPreferencesDiv {
+    display: flex;
+    flex-direction: column;
+  }
+  #travelerFlightDetailDiv {
+    flex-direction: column;
+  }
+
+  #travelerFlightDetailDiv > div {
+    width: 100%;
+  }
+  #travelerFlightDetailDiv > div > .inputDiv {
+    border-radius: 10px;
+  }
+
+  #payNowMainDiv > .row {
+    padding: 0 !important;
+  }
+  #payNowMainDiv > .row :nth-child(2) {
+    padding: 0 !important;
+  }
+  ul {
+    font-size: 11px;
+  }
+  #secureImg {
+    width: 100px;
+    height: auto;
+  }
+  #pciImg {
+    width: 100px;
+    height: auto;
+  }
+  .col-sm-1 {
+    width: 50%;
+  }
+
+  #paymentImg {
+    width: 100%;
+    height: auto;
+  }
+
+  #termNConditionText {
+    font-size: 13px;
+    height: 55px;
+  }
+  #termNConditionImg {
+    width: 100%;
+    height: auto;
+  }
+
+  #payNowMainDiv > h2 {
+    padding: 1.5rem 0 !important;
+  }
+
+  #frStepsDiv {
+    height: 180px;
+    padding: 20px 0px 30px 0px;
+  }
+  .waveForNum {
+    width: 95px;
+    height: 76px;
+  }
 }
 /* large mobile */
 @media only screen and (min-width: 375px) and (max-width: 424px) {
@@ -568,6 +677,108 @@
     width: 100%;
     height: auto;
   }
+
+  .FlightReservation {
+    margin-top: 0 !important;
+    padding-top: 6rem !important;
+  }
+
+  #frHeader {
+    width: 327px;
+    font-size: 30px;
+    line-height: 37px;
+  }
+
+  .frNumberDiv > span {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    font-size: 40px;
+    line-height: 50px;
+  }
+
+  .frWaveImgDiv {
+    margin: 0 -15px 0 -60px;
+  }
+
+  .frNumberDiv > p {
+    font-size: 15px;
+    margin-top: 30px;
+    width: 85px;
+  }
+  #frText {
+    width: 327px;
+    font-size: 14px;
+    height: 140px;
+  }
+  #frImg {
+    width: 100%;
+    height: auto;
+  }
+  #radioBtnDiv {
+    display: flex;
+    position: relative;
+    border: 1px solid #000000;
+    padding: 1.5rem 5px;
+  }
+  #additionalPreferencesDiv {
+    display: flex;
+    flex-direction: column;
+  }
+  #travelerFlightDetailDiv {
+    flex-direction: column;
+  }
+
+  #travelerFlightDetailDiv > div {
+    width: 100%;
+  }
+  #travelerFlightDetailDiv > div > .inputDiv {
+    border-radius: 10px;
+  }
+
+  #payNowMainDiv > .row {
+    padding: 0 !important;
+  }
+  #payNowMainDiv > .row :nth-child(2) {
+    padding: 0 !important;
+  }
+  ul {
+    font-size: 11px;
+  }
+  #secureImg {
+    width: 120px;
+    height: auto;
+  }
+  #pciImg {
+    width: 120px;
+    height: auto;
+  }
+  .col-sm-1 {
+    width: 50%;
+  }
+
+  #paymentImg {
+    width: 100%;
+    height: auto;
+  }
+
+  #termNConditionText {
+    font-size: 15px;
+    height: 45px;
+  }
+  #termNConditionImg {
+    width: 100%;
+    height: auto;
+  }
+
+  #payNowMainDiv > h2 {
+    padding: 1.5rem 0 !important;
+  }
+
+  #frStepsDiv {
+    height: 200px;
+    padding: 20px 0px 30px 16px;
+  }
 }
 /* large mobile */
 @media only screen and (min-width: 425px) and (max-width: 599px) {
@@ -822,6 +1033,97 @@
     flex-direction: column-reverse;
     margin: 10px 0;
   }
+
+  .FlightReservation {
+    margin-top: 0 !important;
+    padding-top: 6rem !important;
+  }
+
+  #frHeader {
+    width: 377px;
+    font-size: 30px;
+  }
+
+  .frNumberDiv > span {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    font-size: 40px;
+    line-height: 50px;
+  }
+
+  .frWaveImgDiv {
+    margin: 0 -15px 0 -60px;
+  }
+
+  .frNumberDiv > p {
+    font-size: 15px;
+    margin-top: 30px;
+  }
+  #frText {
+    width: 377px;
+    font-size: 14px;
+  }
+  #frImg {
+    width: 100%;
+    height: auto;
+  }
+
+  #radioBtnDiv {
+    display: flex;
+    position: relative;
+    border: 1px solid #000000;
+    padding: 2rem 1rem;
+  }
+  #travelerFlightDetailDiv {
+    flex-direction: column;
+  }
+
+  #travelerFlightDetailDiv > div {
+    width: 100%;
+  }
+  #travelerFlightDetailDiv > div > .inputDiv {
+    border-radius: 10px;
+  }
+
+  #payNowMainDiv > .row {
+    padding: 0 !important;
+  }
+  #payNowMainDiv > .row :nth-child(2) {
+    padding: 0 !important;
+  }
+  ul {
+    font-size: 11px;
+  }
+  #secureImg {
+    width: 120px;
+    height: auto;
+  }
+  #pciImg {
+    width: 120px;
+    height: auto;
+  }
+  .col-sm-1 {
+    width: 50%;
+  }
+
+  #paymentImg {
+    width: 100%;
+    height: auto;
+  }
+
+  #termNConditionText {
+    font-size: 16px;
+    height: 45px;
+  }
+  #termNConditionImg {
+    width: 100%;
+    height: auto;
+  }
+
+  #payNowMainDiv > h2 {
+    padding: 1.5rem 0 !important;
+  }
 }
 
 /* tablet */
@@ -1074,6 +1376,60 @@
   .linkIfoot {
     font-size: 12px;
   }
+  .frNumberDiv > span {
+    width: 70px;
+    height: 70px;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 35px;
+    line-height: 70px;
+  }
+
+  #frHeader {
+    width: 380px;
+    font-size: 30px;
+  }
+
+  .frWaveImgDiv {
+    margin: 0 -20px 0 -46px;
+  }
+  #frText {
+    width: 380px;
+    z-index: 5;
+    position: relative;
+  }
+  #frImg {
+    width: 350px;
+    height: 485px;
+    margin-left: -40px;
+    z-index: 1;
+    position: relative;
+  }
+
+  #travelersNCabinDiv {
+    width: 28%;
+  }
+  #secureImg {
+    width: 122px;
+    height: auto;
+  }
+
+  #pciImg {
+    width: 122px;
+    height: auto;
+  }
+
+  #paymentImg {
+    width: 110%;
+  }
+
+  ul {
+    font-size: 11px;
+  }
+
+  #termNConditionText {
+    font-size: 16px;
+  }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -1196,6 +1552,52 @@
 
   .linkIfoot {
     font-size: 14px;
+  }
+  #frHeader {
+    width: 436px;
+    height: 108px;
+    font-size: 35px;
+  }
+  .frNumberDiv > span {
+    display: block;
+    width: 90px;
+    height: 90px;
+  }
+
+  .frWaveImgDiv {
+    margin: 0 -25px;
+  }
+
+  #frText {
+    width: 436px;
+  }
+
+  #frImg {
+    width: 400px;
+    height: auto;
+  }
+
+  #frStepsDiv {
+    height: 210px;
+    padding: 20px 0px 30px 0px;
+    margin-bottom: 0;
+  }
+  #pciImg {
+    width: 130px;
+    height: auto;
+  }
+  #paymentImg {
+    width: 108%;
+    height: auto;
+  }
+
+  ul {
+    font-size: 13px;
+  }
+
+  #termNConditionText {
+    font-size: 16px;
+    height: 30px;
   }
 }
 

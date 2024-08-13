@@ -15,7 +15,7 @@
   display: none;
 }
 .sign-up-button {
-  background-color: #3059EB !important;
+  background-color: #3059eb !important;
   color: white !important;
   border-top: rgba(16, 238, 252, 1) solid 1px !important;
   border-left: rgba(16, 238, 252, 1) solid 1px !important;
@@ -28,10 +28,8 @@
   box-shadow: 0 2px 5px rgb(0, 0, 0, 0.2) !important;
 }
 
-
-
 .backGroundImage {
-  background-image: url('./images/worldMap.png');
+  background-image: url("./images/worldMap.png");
   background-size: 750px 530px;
   background-repeat: no-repeat;
   background-position-x: right;
@@ -93,7 +91,7 @@
 }
 
 .hrStyle {
-  background: linear-gradient(90deg, #6DDCFF 0%, #7F60F9 100%) !important;
+  background: linear-gradient(90deg, #6ddcff 0%, #7f60f9 100%) !important;
   margin: 0;
   height: 2px;
 }
@@ -140,7 +138,6 @@
   color: rgba(255, 255, 255, 1);
   text-decoration: none;
 }
-
 
 .plansHeader {
   color: rgba(48, 89, 235, 1);
@@ -216,7 +213,6 @@
   opacity: 0px;
   border-width: 1px;
   padding-bottom: 10px;
-
 }
 
 .oneLine {
@@ -243,8 +239,6 @@
   height: 100%;
 }
 
-
-
 .PlanList {
   list-style: none;
 }
@@ -256,7 +250,7 @@
 
 .orderDiv {
   width: 100%;
-  background: linear-gradient(90deg, #6DDCFF 0%, #7F60F9 100%);
+  background: linear-gradient(90deg, #6ddcff 0%, #7f60f9 100%);
   border-radius: 10px;
   border: 2px solid transparent;
 }
@@ -272,9 +266,8 @@
   cursor: pointer;
 }
 
-
 .plansBG:hover {
-  background: linear-gradient(90deg, #6DDCFF 0%, #7F60F9 100%) !important;
+  background: linear-gradient(90deg, #6ddcff 0%, #7f60f9 100%) !important;
   border: 2px solid transparent;
 }
 
@@ -284,7 +277,7 @@
 }
 
 .orderBtn:hover {
-  background: linear-gradient(90deg, #6DDCFF 0%, #7F60F9 100%) !important;
+  background: linear-gradient(90deg, #6ddcff 0%, #7f60f9 100%) !important;
   border: none;
 }
 
@@ -305,7 +298,7 @@
 } */
 .detailDiv {
   width: 100%;
-  background: linear-gradient(90deg, #6DDCFF 0%, #7F60F9 100%);
+  background: linear-gradient(90deg, #6ddcff 0%, #7f60f9 100%);
   border: 1px solid transparent;
   border-radius: 10px;
 }
@@ -313,13 +306,12 @@
 .detailTab {
   border-radius: 10px;
   width: 100%;
-  background: #18181B;
-  color: #FFFFFF;
+  background: #18181b;
+  color: #ffffff;
 }
 
 .detailTab[open] {
   background: #000000;
-
 }
 
 .detailTab[open] .parDiv p {
@@ -334,17 +326,17 @@ summary {
   transform: scaleX(-1);
 }
 
-details>summary {
+details > summary {
   list-style: none;
 }
 
 summary::-webkit-details-marker {
-  display: none
+  display: none;
 }
 
 summary::after {
   content: "&nbsp;";
-  background-image: url('./images/close.png');
+  background-image: url("./images/close.png");
   background-size: contain;
   width: 20px;
   height: 20px;
@@ -354,7 +346,7 @@ summary::after {
 
 details[open] summary::after {
   content: "&nbsp;";
-  background-image: url('./images/open.png');
+  background-image: url("./images/open.png");
   background-size: contain;
   width: 20px;
   height: 20px;
@@ -386,7 +378,7 @@ summary p {
 } */
 
 .parDiv {
-  background: linear-gradient(90deg, #6DDCFF 0%, #7F60F9 100%);
+  background: linear-gradient(90deg, #6ddcff 0%, #7f60f9 100%);
   /* border: 2px solid transparent; */
   border-width: 1px;
   border-style: solid none none none;
@@ -394,11 +386,257 @@ summary p {
 }
 
 .parDiv p {
-  background: #18181B;
-  color: #FFFFFF;
+  background: #18181b;
+  color: #ffffff;
 }
 
 .menuDiv {
   display: flex;
   z-index: 10;
+}
+
+#frImg {
+  width: 457px;
+  height: 466px;
+}
+
+#frHeader {
+  width: 505px;
+  height: 108px;
+  font-size: 45px;
+  font-weight: 400;
+  line-height: 54.47px;
+  text-align: left;
+}
+
+#frText {
+  width: 500px;
+  height: 113px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  text-align: left;
+}
+
+#frStepsDiv {
+  height: 220px;
+  padding: 30px 0px 50px 0px;
+  margin-bottom: 12px;
+  justify-content: flex-start;
+}
+.frNumberDiv {
+  width: 100px;
+  height: 100%;
+  border-radius: 30px;
+  text-align: center;
+  z-index: 1;
+}
+
+.frNumberDiv > span {
+  display: block;
+  width: 100px;
+  height: 100px;
+  border-radius: 30px;
+  text-align: center;
+  align-content: center;
+  background: #3059eb;
+  font-size: 60px;
+  font-weight: 900;
+  line-height: 77.45px;
+  color: #ffffff;
+  text-align: center;
+}
+.frNumberDiv > p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  text-align: left;
+  width: 110px;
+  height: 17px;
+  margin-top: 15px;
+  margin-bottom: -15px;
+}
+
+.numStart {
+  align-content: flex-start;
+}
+
+.numEnd {
+  align-content: flex-end;
+}
+
+.frWaveImgDiv {
+  align-content: center;
+  margin: 0 -12px;
+  z-index: 0;
+}
+
+.waveForNum {
+  width: 107px;
+  height: 76px;
+}
+
+#radioBtnDiv {
+  display: flex;
+  position: relative;
+  border: 1px solid #000000;
+  padding: 2rem;
+  margin: 1rem 0;
+}
+
+#radioBtnDiv > h5 {
+  position: absolute;
+  top: -12px;
+  background-color: #ffffff;
+}
+
+#radioBtnDiv > .form-check {
+  margin-left: 1rem;
+}
+
+#travelerFlightDetailDiv {
+  display: flex;
+  justify-content: space-around;
+}
+
+.inputDiv > input {
+  border: none;
+}
+
+#additionalPreferencesDiv {
+  display: flex;
+}
+
+.fitRow1 {
+  border: 1px solid #0000004d;
+  border-radius: 5px;
+  padding: 15px 25px;
+  margin-bottom: 3rem;
+}
+.fitRow2 {
+  border: 1px solid #0000004d;
+  border-radius: 5px;
+  padding: 15px 25px;
+  margin-bottom: 3rem;
+  background: #3059eb;
+}
+
+#flightItineraryTotalDiv {
+  display: flex;
+  justify-content: space-between;
+}
+
+#flightItineraryTotalDiv > p {
+  margin: 0;
+}
+#flightItineraryTotalDiv > #flightItineraryTotal {
+  width: 18%;
+  font-weight: 400;
+}
+
+#secureImg {
+  width: 173.04px;
+  height: 69.22px;
+}
+.paymentImgDiv {
+  padding: 0 !important;
+}
+#paymentImg {
+  width: 106%;
+  height: auto;
+}
+#pciImg {
+  width: 173.04px;
+  height: 69.22px;
+}
+
+#payNowBtn {
+  width: 100%;
+  color: #ffffff;
+  background: #3059eb;
+  border: none;
+}
+
+#termNConditionDiv {
+  text-align: center;
+}
+
+#termNConditionText {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 23px;
+  text-align: center;
+  /* width: 460px; */
+  height: 50px;
+}
+
+#termNConditionImg {
+  width: 350px;
+  height: 114px;
+}
+.inputDiv {
+  box-shadow: 0px 4px 4px 0px #00000040;
+  border-top: #00000040 solid 1px;
+  border-bottom: #00000040 solid 1px;
+  margin: 0 4px;
+}
+.form-select,
+.form-control {
+  background-color: #e8edf3 !important;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+#fromDiv,
+#toDiv {
+  width: 29%;
+}
+
+#dateDiv {
+  width: 18%;
+}
+#travelersNCabinDiv {
+  width: 24%;
+}
+
+#fromDiv > .inputDiv {
+  border-radius: 10px 0 0 10px;
+  border-left: #00000040 solid 1px;
+}
+
+#travelersNCabinDiv > .inputDiv {
+  border-radius: 0 10px 10px 0;
+  border-right: #00000040 solid 1px;
+}
+
+.inputDiv > .form-label {
+  padding: 0 0.75rem;
+  margin-bottom: 0;
+}
+.inputDiv > .form-control {
+  padding: 0 0.75rem 0.75rem 0.75rem;
+  margin-bottom: 0;
+}
+#fromInput,
+#dateInput,
+#travelersNCabin,
+#toInput {
+  background-color: var(--bs-body-bg) !important;
+  box-shadow: none;
+}
+
+#payNowMainDiv {
+  background: #fdfdfd;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  padding: 20px;
+  border: 1px solid #0000004d;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0 !important;
+}
+
+.tickImg {
+  width: 18px;
+  height: 17px;
 }
