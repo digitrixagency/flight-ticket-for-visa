@@ -586,17 +586,17 @@ summary p {
   box-shadow: 0px 4px 4px 0px #00000040;
 }
 
-#fromDiv,
+/* #fromDiv,
 #toDiv {
   width: 29%;
 }
 
-#dateDiv {
+#departDiv {
   width: 18%;
 }
 #travelersNCabinDiv {
   width: 24%;
-}
+} */
 
 #fromDiv > .inputDiv {
   border-radius: 10px 0 0 10px;
@@ -617,7 +617,8 @@ summary p {
   margin-bottom: 0;
 }
 #fromInput,
-#dateInput,
+#departDateInput,
+#returnDateInput,
 #travelersNCabin,
 #toInput {
   background-color: var(--bs-body-bg) !important;
@@ -639,4 +640,20 @@ ul {
 .tickImg {
   width: 18px;
   height: 17px;
+}
+
+.inputDiv > input {
+  background-color: transparent !important;
+}
+
+.addMoreBTn {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  width: 23%;
+  box-shadow: 0 2px 5px rgb(0, 0, 0, 0.2) !important;
+}
+
+.removeBtn {
+  border: none !important;
 }

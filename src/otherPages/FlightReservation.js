@@ -7,7 +7,15 @@ import payment from "../images/paymentImg.png";
 import pci from "../images/pciImg.png";
 import tncImg from "../images/terms&conditionImg.png";
 import tickImg from "../images/tickImg.gif";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { width } from "@fortawesome/free-brands-svg-icons/fa42Group";
+
 const FlightReservation = () => {
+
+  const borderRAdArr = {borderRadius: '5px',width:'30%',};
+  const borderRAdArr1 = {borderRadius: '5px',};
+
   const [inputType, setInputType] = useState("text");
   const dateInputRef = useRef(null);
   const handleFocus = () => {
@@ -19,6 +27,271 @@ const FlightReservation = () => {
 
   const handleBlur = () => {
     setInputType("text");
+  };
+
+  const [numTravelers, setNumTravelers] = useState(0);
+  const [price, setPrice] = useState(0);
+
+  const handleDropdownChange = (event) => {
+    const selectedOption = event.target.options[event.target.selectedIndex];
+    const numberOfTravelers = parseInt(event.target.value, 10);
+    const travelerPrice = parseInt(selectedOption.getAttribute("price"), 10);
+    setNumTravelers(numberOfTravelers);
+    if (price === 3) {
+      const newPrice = travelerPrice + 3;
+      setPrice(newPrice);
+    } else {
+      setPrice(travelerPrice);
+    }
+  };
+
+  //   const [selectedOption, setSelectedOption] = useState("");
+
+  //   // Function to handle radio button change
+  //   const handleRadioChange = (event) => {
+  //     const value = event.target.value;
+  //     setSelectedOption(value);
+
+  //     if (value === "setPrice") {
+  //       // Set price to price + 3 when "Set Price" is selected
+  //       setPrice((price) => price + 3);
+  //     }
+  //   };
+
+  const [selectedOption, setSelectedOption] = useState("");
+  const [divCount, setDivCount] = useState(2); // Start with 2 divs
+  const [showTravelerFlightDetailDiv, setShowTravelerFlightDetailDiv] =
+    useState(false);
+
+  // Handle radio button change
+  const handleRadioChange = (event) => {
+    const value = event.target.value;
+    setSelectedOption(value);
+
+    if (value === "setPrice") {
+      setPrice((price) => price + 3); // Assuming setPrice updates the price state
+      setShowTravelerFlightDetailDiv(true);
+    } else {
+      // Reset the price to the base value depending on the number of travelers
+    const basePrice = numTravelers === 0 ? 0 : parseInt(document.querySelector(`#noOfTravelers option[value="${numTravelers}"]`).getAttribute("price"), 10);
+    setPrice(basePrice);
+      setShowTravelerFlightDetailDiv(false);
+    }
+  };
+
+  // Add more divs, limit to 4
+  const addMoreDivs = () => {
+    if (divCount < 6) {
+      setDivCount(divCount + 1);
+    }
+  };
+
+  // Remove a div
+  const removeDiv = () => {
+    if (divCount > 0) {
+      setDivCount(divCount - 1);
+    }
+  };
+
+  // Store the array of timezones in state
+  const [timezones] = useState([
+    {
+      timezone: "Pacific/Midway",
+      country: "United States",
+      gmt_offset: "-11:00",
+      local_time: "06:00 AM",
+    },
+    {
+      timezone: "Pacific/Honolulu",
+      country: "United States",
+      gmt_offset: "-10:00",
+      local_time: "07:00 AM",
+    },
+    {
+      timezone: "America/Anchorage",
+      country: "United States",
+      gmt_offset: "-09:00",
+      local_time: "08:00 AM",
+    },
+    {
+      timezone: "America/Los_Angeles",
+      country: "United States",
+      gmt_offset: "-08:00",
+      local_time: "09:00 AM",
+    },
+    {
+      timezone: "America/Denver",
+      country: "United States",
+      gmt_offset: "-07:00",
+      local_time: "10:00 AM",
+    },
+    {
+      timezone: "America/Chicago",
+      country: "United States",
+      gmt_offset: "-06:00",
+      local_time: "11:00 AM",
+    },
+    {
+      timezone: "America/New_York",
+      country: "United States",
+      gmt_offset: "-05:00",
+      local_time: "12:00 PM",
+    },
+    {
+      timezone: "America/Caracas",
+      country: "Venezuela",
+      gmt_offset: "-04:00",
+      local_time: "01:00 PM",
+    },
+    {
+      timezone: "America/Halifax",
+      country: "Canada",
+      gmt_offset: "-04:00",
+      local_time: "02:00 PM",
+    },
+    {
+      timezone: "America/St_Johns",
+      country: "Canada",
+      gmt_offset: "-03:30",
+      local_time: "02:30 PM",
+    },
+    {
+      timezone: "America/Sao_Paulo",
+      country: "Brazil",
+      gmt_offset: "-03:00",
+      local_time: "03:00 PM",
+    },
+    {
+      timezone: "Atlantic/South_Georgia",
+      country: "South Georgia and the South Sandwich Islands",
+      gmt_offset: "-02:00",
+      local_time: "04:00 PM",
+    },
+    {
+      timezone: "Atlantic/Azores",
+      country: "Portugal",
+      gmt_offset: "-01:00",
+      local_time: "05:00 PM",
+    },
+    {
+      timezone: "Europe/London",
+      country: "United Kingdom",
+      gmt_offset: "+00:00",
+      local_time: "06:00 PM",
+    },
+    {
+      timezone: "Europe/Berlin",
+      country: "Germany",
+      gmt_offset: "+01:00",
+      local_time: "07:00 PM",
+    },
+    {
+      timezone: "Europe/Athens",
+      country: "Greece",
+      gmt_offset: "+02:00",
+      local_time: "08:00 PM",
+    },
+    {
+      timezone: "Europe/Moscow",
+      country: "Russia",
+      gmt_offset: "+03:00",
+      local_time: "09:00 PM",
+    },
+    {
+      timezone: "Asia/Tehran",
+      country: "Iran",
+      gmt_offset: "+03:30",
+      local_time: "09:30 PM",
+    },
+    {
+      timezone: "Asia/Dubai",
+      country: "United Arab Emirates",
+      gmt_offset: "+04:00",
+      local_time: "10:00 PM",
+    },
+    {
+      timezone: "Asia/Kabul",
+      country: "Afghanistan",
+      gmt_offset: "+04:30",
+      local_time: "10:30 PM",
+    },
+    {
+      timezone: "Asia/Karachi",
+      country: "Pakistan",
+      gmt_offset: "+05:00",
+      local_time: "11:00 PM",
+    },
+    {
+      timezone: "Asia/Kolkata",
+      country: "India",
+      gmt_offset: "+05:30",
+      local_time: "11:30 PM",
+    },
+    {
+      timezone: "Asia/Dhaka",
+      country: "Bangladesh",
+      gmt_offset: "+06:00",
+      local_time: "12:00 AM",
+    },
+    {
+      timezone: "Asia/Bangkok",
+      country: "Thailand",
+      gmt_offset: "+07:00",
+      local_time: "01:00 AM",
+    },
+    {
+      timezone: "Asia/Shanghai",
+      country: "China",
+      gmt_offset: "+08:00",
+      local_time: "02:00 AM",
+    },
+    {
+      timezone: "Asia/Tokyo",
+      country: "Japan",
+      gmt_offset: "+09:00",
+      local_time: "03:00 AM",
+    },
+    {
+      timezone: "Australia/Sydney",
+      country: "Australia",
+      gmt_offset: "+10:00",
+      local_time: "04:00 AM",
+    },
+    {
+      timezone: "Pacific/Noumea",
+      country: "New Caledonia",
+      gmt_offset: "+11:00",
+      local_time: "05:00 AM",
+    },
+    {
+      timezone: "Pacific/Auckland",
+      country: "New Zealand",
+      gmt_offset: "+12:00",
+      local_time: "06:00 AM",
+    },
+  ]);
+
+  // State to track the selected timezone
+  const [selectedTimezone, setSelectedTimezone] = useState("");
+
+  // Function to handle the change event of the dropdown
+  const handleTimezoneChange = (event) => {
+    setSelectedTimezone(event.target.value);
+  };
+
+  // State to track the selected option
+  const [selectedOption1, setSelectedOption1] = useState("");
+
+  // Function to handle the change event of the select element
+  const handleSelectChange = (event) => {
+    setSelectedOption1(event.target.value);
+  };
+  // State to track the selected option
+  const [showHideVal, showHideFun] = useState("");
+
+  // Function to handle the change event of the select element
+  const showHideFunMain = (event) => {
+    showHideFun(event.target.value);
   };
 
   return (
@@ -84,26 +357,48 @@ const FlightReservation = () => {
                 <div className="col-lg-4 col-md-4 col-sm-12">
                   <div className="mb-3">
                     <label htmlFor="noOfTravelers" className="form-label">
-                      No. Of Travelers
+                      No. Of Travelers <span>*</span>
                     </label>
                     <select
                       id="noOfTravelers"
                       name="noOfTravelers"
                       className="form-select"
+                      onChange={handleDropdownChange}
+                      required
                     >
                       <option selected disabled>
                         —Please choose an option—
                       </option>
-                      <option value="15">1 Traveler ($15)</option>
-                      <option value="25">2 Traveler ($25)</option>
-                      <option value="35">3 Traveler ($35)</option>
-                      <option value="45">4 Traveler ($45)</option>
-                      <option value="55">5 Traveler ($55)</option>
-                      <option value="65">6 Traveler ($65)</option>
-                      <option value="75">7 Traveler ($75)</option>
-                      <option value="85">8 Traveler ($85)</option>
-                      <option value="95">9 Traveler ($95)</option>
-                      <option value="105">10 Traveler ($105)</option>
+                      <option value="1" price="15">
+                        1 Traveler($15)
+                      </option>
+                      <option value="2" price="25">
+                        2 Travelers($25)
+                      </option>
+                      <option value="3" price="35">
+                        3 Travelers($35)
+                      </option>
+                      <option value="4" price="45">
+                        4 Travelers($45)
+                      </option>
+                      <option value="5" price="55">
+                        5 Travelers($55)
+                      </option>
+                      <option value="6" price="65">
+                        6 Travelers($65)
+                      </option>
+                      <option value="7" price="75">
+                        7 Travelers($75)
+                      </option>
+                      <option value="8" price="85">
+                        8 Travelers($85)
+                      </option>
+                      <option value="9" price="95">
+                        9 Travelers($95)
+                      </option>
+                      <option value="10" price="105">
+                        10 Travelers($105)
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -117,6 +412,7 @@ const FlightReservation = () => {
                       className="form-control"
                       id="travelerEmail"
                       name="travelerEmail"
+                      required
                     />
                   </div>
                 </div>
@@ -130,10 +426,12 @@ const FlightReservation = () => {
                       className="form-control"
                       id="travelerNo"
                       name="travelerNo"
+                      required
                     />
                   </div>
                 </div>
-                <div className="col-lg-4 col-md-4 col-sm-12">
+
+                {/* <div className="col-lg-4 col-md-4 col-sm-12">
                   <div className="mb-3">
                     <label htmlFor="travelTitle" className="form-label">
                       Title <span>*</span>
@@ -146,6 +444,10 @@ const FlightReservation = () => {
                       <option selected disabled>
                         —Please choose an option—
                       </option>
+                      <option value="Mr.">Mr.</option>
+                      <option value="Mrs.">Mrs.</option>
+                      <option value="Miss.">Miss.</option>
+                      <option value="Other">Other</option>
                     </select>
                   </div>
                 </div>
@@ -174,7 +476,77 @@ const FlightReservation = () => {
                       name="travelerLastName"
                     />
                   </div>
-                </div>
+                </div> */}
+
+                {Array.from({ length: numTravelers }, (_, index) => (
+                  <>
+                    <div className="col-lg-4 col-md-4 col-sm-12 mb-3">
+                      <div className="mb-3">
+                        <label
+                          htmlFor={`travelTitle${index + 1}`}
+                          className="form-label"
+                        >
+                          Title <span>*</span>
+                        </label>
+                        <select
+                          id={`travelTitle${index + 1}`}
+                          name={`travelTitle${index + 1}`}
+                          className="form-select"
+                          required
+                        >
+                          <option value="" selected disabled>
+                            —Please choose an option—
+                          </option>
+                          <option value="Mr.">Mr.</option>
+                          <option value="Mrs.">Mrs.</option>
+                          <option value="Miss.">Miss.</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div className="col-lg-4 col-md-4 col-sm-12 mb-3">
+                      <div className="mb-3">
+                        <label
+                          htmlFor={`travelerFirstName${index + 1}`}
+                          className="form-label"
+                        >
+                          Traveler {index + 1} First Name <span>*</span>
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id={`travelerFirstName${index + 1}`}
+                          name={`travelerFirstName${index + 1}`}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="col-lg-4 col-md-4 col-sm-12 mb-3">
+                      <div className="mb-3">
+                        <label
+                          htmlFor={`travelerLastName${index + 1}`}
+                          className="form-label"
+                        >
+                          Traveler {index + 1} Last Name <span>*</span>
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id={`travelerLastName${index + 1}`}
+                          name={`travelerLastName${index + 1}`}
+                          required
+                        />
+                      </div>
+                    </div>
+                    {/* <input
+                      type="hidden"
+                      id={`travelerPrice${index + 1}`}
+                      name={`travelerPrice${index + 1}`}
+                      value={price} // Set the hidden input's value to the price
+                    /> */}
+                  </>
+                ))}
+
                 <div className="col-lg-12 col-md-12 col-sm-12">
                   <div id="radioBtnDiv">
                     <h5> CHOOSE YOUR TRIP</h5>
@@ -184,6 +556,9 @@ const FlightReservation = () => {
                         type="radio"
                         name="tripType"
                         id="tripType1"
+                        checked={selectedOption === "hide"}
+                        onChange={handleRadioChange}
+                        value="hide"
                       />
                       <label className="form-check-label" htmlFor="tripType1">
                         One Way
@@ -195,6 +570,9 @@ const FlightReservation = () => {
                         type="radio"
                         name="tripType"
                         id="tripType2"
+                        value="show"
+                        checked={selectedOption === "show"}
+                        onChange={handleRadioChange}
                       />
                       <label className="form-check-label" htmlFor="tripType2">
                         Round Trip
@@ -207,6 +585,9 @@ const FlightReservation = () => {
                         name="tripType"
                         id="tripType3"
                         defaultChecked
+                        value="setPrice"
+                        checked={selectedOption === "setPrice"}
+                        onChange={handleRadioChange}
                       />
                       <label className="form-check-label" htmlFor="tripType3">
                         Multiple Cities (+3.00$)
@@ -225,67 +606,206 @@ const FlightReservation = () => {
                     <p>Format: Departure city (date) - Arrival city/airport</p>
                   </div>
                 </div>
-                <div className="col-lg-12 col-md-12 col-sm-12">
-                  <div id="travelerFlightDetailDiv">
-                    <div id="fromDiv">
-                      <div className="mb-3 inputDiv">
-                        <label htmlFor="fromInput" className="form-label">
-                          From
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="fromInput"
-                          name="fromInput"
-                          placeholder="Country, city or airport"
-                        />
+
+                {!showTravelerFlightDetailDiv && (
+                  <div className="col-lg-12 col-md-12 col-sm-12">
+                    <div id="travelerFlightDetailDiv">
+                      <div id="fromDiv">
+                        <div className="mb-3 inputDiv">
+                          <label htmlFor="fromInput" className="form-label">
+                            From
+                          </label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="fromInput"
+                            name="fromInput"
+                            placeholder="Country, city or airport"
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div id="toDiv">
-                      <div className="mb-3 inputDiv">
-                        <label htmlFor="toInput" className="form-label">
-                          To
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="toInput"
-                          name="toInput"
-                          placeholder="Country, city or airport"
-                        />
+                      <div id="toDiv">
+                        <div className="mb-3 inputDiv">
+                          <label htmlFor="toInput" className="form-label">
+                            To
+                          </label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="toInput"
+                            name="toInput"
+                            placeholder="Country, city or airport"
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div id="dateDiv">
-                      <div className="mb-3 inputDiv">
-                        <label htmlFor="dateInput" className="form-label">
-                          Date
-                        </label>
-                        <input
-                          type={inputType}
-                          onFocus={handleFocus}
-                          onBlur={handleBlur}
-                          className="form-control"
-                          id="dateInput"
-                          name="dateInput"
-                          placeholder="Add date"
-                        />
+                      <div id="departDiv">
+                        <div className="mb-3 inputDiv">
+                          <label
+                            htmlFor="departDateInput"
+                            className="form-label"
+                          >
+                            Depart
+                          </label>
+                          <input
+                            type={inputType}
+                            onFocus={handleFocus}
+                            onBlur={handleBlur}
+                            className="form-control"
+                            id="departDateInput"
+                            name="departDateInput"
+                            placeholder="Add date"
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div id="travelersNCabinDiv">
-                      <div className="mb-3 inputDiv">
-                        <label htmlFor="travelersNCabin" className="form-label">
-                          Travelers and Cabin
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="travelersNCabin"
-                          name="travelersNCabin"
-                          placeholder="1 Adult, Economy"
-                        />
+                      {selectedOption === "show" && (
+                        <div id="returnDiv">
+                          <div className="mb-3 inputDiv">
+                            <label
+                              htmlFor="returnDateInput"
+                              className="form-label"
+                            >
+                              Return
+                            </label>
+                            <input
+                              type={inputType}
+                              onFocus={handleFocus}
+                              onBlur={handleBlur}
+                              className="form-control"
+                              id="returnDateInput"
+                              name="returnDateInput"
+                              placeholder="Add date"
+                            />
+                          </div>
+                        </div>
+                      )}
+                      <div id="travelersNCabinDiv">
+                        <div className="mb-3 inputDiv">
+                          <label
+                            htmlFor="travelersNCabin"
+                            className="form-label"
+                          >
+                            Travelers and Cabin
+                          </label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="travelersNCabin"
+                            name="travelersNCabin"
+                            placeholder="1 Adult, Economy"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
+                )}
+                <div className="col-lg-12 col-md-12 col-sm-12">
+                  {/* Traveler Flight Detail Div */}
+                  {showTravelerFlightDetailDiv && (
+                    <div
+                      id="travelerFlightDetailDiv"
+                      className="d-flex flex-column travelerFlightDetailDiv"
+                    >
+                      {[...Array(divCount)].map((_, index) => (
+                        <div
+                          className="d-flex justify-content-around"
+                          key={index}
+                        >
+                          <div className="mb-3 inputDiv" style={borderRAdArr}>
+                            <label
+                              htmlFor={`fromInput${index}`}
+                              className="form-label"
+                            >
+                              From
+                            </label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              id={`fromInput${index}`}
+                              name={`fromInput${index}`}
+                              placeholder="Country, city or airport"
+                            />
+                          </div>
+                          <div className="mb-3 inputDiv" style={borderRAdArr}>
+                            <label
+                              htmlFor={`toInput${index}`}
+                              className="form-label"
+                            >
+                              To
+                            </label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              id={`toInput${index}`}
+                              name={`toInput${index}`}
+                              placeholder="Country, city or airport"
+                            />
+                          </div>
+                          <div className="mb-3 inputDiv" style={borderRAdArr}>
+                            <label
+                              htmlFor={`departDateInput${index}`}
+                              className="form-label"
+                            >
+                              Depart
+                            </label>
+                            <input
+                              type={inputType}
+                              onFocus={handleFocus}
+                              onBlur={handleBlur}
+                              className="form-control"
+                              id={`departDateInput${index}`}
+                              name={`departDateInput${index}`}
+                              placeholder="Add date"
+                            />
+                          </div>
+                          <button
+                            type="button"
+                            onClick={removeDiv}
+                            className={
+                              index === 0 || index === 1
+                                ? "disabled btn removeBtn"
+                                : "btn removeBtn"
+                            }
+                          >
+                            <FontAwesomeIcon icon={faTimes} size="2x" />
+                          </button>
+                        </div>
+                      ))}
+
+                      <div className="d-flex justify-content-between my-4" id="addMTNCDiv">
+                        {/* Additional Inputs from travelersNCabin */}
+                        {showTravelerFlightDetailDiv && (
+                          <div id="travelersNCabinDiv">
+                            <div className="mb-3 inputDiv" style={borderRAdArr1}>
+                              <label
+                                htmlFor="travelersNCabin"
+                                className="form-label"
+                              >
+                                Travelers and Cabin
+                              </label>
+                              <input
+                                type="text"
+                                className="form-control"
+                                id="travelersNCabin"
+                                name="travelersNCabin"
+                                placeholder="1 Adult, Economy"
+                              />
+                            </div>
+                          </div>
+                        )}
+                        {/* Add More Button */}
+                        {divCount < 6 && (
+                          <button
+                            type="button"
+                            onClick={addMoreDivs}
+                            className="btn addMoreBTn"
+                          >
+                            <FontAwesomeIcon icon={faPlus} size="2x" />
+                            Add another flight
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div className="col-lg-7 col-md-7 col-sm-12">
                   <div id="additionalPreferencesDiv">
@@ -298,6 +818,8 @@ const FlightReservation = () => {
                         type="radio"
                         name="ap"
                         id="ap1"
+                        value="yes"
+                        onClick={showHideFunMain}
                       />
                       <label className="form-check-label" htmlFor="ap1">
                         Yes
@@ -309,6 +831,8 @@ const FlightReservation = () => {
                         type="radio"
                         name="ap"
                         id="ap2"
+                        value="no"
+                        onClick={showHideFunMain}
                       />
                       <label className="form-check-label" htmlFor="ap2">
                         No
@@ -316,6 +840,20 @@ const FlightReservation = () => {
                     </div>
                   </div>
                 </div>
+                {showHideVal === "yes" && (
+                  <div className="col-lg-12 col-md-12 col-sm-12">
+                    <p>
+                      <label>Additional Flight Details:</label>
+                      <textarea
+                        cols="40"
+                        rows="5"
+                        maxlength="2000"
+                        class="form-control"
+                        placeholder="Please mention your special instructions for your flight here, we are trying to make it accordingly to your details."
+                      ></textarea>
+                    </p>
+                  </div>
+                )}
               </div>
               <h2>Order Summary</h2>
               <div className="row">
@@ -332,16 +870,15 @@ const FlightReservation = () => {
                       <option selected disabled>
                         —Please choose an option—
                       </option>
-                      <option value="15">1 Traveler ($15)</option>
-                      <option value="25">2 Traveler ($25)</option>
-                      <option value="35">3 Traveler ($35)</option>
-                      <option value="45">4 Traveler ($45)</option>
-                      <option value="55">5 Traveler ($55)</option>
-                      <option value="65">6 Traveler ($65)</option>
-                      <option value="75">7 Traveler ($75)</option>
-                      <option value="85">8 Traveler ($85)</option>
-                      <option value="95">9 Traveler ($95)</option>
-                      <option value="105">10 Traveler ($105)</option>
+                      <option value="Search Engine (Google)">
+                        Search Engine (Google)
+                      </option>
+                      <option value="Facebook">Facebook</option>
+                      <option value="Blog Articles">Blog Articles</option>
+                      <option value="Quora">Quora</option>
+                      <option value="Friend &amp; Family">
+                        Friend &amp; Family
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -368,116 +905,190 @@ const FlightReservation = () => {
                       id="flightItinerary"
                       name="flightItinerary"
                       className="form-select"
+                      onChange={handleSelectChange}
                     >
                       <option selected disabled>
                         —Please choose an option—
                       </option>
-                      <option value="15">1 Traveler ($15)</option>
-                      <option value="25">2 Traveler ($25)</option>
-                      <option value="35">3 Traveler ($35)</option>
-                      <option value="45">4 Traveler ($45)</option>
-                      <option value="55">5 Traveler ($55)</option>
-                      <option value="65">6 Traveler ($65)</option>
-                      <option value="75">7 Traveler ($75)</option>
-                      <option value="85">8 Traveler ($85)</option>
-                      <option value="95">9 Traveler ($95)</option>
-                      <option value="105">10 Traveler ($105)</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="col-lg-6 col-md-6 col-sm-12">
-                  <div className="mb-3">
-                    <label htmlFor="travelerEmail" className="form-label">
-                      Visa Interview Date:
-                    </label>
-                    <input
-                      type="date"
-                      className="form-control"
-                      id="travelerEmail"
-                      name="travelerEmail"
-                    />
-                  </div>
-                </div>
-                <div className="col-lg-6 col-md-6 col-sm-12">
-                  <div className="mb-3">
-                    <label htmlFor="timeZone" className="form-label">
-                      Visa Interview Time/ Time Zone
-                    </label>
-                    <select
-                      id="timeZone"
-                      name="timeZone"
-                      className="form-select"
-                    >
-                      <option selected disabled>
-                        —Please choose an option—
+                      <option value="Get flight reservation within 1-2 hours">
+                        Get flight reservation within 1-2 hours
                       </option>
-                      <option value="15">1 Traveler ($15)</option>
-                      <option value="25">2 Traveler ($25)</option>
-                      <option value="35">3 Traveler ($35)</option>
-                      <option value="45">4 Traveler ($45)</option>
-                      <option value="55">5 Traveler ($55)</option>
-                      <option value="65">6 Traveler ($65)</option>
-                      <option value="75">7 Traveler ($75)</option>
-                      <option value="85">8 Traveler ($85)</option>
-                      <option value="95">9 Traveler ($95)</option>
-                      <option value="105">10 Traveler ($105)</option>
+                      <option value="Get flight reservation on different date (E.g. 2 days before visa interview)">
+                        Get flight reservation on different date (E.g. 2 days
+                        before visa interview)
+                      </option>
                     </select>
                   </div>
                 </div>
+                {/* Conditionally render the div based on the selected option */}
+                {selectedOption1 ===
+                  "Get flight reservation on different date (E.g. 2 days before visa interview)" && (
+                  <>
+                    <div className="col-lg-6 col-md-6 col-sm-12">
+                      <div className="mb-3">
+                        <label htmlFor="travelerEmail" className="form-label">
+                          Visa Interview Date:
+                        </label>
+                        <input
+                          type="date"
+                          className="form-control"
+                          id="travelerEmail"
+                          name="travelerEmail"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-lg-6 col-md-6 col-sm-12">
+                      <div className="mb-3">
+                        <label htmlFor="timeZone" className="form-label">
+                          Visa Interview Time/ Time Zone
+                        </label>
+                        <select
+                          id="timeZone"
+                          name="timeZone"
+                          className="form-select"
+                        >
+                          <option selected disabled>
+                            —Please choose an option—
+                          </option>
+                          {timezones.map((timezone, index) => (
+                            <option key={index} value={timezone.timezone}>
+                              {timezone.timezone} ({timezone.gmt_offset}) -{" "}
+                              {timezone.country}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
-              
+
               <div id="payNowMainDiv">
-              <h2 className="px-3 py-4">Order Summary</h2>
-              <div className="row px-3">
-                <div className="col-lg-12 col-md-12 col-sm-12 fitRow1">
-                  <div id="flightItineraryTotalDiv">
-                    <p id="flightItineraryTotalText">Flight Itinerary Total:</p>
-                    <p id="flightItineraryTotal">$15</p>
-                  </div>
-                </div>
-                <div className="col-lg-7 col-md-7 col-sm-12">
-                  <ul>
-                    <li> <img src={tickImg} className="tickImg"/><span> 100% satisfaction guaranteed </span></li>
-                    <li> <img src={tickImg} className="tickImg"/><span> Directly verifiable from airlines </span></li>
-                    <li> <img src={tickImg} className="tickImg"/><span> 100% confirmed PNR or Reservation Number </span></li>
-                    <li> <img src={tickImg} className="tickImg"/><span> Valid and confirmed flight Itinerary for visa </span></li>
-                    <li> <img src={tickImg} className="tickImg"/><span> Embassy or consulate recommended </span></li>
-                    <li> <img src={tickImg} className="tickImg"/><span> Accept payments via debit/credit card </span></li>
-                    <li> <img src={tickImg} className="tickImg"/><span> Secure Connection with SSL certificate + PCI Layers + SHA-2 </span></li>
-                    <li> <img src={tickImg} className="tickImg"/><span> Upto 2 weeks validity </span></li>
-                    <li> <img src={tickImg} className="tickImg"/><span> Get best airline class booking </span></li>
-                    <li> <img src={tickImg} className="tickImg"/><span> 24/7 live support </span></li>
-                    <li> <img src={tickImg} className="tickImg"/><span> No charges for urgent delivery </span></li>
-                    <li> <img src={tickImg} className="tickImg"/><span> Happy customers feedback </span></li>
-                    <li> <img src={tickImg} className="tickImg"/><span> Global services provider </span></li>
-                    <li> <img src={tickImg} className="tickImg"/><span> Covers both visa and travel purposes </span></li>
-                  </ul>
-                </div>
-                <div className="col-lg-5 col-md-5 col-sm-12">
-                  <div className="row">
-                    <div className="col-lg-6 col-md-6 col-sm-1">
-                      <img src={secure} id="secureImg"/>
-                    </div>
-                    <div className="col-lg-6 col-md-6 col-sm-1">
-                      <img src={pci} id="pciImg"/>
-                    </div>
-                    <div className="col-lg-12 col-md-12 col-sm-12 paymentImgDiv">
-                      <img src={payment} id="paymentImg"/>
+                <h2 className="px-3 py-4">Order Summary</h2>
+                <div className="row px-3">
+                  <div className="col-lg-12 col-md-12 col-sm-12 fitRow1">
+                    <div id="flightItineraryTotalDiv">
+                      <p id="flightItineraryTotalText">
+                        Flight Itinerary Total:
+                      </p>
+                      <p id="flightItineraryTotal">${price}</p>
+                      <input
+                        type="hidden"
+                        id="flightItineraryTotalVal"
+                        name="flightItineraryTotalVal"
+                        value={price}
+                      />
                     </div>
                   </div>
-                </div>
-                <div className="col-lg-12 col-md-12 col-sm-12 fitRow2">
-                  <div id="payNowBtnDiv">
-                    <button id="payNowBtn">PAY NOW</button>
+                  <div className="col-lg-7 col-md-7 col-sm-12">
+                    <ul>
+                      <li>
+                        {" "}
+                        <img src={tickImg} className="tickImg" />
+                        <span> 100% satisfaction guaranteed </span>
+                      </li>
+                      <li>
+                        {" "}
+                        <img src={tickImg} className="tickImg" />
+                        <span> Directly verifiable from airlines </span>
+                      </li>
+                      <li>
+                        {" "}
+                        <img src={tickImg} className="tickImg" />
+                        <span> 100% confirmed PNR or Reservation Number </span>
+                      </li>
+                      <li>
+                        {" "}
+                        <img src={tickImg} className="tickImg" />
+                        <span>
+                          {" "}
+                          Valid and confirmed flight Itinerary for visa{" "}
+                        </span>
+                      </li>
+                      <li>
+                        {" "}
+                        <img src={tickImg} className="tickImg" />
+                        <span> Embassy or consulate recommended </span>
+                      </li>
+                      <li>
+                        {" "}
+                        <img src={tickImg} className="tickImg" />
+                        <span> Accept payments via debit/credit card </span>
+                      </li>
+                      <li>
+                        {" "}
+                        <img src={tickImg} className="tickImg" />
+                        <span>
+                          {" "}
+                          Secure Connection with SSL certificate + PCI Layers +
+                          SHA-2{" "}
+                        </span>
+                      </li>
+                      <li>
+                        {" "}
+                        <img src={tickImg} className="tickImg" />
+                        <span> Upto 2 weeks validity </span>
+                      </li>
+                      <li>
+                        {" "}
+                        <img src={tickImg} className="tickImg" />
+                        <span> Get best airline class booking </span>
+                      </li>
+                      <li>
+                        {" "}
+                        <img src={tickImg} className="tickImg" />
+                        <span> 24/7 live support </span>
+                      </li>
+                      <li>
+                        {" "}
+                        <img src={tickImg} className="tickImg" />
+                        <span> No charges for urgent delivery </span>
+                      </li>
+                      <li>
+                        {" "}
+                        <img src={tickImg} className="tickImg" />
+                        <span> Happy customers feedback </span>
+                      </li>
+                      <li>
+                        {" "}
+                        <img src={tickImg} className="tickImg" />
+                        <span> Global services provider </span>
+                      </li>
+                      <li>
+                        {" "}
+                        <img src={tickImg} className="tickImg" />
+                        <span> Covers both visa and travel purposes </span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="col-lg-5 col-md-5 col-sm-12">
+                    <div className="row">
+                      <div className="col-lg-6 col-md-6 col-sm-1">
+                        <img src={secure} id="secureImg" />
+                      </div>
+                      <div className="col-lg-6 col-md-6 col-sm-1">
+                        <img src={pci} id="pciImg" />
+                      </div>
+                      <div className="col-lg-12 col-md-12 col-sm-12 paymentImgDiv">
+                        <img src={payment} id="paymentImg" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-lg-12 col-md-12 col-sm-12 fitRow2">
+                    <div id="payNowBtnDiv">
+                      <button id="payNowBtn">PAY NOW</button>
+                    </div>
+                  </div>
+                  <div className="col-lg-12 col-md-12 col-sm-12 ">
+                    <div id="termNConditionDiv">
+                      <p id="termNConditionText">
+                        You agree to our privacy policy and term & conditions
+                        after tapping pay now.
+                      </p>
+                      <img id="termNConditionImg" src={tncImg} />
+                    </div>
                   </div>
                 </div>
-                <div className="col-lg-12 col-md-12 col-sm-12 ">
-                  <div id="termNConditionDiv">
-                    <p id="termNConditionText">You agree to our privacy policy and term & conditions after tapping pay now.</p>
-                    <img id="termNConditionImg" src={tncImg} />
-                  </div>
-                </div>
-              </div>
               </div>
             </form>
           </div>
