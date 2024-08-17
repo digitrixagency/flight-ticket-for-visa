@@ -652,6 +652,7 @@ ul {
   justify-content: space-between;
   width: 23%;
   box-shadow: 0 2px 5px rgb(0, 0, 0, 0.2) !important;
+  height: 3rem !important;
 }
 
 .removeBtn {
