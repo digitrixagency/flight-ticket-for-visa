@@ -1,113 +1,12 @@
-// const express = require("express");
-// const mongoose = require("mongoose");
-// const bodyParser = require("body-parser");
-// const cors = require("cors");
 
-// // Initialize Express app
-// const app = express();
-
-// // Middleware
-// app.use(bodyParser.json());
-// app.use(cors());
-
-// // Connect to MongoDB
-// mongoose.connect("mongodb://localhost:27017/flightTicketDB", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-
-// // Define a schema for form data
-// const formDataSchema = new mongoose.Schema({
-//   tripType: String,
-//   fromInput0: String,
-//   fromInput1: String,
-//   fromInput2: String,
-//   fromInput3: String,
-//   fromInput4: String,
-//   fromInput5: String,
-//   fromInput6: String,
-//   toInput0: String,
-//   toInput1: String,
-//   toInput2: String,
-//   toInput3: String,
-//   toInput4: String,
-//   toInput5: String,
-//   toInput6: String,
-//   departDateInput0: String,
-//   departDateInput1: String,
-//   departDateInput2: String,
-//   departDateInput3: String,
-//   departDateInput4: String,
-//   departDateInput5: String,
-//   departDateInput6: String,
-//   returnDateInput: String,
-//   travelersNCabin: String,
-//   additionalPreferences: String,
-//   additionalPreferencesYes: String,
-//   noOfTravelers: String,
-//   travelerEmail: String,
-//   travelerNo: String,
-//   travelTitle0: String,
-//   travelTitle1: String,
-//   travelTitle2: String,
-//   travelTitle3: String,
-//   travelTitle4: String,
-//   travelTitle5: String,
-//   travelTitle6: String,
-//   travelerFirstName0: String,
-//   travelerFirstName1: String,
-//   travelerFirstName2: String,
-//   travelerFirstName3: String,
-//   travelerFirstName4: String,
-//   travelerFirstName5: String,
-//   travelerFirstName6: String,
-//   travelerFirstName7: String,
-//   travelerFirstName8: String,
-//   travelerFirstName9: String,
-//   travelerLastName0: String,
-//   travelerLastName1: String,
-//   travelerLastName2: String,
-//   travelerLastName3: String,
-//   travelerLastName4: String,
-//   travelerLastName5: String,
-//   travelerLastName6: String,
-//   travelerLastName7: String,
-//   travelerLastName8: String,
-//   travelerLastName9: String,
-//   hearAboutUs: String,
-//   consulateApplying: String,
-//   flightItinerary: String,
-//   visaInterviewDate: String,
-//   timeZone: String,
-//   amount: Number,
-//   MUID: String,
-//   transactionId: String,
-// });
-
-// // Create a model from the schema
-// const FormData = mongoose.model("FormData", formDataSchema);
-
-// // Define a route to handle form submissions
-// app.post("/api/submit-form", async (req, res) => {
-//   try {
-//     const newFormData = new FormData(req.body);
-//     await newFormData.save();
-//     res.status(200).send("Form submitted successfully!");
-//   } catch (error) {
-//     res.status(500).send("Error submitting form");
-//   }
-// });
-
-// // Start the server
-// const PORT = process.env.PORT || 5000;
-// app.listen(PORT, () => {
-//   console.log(`Server is running on port ${PORT}`);
-// });
 
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const amadeus = require('./amadeusApi');
+
+const port = 3001;
 // Example payment gateway SDK (e.g., Stripe, PayPal)
 // const stripe = require("stripe")(YOUR_SECRET_KEY);
 
@@ -125,6 +24,7 @@ mongoose.connect("mongodb://localhost:27017/flightTicketDB", {
 
 // Define a schema for form data
 const formDataSchema = new mongoose.Schema({
+  dataFor: String,
   tripType: String,
   fromInput0: String,
   fromInput1: String,
@@ -149,8 +49,10 @@ const formDataSchema = new mongoose.Schema({
   departDateInput6: String,
   returnDateInput: String,
   travelersNCabin: String,
-  additionalPreferences: String,
-  additionalPreferencesYes: String,
+  additionalPreferencesForFlight: String,
+  additionalPreferencesForFlightYes: String,
+  additionalPreferencesForHotel: String,
+  additionalPreferencesForHotelYes: String,
   noOfTravelers: String,
   travelerEmail: String,
   travelerNo: String,
@@ -253,6 +155,54 @@ app.post("/api/submit-form", async (req, res) => {
     res.status(500).send("Error submitting form");
   }
 });
+
+
+
+app.get('/v2/shopping/hotel-offers', async (req, res) => {
+  try {
+    const { cityCode, checkInDate, checkOutDate, adults } = req.query;
+    
+    const response = await amadeus.shopping.hotelOffers.get({
+      cityCode,
+      checkInDate,
+      checkOutDate,
+      adults: adults || 1 // Default to 1 adult if not provided
+    });
+
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error fetching hotel data from Amadeus:', error);
+    res.status(500).send('Error fetching hotel data');
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
+
+
+
+app.get('/api/hotels', async (req, res) => {
+  try {
+    const { name } = req.query;
+    
+    const response = await amadeus.shopping.hotelOffers.get({
+      cityCode: name, // You might want to specify city or other parameters
+    });
+
+    const hotels = response.data.hotels.map(hotel => ({
+      id: hotel.hotel.id,
+      name: hotel.hotel.name
+    }));
+
+    res.json({ hotels });
+  } catch (error) {
+    console.error('Error fetching hotels from Amadeus:', error);
+    res.status(500).send('Error fetching hotels');
+  }
+});
+
+
 
 // Start the server
 const PORT = process.env.PORT || 5000;

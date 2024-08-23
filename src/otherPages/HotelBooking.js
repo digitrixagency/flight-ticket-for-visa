@@ -1,7 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-// import frImg from "../images/flightReservationImg.png";
-// import leftWave from "../images/leftWave.png";
-// import rightWave from "../images/rightWave.png";
 import secure from "../images/secureImg.png";
 import payment from "../images/paymentImg.png";
 import pci from "../images/pciImg.png";
@@ -17,8 +14,6 @@ import airportsJsonData from "../jsonData/airports.json";
 const FlightReservation = () => {
   const hiddenInputRef = useRef(null); // Create a ref for the hidden input
 
-  const borderRAdArr = { borderRadius: "5px", width: "30%" };
-  const borderRAdArr1 = { borderRadius: "5px" };
   const [errors, setErrors] = useState({});
 
   const [inputType, setInputType] = useState("text");
@@ -34,64 +29,125 @@ const FlightReservation = () => {
     setInputType("text");
   };
 
+  const formCheckStyle = {
+    width: "100%",
+    marginLeft: "0px",
+    paddingLeft: "0px",
+  };
+
   const [numTravelers, setNumTravelers] = useState(0);
-  const [price, setPrice] = useState(0);
+  const [priceCalData, setpriceCalData] = useState({
+    noOfTravelers: "",
+    onOfHotels: "",
+    flightItineraryTotalVal: 0,
+  });
+
+  const handleDropdownChangeNValueChange = (e) => {
+    handleChange(e);
+    handleDropdownChange(e);
+    handlecalculation(e);
+  };
+  const handlecalculationOnOfHotels = (e) => {
+    handleChange(e);
+    handlecalculation(e);
+  };
+
+  const handlecalculation = (event) => {
+    const { name, value, options, selectedIndex } = event.target;
+    const selectedOption = options[selectedIndex];
+    const price = parseFloat(selectedOption.getAttribute("price")) || 0;
+
+    setpriceCalData((prevData) => {
+      let updatedPrice = prevData.flightItineraryTotalVal;
+
+      if (name === "noOfTravelers") {
+        // Step 1: Update price based on noOfTravelers selection
+        updatedPrice = price;
+        // Add the price from the second select if it has a value
+        if (prevData.onOfHotels) {
+          const hotelPrice =
+            parseFloat(
+              document
+                .querySelector("#onOfHotels option:checked")
+                .getAttribute("price")
+            ) || 0;
+          updatedPrice += hotelPrice;
+        }
+      } else if (name === "onOfHotels") {
+        // Step 2: Update price based on onOfHotels selection
+        updatedPrice = price;
+        // Add the price from the first select if it has a value
+        if (prevData.noOfTravelers) {
+          const travelerPrice =
+            parseFloat(
+              document
+                .querySelector("#noOfTravelers option:checked")
+                .getAttribute("price")
+            ) || 0;
+          updatedPrice += travelerPrice;
+        }
+      }
+
+      // Update form data and hidden input field
+      document.getElementById("flightItineraryTotalVal").value = updatedPrice;
+
+      return {
+        ...prevData,
+        [name]: value,
+        flightItineraryTotalVal: updatedPrice,
+      };
+    });
+  };
 
   const handleDropdownChange = (event) => {
     const selectedOption = event.target.options[event.target.selectedIndex];
     const numberOfTravelers = parseInt(event.target.value, 10);
     const travelerPrice = parseInt(selectedOption.getAttribute("price"), 10);
     setNumTravelers(numberOfTravelers);
-    if (price === 3) {
-      const newPrice = travelerPrice + 3;
-      setPrice(newPrice);
-    } else {
-      setPrice(travelerPrice);
-    }
   };
 
-  const [selectedOption, setSelectedOption] = useState("");
-  const [divCount, setDivCount] = useState(2); // Start with 2 divs
-  const [showTravelerFlightDetailDiv, setShowTravelerFlightDetailDiv] =
-    useState(false);
+  // const [selectedOption, setSelectedOption] = useState("");
+  // const [divCount, setDivCount] = useState(2); // Start with 2 divs
+  // const [showTravelerFlightDetailDiv, setShowTravelerFlightDetailDiv] =
+  //   useState(false);
 
-  // Handle radio button change
-  const handleRadioChange = (event) => {
-    const value = event.target.value;
-    setSelectedOption(value);
+  // // Handle radio button change
+  // const handleRadioChange = (event) => {
+  //   const value = event.target.value;
+  //   setSelectedOption(value);
 
-    if (value === "multipleCities") {
-      setPrice((price) => price + 3); // Assuming setPrice updates the price state
-      setShowTravelerFlightDetailDiv(true);
-    } else {
-      // Reset the price to the base value depending on the number of travelers
-      const basePrice =
-        numTravelers === 0
-          ? 0
-          : parseInt(
-              document
-                .querySelector(`#noOfTravelers option[value="${numTravelers}"]`)
-                .getAttribute("price"),
-              10
-            );
-      setPrice(basePrice);
-      setShowTravelerFlightDetailDiv(false);
-    }
-  };
+  //   if (value === "multipleCities") {
+  //     setPrice((price) => price + 3); // Assuming setPrice updates the price state
+  //     setShowTravelerFlightDetailDiv(true);
+  //   } else {
+  //     // Reset the price to the base value depending on the number of travelers
+  //     const basePrice =
+  //       numTravelers === 0
+  //         ? 0
+  //         : parseInt(
+  //             document
+  //               .querySelector(`#noOfTravelers option[value="${numTravelers}"]`)
+  //               .getAttribute("price"),
+  //             10
+  //           );
+  //     setPrice(basePrice);
+  //     setShowTravelerFlightDetailDiv(false);
+  //   }
+  // };
 
-  // Add more divs, limit to 4
-  const addMoreDivs = () => {
-    if (divCount < 6) {
-      setDivCount(divCount + 1);
-    }
-  };
+  // // Add more divs, limit to 4
+  // const addMoreDivs = () => {
+  //   if (divCount < 6) {
+  //     setDivCount(divCount + 1);
+  //   }
+  // };
 
-  // Remove a div
-  const removeDiv = () => {
-    if (divCount > 0) {
-      setDivCount(divCount - 1);
-    }
-  };
+  // // Remove a div
+  // const removeDiv = () => {
+  //   if (divCount > 0) {
+  //     setDivCount(divCount - 1);
+  //   }
+  // };
 
   // Store the array of timezones in state
   const [timezones] = useState([
@@ -287,7 +343,7 @@ const FlightReservation = () => {
   };
 
   const [formData, setFormData] = useState({
-    dataFor: 'flightReservation',
+    dataFor: "hotelBooking",
   });
 
   const handleChange = (event) => {
@@ -295,11 +351,6 @@ const FlightReservation = () => {
       ...formData,
       [event.target.name]: event.target.value,
     });
-  };
-
-  const handleDropdownChangeNValueChange = (e) => {
-    handleChange(e);
-    handleDropdownChange(e);
   };
 
   const handleSubmit = async (e) => {
@@ -486,63 +537,10 @@ const FlightReservation = () => {
     <>
       <div className="container-fluid FlightReservation pt-5">
         <div className="container pb-5">
-          {/* <div className="container w-75 mb-5">
-            <div className="row">
-              <div className="col-lg-7 col-md-7 col-sm-12 p-0">
-                <div className="p-0 paddingResponsive">
-                  <h1 id="frHeader">
-                    Instant Flight Itinerary for Visa & Travel
-                  </h1>
-                  <div className="d-flex" id="frStepsDiv">
-                    <div className="frNumberDiv numStart">
-                      <span>1</span>
-                      <p>Provide Details</p>
-                    </div>
-                    <div className="frWaveImgDiv">
-                      <img
-                        src={leftWave}
-                        className="waveForNum"
-                        alt="left wave"
-                      />
-                    </div>
-                    <div className="frNumberDiv numEnd">
-                      <span>2</span>
-                      <p>Make Payment</p>
-                    </div>
-                    <div className="frWaveImgDiv">
-                      <img
-                        src={rightWave}
-                        className="waveForNum"
-                        alt="right wave"
-                      />
-                    </div>
-                    <div className="frNumberDiv numStart">
-                      <span>3</span>
-                      <p>Receive Docs Via Email</p>
-                    </div>
-                  </div>
-                  <p id="frText">
-                    Embassy and consulates recommend purchasing an actual flight
-                    ticket only after visa officer approves your visa
-                    application. If you attach an actual flight ticket and your
-                    visa application gets rejected, you’ll lose greater chunk of
-                    your hard-earned money. Therefore, always attach a confirmed
-                    flight Itinerary for visa application.
-                  </p>
-                </div>
-              </div>
-              <div className="col-lg-5 col-md-5 col-sm-12" id="frImgMainDiv">
-                <div className="" id="frImgDiv">
-                  <img src={frImg} alt="Flight Reservation Image" id="frImg" />
-                </div>
-              </div>
-            </div>
-          </div> */}
-
           <div className="container w-75 mb-4">
             <div className="row">
               <div className="col-lg-12 col-md-12 col-sm-12">
-                <h1>Instant Flight Itinerary for Visa & Travel</h1>
+                <h1>Instant Hotel Booking for Visa and Travel</h1>
               </div>
               <div className="col-lg-12 col-md-12 col-sm-12">
                 <p>
@@ -568,389 +566,6 @@ const FlightReservation = () => {
             <h2 id="frH2">Traveler Information</h2>
             <form onSubmit={handleSubmit}>
               <div className="row">
-                <div className="col-lg-12 col-md-12 col-sm-12">
-                  <div id="radioBtnDiv">
-                    <h5> CHOOSE YOUR TRIP</h5>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="tripType"
-                        id="tripType1"
-                        checked={selectedOption === "oneWay"}
-                        onChange={handleRadioChange}
-                        value="oneWay"
-                        onClick={handleChange}
-                      />
-                      <label className="form-check-label" htmlFor="tripType1">
-                        One Way
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="tripType"
-                        id="tripType2"
-                        value="returnTrip"
-                        checked={selectedOption === "returnTrip"}
-                        onChange={handleRadioChange}
-                        onClick={handleChange}
-                      />
-                      <label className="form-check-label" htmlFor="tripType2">
-                        Round Trip
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="tripType"
-                        id="tripType3"
-                        defaultChecked
-                        value="multipleCities"
-                        checked={selectedOption === "multipleCities"}
-                        onChange={handleRadioChange}
-                        onClick={handleChange}
-                      />
-                      <label className="form-check-label" htmlFor="tripType3">
-                        Multiple Cities (+3.00$)
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-6 col-md-6 col-sm-12">
-                  <div className="mb-3">
-                    <label
-                      htmlFor="travelerFlightDetails"
-                      className="form-label"
-                    >
-                      Traveler Flight Details <span>*</span>
-                    </label>
-                    {/* <p>Format: Departure city (date) - Arrival city/airport</p> */}
-                  </div>
-                </div>
-
-                {!showTravelerFlightDetailDiv && (
-                  <div className="col-lg-12 col-md-12 col-sm-12">
-                    <div id="travelerFlightDetailDiv">
-                      <div id="fromDiv">
-                        <div className="mb-3 inputDiv">
-                          <label htmlFor="fromInput" className="form-label">
-                            From
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="fromInput"
-                            name="fromInput"
-                            placeholder="Country, city or airport"
-                            onChange={(e) => handleFilterNChange("input1", e)}
-                            value={inputValues.input1}
-                            list="datalist1" // Associate input with datalist
-                          />
-                        </div>
-
-                        <datalist id="datalist1">
-                          {filteredAirports.input1.map((airport) => (
-                            <option
-                              key={airport.iata} // Use a unique key for better performance
-                              value={`${airport.name} - ${airport.city}, ${airport.country} (${airport.iata})`}
-                              onClick={() => handleClick("input1", airport)}
-                            >
-                              {airport.name} - {airport.city}, {airport.country}{" "}
-                              ({airport.iata})
-                            </option>
-                          ))}
-                        </datalist>
-                      </div>
-                      <div id="toDiv">
-                        <div className="mb-3 inputDiv">
-                          <label htmlFor="toInput" className="form-label">
-                            To
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="toInput"
-                            name="toInput"
-                            placeholder="Country, city or airport"
-                            onChange={(e) => handleFilterNChange("input2", e)}
-                            list="datalist2" // Associate input with datalist
-                            value={inputValues.input2}
-                          />
-                        </div>
-                        <datalist id="datalist2">
-                          {filteredAirports.input2.map((airport) => (
-                            <option
-                              key={airport.iata} // Use a unique key for better performance
-                              value={`${airport.name} - ${airport.city}, ${airport.country} (${airport.iata})`}
-                              onClick={() => handleClick("input2", airport)}
-                            >
-                              {airport.name} - {airport.city}, {airport.country}{" "}
-                              ({airport.iata})
-                            </option>
-                          ))}
-                        </datalist>
-                      </div>
-                      <div id="departDiv">
-                        <div className="mb-3 inputDiv">
-                          <label
-                            htmlFor="departDateInput"
-                            className="form-label"
-                          >
-                            Depart
-                          </label>
-                          <input
-                            type={inputType}
-                            onFocus={handleFocus}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            className="form-control"
-                            id="departDateInput"
-                            name="departDateInput"
-                            placeholder="Add date"
-                          />
-                        </div>
-                      </div>
-                      {selectedOption === "returnTrip" && (
-                        <div id="returnDiv">
-                          <div className="mb-3 inputDiv">
-                            <label
-                              htmlFor="returnDateInput"
-                              className="form-label"
-                            >
-                              Return
-                            </label>
-                            <input
-                              type={inputType}
-                              onFocus={handleFocus}
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                              className="form-control"
-                              id="returnDateInput"
-                              name="returnDateInput"
-                              placeholder="Add date"
-                            />
-                          </div>
-                        </div>
-                      )}
-                      <div id="travelersNCabinDiv">
-                        <div className="mb-3 inputDiv">
-                          <label
-                            htmlFor="travelersNCabin"
-                            className="form-label"
-                          >
-                            Travelers and Cabin
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="travelersNCabin"
-                            name="travelersNCabin"
-                            placeholder="1 Adult, Economy"
-                            onChange={handleChange}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                <div className="col-lg-12 col-md-12 col-sm-12">
-                  {/* Traveler Flight Detail Div */}
-                  {showTravelerFlightDetailDiv && (
-                    <div
-                      id="travelerFlightDetailDiv"
-                      className="d-flex flex-column travelerFlightDetailDiv"
-                    >
-                      {[...Array(divCount)].map((_, index) => (
-                        <div
-                          className="d-flex justify-content-around"
-                          key={index}
-                        >
-                          <div className="mb-3 inputDiv">
-                            <label
-                              htmlFor={`fromInput${index}`}
-                              className="form-label"
-                            >
-                              From
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              id={`fromInput${index}`}
-                              name={`fromInput${index}`}
-                              placeholder="Country, city or airport"
-                              list={`fromAirportList${index}`}
-                              onChange={(e) =>
-                                handleFilterNChangeMulti1(e, index)
-                              }
-                              onInput={(e) => handleFromAirportSelect(e, index)}
-                            />
-                            <datalist id={`fromAirportList${index}`}>
-                              {filteredFromAirports.map((airport, idx) => (
-                                <option key={idx} value={airport.name}>
-                                  {airport.name}, {airport.city},{" "}
-                                  {airport.country} ({airport.icao}/
-                                  {airport.iata})
-                                </option>
-                              ))}
-                            </datalist>
-                          </div>
-                          <div className="mb-3 inputDiv">
-                            <label
-                              htmlFor={`toInput${index}`}
-                              className="form-label"
-                            >
-                              To
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              id={`toInput${index}`}
-                              name={`toInput${index}`}
-                              placeholder="Country, city or airport"
-                              list={`toAirportList${index}`}
-                              onChange={(e) =>
-                                handleFilterNChangeMulti2(e, index)
-                              }
-                              onInput={(e) => handleToAirportSelect(e, index)}
-                            />
-                            <datalist id={`toAirportList${index}`}>
-                              {filteredToAirports.map((airport, idx) => (
-                                <option key={idx} value={airport.name}>
-                                  {airport.name}, {airport.city},{" "}
-                                  {airport.country} ({airport.icao}/
-                                  {airport.iata})
-                                </option>
-                              ))}
-                            </datalist>
-                          </div>
-                          <div className="mb-3 inputDiv">
-                            <label
-                              htmlFor={`departDateInput${index}`}
-                              className="form-label"
-                            >
-                              Depart
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              id={`departDateInput${index}`}
-                              name={`departDateInput${index}`}
-                              placeholder="Add date"
-                            />
-                          </div>
-                          <button
-                            type="button"
-                            onClick={() => removeDiv(index)}
-                            className={
-                              index === 0 || index === 1
-                                ? "disabled btn removeBtn"
-                                : "btn removeBtn"
-                            }
-                          >
-                            <FontAwesomeIcon icon={faTimes} size="2x" />
-                          </button>
-                        </div>
-                      ))}
-
-                      <div
-                        className="d-flex justify-content-between my-4"
-                        id="addMTNCDiv"
-                      >
-                        {/* Additional Inputs from travelersNCabin */}
-                        {showTravelerFlightDetailDiv && (
-                          <div id="travelersNCabinDiv">
-                            <div
-                              className="mb-3 inputDiv"
-                              style={borderRAdArr1}
-                            >
-                              <label
-                                htmlFor="travelersNCabin"
-                                className="form-label"
-                              >
-                                Travelers and Cabin
-                              </label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                id="travelersNCabin"
-                                name="travelersNCabin"
-                                placeholder="1 Adult, Economy"
-                                onChange={handleChange}
-                              />
-                            </div>
-                          </div>
-                        )}
-                        {/* Add More Button */}
-                        {divCount < 6 && (
-                          <button
-                            type="button"
-                            onClick={addMoreDivs}
-                            className="btn addMoreBTn"
-                          >
-                            <FontAwesomeIcon icon={faPlus} size="1x" />
-                            Add another flight
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </div>
-                <div className="col-lg-7 col-md-7 col-sm-12">
-                  <div id="additionalPreferencesDiv">
-                    <p className="me-2">
-                      Have You Any Additional Flight Preferences/Details?:
-                    </p>
-                    <div className="form-check ms-2">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="additionalPreferencesForFlight"
-                        id="ap1"
-                        value="yes"
-                        onClick={showHideFunMain}
-                        onChange={handleChange}
-                      />
-                      <label className="form-check-label" htmlFor="ap1">
-                        Yes
-                      </label>
-                    </div>
-                    <div className="form-check ms-2">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="additionalPreferencesForFlight"
-                        id="ap2"
-                        value="no"
-                        onClick={showHideFunMain}
-                        onChange={handleChange}
-                      />
-                      <label className="form-check-label" htmlFor="ap2">
-                        No
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-4 col-sm-12"></div>
-
-                {showHideVal === "yes" && (
-                  <div className="col-lg-12 col-md-12 col-sm-12">
-                    <p>
-                      <label>Additional Flight Details:</label>
-                      <textarea
-                        cols="40"
-                        rows="5"
-                        name="additionalPreferencesForFlightYes"
-                        maxlength="2000"
-                        class="form-control"
-                        onChange={handleChange}
-                        placeholder="Please mention your special instructions for your flight here, we are trying to make it accordingly to your details."
-                      ></textarea>
-                    </p>
-                  </div>
-                )}
                 <div className="col-lg-4 col-md-4 col-sm-12">
                   <div className="mb-3">
                     <label htmlFor="noOfTravelers" className="form-label">
@@ -1093,14 +708,369 @@ const FlightReservation = () => {
                         />
                       </div>
                     </div>
-                    {/* <input
-                      type="hidden"
-                      id={`travelerPrice${index + 1}`}
-                      name={`travelerPrice${index + 1}`}
-                      value={price} // Set the hidden input's value to the price
-                    /> */}
                   </>
                 ))}
+
+                <div className="col-lg-12 col-md-12 col-sm-12">
+                  <div id="radioBtnDiv">
+                    <h5>
+                      NO. OF HOTELS <span>*</span>
+                    </h5>
+                    {/* <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        name="tripType"
+                        id="tripType1"
+                        checked={selectedOption === "oneWay"}
+                        onChange={handleRadioChange}
+                        value="oneWay"
+                        onClick={handleChange}
+                      />
+                      <label className="form-check-label" htmlFor="tripType1">
+                        One Way
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        name="tripType"
+                        id="tripType2"
+                        value="returnTrip"
+                        checked={selectedOption === "returnTrip"}
+                        onChange={handleRadioChange}
+                        onClick={handleChange}
+                      />
+                      <label className="form-check-label" htmlFor="tripType2">
+                        Round Trip
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        name="tripType"
+                        id="tripType3"
+                        defaultChecked
+                        value="multipleCities"
+                        checked={selectedOption === "multipleCities"}
+                        onChange={handleRadioChange}
+                        onClick={handleChange}
+                      />
+                      <label className="form-check-label" htmlFor="tripType3">
+                        Multiple Cities (+3.00$)
+                      </label>
+                    </div> */}
+
+                    <div className="form-check" style={formCheckStyle}>
+                      <label htmlFor="onOfHotels" className="form-label">
+                        (Maximum 4 hotels free in 1 trip, Will be charged $8 for
+                        each additional hotels.)
+                      </label>
+                      <select
+                        id="onOfHotels"
+                        name="onOfHotels"
+                        className="form-select"
+                        required
+                        onChange={handlecalculationOnOfHotels}
+                      >
+                        <option selected disabled>
+                          —Please choose an option—
+                        </option>
+                        <option value="1-4 Hotels/Free">1-4 Hotels/Free</option>
+                        <option value="5th Hotel($8/Hotel)" price="8">
+                          5th Hotel($8/Hotel)
+                        </option>
+                        <option value="6th Hotel($8/Hotel)" price="16">
+                          6th Hotel($8/Hotel)
+                        </option>
+                        <option value="7th Hotel($8/Hotel)" price="24">
+                          7th Hotel($8/Hotel)
+                        </option>
+                        <option value="8th Hotel($8/Hotel)" price="32">
+                          8th Hotel($8/Hotel)
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-6 col-md-6 col-sm-12">
+                  <div className="mb-3">
+                    <label
+                      htmlFor="travelerFlightDetails"
+                      className="form-label"
+                    >
+                      Travelers Hotel Details <span>*</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div className="col-lg-12 col-md-12 col-sm-12">
+                  <div id="travelerHotelDetailDiv">
+                    <div id="destinationOrHotelNameDiv">
+                      <div className="mb-3 inputDiv">
+                        <label
+                          htmlFor="destinationOrHotelName"
+                          className="form-label"
+                        >
+                          Where do you want to stay?
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="destinationOrHotelName"
+                          name="destinationOrHotelName"
+                          placeholder="Enter destination or hotel name"
+                        />
+                      </div>
+                    </div>
+                    <div id="CheckInDiv">
+                      <div className="mb-3 inputDiv">
+                        <label htmlFor="CheckIn" className="form-label">
+                          Check-in
+                        </label>
+                        <input
+                          type={inputType}
+                          onFocus={handleFocus}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          className="form-control"
+                          id="CheckIn"
+                          name="CheckIn"
+                          placeholder="Add date"
+                        />
+                      </div>
+                    </div>
+                    <div id="CheckOutDiv">
+                      <div className="mb-3 inputDiv">
+                        <label htmlFor="CheckOut" className="form-label">
+                          Check-out
+                        </label>
+                        <input
+                          type={inputType}
+                          onFocus={handleFocus}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          className="form-control"
+                          id="CheckOut"
+                          name="CheckOut"
+                          placeholder="Add date"
+                        />
+                      </div>
+                    </div>
+                    <div id="guestsNRoomDiv">
+                      <div className="mb-3 inputDiv">
+                        <label htmlFor="guestsNRoom" className="form-label">
+                          Travelers and Cabin
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="guestsNRoom"
+                          name="guestsNRoom"
+                          placeholder="2 Adult, 1 room"
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-12 col-md-12 col-sm-12">
+                  {/* Traveler Flight Detail Div */}
+                  {/* {showTravelerFlightDetailDiv && (
+                    <div
+                      id="travelerFlightDetailDiv"
+                      className="d-flex flex-column travelerFlightDetailDiv"
+                    > */}
+                  {/* {[...Array(divCount)].map((_, index) => (
+                        <div
+                          className="d-flex justify-content-around"
+                          key={index}
+                        >
+                          <div className="mb-3 inputDiv">
+                            <label
+                              htmlFor={`fromInput${index}`}
+                              className="form-label"
+                            >
+                              From
+                            </label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              id={`fromInput${index}`}
+                              name={`fromInput${index}`}
+                              placeholder="Country, city or airport"
+                              list={`fromAirportList${index}`}
+                              onChange={(e) =>
+                                handleFilterNChangeMulti1(e, index)
+                              }
+                              onInput={(e) => handleFromAirportSelect(e, index)}
+                            />
+                            <datalist id={`fromAirportList${index}`}>
+                              {filteredFromAirports.map((airport, idx) => (
+                                <option key={idx} value={airport.name}>
+                                  {airport.name}, {airport.city},{" "}
+                                  {airport.country} ({airport.icao}/
+                                  {airport.iata})
+                                </option>
+                              ))}
+                            </datalist>
+                          </div>
+                          <div className="mb-3 inputDiv">
+                            <label
+                              htmlFor={`toInput${index}`}
+                              className="form-label"
+                            >
+                              To
+                            </label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              id={`toInput${index}`}
+                              name={`toInput${index}`}
+                              placeholder="Country, city or airport"
+                              list={`toAirportList${index}`}
+                              onChange={(e) =>
+                                handleFilterNChangeMulti2(e, index)
+                              }
+                              onInput={(e) => handleToAirportSelect(e, index)}
+                            />
+                            <datalist id={`toAirportList${index}`}>
+                              {filteredToAirports.map((airport, idx) => (
+                                <option key={idx} value={airport.name}>
+                                  {airport.name}, {airport.city},{" "}
+                                  {airport.country} ({airport.icao}/
+                                  {airport.iata})
+                                </option>
+                              ))}
+                            </datalist>
+                          </div>
+                          <div className="mb-3 inputDiv">
+                            <label
+                              htmlFor={`departDateInput${index}`}
+                              className="form-label"
+                            >
+                              Depart
+                            </label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              id={`departDateInput${index}`}
+                              name={`departDateInput${index}`}
+                              placeholder="Add date"
+                            />
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => removeDiv(index)}
+                            className={
+                              index === 0 || index === 1
+                                ? "disabled btn removeBtn"
+                                : "btn removeBtn"
+                            }
+                          >
+                            <FontAwesomeIcon icon={faTimes} size="2x" />
+                          </button>
+                        </div>
+                      ))} */}
+
+                  {/* <div
+                        className="d-flex justify-content-between my-4"
+                        id="addMTNCDiv"
+                      > */}
+                  {/* Additional Inputs from travelersNCabin */}
+                  {/* {showTravelerFlightDetailDiv && (
+                          <div id="travelersNCabinDiv">
+                            <div
+                              className="mb-3 inputDiv"
+                              style={borderRAdArr1}
+                            >
+                              <label
+                                htmlFor="travelersNCabin"
+                                className="form-label"
+                              >
+                                Travelers and Cabin
+                              </label>
+                              <input
+                                type="text"
+                                className="form-control"
+                                id="travelersNCabin"
+                                name="travelersNCabin"
+                                placeholder="1 Adult, Economy"
+                                onChange={handleChange}
+                              />
+                            </div>
+                          </div>
+                        )} */}
+                  {/* Add More Button */}
+                  {/* {divCount < 6 && (
+                          <button
+                            type="button"
+                            onClick={addMoreDivs}
+                            className="btn addMoreBTn"
+                          >
+                            <FontAwesomeIcon icon={faPlus} size="1x" />
+                            Add another flight
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  )} */}
+                </div>
+                <div className="col-lg-7 col-md-7 col-sm-12">
+                  <div id="additionalPreferencesDiv">
+                    <p className="me-2">
+                      Have You Any Additional Hotel Preferences/Details?:
+                    </p>
+                    <div className="form-check ms-2">
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        name="additionalPreferencesForHotel"
+                        id="ap1"
+                        value="yes"
+                        onClick={showHideFunMain}
+                        onChange={handleChange}
+                      />
+                      <label className="form-check-label" htmlFor="ap1">
+                        Yes
+                      </label>
+                    </div>
+                    <div className="form-check ms-2">
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        name="additionalPreferencesForHotel"
+                        id="ap2"
+                        value="no"
+                        onClick={showHideFunMain}
+                        onChange={handleChange}
+                      />
+                      <label className="form-check-label" htmlFor="ap2">
+                        No
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-4 col-md-4 col-sm-12"></div>
+
+                {showHideVal === "yes" && (
+                  <div className="col-lg-12 col-md-12 col-sm-12">
+                    <p>
+                      <label>Additional Hotel Detail:</label>
+                      <textarea
+                        cols="40"
+                        rows="5"
+                        name="additionalPreferencesForHotelYes"
+                        maxlength="2000"
+                        class="form-control"
+                        onChange={handleChange}
+                        placeholder="Please mention your special instructions for your hotel here, we are trying to make it accordingly to your details."
+                      ></textarea>
+                    </p>
+                  </div>
+                )}
               </div>
               <h2>Order Summary</h2>
               <div className="row">
@@ -1225,12 +1195,14 @@ const FlightReservation = () => {
                       <p id="flightItineraryTotalText">
                         Flight Itinerary Total:
                       </p>
-                      <p id="flightItineraryTotal">${price}</p>
+                      <p id="flightItineraryTotal">
+                        ${priceCalData.flightItineraryTotalVal}
+                      </p>
                       <input
                         type="hidden"
                         id="flightItineraryTotalVal"
                         name="flightItineraryTotalVal"
-                        value={price}
+                        value={priceCalData.flightItineraryTotalVal}
                         ref={hiddenInputRef} // Attach the ref to the input
                         onChange={handleChange}
                       />

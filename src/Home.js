@@ -8,8 +8,11 @@ import ot from "./images/ot.png";
 const Home = () => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const redirectToFR = () => {
     navigate("/Flight-Reservation");
+  };
+  const redirectToHB = () => {
+    navigate("/Hotel-Booking");
   };
 
   return (
@@ -37,13 +40,14 @@ const Home = () => {
               <button
                 type="button"
                 className="btn btn-primary homePageBtn px-3"
-                onClick={handleClick}
+                onClick={redirectToFR}
               >
                 Flight Reservation
               </button>
               <button
                 type="button"
                 className="btn btn-primary homePageBtn px-4"
+                onClick={redirectToHB}
               >
                 Hotel Booking
               </button>

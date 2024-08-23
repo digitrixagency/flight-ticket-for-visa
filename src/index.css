@@ -675,3 +675,12 @@ ul {
 #frH2 {
   font-size: 1.6rem !important;
 }
+
+#travelerHotelDetailDiv {
+  display: flex;
+  justify-content: space-around;
+}
+
+#destinationOrHotelNameDiv {
+  width: 50%;
+}
