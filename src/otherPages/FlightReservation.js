@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 // import frImg from "../images/flightReservationImg.png";
 // import leftWave from "../images/leftWave.png";
 // import rightWave from "../images/rightWave.png";
@@ -12,7 +12,11 @@ import { faTimes, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { width } from "@fortawesome/free-brands-svg-icons/fa42Group";
 import axios from "axios";
 
+import airportsJsonData from "../jsonData/airports.json";
+
 const FlightReservation = () => {
+  const hiddenInputRef = useRef(null); // Create a ref for the hidden input
+
   const borderRAdArr = { borderRadius: "5px", width: "30%" };
   const borderRAdArr1 = { borderRadius: "5px" };
   const [errors, setErrors] = useState({});
@@ -299,23 +303,186 @@ const FlightReservation = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Send form data to the backend API
-      const response = await axios.post(
-        "http://localhost:5000/api/submit-form",
-        formData
+      // Set MUID and transactionId
+      const MUIDVal = "MUID" + Date.now();
+      const transIdVal = "TransId" + Date.now();
+      setFormData({
+        ...formData,
+        ["MUID"]: MUIDVal,
+        ["transactionId"]: transIdVal,
+        ["amount"]: hiddenInputRef.current.value,
+      });
+
+      // Step 1: Handle payment with your payment gateway
+      const paymentResponse = await axios.post(
+        "http://localhost:5000/api/process-payment",
+        {
+          amount: hiddenInputRef.current.value,
+          transactionId: transIdVal, // Ensure transaction ID is consistent
+          MUID: MUIDVal, // Ensure transaction ID is consistent
+        }
       );
 
-      // Handle success (e.g., show a success message, reset the form)
-      alert(response.data); // Should show 'Form submitted successfully!'
+      if (paymentResponse.data.success) {
+        // Step 2: If payment is successful, submit form data to the backend
+        const response = await axios.post(
+          "http://localhost:5000/api/submit-form",
+          formData
+        );
+        alert(response.data); // Should show 'Form submitted successfully!'
+      } else {
+        // Handle payment failure
+        alert("Payment failed. Please try again.");
+      }
     } catch (error) {
-      // Handle error (e.g., show an error message)
-      alert("Error submitting form");
+      // Handle errors during payment or form submission
+      alert("Error processing payment or submitting form.");
     }
+  };
+
+  const [isReadMore, setIsReadMore] = useState(true);
+
+  const toggleReadMore = () => {
+    setIsReadMore(!isReadMore);
+  };
+
+  const handleFilterNChange = (inputNo, e) => {
+    handleChange(e);
+    handleFilter(inputNo, e);
+  };
+  // State to manage multiple inputs and their filters
+  const [inputValues, setInputValues] = useState({
+    input1: "",
+    input2: "", // Add more inputs as needed
+  });
+
+  // State to manage filtered airports for each input
+  const [filteredAirports, setFilteredAirports] = useState({
+    input1: [],
+    input2: [], // Add more inputs as needed
+  });
+
+  // State to control the visibility of the <datalist> elements
+  const [visibleLists, setVisibleLists] = useState({
+    input1: true,
+    input2: true, // Add more inputs as needed
+  });
+
+  // Handle input change and filter airports for the specific input
+  const handleFilter = (inputKey, e) => {
+    const input = e.target.value;
+    setInputValues((prev) => ({
+      ...prev,
+      [inputKey]: input,
+    }));
+
+    // Filter airports based on user input
+    const filtered = airportsJsonData.filter(
+      (airport) =>
+        airport.iata && // Ensure iata code exists
+        airport.iata !== "0" && // Ensure iata code is not "0"
+        (airport.name.toLowerCase().includes(input.toLowerCase()) ||
+          airport.city.toLowerCase().includes(input.toLowerCase()) ||
+          airport.country.toLowerCase().includes(input.toLowerCase()))
+    );
+    setFilteredAirports((prev) => ({
+      ...prev,
+      [inputKey]: filtered,
+    }));
+
+    // Show the datalist if there are filtered results
+    setVisibleLists((prev) => ({
+      ...prev,
+      [inputKey]: filtered.length > 0,
+    }));
+  };
+
+  // Handle airport selection for a specific input
+  const handleClick = (inputKey, airport) => {
+    const formattedString = `${airport.name} - ${airport.city}, ${airport.country} (${airport.iata})`;
+    setInputValues((prev) => ({
+      ...prev,
+      [inputKey]: formattedString,
+    }));
+
+    // Update filteredAirports to exclude the selected airport
+    setFilteredAirports((prev) => ({
+      ...prev,
+      [inputKey]: prev[inputKey].filter((a) => a.iata !== airport.iata),
+    }));
+
+    // Hide the datalist element after selection
+    setVisibleLists((prev) => ({
+      ...prev,
+      [inputKey]: false,
+    }));
+  };
+
+  const [filteredFromAirports, setFilteredFromAirports] = useState([]);
+  const [filteredToAirports, setFilteredToAirports] = useState([]);
+  const [selectedFromAirport, setSelectedFromAirport] = useState("");
+  const [selectedToAirport, setSelectedToAirport] = useState("");
+
+  // Handle input change to filter airports for "From" field
+  const handleFromInputChange = (e, index) => {
+    const query = e.target.value.toLowerCase();
+    if (query.length > 0) {
+      const filtered = airportsJsonData.filter(
+        (airport) =>
+          airport.name.toLowerCase().includes(query) ||
+          airport.city.toLowerCase().includes(query) ||
+          airport.country.toLowerCase().includes(query) ||
+          airport.icao.toLowerCase().includes(query) ||
+          airport.iata.toLowerCase().includes(query)
+      );
+      setFilteredFromAirports(filtered);
+    } else {
+      setFilteredFromAirports([]);
+    }
+  };
+
+  // Handle airport selection for "From" field
+  const handleFromAirportSelect = (e, index) => {
+    setSelectedFromAirport(e.target.value);
+    setFilteredFromAirports([]); // Hide datalist after selection
+  };
+
+  // Handle input change to filter airports for "To" field
+  const handleToInputChange = (e, index) => {
+    const query = e.target.value.toLowerCase();
+    if (query.length > 0) {
+      const filtered = airportsJsonData.filter(
+        (airport) =>
+          airport.name.toLowerCase().includes(query) ||
+          airport.city.toLowerCase().includes(query) ||
+          airport.country.toLowerCase().includes(query) ||
+          airport.icao.toLowerCase().includes(query) ||
+          airport.iata.toLowerCase().includes(query)
+      );
+      setFilteredToAirports(filtered);
+    } else {
+      setFilteredToAirports([]);
+    }
+  };
+
+  // Handle airport selection for "To" field
+  const handleToAirportSelect = (e, index) => {
+    setSelectedToAirport(e.target.value);
+    setFilteredToAirports([]); // Hide datalist after selection
+  };
+
+  const handleFilterNChangeMulti1 = (e, inputNo) => {
+    handleChange(e);
+    handleFromInputChange(e, inputNo);
+  };
+  const handleFilterNChangeMulti2 = (e, inputNo) => {
+    handleChange(e);
+    handleToInputChange(e, inputNo);
   };
 
   return (
     <>
-      <div className="container-fluid FlightReservation mt-5 pt-5">
+      <div className="container-fluid FlightReservation pt-5">
         <div className="container pb-5">
           {/* <div className="container w-75 mb-5">
             <div className="row">
@@ -369,8 +536,34 @@ const FlightReservation = () => {
               </div>
             </div>
           </div> */}
+
+          <div className="container w-75 mb-4">
+            <div className="row">
+              <div className="col-lg-12 col-md-12 col-sm-12">
+                <h1>Instant Flight Itinerary for Visa & Travel</h1>
+              </div>
+              <div className="col-lg-12 col-md-12 col-sm-12">
+                <p>
+                  {isReadMore
+                    ? "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and  ..."
+                    : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."}
+                  <span
+                    onClick={toggleReadMore}
+                    style={{
+                      color: "blue",
+                      cursor: "pointer",
+                      marginLeft: "5px",
+                    }}
+                  >
+                    {isReadMore ? "Read More" : "Show Less"}
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+
           <div className="container w-75">
-            <h2>Traveler Information</h2>
+            <h2 id="frH2">Traveler Information</h2>
             <form onSubmit={handleSubmit}>
               <div className="row">
                 <div className="col-lg-12 col-md-12 col-sm-12">
@@ -450,9 +643,24 @@ const FlightReservation = () => {
                             id="fromInput"
                             name="fromInput"
                             placeholder="Country, city or airport"
-                            onChange={handleChange}
+                            onChange={(e) => handleFilterNChange("input1", e)}
+                            value={inputValues.input1}
+                            list="datalist1" // Associate input with datalist
                           />
                         </div>
+
+                        <datalist id="datalist1">
+                          {filteredAirports.input1.map((airport) => (
+                            <option
+                              key={airport.iata} // Use a unique key for better performance
+                              value={`${airport.name} - ${airport.city}, ${airport.country} (${airport.iata})`}
+                              onClick={() => handleClick("input1", airport)}
+                            >
+                              {airport.name} - {airport.city}, {airport.country}{" "}
+                              ({airport.iata})
+                            </option>
+                          ))}
+                        </datalist>
                       </div>
                       <div id="toDiv">
                         <div className="mb-3 inputDiv">
@@ -465,9 +673,23 @@ const FlightReservation = () => {
                             id="toInput"
                             name="toInput"
                             placeholder="Country, city or airport"
-                            onChange={handleChange}
+                            onChange={(e) => handleFilterNChange("input2", e)}
+                            list="datalist2" // Associate input with datalist
+                            value={inputValues.input2}
                           />
                         </div>
+                        <datalist id="datalist2">
+                          {filteredAirports.input2.map((airport) => (
+                            <option
+                              key={airport.iata} // Use a unique key for better performance
+                              value={`${airport.name} - ${airport.city}, ${airport.country} (${airport.iata})`}
+                              onClick={() => handleClick("input2", airport)}
+                            >
+                              {airport.name} - {airport.city}, {airport.country}{" "}
+                              ({airport.iata})
+                            </option>
+                          ))}
+                        </datalist>
                       </div>
                       <div id="departDiv">
                         <div className="mb-3 inputDiv">
@@ -544,7 +766,7 @@ const FlightReservation = () => {
                           className="d-flex justify-content-around"
                           key={index}
                         >
-                          <div className="mb-3 inputDiv" style={borderRAdArr}>
+                          <div className="mb-3 inputDiv">
                             <label
                               htmlFor={`fromInput${index}`}
                               className="form-label"
@@ -557,10 +779,23 @@ const FlightReservation = () => {
                               id={`fromInput${index}`}
                               name={`fromInput${index}`}
                               placeholder="Country, city or airport"
-                              onChange={handleChange}
+                              list={`fromAirportList${index}`}
+                              onChange={(e) =>
+                                handleFilterNChangeMulti1(e, index)
+                              }
+                              onInput={(e) => handleFromAirportSelect(e, index)}
                             />
+                            <datalist id={`fromAirportList${index}`}>
+                              {filteredFromAirports.map((airport, idx) => (
+                                <option key={idx} value={airport.name}>
+                                  {airport.name}, {airport.city},{" "}
+                                  {airport.country} ({airport.icao}/
+                                  {airport.iata})
+                                </option>
+                              ))}
+                            </datalist>
                           </div>
-                          <div className="mb-3 inputDiv" style={borderRAdArr}>
+                          <div className="mb-3 inputDiv">
                             <label
                               htmlFor={`toInput${index}`}
                               className="form-label"
@@ -573,10 +808,23 @@ const FlightReservation = () => {
                               id={`toInput${index}`}
                               name={`toInput${index}`}
                               placeholder="Country, city or airport"
-                              onChange={handleChange}
+                              list={`toAirportList${index}`}
+                              onChange={(e) =>
+                                handleFilterNChangeMulti2(e, index)
+                              }
+                              onInput={(e) => handleToAirportSelect(e, index)}
                             />
+                            <datalist id={`toAirportList${index}`}>
+                              {filteredToAirports.map((airport, idx) => (
+                                <option key={idx} value={airport.name}>
+                                  {airport.name}, {airport.city},{" "}
+                                  {airport.country} ({airport.icao}/
+                                  {airport.iata})
+                                </option>
+                              ))}
+                            </datalist>
                           </div>
-                          <div className="mb-3 inputDiv" style={borderRAdArr}>
+                          <div className="mb-3 inputDiv">
                             <label
                               htmlFor={`departDateInput${index}`}
                               className="form-label"
@@ -584,19 +832,16 @@ const FlightReservation = () => {
                               Depart
                             </label>
                             <input
-                              type={inputType}
-                              onFocus={handleFocus}
-                              onBlur={handleBlur}
+                              type="text"
                               className="form-control"
                               id={`departDateInput${index}`}
                               name={`departDateInput${index}`}
                               placeholder="Add date"
-                              onChange={handleChange}
                             />
                           </div>
                           <button
                             type="button"
-                            onClick={removeDiv}
+                            onClick={() => removeDiv(index)}
                             className={
                               index === 0 || index === 1
                                 ? "disabled btn removeBtn"
@@ -984,6 +1229,7 @@ const FlightReservation = () => {
                         id="flightItineraryTotalVal"
                         name="flightItineraryTotalVal"
                         value={price}
+                        ref={hiddenInputRef} // Attach the ref to the input
                         onChange={handleChange}
                       />
                     </div>

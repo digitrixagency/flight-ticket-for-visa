@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import $ from "jquery";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,7 +11,7 @@ import {
   faFileAlt,
   faPhone,
   faInfoCircle,
-  faSignInAlt
+  faSignInAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
@@ -84,10 +85,10 @@ const Header = () => {
             <button className="btn text-white" id="closeButton">
               <FontAwesomeIcon icon={faXmark} />
             </button>
-            <a href="#" className="btn text-white mx-2">
+            <Link to="/" className="btn text-white mx-2">
               <FontAwesomeIcon icon={faHouse} className="hideElementCls" />
               <span>Home</span>
-            </a>
+            </Link>
             <a href="#" className="btn text-white mx-2">
               <FontAwesomeIcon icon={faFileAlt} className="hideElementCls" />
               <span>Blog</span>

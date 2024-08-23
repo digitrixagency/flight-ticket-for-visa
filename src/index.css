@@ -658,3 +658,20 @@ ul {
 .removeBtn {
   border: none !important;
 }
+
+.airport-options {
+  box-shadow: 0 2px 5px rgb(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.airport-options > li {
+  padding: 5px 13px;
+  border-radius: 10px;
+}
+.airport-options > li:hover {
+  background-color: #e8edf3;
+}
+
+#frH2 {
+  font-size: 1.6rem !important;
+}
