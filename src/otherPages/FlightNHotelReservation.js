@@ -14,7 +14,7 @@ import axios from "axios";
 
 import airportsJsonData from "../jsonData/airports.json";
 
-const FlightReservation = () => {
+const FlightNHotelReservation = () => {
   const hiddenInputRef = useRef(null); // Create a ref for the hidden input
 
   const borderRAdArr = { borderRadius: "5px", width: "30%" };
@@ -32,65 +32,6 @@ const FlightReservation = () => {
 
   const handleBlur = () => {
     setInputType("text");
-  };
-
-  const [numTravelers, setNumTravelers] = useState(0);
-  const [price, setPrice] = useState(0);
-
-  const handleDropdownChange = (event) => {
-    const selectedOption = event.target.options[event.target.selectedIndex];
-    const numberOfTravelers = parseInt(event.target.value, 10);
-    const travelerPrice = parseInt(selectedOption.getAttribute("price"), 10);
-    setNumTravelers(numberOfTravelers);
-    if (price === 3) {
-      const newPrice = travelerPrice + 3;
-      setPrice(newPrice);
-    } else {
-      setPrice(travelerPrice);
-    }
-  };
-
-  const [selectedOption, setSelectedOption] = useState("");
-  const [divCount, setDivCount] = useState(2); // Start with 2 divs
-  const [showTravelerFlightDetailDiv, setShowTravelerFlightDetailDiv] =
-    useState(false);
-
-  // Handle radio button change
-  const handleRadioChange = (event) => {
-    const value = event.target.value;
-    setSelectedOption(value);
-
-    if (value === "multipleCities") {
-      setPrice((price) => price + 3); // Assuming setPrice updates the price state
-      setShowTravelerFlightDetailDiv(true);
-    } else {
-      // Reset the price to the base value depending on the number of travelers
-      const basePrice =
-        numTravelers === 0
-          ? 0
-          : parseInt(
-              document
-                .querySelector(`#noOfTravelers option[value="${numTravelers}"]`)
-                .getAttribute("price"),
-              10
-            );
-      setPrice(basePrice);
-      setShowTravelerFlightDetailDiv(false);
-    }
-  };
-
-  // Add more divs, limit to 4
-  const addMoreDivs = () => {
-    if (divCount < 6) {
-      setDivCount(divCount + 1);
-    }
-  };
-
-  // Remove a div
-  const removeDiv = () => {
-    if (divCount > 0) {
-      setDivCount(divCount - 1);
-    }
   };
 
   // Store the array of timezones in state
@@ -287,7 +228,7 @@ const FlightReservation = () => {
   };
 
   const [formData, setFormData] = useState({
-    dataFor: 'flightReservation',
+    dataFor: "FlightNHotelReservation",
   });
 
   const handleChange = (event) => {
@@ -482,67 +423,269 @@ const FlightReservation = () => {
     handleToInputChange(e, inputNo);
   };
 
+  const formCheckStyle = {
+    width: "100%",
+    marginLeft: "0px",
+    paddingLeft: "0px",
+  };
+
+  const [numTravelers2, setNumTravelers2] = useState(1);
+  const [priceCalData2, setpriceCalData2] = useState({
+    noOfTravelers: "",
+    onOfHotels: "",
+    flightItineraryTotalVal: 0,
+  });
+
+  const handleDropdownChangeNValueChange2 = (e) => {
+    handleChange(e);
+    handleDropdownChange2(e);
+    handlecalculation2(e);
+  };
+  const handlecalculationOnOfHotels2 = (e) => {
+    handleChange(e);
+    handlecalculation2(e);
+  };
+
+  const handlecalculation2 = (event) => {
+    const { name, value, options, selectedIndex } = event.target;
+    const selectedOption = options[selectedIndex];
+    const price = parseFloat(selectedOption.getAttribute("price")) || 0;
+
+    setpriceCalData2((prevData) => {
+      let updatedPrice = prevData.flightItineraryTotalVal;
+
+      if (name === "noOfTravelers") {
+        // Step 1: Update price based on noOfTravelers selection
+        updatedPrice = price;
+
+        // Add the price from the second select if it has a value
+        if (prevData.onOfHotels) {
+          const hotelPrice =
+            parseFloat(
+              document
+                .querySelector("#onOfHotels option:checked")
+                .getAttribute("price")
+            ) || 0;
+
+          alert(hotelPrice);
+          if (value == 1) {
+            updatedPrice += hotelPrice;
+          } else {
+            updatedPrice += hotelPrice * value;
+          }
+
+          
+        }
+      } else if (name === "onOfHotels") {
+        // Step 2: Update price based on onOfHotels selection
+        // updatedPrice = price;
+        updatedPrice = price;
+
+        // Add the price from the first select if it has a value
+        if (prevData.noOfTravelers) {
+          const travelerPrice =
+            parseFloat(
+              document
+                .querySelector("#noOfTravelers option:checked")
+                .getAttribute("price")
+            ) || 0;
+          const numTravelers22 =
+            parseFloat(
+              document
+                .querySelector("#noOfTravelers option:checked")
+                .getAttribute("value")
+            ) || 0;
+          if (numTravelers22 == 1) {
+            updatedPrice = price;
+          } else {
+            updatedPrice = price * numTravelers22;
+          }
+
+          updatedPrice += travelerPrice;
+        }
+      } else if (name === "onOftripTypeHotels") {
+      }
+
+      // Update form data and hidden input field
+      document.getElementById("flightItineraryTotalVal").value = updatedPrice;
+
+      return {
+        ...prevData,
+        [name]: value,
+        flightItineraryTotalVal: updatedPrice,
+      };
+    });
+  };
+
+  const handleDropdownChange2 = (event) => {
+    const selectedOption = event.target.options[event.target.selectedIndex];
+    const numberOfTravelers = parseInt(event.target.value, 10);
+    const travelerPrice = parseInt(selectedOption.getAttribute("price"), 10);
+    setNumTravelers2(numberOfTravelers);
+  };
+
+  const [numTravelers, setNumTravelers] = useState(1);
+  const [price, setPrice] = useState(0);
+
+  const handleDropdownChange = (event) => {
+    const selectedOption = event.target.options[event.target.selectedIndex];
+    const numberOfTravelers = parseInt(event.target.value, 10);
+    const travelerPrice = parseInt(selectedOption.getAttribute("price"), 10);
+    setNumTravelers(numberOfTravelers);
+    if (price === 3) {
+      const newPrice = travelerPrice + 3;
+      setPrice(newPrice);
+    } else {
+      setPrice(travelerPrice);
+    }
+  };
+
+  const [selectedOption, setSelectedOption] = useState("");
+  const [divCount, setDivCount] = useState(2); // Start with 2 divs
+  const [showTravelerFlightDetailDiv, setShowTravelerFlightDetailDiv] =
+    useState(false);
+
+  // Handle radio button change
+  const handleRadioChange = (event) => {
+    const value = event.target.value;
+    setSelectedOption(value);
+    handlecalculation2(event);
+    if (value === "multipleCities") {
+      setShowTravelerFlightDetailDiv(true);
+    } else {
+      setShowTravelerFlightDetailDiv(false);
+    }
+  };
+
+  // Add more divs, limit to 4
+  const addMoreDivs = () => {
+    if (divCount < 6) {
+      setDivCount(divCount + 1);
+    }
+  };
+
+  // Remove a div
+  const removeDiv = () => {
+    if (divCount > 0) {
+      setDivCount(divCount - 1);
+    }
+  };
+
+  const [cityName, setCityName] = useState("");
+  const [hotels, setHotels] = useState([]);
+
+  // Function to fetch city code based on city name
+  const fetchCityCode = async (cityName) => {
+    try {
+      // Fetch access token
+      const tokenResponse = await axios.post(
+        "https://test.api.amadeus.com/v1/security/oauth2/token",
+        {
+          grant_type: "client_credentials",
+          client_id: "2cHC2B0AyINKnbSNfh7xdGc1eMzs132n",
+          client_secret: "vAPomArPZ71G8J5y",
+        },
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      );
+
+      const accessToken = tokenResponse.data.access_token;
+      const response = await fetch(
+        `https://test.api.amadeus.com/v1/reference-data/locations?subType=CITY&keyword=${cityName}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${accessToken}`, // Replace with your actual token
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Error fetching city code! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      const cityCode = data.data[0]?.iataCode;
+      return cityCode;
+    } catch (error) {
+      console.error("Error fetching city code:", error);
+    }
+  };
+
+  // Function to fetch hotels based on city code
+  const fetchHotels = async (cityCode) => {
+    try {
+      // Fetch access token
+      const tokenResponse = await axios.post(
+        "https://test.api.amadeus.com/v1/security/oauth2/token",
+        {
+          grant_type: "client_credentials",
+          client_id: "2cHC2B0AyINKnbSNfh7xdGc1eMzs132n",
+          client_secret: "vAPomArPZ71G8J5y",
+        },
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      );
+
+      const accessToken = tokenResponse.data.access_token;
+      const response = await fetch(
+        `https://test.api.amadeus.com/v1/reference-data/locations/hotels/by-city?cityCode=${cityCode}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${accessToken}`, // Replace with your actual token
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setHotels(data.data || []); // Safeguard: Ensure hotels is set to an empty array if data.hotels is undefined
+    } catch (error) {
+      console.error("Error fetching hotel data:", error);
+    }
+  };
+
+  // Function to handle city name input change
+  const handleCityNameChange = async (e) => {
+    const value = e.target.value;
+    setCityName(value);
+
+    // Trigger search only if input has more than 3 characters
+    if (value.length > 3) {
+      const cityCode = await fetchCityCode(value);
+      if (cityCode) {
+        fetchHotels(cityCode);
+      }
+    } else {
+      setHotels([]); // Clear hotels if input length is not greater than 3
+    }
+  };
+
+  // Handle changes for input
+  const handle2FunctionForInput = (e) => {
+    handleChange(e); // Assuming handleChange is defined elsewhere
+    handleCityNameChange(e);
+  };
   return (
     <>
       <div className="container-fluid FlightReservation pt-5">
         <div className="container pb-5">
-          {/* <div className="container w-75 mb-5">
-            <div className="row">
-              <div className="col-lg-7 col-md-7 col-sm-12 p-0">
-                <div className="p-0 paddingResponsive">
-                  <h1 id="frHeader">
-                    Instant Flight Itinerary for Visa & Travel
-                  </h1>
-                  <div className="d-flex" id="frStepsDiv">
-                    <div className="frNumberDiv numStart">
-                      <span>1</span>
-                      <p>Provide Details</p>
-                    </div>
-                    <div className="frWaveImgDiv">
-                      <img
-                        src={leftWave}
-                        className="waveForNum"
-                        alt="left wave"
-                      />
-                    </div>
-                    <div className="frNumberDiv numEnd">
-                      <span>2</span>
-                      <p>Make Payment</p>
-                    </div>
-                    <div className="frWaveImgDiv">
-                      <img
-                        src={rightWave}
-                        className="waveForNum"
-                        alt="right wave"
-                      />
-                    </div>
-                    <div className="frNumberDiv numStart">
-                      <span>3</span>
-                      <p>Receive Docs Via Email</p>
-                    </div>
-                  </div>
-                  <p id="frText">
-                    Embassy and consulates recommend purchasing an actual flight
-                    ticket only after visa officer approves your visa
-                    application. If you attach an actual flight ticket and your
-                    visa application gets rejected, you’ll lose greater chunk of
-                    your hard-earned money. Therefore, always attach a confirmed
-                    flight Itinerary for visa application.
-                  </p>
-                </div>
-              </div>
-              <div className="col-lg-5 col-md-5 col-sm-12" id="frImgMainDiv">
-                <div className="" id="frImgDiv">
-                  <img src={frImg} alt="Flight Reservation Image" id="frImg" />
-                </div>
-              </div>
-            </div>
-          </div> */}
-
           <div className="container w-75 mb-4">
             <div className="row">
               <div className="col-lg-12 col-md-12 col-sm-12">
-                <h1>Instant Flight Itinerary for Visa & Travel</h1>
+                <h1>Instant Flight Plus Hotel Bookings for Visa</h1>
               </div>
               <div className="col-lg-12 col-md-12 col-sm-12">
                 <p>
@@ -565,7 +708,7 @@ const FlightReservation = () => {
           </div>
 
           <div className="container w-75">
-            <h2 id="frH2">Traveler Information</h2>
+            <h2 class="frH2">Traveler Information</h2>
             <form onSubmit={handleSubmit}>
               <div className="row">
                 <div className="col-lg-12 col-md-12 col-sm-12">
@@ -951,6 +1094,9 @@ const FlightReservation = () => {
                     </p>
                   </div>
                 )}
+              </div>
+
+              <div className="row">
                 <div className="col-lg-4 col-md-4 col-sm-12">
                   <div className="mb-3">
                     <label htmlFor="noOfTravelers" className="form-label">
@@ -960,7 +1106,7 @@ const FlightReservation = () => {
                       id="noOfTravelers"
                       name="noOfTravelers"
                       className="form-select"
-                      onChange={handleDropdownChangeNValueChange}
+                      onChange={handleDropdownChangeNValueChange2}
                       required
                     >
                       <option selected disabled>
@@ -1030,7 +1176,7 @@ const FlightReservation = () => {
                   </div>
                 </div>
 
-                {Array.from({ length: numTravelers }, (_, index) => (
+                {Array.from({ length: numTravelers2 }, (_, index) => (
                   <>
                     <div className="col-lg-4 col-md-4 col-sm-12 mb-3">
                       <div className="mb-3">
@@ -1093,15 +1239,197 @@ const FlightReservation = () => {
                         />
                       </div>
                     </div>
-                    {/* <input
-                      type="hidden"
-                      id={`travelerPrice${index + 1}`}
-                      name={`travelerPrice${index + 1}`}
-                      value={price} // Set the hidden input's value to the price
-                    /> */}
                   </>
                 ))}
+
+                <div className="col-lg-12 col-md-12 col-sm-12">
+                  <h2 class="frH2">Hotel Details</h2>
+
+                  <div id="radioBtnDiv">
+                    <h5>
+                      NO. OF HOTELS <span>*</span>
+                    </h5>
+
+                    <div className="form-check" style={formCheckStyle}>
+                      <label htmlFor="onOfHotels" className="form-label">
+                        (Maximum 4 hotels free in 1 trip, Will be charged $8 for
+                        each additional hotels.)
+                      </label>
+                      <select
+                        id="onOfHotels"
+                        name="onOfHotels"
+                        className="form-select"
+                        required
+                        onChange={handlecalculationOnOfHotels2}
+                      >
+                        <option selected disabled>
+                          —Please choose an option—
+                        </option>
+                        <option value="1-4 Hotels/Free">1-4 Hotels/Free</option>
+                        <option value="5th Hotel($8/Hotel)" price="8">
+                          5th Hotel($8/Hotel)
+                        </option>
+                        <option value="6th Hotel($8/Hotel)" price="16">
+                          6th Hotel($8/Hotel)
+                        </option>
+                        <option value="7th Hotel($8/Hotel)" price="24">
+                          7th Hotel($8/Hotel)
+                        </option>
+                        <option value="8th Hotel($8/Hotel)" price="32">
+                          8th Hotel($8/Hotel)
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-6 col-md-6 col-sm-12">
+                  <div className="mb-3">
+                    <label
+                      htmlFor="travelerFlightDetails"
+                      className="form-label"
+                    >
+                      Travelers Hotel Details <span>*</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div className="col-lg-12 col-md-12 col-sm-12">
+                  <div id="travelerHotelDetailDiv">
+                    <div id="destinationOrHotelNameDiv">
+                      <div className="mb-3 inputDiv">
+                        <label
+                          htmlFor="destinationOrHotelName"
+                          className="form-label"
+                        >
+                          Where do you want to stay?
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="destinationOrHotelName"
+                          name="destinationOrHotelName"
+                          placeholder="Enter destination or hotel name"
+                          onChange={handle2FunctionForInput}
+                          list="hotels"
+                        />
+                      </div>
+                      <datalist id="hotels">
+                        {hotels.length > 0 ? (
+                          hotels.map((hotel, index) => (
+                            <option key={index} value={hotel.name} />
+                          ))
+                        ) : (
+                          <option value="No hotels found" disabled />
+                        )}
+                      </datalist>
+                    </div>
+                    <div id="CheckInDiv">
+                      <div className="mb-3 inputDiv">
+                        <label htmlFor="CheckIn" className="form-label">
+                          Check-in
+                        </label>
+                        <input
+                          type={inputType}
+                          onFocus={handleFocus}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          className="form-control"
+                          id="CheckIn"
+                          name="CheckIn"
+                          placeholder="Add date"
+                        />
+                      </div>
+                    </div>
+                    <div id="CheckOutDiv">
+                      <div className="mb-3 inputDiv">
+                        <label htmlFor="CheckOut" className="form-label">
+                          Check-out
+                        </label>
+                        <input
+                          type={inputType}
+                          onFocus={handleFocus}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          className="form-control"
+                          id="CheckOut"
+                          name="CheckOut"
+                          placeholder="Add date"
+                        />
+                      </div>
+                    </div>
+                    <div id="guestsNRoomDiv">
+                      <div className="mb-3 inputDiv">
+                        <label htmlFor="guestsNRoom" className="form-label">
+                          Travelers and Cabin
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="guestsNRoom"
+                          name="guestsNRoom"
+                          placeholder="2 Adult, 1 room"
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-lg-7 col-md-7 col-sm-12">
+                  <div id="additionalPreferencesDiv">
+                    <p className="me-2">
+                      Have You Any Additional Hotel Preferences/Details?:
+                    </p>
+                    <div className="form-check ms-2">
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        name="additionalPreferencesForHotel"
+                        id="ap1"
+                        value="yes"
+                        onClick={showHideFunMain}
+                        onChange={handleChange}
+                      />
+                      <label className="form-check-label" htmlFor="ap1">
+                        Yes
+                      </label>
+                    </div>
+                    <div className="form-check ms-2">
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        name="additionalPreferencesForHotel"
+                        id="ap2"
+                        value="no"
+                        onClick={showHideFunMain}
+                        onChange={handleChange}
+                      />
+                      <label className="form-check-label" htmlFor="ap2">
+                        No
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-4 col-md-4 col-sm-12"></div>
+
+                {showHideVal === "yes" && (
+                  <div className="col-lg-12 col-md-12 col-sm-12">
+                    <p>
+                      <label>Additional Hotel Detail:</label>
+                      <textarea
+                        cols="40"
+                        rows="5"
+                        name="additionalPreferencesForHotelYes"
+                        maxlength="2000"
+                        class="form-control"
+                        onChange={handleChange}
+                        placeholder="Please mention your special instructions for your hotel here, we are trying to make it accordingly to your details."
+                      ></textarea>
+                    </p>
+                  </div>
+                )}
               </div>
+
               <h2>General Details</h2>
               <div className="row">
                 <div className="col-lg-6 col-md-6 col-sm-12">
@@ -1225,12 +1553,14 @@ const FlightReservation = () => {
                       <p id="flightItineraryTotalText">
                         Flight Itinerary Total:
                       </p>
-                      <p id="flightItineraryTotal">${price}</p>
+                      <p id="flightItineraryTotal">
+                        ${priceCalData2.flightItineraryTotalVal}
+                      </p>
                       <input
                         type="hidden"
                         id="flightItineraryTotalVal"
                         name="flightItineraryTotalVal"
-                        value={price}
+                        value={priceCalData2.flightItineraryTotalVal}
                         ref={hiddenInputRef} // Attach the ref to the input
                         onChange={handleChange}
                       />
@@ -1356,4 +1686,4 @@ const FlightReservation = () => {
   );
 };
 
-export default FlightReservation;
+export default FlightNHotelReservation;

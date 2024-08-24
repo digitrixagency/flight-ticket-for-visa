@@ -14,6 +14,9 @@ const Home = () => {
   const redirectToHB = () => {
     navigate("/Hotel-Booking");
   };
+  const redirectToRNHR = () => {
+    navigate("/Flight+Hotel-Reservation");
+  };
 
   return (
     <div className="container homeContainerDiv px-5 pb-5">
@@ -54,6 +57,7 @@ const Home = () => {
               <button
                 type="button"
                 className="btn btn-primary homePageBtn px-4"
+                onClick={redirectToRNHR}
               >
                 Flight + Hotel
               </button>

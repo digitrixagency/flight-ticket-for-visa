@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const amadeus = require('./amadeusApi');
 
-const port = 3001;
+const port = 5000;
 // Example payment gateway SDK (e.g., Stripe, PayPal)
 // const stripe = require("stripe")(YOUR_SECRET_KEY);
 
@@ -91,6 +91,11 @@ const formDataSchema = new mongoose.Schema({
   amount: Number,
   MUID: String,
   transactionId: String,
+  CheckIn: String,
+  CheckOut: String,
+  destinationOrHotelName: String,
+  guestsNRoom: String,
+  onOfHotels: String,
 });
 
 const FormData = mongoose.model("FormData", formDataSchema);
@@ -158,54 +163,8 @@ app.post("/api/submit-form", async (req, res) => {
 
 
 
-app.get('/v2/shopping/hotel-offers', async (req, res) => {
-  try {
-    const { cityCode, checkInDate, checkOutDate, adults } = req.query;
-    
-    const response = await amadeus.shopping.hotelOffers.get({
-      cityCode,
-      checkInDate,
-      checkOutDate,
-      adults: adults || 1 // Default to 1 adult if not provided
-    });
-
-    res.json(response.data);
-  } catch (error) {
-    console.error('Error fetching hotel data from Amadeus:', error);
-    res.status(500).send('Error fetching hotel data');
-  }
-});
-
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 
 
-
-app.get('/api/hotels', async (req, res) => {
-  try {
-    const { name } = req.query;
-    
-    const response = await amadeus.shopping.hotelOffers.get({
-      cityCode: name, // You might want to specify city or other parameters
-    });
-
-    const hotels = response.data.hotels.map(hotel => ({
-      id: hotel.hotel.id,
-      name: hotel.hotel.name
-    }));
-
-    res.json({ hotels });
-  } catch (error) {
-    console.error('Error fetching hotels from Amadeus:', error);
-    res.status(500).send('Error fetching hotels');
-  }
-});
-
-
-
-// Start the server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});

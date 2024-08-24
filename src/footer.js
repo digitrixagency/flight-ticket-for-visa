@@ -1,14 +1,25 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 import "./otherPages/steps.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FAQ from "./images/FAQ.png";
 import { FaCheckCircle } from "react-icons/fa";
 
-const footer = ({ hideDiv }) => {
-  const handleClick = (itemId) => {
-    // var mainDiv = document.getElementById('mainDiv'+itemId);
-    console.log("Item clicked:", itemId);
+const Footer = ({ hideDiv }) => {
+  const navigate = useNavigate();
+
+  const redirectToFR = () => {
+    navigate("/Flight-Reservation");
+     window.scrollTo(0, 0); // Scroll to the top after redirect
+  };
+  const redirectToHB = () => {
+    navigate("/Hotel-Booking");
+     window.scrollTo(0, 0); // Scroll to the top after redirect
+  };
+  const redirectToRNHR = () => {
+    navigate("/Flight+Hotel-Reservation");
+     window.scrollTo(0, 0); // Scroll to the top after redirect
   };
 
   return (
@@ -123,7 +134,7 @@ const footer = ({ hideDiv }) => {
                       <button
                         className="orderBtn py-3"
                         id="orderBtn1"
-                        onClick={() => handleClick(1)}
+                        onClick={redirectToFR}
                       >
                         Order Now
                       </button>
@@ -221,7 +232,7 @@ const footer = ({ hideDiv }) => {
                       <button
                         className="orderBtn py-3 orderBtnImp"
                         id="orderBtn2"
-                        onClick={() => handleClick(2)}
+                        onClick={redirectToRNHR}
                       >
                         Order Now
                       </button>
@@ -320,7 +331,7 @@ const footer = ({ hideDiv }) => {
                       <button
                         className="orderBtn py-3"
                         id="orderBtn3"
-                        onClick={() => handleClick(3)}
+                        onClick={redirectToHB}
                       >
                         Order Now
                       </button>
@@ -604,4 +615,4 @@ const footer = ({ hideDiv }) => {
   );
 };
 
-export default footer;
+export default Footer;

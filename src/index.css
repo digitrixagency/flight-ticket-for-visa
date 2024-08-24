@@ -480,7 +480,7 @@ summary p {
   display: flex;
   position: relative;
   border: 1px solid #000000;
-  padding: 2rem;
+  padding: 1rem 2rem;
   margin: 1rem 0;
 }
 
@@ -672,7 +672,7 @@ ul {
   background-color: #e8edf3;
 }
 
-#frH2 {
+.frH2 {
   font-size: 1.6rem !important;
 }
 

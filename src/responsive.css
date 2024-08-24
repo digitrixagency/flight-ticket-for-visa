@@ -2,7 +2,6 @@
   display: none;
 }
 
-
 @media only screen and (min-width: 200px) and (max-width: 319px) {
 }
 
@@ -435,6 +434,13 @@
     border: 1px solid #000000 !important;
     margin-bottom: 10px;
   }
+  #travelerHotelDetailDiv {
+    flex-direction: column;
+  }
+
+  #destinationOrHotelNameDiv {
+    width: 100%;
+  }
 }
 /* medium mobile */
 @media only screen and (min-width: 375px) and (max-width: 424px) {
@@ -817,6 +823,13 @@
     border: 1px solid #000000 !important;
     margin-bottom: 10px;
   }
+  #travelerHotelDetailDiv {
+    flex-direction: column;
+  }
+
+  #destinationOrHotelNameDiv {
+    width: 100%;
+  }
 }
 /* large mobile */
 @media only screen and (min-width: 425px) and (max-width: 599px) {
@@ -1183,6 +1196,14 @@
     border: 1px solid #000000 !important;
     margin-bottom: 10px;
   }
+
+  #travelerHotelDetailDiv {
+    flex-direction: column;
+  }
+
+  #destinationOrHotelNameDiv {
+    width: 100%;
+  }
 }
 
 /* tablet */
@@ -1493,6 +1514,13 @@
   .addMoreBTn {
     width: 32%;
   }
+
+  #guestsNRoomDiv {
+    width: 37%;
+  }
+  .inputDiv {
+    font-size: 14px;
+  }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -1664,6 +1692,10 @@
   }
   .addMoreBTn {
     width: 30%;
+  }
+
+  #guestsNRoomDiv {
+    width: 34%;
   }
 }
 

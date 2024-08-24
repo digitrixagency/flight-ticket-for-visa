@@ -5,6 +5,7 @@ import "./index.css";
 import HomePage from "./routePages/HomePage";
 import FlightReservationPage from "./routePages/FlightReservationPage";
 import HotelBookingPage from "./routePages/HotelBookingPage";
+import FlightNHotelReservationPage from "./routePages/FlightNHotelReservationPage";
 import TestApi from "./routePages/testApi";
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/Flight-Reservation" element={<FlightReservationPage />} />
         <Route path="/Hotel-Booking" element={<HotelBookingPage />} />
+        <Route path="/Flight+Hotel-Reservation" element={<FlightNHotelReservationPage />} />
         <Route path="/testApi" element={<TestApi />} />
       </Routes>
     </Router>

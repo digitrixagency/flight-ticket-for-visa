@@ -35,34 +35,35 @@ const FlightReservation = () => {
     paddingLeft: "0px",
   };
 
-  const [numTravelers, setNumTravelers] = useState(0);
-  const [priceCalData, setpriceCalData] = useState({
+  const [numTravelers2, setNumTravelers2] = useState(1);
+  const [priceCalData2, setpriceCalData2] = useState({
     noOfTravelers: "",
     onOfHotels: "",
     flightItineraryTotalVal: 0,
   });
 
-  const handleDropdownChangeNValueChange = (e) => {
+  const handleDropdownChangeNValueChange2 = (e) => {
     handleChange(e);
-    handleDropdownChange(e);
-    handlecalculation(e);
+    handleDropdownChange2(e);
+    handlecalculation2(e);
   };
-  const handlecalculationOnOfHotels = (e) => {
+  const handlecalculationOnOfHotels2 = (e) => {
     handleChange(e);
-    handlecalculation(e);
+    handlecalculation2(e);
   };
 
-  const handlecalculation = (event) => {
+  const handlecalculation2 = (event) => {
     const { name, value, options, selectedIndex } = event.target;
     const selectedOption = options[selectedIndex];
     const price = parseFloat(selectedOption.getAttribute("price")) || 0;
 
-    setpriceCalData((prevData) => {
+    setpriceCalData2((prevData) => {
       let updatedPrice = prevData.flightItineraryTotalVal;
 
       if (name === "noOfTravelers") {
         // Step 1: Update price based on noOfTravelers selection
         updatedPrice = price;
+
         // Add the price from the second select if it has a value
         if (prevData.onOfHotels) {
           const hotelPrice =
@@ -71,11 +72,19 @@ const FlightReservation = () => {
                 .querySelector("#onOfHotels option:checked")
                 .getAttribute("price")
             ) || 0;
-          updatedPrice += hotelPrice;
+
+          alert(hotelPrice);
+          if (value == 1) {
+            updatedPrice += hotelPrice;
+          } else {
+            updatedPrice += hotelPrice * value;
+          }
         }
       } else if (name === "onOfHotels") {
         // Step 2: Update price based on onOfHotels selection
+        // updatedPrice = price;
         updatedPrice = price;
+
         // Add the price from the first select if it has a value
         if (prevData.noOfTravelers) {
           const travelerPrice =
@@ -84,6 +93,18 @@ const FlightReservation = () => {
                 .querySelector("#noOfTravelers option:checked")
                 .getAttribute("price")
             ) || 0;
+          const numTravelers22 =
+            parseFloat(
+              document
+                .querySelector("#noOfTravelers option:checked")
+                .getAttribute("value")
+            ) || 0;
+          if (numTravelers22 == 1) {
+            updatedPrice = price;
+          } else {
+            updatedPrice = price * numTravelers22;
+          }
+
           updatedPrice += travelerPrice;
         }
       }
@@ -99,55 +120,12 @@ const FlightReservation = () => {
     });
   };
 
-  const handleDropdownChange = (event) => {
+  const handleDropdownChange2 = (event) => {
     const selectedOption = event.target.options[event.target.selectedIndex];
     const numberOfTravelers = parseInt(event.target.value, 10);
     const travelerPrice = parseInt(selectedOption.getAttribute("price"), 10);
-    setNumTravelers(numberOfTravelers);
+    setNumTravelers2(numberOfTravelers);
   };
-
-  // const [selectedOption, setSelectedOption] = useState("");
-  // const [divCount, setDivCount] = useState(2); // Start with 2 divs
-  // const [showTravelerFlightDetailDiv, setShowTravelerFlightDetailDiv] =
-  //   useState(false);
-
-  // // Handle radio button change
-  // const handleRadioChange = (event) => {
-  //   const value = event.target.value;
-  //   setSelectedOption(value);
-
-  //   if (value === "multipleCities") {
-  //     setPrice((price) => price + 3); // Assuming setPrice updates the price state
-  //     setShowTravelerFlightDetailDiv(true);
-  //   } else {
-  //     // Reset the price to the base value depending on the number of travelers
-  //     const basePrice =
-  //       numTravelers === 0
-  //         ? 0
-  //         : parseInt(
-  //             document
-  //               .querySelector(`#noOfTravelers option[value="${numTravelers}"]`)
-  //               .getAttribute("price"),
-  //             10
-  //           );
-  //     setPrice(basePrice);
-  //     setShowTravelerFlightDetailDiv(false);
-  //   }
-  // };
-
-  // // Add more divs, limit to 4
-  // const addMoreDivs = () => {
-  //   if (divCount < 6) {
-  //     setDivCount(divCount + 1);
-  //   }
-  // };
-
-  // // Remove a div
-  // const removeDiv = () => {
-  //   if (divCount > 0) {
-  //     setDivCount(divCount - 1);
-  //   }
-  // };
 
   // Store the array of timezones in state
   const [timezones] = useState([
@@ -399,138 +377,112 @@ const FlightReservation = () => {
     setIsReadMore(!isReadMore);
   };
 
-  const handleFilterNChange = (inputNo, e) => {
-    handleChange(e);
-    handleFilter(inputNo, e);
-  };
-  // State to manage multiple inputs and their filters
-  const [inputValues, setInputValues] = useState({
-    input1: "",
-    input2: "", // Add more inputs as needed
-  });
+  const [cityName, setCityName] = useState("");
+  const [hotels, setHotels] = useState([]);
 
-  // State to manage filtered airports for each input
-  const [filteredAirports, setFilteredAirports] = useState({
-    input1: [],
-    input2: [], // Add more inputs as needed
-  });
-
-  // State to control the visibility of the <datalist> elements
-  const [visibleLists, setVisibleLists] = useState({
-    input1: true,
-    input2: true, // Add more inputs as needed
-  });
-
-  // Handle input change and filter airports for the specific input
-  const handleFilter = (inputKey, e) => {
-    const input = e.target.value;
-    setInputValues((prev) => ({
-      ...prev,
-      [inputKey]: input,
-    }));
-
-    // Filter airports based on user input
-    const filtered = airportsJsonData.filter(
-      (airport) =>
-        airport.iata && // Ensure iata code exists
-        airport.iata !== "0" && // Ensure iata code is not "0"
-        (airport.name.toLowerCase().includes(input.toLowerCase()) ||
-          airport.city.toLowerCase().includes(input.toLowerCase()) ||
-          airport.country.toLowerCase().includes(input.toLowerCase()))
-    );
-    setFilteredAirports((prev) => ({
-      ...prev,
-      [inputKey]: filtered,
-    }));
-
-    // Show the datalist if there are filtered results
-    setVisibleLists((prev) => ({
-      ...prev,
-      [inputKey]: filtered.length > 0,
-    }));
-  };
-
-  // Handle airport selection for a specific input
-  const handleClick = (inputKey, airport) => {
-    const formattedString = `${airport.name} - ${airport.city}, ${airport.country} (${airport.iata})`;
-    setInputValues((prev) => ({
-      ...prev,
-      [inputKey]: formattedString,
-    }));
-
-    // Update filteredAirports to exclude the selected airport
-    setFilteredAirports((prev) => ({
-      ...prev,
-      [inputKey]: prev[inputKey].filter((a) => a.iata !== airport.iata),
-    }));
-
-    // Hide the datalist element after selection
-    setVisibleLists((prev) => ({
-      ...prev,
-      [inputKey]: false,
-    }));
-  };
-
-  const [filteredFromAirports, setFilteredFromAirports] = useState([]);
-  const [filteredToAirports, setFilteredToAirports] = useState([]);
-  const [selectedFromAirport, setSelectedFromAirport] = useState("");
-  const [selectedToAirport, setSelectedToAirport] = useState("");
-
-  // Handle input change to filter airports for "From" field
-  const handleFromInputChange = (e, index) => {
-    const query = e.target.value.toLowerCase();
-    if (query.length > 0) {
-      const filtered = airportsJsonData.filter(
-        (airport) =>
-          airport.name.toLowerCase().includes(query) ||
-          airport.city.toLowerCase().includes(query) ||
-          airport.country.toLowerCase().includes(query) ||
-          airport.icao.toLowerCase().includes(query) ||
-          airport.iata.toLowerCase().includes(query)
+  // Function to fetch city code based on city name
+  const fetchCityCode = async (cityName) => {
+    try {
+      // Fetch access token
+      const tokenResponse = await axios.post(
+        "https://test.api.amadeus.com/v1/security/oauth2/token",
+        {
+          grant_type: "client_credentials",
+          client_id: "2cHC2B0AyINKnbSNfh7xdGc1eMzs132n",
+          client_secret: "vAPomArPZ71G8J5y",
+        },
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
       );
-      setFilteredFromAirports(filtered);
-    } else {
-      setFilteredFromAirports([]);
+
+      const accessToken = tokenResponse.data.access_token;
+      const response = await fetch(
+        `https://test.api.amadeus.com/v1/reference-data/locations?subType=CITY&keyword=${cityName}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${accessToken}`, // Replace with your actual token
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Error fetching city code! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      const cityCode = data.data[0]?.iataCode;
+      return cityCode;
+    } catch (error) {
+      console.error("Error fetching city code:", error);
     }
   };
 
-  // Handle airport selection for "From" field
-  const handleFromAirportSelect = (e, index) => {
-    setSelectedFromAirport(e.target.value);
-    setFilteredFromAirports([]); // Hide datalist after selection
-  };
-
-  // Handle input change to filter airports for "To" field
-  const handleToInputChange = (e, index) => {
-    const query = e.target.value.toLowerCase();
-    if (query.length > 0) {
-      const filtered = airportsJsonData.filter(
-        (airport) =>
-          airport.name.toLowerCase().includes(query) ||
-          airport.city.toLowerCase().includes(query) ||
-          airport.country.toLowerCase().includes(query) ||
-          airport.icao.toLowerCase().includes(query) ||
-          airport.iata.toLowerCase().includes(query)
+  // Function to fetch hotels based on city code
+  const fetchHotels = async (cityCode) => {
+    try {
+      // Fetch access token
+      const tokenResponse = await axios.post(
+        "https://test.api.amadeus.com/v1/security/oauth2/token",
+        {
+          grant_type: "client_credentials",
+          client_id: "2cHC2B0AyINKnbSNfh7xdGc1eMzs132n",
+          client_secret: "vAPomArPZ71G8J5y",
+        },
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
       );
-      setFilteredToAirports(filtered);
-    } else {
-      setFilteredToAirports([]);
+
+      const accessToken = tokenResponse.data.access_token;
+      const response = await fetch(
+        `https://test.api.amadeus.com/v1/reference-data/locations/hotels/by-city?cityCode=${cityCode}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${accessToken}`, // Replace with your actual token
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setHotels(data.data || []); // Safeguard: Ensure hotels is set to an empty array if data.hotels is undefined
+    } catch (error) {
+      console.error("Error fetching hotel data:", error);
     }
   };
 
-  // Handle airport selection for "To" field
-  const handleToAirportSelect = (e, index) => {
-    setSelectedToAirport(e.target.value);
-    setFilteredToAirports([]); // Hide datalist after selection
+  // Function to handle city name input change
+  const handleCityNameChange = async (e) => {
+    const value = e.target.value;
+    setCityName(value);
+
+    // Trigger search only if input has more than 3 characters
+    if (value.length > 3) {
+      const cityCode = await fetchCityCode(value);
+      if (cityCode) {
+        fetchHotels(cityCode);
+      }
+    } else {
+      setHotels([]); // Clear hotels if input length is not greater than 3
+    }
   };
 
-  const handleFilterNChangeMulti1 = (e, inputNo) => {
-    handleChange(e);
-    handleFromInputChange(e, inputNo);
-  };
-  const handleFilterNChangeMulti2 = (e, inputNo) => {
-    handleChange(e);
-    handleToInputChange(e, inputNo);
+  // Handle changes for input
+  const handle2FunctionForInput = (e) => {
+    handleChange(e); // Assuming handleChange is defined elsewhere
+    handleCityNameChange(e);
   };
 
   return (
@@ -575,7 +527,7 @@ const FlightReservation = () => {
                       id="noOfTravelers"
                       name="noOfTravelers"
                       className="form-select"
-                      onChange={handleDropdownChangeNValueChange}
+                      onChange={handleDropdownChangeNValueChange2}
                       required
                     >
                       <option selected disabled>
@@ -645,7 +597,7 @@ const FlightReservation = () => {
                   </div>
                 </div>
 
-                {Array.from({ length: numTravelers }, (_, index) => (
+                {Array.from({ length: numTravelers2 }, (_, index) => (
                   <>
                     <div className="col-lg-4 col-md-4 col-sm-12 mb-3">
                       <div className="mb-3">
@@ -716,52 +668,6 @@ const FlightReservation = () => {
                     <h5>
                       NO. OF HOTELS <span>*</span>
                     </h5>
-                    {/* <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="tripType"
-                        id="tripType1"
-                        checked={selectedOption === "oneWay"}
-                        onChange={handleRadioChange}
-                        value="oneWay"
-                        onClick={handleChange}
-                      />
-                      <label className="form-check-label" htmlFor="tripType1">
-                        One Way
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="tripType"
-                        id="tripType2"
-                        value="returnTrip"
-                        checked={selectedOption === "returnTrip"}
-                        onChange={handleRadioChange}
-                        onClick={handleChange}
-                      />
-                      <label className="form-check-label" htmlFor="tripType2">
-                        Round Trip
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="tripType"
-                        id="tripType3"
-                        defaultChecked
-                        value="multipleCities"
-                        checked={selectedOption === "multipleCities"}
-                        onChange={handleRadioChange}
-                        onClick={handleChange}
-                      />
-                      <label className="form-check-label" htmlFor="tripType3">
-                        Multiple Cities (+3.00$)
-                      </label>
-                    </div> */}
 
                     <div className="form-check" style={formCheckStyle}>
                       <label htmlFor="onOfHotels" className="form-label">
@@ -773,7 +679,7 @@ const FlightReservation = () => {
                         name="onOfHotels"
                         className="form-select"
                         required
-                        onChange={handlecalculationOnOfHotels}
+                        onChange={handlecalculationOnOfHotels2}
                       >
                         <option selected disabled>
                           —Please choose an option—
@@ -822,8 +728,19 @@ const FlightReservation = () => {
                           id="destinationOrHotelName"
                           name="destinationOrHotelName"
                           placeholder="Enter destination or hotel name"
+                          onChange={handle2FunctionForInput}
+                          list="hotels"
                         />
                       </div>
+                      <datalist id="hotels">
+                        {hotels.length > 0 ? (
+                          hotels.map((hotel, index) => (
+                            <option key={index} value={hotel.name} />
+                          ))
+                        ) : (
+                          <option value="No hotels found" disabled />
+                        )}
+                      </datalist>
                     </div>
                     <div id="CheckInDiv">
                       <div className="mb-3 inputDiv">
@@ -876,148 +793,7 @@ const FlightReservation = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-lg-12 col-md-12 col-sm-12">
-                  {/* Traveler Flight Detail Div */}
-                  {/* {showTravelerFlightDetailDiv && (
-                    <div
-                      id="travelerFlightDetailDiv"
-                      className="d-flex flex-column travelerFlightDetailDiv"
-                    > */}
-                  {/* {[...Array(divCount)].map((_, index) => (
-                        <div
-                          className="d-flex justify-content-around"
-                          key={index}
-                        >
-                          <div className="mb-3 inputDiv">
-                            <label
-                              htmlFor={`fromInput${index}`}
-                              className="form-label"
-                            >
-                              From
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              id={`fromInput${index}`}
-                              name={`fromInput${index}`}
-                              placeholder="Country, city or airport"
-                              list={`fromAirportList${index}`}
-                              onChange={(e) =>
-                                handleFilterNChangeMulti1(e, index)
-                              }
-                              onInput={(e) => handleFromAirportSelect(e, index)}
-                            />
-                            <datalist id={`fromAirportList${index}`}>
-                              {filteredFromAirports.map((airport, idx) => (
-                                <option key={idx} value={airport.name}>
-                                  {airport.name}, {airport.city},{" "}
-                                  {airport.country} ({airport.icao}/
-                                  {airport.iata})
-                                </option>
-                              ))}
-                            </datalist>
-                          </div>
-                          <div className="mb-3 inputDiv">
-                            <label
-                              htmlFor={`toInput${index}`}
-                              className="form-label"
-                            >
-                              To
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              id={`toInput${index}`}
-                              name={`toInput${index}`}
-                              placeholder="Country, city or airport"
-                              list={`toAirportList${index}`}
-                              onChange={(e) =>
-                                handleFilterNChangeMulti2(e, index)
-                              }
-                              onInput={(e) => handleToAirportSelect(e, index)}
-                            />
-                            <datalist id={`toAirportList${index}`}>
-                              {filteredToAirports.map((airport, idx) => (
-                                <option key={idx} value={airport.name}>
-                                  {airport.name}, {airport.city},{" "}
-                                  {airport.country} ({airport.icao}/
-                                  {airport.iata})
-                                </option>
-                              ))}
-                            </datalist>
-                          </div>
-                          <div className="mb-3 inputDiv">
-                            <label
-                              htmlFor={`departDateInput${index}`}
-                              className="form-label"
-                            >
-                              Depart
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              id={`departDateInput${index}`}
-                              name={`departDateInput${index}`}
-                              placeholder="Add date"
-                            />
-                          </div>
-                          <button
-                            type="button"
-                            onClick={() => removeDiv(index)}
-                            className={
-                              index === 0 || index === 1
-                                ? "disabled btn removeBtn"
-                                : "btn removeBtn"
-                            }
-                          >
-                            <FontAwesomeIcon icon={faTimes} size="2x" />
-                          </button>
-                        </div>
-                      ))} */}
 
-                  {/* <div
-                        className="d-flex justify-content-between my-4"
-                        id="addMTNCDiv"
-                      > */}
-                  {/* Additional Inputs from travelersNCabin */}
-                  {/* {showTravelerFlightDetailDiv && (
-                          <div id="travelersNCabinDiv">
-                            <div
-                              className="mb-3 inputDiv"
-                              style={borderRAdArr1}
-                            >
-                              <label
-                                htmlFor="travelersNCabin"
-                                className="form-label"
-                              >
-                                Travelers and Cabin
-                              </label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                id="travelersNCabin"
-                                name="travelersNCabin"
-                                placeholder="1 Adult, Economy"
-                                onChange={handleChange}
-                              />
-                            </div>
-                          </div>
-                        )} */}
-                  {/* Add More Button */}
-                  {/* {divCount < 6 && (
-                          <button
-                            type="button"
-                            onClick={addMoreDivs}
-                            className="btn addMoreBTn"
-                          >
-                            <FontAwesomeIcon icon={faPlus} size="1x" />
-                            Add another flight
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  )} */}
-                </div>
                 <div className="col-lg-7 col-md-7 col-sm-12">
                   <div id="additionalPreferencesDiv">
                     <p className="me-2">
@@ -1072,7 +848,7 @@ const FlightReservation = () => {
                   </div>
                 )}
               </div>
-              <h2>Order Summary</h2>
+              <h2>General Details</h2>
               <div className="row">
                 <div className="col-lg-6 col-md-6 col-sm-12">
                   <div className="mb-3">
@@ -1196,13 +972,13 @@ const FlightReservation = () => {
                         Flight Itinerary Total:
                       </p>
                       <p id="flightItineraryTotal">
-                        ${priceCalData.flightItineraryTotalVal}
+                        ${priceCalData2.flightItineraryTotalVal}
                       </p>
                       <input
                         type="hidden"
                         id="flightItineraryTotalVal"
                         name="flightItineraryTotalVal"
-                        value={priceCalData.flightItineraryTotalVal}
+                        value={priceCalData2.flightItineraryTotalVal}
                         ref={hiddenInputRef} // Attach the ref to the input
                         onChange={handleChange}
                       />
