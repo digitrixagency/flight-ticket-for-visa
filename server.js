@@ -96,7 +96,7 @@ const formDataSchema = new mongoose.Schema({
   onOfHotels: String,
 });
 
-const FormData = mongoose.model("FormData", formDataSchema);
+const FormData = mongoose.model("flightNHotelData", formDataSchema);
 
 // // Step 1: Define a route to handle payment processing
 // app.post("/api/process-payment", async (req, res) => {

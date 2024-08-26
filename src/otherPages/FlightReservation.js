@@ -659,7 +659,7 @@ const FlightReservation = () => {
                           />
                         </div>
 
-                        <datalist id="datalist1">
+                        <datalist id="datalist1" className="suggestions-list">
                           {filteredAirports.input1.map((airport) => (
                             <option
                               key={airport.iata} // Use a unique key for better performance
@@ -688,7 +688,7 @@ const FlightReservation = () => {
                             value={inputValues.input2}
                           />
                         </div>
-                        <datalist id="datalist2">
+                        <datalist id="datalist2" className="suggestions-list">
                           {filteredAirports.input2.map((airport) => (
                             <option
                               key={airport.iata} // Use a unique key for better performance
@@ -795,7 +795,7 @@ const FlightReservation = () => {
                               }
                               onInput={(e) => handleFromAirportSelect(e, index)}
                             />
-                            <datalist id={`fromAirportList${index}`}>
+                            <datalist id={`fromAirportList${index}`} className="suggestions-list">
                               {filteredFromAirports.map((airport, idx) => (
                                 <option key={idx} value={airport.name}>
                                   {airport.name}, {airport.city},{" "}
@@ -824,9 +824,9 @@ const FlightReservation = () => {
                               }
                               onInput={(e) => handleToAirportSelect(e, index)}
                             />
-                            <datalist id={`toAirportList${index}`}>
+                            <datalist id={`toAirportList${index}`} >
                               {filteredToAirports.map((airport, idx) => (
-                                <option key={idx} value={airport.name}>
+                                <option key={idx} value={airport.name} >
                                   {airport.name}, {airport.city},{" "}
                                   {airport.country} ({airport.icao}/
                                   {airport.iata})

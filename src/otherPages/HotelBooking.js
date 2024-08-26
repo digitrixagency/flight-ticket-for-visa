@@ -738,7 +738,7 @@ const FlightReservation = () => {
                           list="hotels"
                         />
                       </div>
-                      <datalist id="hotels">
+                      <datalist id="hotels" className="suggestions-list">
                         {hotels.length > 0 ? (
                           hotels.map((hotel, index) => (
                             <option key={index} value={hotel.name} />

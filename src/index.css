@@ -499,6 +499,10 @@ summary p {
   justify-content: space-around;
 }
 
+#travelerFlightDetailDiv > div {
+  width: 226px;
+}
+
 .inputDiv > input {
   border: none;
 }
@@ -621,7 +625,7 @@ summary p {
 #returnDateInput,
 #travelersNCabin,
 #toInput {
-  background-color: var(--bs-body-bg) !important;
+  /* background-color: var(--bs-body-bg) !important; */
   box-shadow: none;
 }
 
@@ -686,19 +690,18 @@ ul {
 }
 
 
-datalist {
+/* .suggestions-list {
   position: absolute;
-  background-color: white;
+  background-color: white !important;
   border: 1px solid blue;
   border-radius: 0 0 5px 5px;
-  border-top: none;
-  font-family: sans-serif;
-  width: 350px;
+  height: 350px;
+  display: block;
   padding: 5px;
-
+  overflow-y: scroll;
 }
 
-datalist > option {
+.suggestions-list > option {
   background-color: white;
   padding: 4px;
   color: blue;
@@ -706,3 +709,8 @@ datalist > option {
    font-size: 18px;
   cursor: pointer;
 }
+
+input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+} */

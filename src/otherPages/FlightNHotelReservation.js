@@ -806,7 +806,7 @@ const FlightNHotelReservation = () => {
                           />
                         </div>
 
-                        <datalist id="datalist1">
+                        <datalist id="datalist1" className="suggestions-list">
                           {filteredAirports.input1.map((airport) => (
                             <option
                               key={airport.iata} // Use a unique key for better performance
@@ -835,7 +835,7 @@ const FlightNHotelReservation = () => {
                             value={inputValues.input2}
                           />
                         </div>
-                        <datalist id="datalist2">
+                        <datalist id="datalist2" className="suggestions-list">
                           {filteredAirports.input2.map((airport) => (
                             <option
                               key={airport.iata} // Use a unique key for better performance
@@ -942,7 +942,7 @@ const FlightNHotelReservation = () => {
                               }
                               onInput={(e) => handleFromAirportSelect(e, index)}
                             />
-                            <datalist id={`fromAirportList${index}`}>
+                            <datalist id={`fromAirportList${index}`} className="suggestions-list">
                               {filteredFromAirports.map((airport, idx) => (
                                 <option key={idx} value={airport.name}>
                                   {airport.name}, {airport.city},{" "}
@@ -971,7 +971,7 @@ const FlightNHotelReservation = () => {
                               }
                               onInput={(e) => handleToAirportSelect(e, index)}
                             />
-                            <datalist id={`toAirportList${index}`}>
+                            <datalist id={`toAirportList${index}`} className="suggestions-list">
                               {filteredToAirports.map((airport, idx) => (
                                 <option key={idx} value={airport.name}>
                                   {airport.name}, {airport.city},{" "}
@@ -1329,7 +1329,7 @@ const FlightNHotelReservation = () => {
                           list="hotels"
                         />
                       </div>
-                      <datalist id="hotels">
+                      <datalist id="hotels" className="suggestions-list">
                         {hotels.length > 0 ? (
                           hotels.map((hotel, index) => (
                             <option key={index} value={hotel.name} />
