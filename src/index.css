@@ -698,7 +698,7 @@ datalist {
 
 }
 
-option {
+datalist > option {
   background-color: white;
   padding: 4px;
   color: blue;
