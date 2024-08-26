@@ -17,7 +17,7 @@ import airportsJsonData from "../jsonData/airports.json";
 const FlightNHotelReservation = () => {
   const hiddenInputRef = useRef(null); // Create a ref for the hidden input
 
-  const borderRAdArr = { borderRadius: "5px", width: "30%" };
+  const [multipleCities, setMultipleCities] = useState(0);
   const borderRAdArr1 = { borderRadius: "5px" };
   const [errors, setErrors] = useState({});
 
@@ -461,6 +461,10 @@ const FlightNHotelReservation = () => {
       if (name === "noOfTravelers") {
         // Step 1: Update price based on noOfTravelers selection
         updatedPrice = price;
+        if (multipleCities === 3) {
+          let multipleCitiesVal = multipleCities * value ;
+          updatedPrice += multipleCitiesVal;
+        }
 
         // Add the price from the second select if it has a value
         if (prevData.onOfHotels) {
@@ -471,14 +475,11 @@ const FlightNHotelReservation = () => {
                 .getAttribute("price")
             ) || 0;
 
-          alert(hotelPrice);
           if (value == 1) {
             updatedPrice += hotelPrice;
           } else {
             updatedPrice += hotelPrice * value;
           }
-
-          
         }
       } else if (name === "onOfHotels") {
         // Step 2: Update price based on onOfHotels selection
@@ -504,15 +505,23 @@ const FlightNHotelReservation = () => {
           } else {
             updatedPrice = price * numTravelers22;
           }
-
+          if (multipleCities === 3) {
+            let multipleCitiesVal = multipleCities * numTravelers22 ;
+            updatedPrice += multipleCitiesVal;
+            console.log(updatedPrice);
+          }
           updatedPrice += travelerPrice;
         }
-      } else if (name === "onOftripTypeHotels") {
+      } else if (name === "tripType" && value === "multipleCities") {
+        alert("working till here ");
       }
 
       // Update form data and hidden input field
       document.getElementById("flightItineraryTotalVal").value = updatedPrice;
-
+      setFormData({
+        ...formData,
+        ['amount']: updatedPrice,
+      });
       return {
         ...prevData,
         [name]: value,
@@ -551,12 +560,14 @@ const FlightNHotelReservation = () => {
 
   // Handle radio button change
   const handleRadioChange = (event) => {
+    const e = event;
     const value = event.target.value;
     setSelectedOption(value);
-    handlecalculation2(event);
     if (value === "multipleCities") {
+      setMultipleCities(3);
       setShowTravelerFlightDetailDiv(true);
     } else {
+      setMultipleCities(0);
       setShowTravelerFlightDetailDiv(false);
     }
   };

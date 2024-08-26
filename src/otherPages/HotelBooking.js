@@ -111,7 +111,10 @@ const FlightReservation = () => {
 
       // Update form data and hidden input field
       document.getElementById("flightItineraryTotalVal").value = updatedPrice;
-
+      setFormData({
+        ...formData,
+        ['amount']: updatedPrice,
+      });
       return {
         ...prevData,
         [name]: value,

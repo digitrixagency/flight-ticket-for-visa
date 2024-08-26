@@ -45,8 +45,16 @@ const FlightReservation = () => {
     if (price === 3) {
       const newPrice = travelerPrice + 3;
       setPrice(newPrice);
+      setFormData({
+        ...formData,
+        ['amount']: newPrice,
+      });
     } else {
       setPrice(travelerPrice);
+      setFormData({
+        ...formData,
+        ['amount']: travelerPrice,
+      });
     }
   };
 
