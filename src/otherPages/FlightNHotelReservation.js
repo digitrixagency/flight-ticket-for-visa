@@ -220,11 +220,15 @@ const FlightNHotelReservation = () => {
     setSelectedOption1(event.target.value);
   };
   // State to track the selected option
-  const [showHideVal, showHideFun] = useState("");
+  const [showHideVal1, showHideFun1] = useState("");
+  const [showHideVal2, showHideFun2] = useState("");
 
   // Function to handle the change event of the select element
-  const showHideFunMain = (event) => {
-    showHideFun(event.target.value);
+  const showHideFunMain1 = (event) => {
+    showHideFun1(event.target.value);
+  };
+  const showHideFunMain2 = (event) => {
+    showHideFun2(event.target.value);
   };
 
   const [formData, setFormData] = useState({
@@ -1053,7 +1057,7 @@ const FlightNHotelReservation = () => {
                         name="additionalPreferencesForFlight"
                         id="ap1"
                         value="yes"
-                        onClick={showHideFunMain}
+                        onClick={showHideFunMain1}
                         onChange={handleChange}
                       />
                       <label className="form-check-label" htmlFor="ap1">
@@ -1067,7 +1071,7 @@ const FlightNHotelReservation = () => {
                         name="additionalPreferencesForFlight"
                         id="ap2"
                         value="no"
-                        onClick={showHideFunMain}
+                        onClick={showHideFunMain1}
                         onChange={handleChange}
                       />
                       <label className="form-check-label" htmlFor="ap2">
@@ -1078,7 +1082,7 @@ const FlightNHotelReservation = () => {
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-12"></div>
 
-                {showHideVal === "yes" && (
+                {showHideVal1 === "yes" && (
                   <div className="col-lg-12 col-md-12 col-sm-12">
                     <p>
                       <label>Additional Flight Details:</label>
@@ -1385,12 +1389,12 @@ const FlightNHotelReservation = () => {
                         className="form-check-input"
                         type="radio"
                         name="additionalPreferencesForHotel"
-                        id="ap1"
+                        id="ap11"
                         value="yes"
-                        onClick={showHideFunMain}
+                        onClick={showHideFunMain2}
                         onChange={handleChange}
                       />
-                      <label className="form-check-label" htmlFor="ap1">
+                      <label className="form-check-label" htmlFor="ap11">
                         Yes
                       </label>
                     </div>
@@ -1399,12 +1403,12 @@ const FlightNHotelReservation = () => {
                         className="form-check-input"
                         type="radio"
                         name="additionalPreferencesForHotel"
-                        id="ap2"
+                        id="ap22"
                         value="no"
-                        onClick={showHideFunMain}
+                        onClick={showHideFunMain2}
                         onChange={handleChange}
                       />
-                      <label className="form-check-label" htmlFor="ap2">
+                      <label className="form-check-label" htmlFor="ap22">
                         No
                       </label>
                     </div>
@@ -1412,7 +1416,7 @@ const FlightNHotelReservation = () => {
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-12"></div>
 
-                {showHideVal === "yes" && (
+                {showHideVal2 === "yes" && (
                   <div className="col-lg-12 col-md-12 col-sm-12">
                     <p>
                       <label>Additional Hotel Detail:</label>
