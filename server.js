@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const amadeus = require('./amadeusApi');
+const nodemailer = require("nodemailer");
 
 const port = 5000;
 // Example payment gateway SDK (e.g., Stripe, PayPal)
@@ -159,10 +159,36 @@ app.post("/api/submit-form", async (req, res) => {
   }
 });
 
+// send mail functionality start
 
+const transporter = nodemailer.createTransport({
+  service: "gmail", // You can use any email service here
+  auth: {
+    user: "prashant.digitrix@gmail.com", // Your email address
+    pass: "abni nekm gtbo osxm", // Your email password (or use an app password)
+  },
+});
+
+app.post("/send-email", (req, res) => {
+  const { to, subject, html } = req.body;
+
+  const mailOptions = {
+    from: "prashant.digitrix@gmail.com",
+    to : to,
+    subject : subject,
+    html : html
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return res.status(500).send(error.toString());
+    }
+    res.status(200).send("Email sent: " + info.response);
+  });
+});
+
+// send mail functionality end
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
-
-
