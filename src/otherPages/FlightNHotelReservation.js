@@ -1167,6 +1167,7 @@ const FlightNHotelReservation = () => {
                       className="form-control"
                       id="travelerEmail"
                       name="travelerEmail"
+                      placeholder="example@mail.com"
                       required
                       onChange={handleChange}
                     />
@@ -1182,6 +1183,7 @@ const FlightNHotelReservation = () => {
                       className="form-control"
                       id="travelerNo"
                       name="travelerNo"
+                      placeholder="123-4567-8901"
                       onChange={handleChange}
                       required
                     />
@@ -1228,6 +1230,7 @@ const FlightNHotelReservation = () => {
                           className="form-control"
                           id={`travelerFirstName${index + 1}`}
                           name={`travelerFirstName${index}`}
+                          placeholder="First name"
                           required
                           onChange={handleChange}
                         />
@@ -1247,6 +1250,7 @@ const FlightNHotelReservation = () => {
                           id={`travelerLastName${index + 1}`}
                           name={`travelerLastName${index}`}
                           required
+                          placeholder="Last name"
                           onChange={handleChange}
                         />
                       </div>
@@ -1499,11 +1503,11 @@ const FlightNHotelReservation = () => {
                       <option selected disabled>
                         —Please choose an option—
                       </option>
-                      <option value="Get flight reservation within 1-2 hours">
-                        Get flight reservation within 1-2 hours
+                      <option value="Get both reservation within 1-2 hours">
+                        Get both reservation within 1-2 hours
                       </option>
-                      <option value="Get flight reservation on different date (E.g. 2 days before visa interview)">
-                        Get flight reservation on different date (E.g. 2 days
+                      <option value="Get both reservation on different date (E.g. 2 days before visa interview)">
+                        Get both reservation on different date (E.g. 2 days
                         before visa interview)
                       </option>
                     </select>
@@ -1511,7 +1515,7 @@ const FlightNHotelReservation = () => {
                 </div>
                 {/* Conditionally render the div based on the selected option */}
                 {selectedOption1 ===
-                  "Get flight reservation on different date (E.g. 2 days before visa interview)" && (
+                  "Get both reservation on different date (E.g. 2 days before visa interview)" && (
                   <>
                     <div className="col-lg-6 col-md-6 col-sm-12">
                       <div className="mb-3">

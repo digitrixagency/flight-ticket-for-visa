@@ -1017,6 +1017,7 @@ const FlightReservation = () => {
                       className="form-control"
                       id="travelerEmail"
                       name="travelerEmail"
+                      placeholder="example@mail.com"
                       required
                       onChange={handleChange}
                     />
@@ -1032,6 +1033,7 @@ const FlightReservation = () => {
                       className="form-control"
                       id="travelerNo"
                       name="travelerNo"
+                      placeholder="123-4567-8901"
                       onChange={handleChange}
                       required
                     />
@@ -1079,6 +1081,7 @@ const FlightReservation = () => {
                           id={`travelerFirstName${index + 1}`}
                           name={`travelerFirstName${index}`}
                           required
+                          placeholder="First name"
                           onChange={handleChange}
                         />
                       </div>
@@ -1096,6 +1099,7 @@ const FlightReservation = () => {
                           className="form-control"
                           id={`travelerLastName${index + 1}`}
                           name={`travelerLastName${index}`}
+                          placeholder="Last name"
                           required
                           onChange={handleChange}
                         />
