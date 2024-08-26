@@ -508,13 +508,10 @@ const FlightNHotelReservation = () => {
           if (multipleCities === 3) {
             let multipleCitiesVal = multipleCities * numTravelers22 ;
             updatedPrice += multipleCitiesVal;
-            console.log(updatedPrice);
           }
           updatedPrice += travelerPrice;
         }
-      } else if (name === "tripType" && value === "multipleCities") {
-        alert("working till here ");
-      }
+      } 
 
       // Update form data and hidden input field
       document.getElementById("flightItineraryTotalVal").value = updatedPrice;

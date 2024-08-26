@@ -73,7 +73,6 @@ const FlightReservation = () => {
                 .getAttribute("price")
             ) || 0;
 
-          alert(hotelPrice);
           if (value == 1) {
             updatedPrice += hotelPrice;
           } else {
@@ -113,7 +112,7 @@ const FlightReservation = () => {
       document.getElementById("flightItineraryTotalVal").value = updatedPrice;
       setFormData({
         ...formData,
-        ['amount']: updatedPrice,
+        ["amount"]: updatedPrice,
       });
       return {
         ...prevData,
