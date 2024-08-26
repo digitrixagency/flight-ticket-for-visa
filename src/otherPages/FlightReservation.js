@@ -47,13 +47,13 @@ const FlightReservation = () => {
       setPrice(newPrice);
       setFormData({
         ...formData,
-        ['amount']: newPrice,
+        ["amount"]: newPrice,
       });
     } else {
       setPrice(travelerPrice);
       setFormData({
         ...formData,
-        ['amount']: travelerPrice,
+        ["amount"]: travelerPrice,
       });
     }
   };
@@ -295,7 +295,7 @@ const FlightReservation = () => {
   };
 
   const [formData, setFormData] = useState({
-    dataFor: 'flightReservation',
+    dataFor: "flightReservation",
   });
 
   const handleChange = (event) => {
@@ -666,7 +666,7 @@ const FlightReservation = () => {
                               value={`${airport.name} - ${airport.city}, ${airport.country} (${airport.iata})`}
                               onClick={() => handleClick("input1", airport)}
                             >
-                              {airport.name} - {airport.city}, {airport.country}{" "}
+                              {airport.name} - {airport.city}, {airport.country}
                               ({airport.iata})
                             </option>
                           ))}
@@ -695,7 +695,7 @@ const FlightReservation = () => {
                               value={`${airport.name} - ${airport.city}, ${airport.country} (${airport.iata})`}
                               onClick={() => handleClick("input2", airport)}
                             >
-                              {airport.name} - {airport.city}, {airport.country}{" "}
+                              {airport.name} - {airport.city}, {airport.country}
                               ({airport.iata})
                             </option>
                           ))}
@@ -795,10 +795,13 @@ const FlightReservation = () => {
                               }
                               onInput={(e) => handleFromAirportSelect(e, index)}
                             />
-                            <datalist id={`fromAirportList${index}`} className="suggestions-list">
+                            <datalist
+                              id={`fromAirportList${index}`}
+                              className="suggestions-list"
+                            >
                               {filteredFromAirports.map((airport, idx) => (
                                 <option key={idx} value={airport.name}>
-                                  {airport.name}, {airport.city},{" "}
+                                  {airport.name}, {airport.city},
                                   {airport.country} ({airport.icao}/
                                   {airport.iata})
                                 </option>
@@ -824,10 +827,10 @@ const FlightReservation = () => {
                               }
                               onInput={(e) => handleToAirportSelect(e, index)}
                             />
-                            <datalist id={`toAirportList${index}`} >
+                            <datalist id={`toAirportList${index}`}>
                               {filteredToAirports.map((airport, idx) => (
-                                <option key={idx} value={airport.name} >
-                                  {airport.name}, {airport.city},{" "}
+                                <option key={idx} value={airport.name}>
+                                  {airport.name}, {airport.city},
                                   {airport.country} ({airport.icao}/
                                   {airport.iata})
                                 </option>
@@ -1218,7 +1221,7 @@ const FlightReservation = () => {
                           </option>
                           {timezones.map((timezone, index) => (
                             <option key={index} value={timezone.timezone}>
-                              {timezone.timezone} ({timezone.gmt_offset}) -{" "}
+                              {timezone.timezone} ({timezone.gmt_offset}) -
                               {timezone.country}
                             </option>
                           ))}
@@ -1251,79 +1254,63 @@ const FlightReservation = () => {
                   <div className="col-lg-7 col-md-7 col-sm-12">
                     <ul>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> 100% satisfaction guaranteed </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> Directly verifiable from airlines </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> 100% confirmed PNR or Reservation Number </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span>
-                          {" "}
-                          Valid and confirmed flight Itinerary for visa{" "}
+                          Valid and confirmed flight Itinerary for visa
                         </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> Embassy or consulate recommended </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> Accept payments via debit/credit card </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span>
-                          {" "}
                           Secure Connection with SSL certificate + PCI Layers +
-                          SHA-2{" "}
+                          SHA-2
                         </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> Upto 2 weeks validity </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> Get best airline class booking </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> 24/7 live support </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> No charges for urgent delivery </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> Happy customers feedback </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> Global services provider </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> Covers both visa and travel purposes </span>
                       </li>

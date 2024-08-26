@@ -958,7 +958,7 @@ const FlightReservation = () => {
                           </option>
                           {timezones.map((timezone, index) => (
                             <option key={index} value={timezone.timezone}>
-                              {timezone.timezone} ({timezone.gmt_offset}) -{" "}
+                              {timezone.timezone} ({timezone.gmt_offset}) -
                               {timezone.country}
                             </option>
                           ))}
@@ -993,79 +993,63 @@ const FlightReservation = () => {
                   <div className="col-lg-7 col-md-7 col-sm-12">
                     <ul>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> 100% satisfaction guaranteed </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> Directly verifiable from airlines </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> 100% confirmed PNR or Reservation Number </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span>
-                          {" "}
-                          Valid and confirmed flight Itinerary for visa{" "}
+                          Valid and confirmed flight Itinerary for visa
                         </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> Embassy or consulate recommended </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> Accept payments via debit/credit card </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span>
-                          {" "}
                           Secure Connection with SSL certificate + PCI Layers +
-                          SHA-2{" "}
+                          SHA-2
                         </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> Upto 2 weeks validity </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> Get best airline class booking </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> 24/7 live support </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> No charges for urgent delivery </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> Happy customers feedback </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> Global services provider </span>
                       </li>
                       <li>
-                        {" "}
                         <img src={tickImg} className="tickImg" />
                         <span> Covers both visa and travel purposes </span>
                       </li>
