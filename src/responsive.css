@@ -441,6 +441,21 @@
   #destinationOrHotelNameDiv {
     width: 100%;
   }
+  #travelerFlightDetailDiv > #fromDiv {
+    width: 100%;
+  }
+  #travelerFlightDetailDiv > #toDiv {
+    width: 100%;
+  }
+  #travelerFlightDetailDiv > #departDiv {
+    width: 100%;
+  }
+  #travelerFlightDetailDiv > #returnDiv {
+    width: 100%;
+  }
+  #travelerFlightDetailDiv > #travelersNCabinDiv {
+    width: 100%;
+  }
 }
 /* medium mobile */
 @media only screen and (min-width: 375px) and (max-width: 424px) {
@@ -830,6 +845,22 @@
   #destinationOrHotelNameDiv {
     width: 100%;
   }
+
+  #travelerFlightDetailDiv > #fromDiv {
+    width: 100%;
+  }
+  #travelerFlightDetailDiv > #toDiv {
+    width: 100%;
+  }
+  #travelerFlightDetailDiv > #departDiv {
+    width: 100%;
+  }
+  #travelerFlightDetailDiv > #returnDiv {
+    width: 100%;
+  }
+  #travelerFlightDetailDiv > #travelersNCabinDiv {
+    width: 100%;
+  }
 }
 /* large mobile */
 @media only screen and (min-width: 425px) and (max-width: 599px) {
@@ -1202,6 +1233,21 @@
   }
 
   #destinationOrHotelNameDiv {
+    width: 100%;
+  }
+  #travelerFlightDetailDiv > #fromDiv {
+    width: 100%;
+  }
+  #travelerFlightDetailDiv > #toDiv {
+    width: 100%;
+  }
+  #travelerFlightDetailDiv > #departDiv {
+    width: 100%;
+  }
+  #travelerFlightDetailDiv > #returnDiv {
+    width: 100%;
+  }
+  #travelerFlightDetailDiv > #travelersNCabinDiv {
     width: 100%;
   }
 }

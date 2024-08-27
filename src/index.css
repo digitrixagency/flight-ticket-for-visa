@@ -499,10 +499,24 @@ summary p {
   justify-content: space-around;
 }
 
-#travelerFlightDetailDiv > div {
+#travelerFlightDetailDiv > #fromDiv {
   width: 226px;
 }
-
+#travelerFlightDetailDiv > #toDiv {
+  width: 226px;
+}
+#travelerFlightDetailDiv > #departDiv {
+  width: 226px;
+}
+#travelerFlightDetailDiv > #returnDiv {
+  width: 226px;
+}
+#travelerFlightDetailDiv > #travelersNCabinDiv {
+  width: 226px;
+}
+#travelerFlightDetailDiv > .d-flex > .inputDiv {
+  width: 400px;
+}
 .inputDiv > input {
   border: none;
 }
