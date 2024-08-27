@@ -1743,6 +1743,17 @@
   #guestsNRoomDiv {
     width: 34%;
   }
+
+  .blueBoxClass {
+    width: 350px !important;
+    height: 200px !important;
+  }
+
+  .menuDiv > a {
+    font-size: 14px;
+    padding: 2px;
+    height: 35px;
+  }
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {

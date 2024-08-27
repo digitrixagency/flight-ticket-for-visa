@@ -12,6 +12,7 @@ import {
   faPhone,
   faInfoCircle,
   faSignInAlt,
+  faTicket
 } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
@@ -100,6 +101,10 @@ const Header = () => {
             <a href="#" className="btn text-white mx-2">
               <FontAwesomeIcon icon={faInfoCircle} className="hideElementCls" />
               <span>About Us</span>
+            </a>
+            <a href="#" className="btn text-white mx-2" id="getDummyTicketA">
+              <FontAwesomeIcon icon={faTicket} className="hideElementCls" />
+              <span>Get Dummy Ticket</span>
             </a>
             <a href="#" className="btn text-white mx-2">
               <FontAwesomeIcon icon={faSignInAlt} className="hideElementCls" />

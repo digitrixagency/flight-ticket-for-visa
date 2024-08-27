@@ -703,7 +703,6 @@ ul {
   width: 50%;
 }
 
-
 .dropdown-container {
   position: relative;
   width: 100%;
@@ -729,8 +728,8 @@ ul {
 .dropdown-item {
   /* padding: 10px; */
   cursor: pointer;
-  padding : 5px 10px !important;
-  border-top: 1px solid #f0f0f0 !important;  /* Set the top border */
+  padding: 5px 10px !important;
+  border-top: 1px solid #f0f0f0 !important; /* Set the top border */
   border-bottom: 1px solid #f0f0f0 !important; /* Set the bottom border */
 }
 
@@ -740,4 +739,23 @@ ul {
 
 .swal-modal > .swal-footer {
   text-align: center;
+}
+
+#getDummyTicketA {
+  box-shadow: 0px 4px 4px 0px #ffffff80;
+  border: 2px solid #a7a7a7;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 2px 0px 0px 0px;
+  opacity: 0px;
+  color: #000000;
+}
+
+#getDummyTicketA > span {
+  text-decoration: underline;
+  color: #3059eb;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.36px;
+  text-align: left;
 }
