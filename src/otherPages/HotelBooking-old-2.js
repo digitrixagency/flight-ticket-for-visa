@@ -4,9 +4,6 @@ import payment from "../images/paymentImg.png";
 import pci from "../images/pciImg.png";
 import tncImg from "../images/terms&conditionImg.png";
 import tickImg from "../images/tickImg.gif";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { width } from "@fortawesome/free-brands-svg-icons/fa42Group";
 import axios from "axios";
 import swal from "sweetalert";
 
@@ -480,6 +477,7 @@ const FlightReservation = () => {
 
       const data = await response.json();
       setHotels(data.data || []);
+      setShowSuggestions(true); // Show suggestions after fetching
     } catch (error) {
       console.error("Error fetching hotel data:", error);
     }
@@ -494,18 +492,17 @@ const FlightReservation = () => {
       const cityCode = await fetchCityCode(value);
       if (cityCode) {
         fetchHotels(cityCode);
-        setShowSuggestions(true);
       }
     } else {
-      setHotels([]);
-      setShowSuggestions(false);
+      setHotels([]); // Clear hotels if input length is not greater than 3
+      setShowSuggestions(false); // Hide suggestions
     }
   };
 
-  // Handle suggestion click
+  // Handle click on hotel suggestion
   const handleSuggestionClick = (hotelName) => {
-    setCityName(hotelName);
-    setShowSuggestions(false); // Hide suggestions once a selection is made
+    setCityName(hotelName); // Set the selected hotel name to the input
+    setShowSuggestions(false); // Hide the suggestions
   };
 
   const sendMailFun = async (mailData) => {
@@ -807,27 +804,30 @@ const FlightReservation = () => {
                           placeholder="Enter destination or hotel name"
                           value={cityName}
                           onChange={handleCityNameChange}
-                          onFocus={() => setShowSuggestions(true)} // Show suggestions on focus
                         />
                       </div>
+                      {/* <datalist id="hotels" className="suggestions-list">
+                        {hotels.length > 0 ? (
+                          hotels.map((hotel, index) => (
+                            <option key={index} value={hotel.name} />
+                          ))
+                        ) : (
+                          <option value="No hotels found" disabled />
+                        )}
+                      </datalist> */}
+                      {/* Show suggestions as a dropdown */}
                       {showSuggestions && hotels.length > 0 && (
-                        <div className="dropdown-suggestions">
+                        <ul className="suggestions-list">
                           {hotels.map((hotel, index) => (
-                            <div
+                            <li
                               key={index}
                               onClick={() => handleSuggestionClick(hotel.name)}
-                              className="dropdown-item"
+                              className="suggestion-item"
                             >
                               {hotel.name}
-                            </div>
+                            </li>
                           ))}
-                        </div>
-                      )}
-
-                      {showSuggestions && hotels.length === 0 && (
-                        <div className="dropdown-suggestions">
-                          <div className="dropdown-item">No hotels found</div>
-                        </div>
+                        </ul>
                       )}
                     </div>
                     <div id="CheckInDiv">
