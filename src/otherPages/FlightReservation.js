@@ -32,17 +32,22 @@ const FlightReservation = () => {
   const handleBlur = () => {
     setInputType("text");
   };
+  const [selectedOption, setSelectedOption] = useState("");
+  const [divCount, setDivCount] = useState(2); // Start with 2 divs
+  const [showTravelerFlightDetailDiv, setShowTravelerFlightDetailDiv] =
+    useState(false);
 
   const [numTravelers, setNumTravelers] = useState(1);
   const [price, setPrice] = useState(0);
 
   const handleDropdownChange = (event) => {
-    const selectedOption = event.target.options[event.target.selectedIndex];
+    const selectedOption1 = event.target.options[event.target.selectedIndex];
     const numberOfTravelers = parseInt(event.target.value, 10);
-    const travelerPrice = parseInt(selectedOption.getAttribute("price"), 10);
+    const travelerPrice = parseInt(selectedOption1.getAttribute("price"), 10);
     setNumTravelers(numberOfTravelers);
-    if (price === 3) {
-      const newPrice = travelerPrice + 3;
+    if (selectedOption === "multipleCities") {
+      const newPrice = travelerPrice + (numberOfTravelers * 3);
+      console.log(newPrice);
       setPrice(newPrice);
       setFormData({
         ...formData,
@@ -57,11 +62,7 @@ const FlightReservation = () => {
     }
   };
 
-  const [selectedOption, setSelectedOption] = useState("");
-  const [divCount, setDivCount] = useState(2); // Start with 2 divs
-  const [showTravelerFlightDetailDiv, setShowTravelerFlightDetailDiv] =
-    useState(false);
-
+ 
   // Handle radio button change
   const handleRadioChange = (event) => {
     const value = event.target.value;

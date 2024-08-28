@@ -36,7 +36,7 @@ const FlightReservation = () => {
     paddingLeft: "0px",
   };
 
-  const [numTravelers2, setNumTravelers2] = useState(1);
+  const [numTravelers2, setNumTravelers2] = useState(0);
   const [priceCalData2, setpriceCalData2] = useState({
     noOfTravelers: "",
     onOfHotels: "",

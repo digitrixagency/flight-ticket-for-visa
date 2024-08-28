@@ -265,7 +265,6 @@ const FlightNHotelReservation = () => {
         ["amount"]: hiddenInputRef.current.value,
       });
 
-
       // Step 1: Handle payment with your payment gateway
       const paymentResponse = await axios.post(
         "http://localhost:5000/api/process-payment",
@@ -282,14 +281,14 @@ const FlightNHotelReservation = () => {
           "http://localhost:5000/api/submit-form",
           formData
         );
-       // alert(response.data); // Should show 'Form submitted successfully!'
-       swal({
-        title: "Payment success",
-        text: response.data,
-        icon: "success",
-        button: "Ok",
-      });
-      sendMailFun(mailData);
+        // alert(response.data); // Should show 'Form submitted successfully!'
+        swal({
+          title: "Payment success",
+          text: response.data,
+          icon: "success",
+          button: "Ok",
+        });
+        sendMailFun(mailData);
       } else {
         // Handle payment failure
         swal({
@@ -456,7 +455,7 @@ const FlightNHotelReservation = () => {
     paddingLeft: "0px",
   };
 
-  const [numTravelers2, setNumTravelers2] = useState(1);
+  const [numTravelers2, setNumTravelers2] = useState(0);
   const [priceCalData2, setpriceCalData2] = useState({
     noOfTravelers: "",
     onOfHotels: "",
