@@ -607,11 +607,11 @@ const FlightNHotelReservation = () => {
 
   const [cityName, setCityName] = useState("");
   const [hotels, setHotels] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   // Function to fetch city code based on city name
   const fetchCityCode = async (cityName) => {
     try {
-      // Fetch access token
       const tokenResponse = await axios.post(
         "https://test.api.amadeus.com/v1/security/oauth2/token",
         {
@@ -632,7 +632,7 @@ const FlightNHotelReservation = () => {
         {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${accessToken}`, // Replace with your actual token
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
           },
         }
@@ -653,7 +653,6 @@ const FlightNHotelReservation = () => {
   // Function to fetch hotels based on city code
   const fetchHotels = async (cityCode) => {
     try {
-      // Fetch access token
       const tokenResponse = await axios.post(
         "https://test.api.amadeus.com/v1/security/oauth2/token",
         {
@@ -674,7 +673,7 @@ const FlightNHotelReservation = () => {
         {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${accessToken}`, // Replace with your actual token
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
           },
         }
@@ -685,7 +684,7 @@ const FlightNHotelReservation = () => {
       }
 
       const data = await response.json();
-      setHotels(data.data || []); // Safeguard: Ensure hotels is set to an empty array if data.hotels is undefined
+      setHotels(data.data || []);
     } catch (error) {
       console.error("Error fetching hotel data:", error);
     }
@@ -696,17 +695,23 @@ const FlightNHotelReservation = () => {
     const value = e.target.value;
     setCityName(value);
 
-    // Trigger search only if input has more than 3 characters
     if (value.length > 3) {
       const cityCode = await fetchCityCode(value);
       if (cityCode) {
         fetchHotels(cityCode);
+        setShowSuggestions(true);
       }
     } else {
-      setHotels([]); // Clear hotels if input length is not greater than 3
+      setHotels([]);
+      setShowSuggestions(false);
     }
   };
 
+  // Handle suggestion click
+  const handleSuggestionClick = (hotelName) => {
+    setCityName(hotelName);
+    setShowSuggestions(false); // Hide suggestions once a selection is made
+  };
   // Handle changes for input
   const handle2FunctionForInput = (e) => {
     handleChange(e); // Assuming handleChange is defined elsewhere
@@ -1391,7 +1396,7 @@ const FlightNHotelReservation = () => {
                 <div className="col-lg-12 col-md-12 col-sm-12">
                   <div id="travelerHotelDetailDiv">
                     <div id="destinationOrHotelNameDiv">
-                      <div className="mb-3 inputDiv">
+                    <div className="mb-3 inputDiv">
                         <label
                           htmlFor="destinationOrHotelName"
                           className="form-label"
@@ -1404,19 +1409,30 @@ const FlightNHotelReservation = () => {
                           id="destinationOrHotelName"
                           name="destinationOrHotelName"
                           placeholder="Enter destination or hotel name"
-                          onChange={handle2FunctionForInput}
-                          list="hotels"
+                          value={cityName}
+                          onChange={handleCityNameChange}
+                          onFocus={() => setShowSuggestions(true)} // Show suggestions on focus
                         />
                       </div>
-                      <datalist id="hotels" className="suggestions-list">
-                        {hotels.length > 0 ? (
-                          hotels.map((hotel, index) => (
-                            <option key={index} value={hotel.name} />
-                          ))
-                        ) : (
-                          <option value="No hotels found" disabled />
-                        )}
-                      </datalist>
+                      {showSuggestions && hotels.length > 0 && (
+                        <div className="dropdown-suggestions">
+                          {hotels.map((hotel, index) => (
+                            <div
+                              key={index}
+                              onClick={() => handleSuggestionClick(hotel.name)}
+                              className="dropdown-item"
+                            >
+                              {hotel.name}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {showSuggestions && hotels.length === 0 && (
+                        <div className="dropdown-suggestions">
+                          <div className="dropdown-item">No hotels found</div>
+                        </div>
+                      )}
                     </div>
                     <div id="CheckInDiv">
                       <div className="mb-3 inputDiv">
