@@ -102,7 +102,7 @@ const Header = () => {
               <FontAwesomeIcon icon={faInfoCircle} className="hideElementCls" />
               <span>About Us</span>
             </a>
-            <a href="#" className="btn text-white mx-2" id="getDummyTicketA">
+            <a href="http://localhost:3001/" className="btn text-white mx-2" id="getDummyTicketA">
               <FontAwesomeIcon icon={faTicket} className="hideElementCls colorForWBG"/>
               <span>Get Dummy Ticket</span>
             </a>
