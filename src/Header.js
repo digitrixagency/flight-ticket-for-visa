@@ -43,8 +43,8 @@ const Header = () => {
   return (
     <div className="container-fluid navbarDiv">
       <div className="container px-5">
-        <nav className="d-flex justify-content-around">
-          <div className="logo me-5 my-3 pe-5">
+        <nav className="d-flex justify-content-evenly">
+          <div className="logo my-3">
             <svg
               width="125"
               height="40"
@@ -103,7 +103,7 @@ const Header = () => {
               <span>About Us</span>
             </a>
             <a href="#" className="btn text-white mx-2" id="getDummyTicketA">
-              <FontAwesomeIcon icon={faTicket} className="hideElementCls" />
+              <FontAwesomeIcon icon={faTicket} className="hideElementCls colorForWBG"/>
               <span>Get Dummy Ticket</span>
             </a>
             <a href="#" className="btn text-white mx-2">
