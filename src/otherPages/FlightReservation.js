@@ -404,7 +404,8 @@ const FlightReservation = () => {
 
         if (approvalUrl) {
           // Open the PayPal approval page in a new window
-          window.open(approvalUrl.href, "_blank", "noopener,noreferrer");
+          // window.open(approvalUrl.href, "_blank", "noopener,noreferrer");
+          window.location.href = approvalUrl.href;
         } else {
           swal({
             title: "Error",
