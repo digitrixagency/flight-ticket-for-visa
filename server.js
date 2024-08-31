@@ -120,14 +120,80 @@ const formDataSchema = new mongoose.Schema({
 const FormData = mongoose.model("flightNHotelData", formDataSchema);
 
 app.get("/failed", (req, res) => {
-  res.send("Payment canceled by the user.");
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Payment Failed</title>
+      <style>
+        body {
+          font-family: 'Arial', sans-serif;
+          background-color: #f9f9f9;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        }
+        .failed-container {
+          background-color: #fff;
+          border-radius: 10px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+          padding: 30px;
+          max-width: 400px;
+          text-align: center;
+        }
+        .failed-icon {
+          margin-bottom: 20px;
+        }
+        .failed-icon img {
+          width: 100px;
+          height: 100px;
+        }
+        h1 {
+          font-size: 24px;
+          color: #dc3545;
+          margin-bottom: 20px;
+        }
+        p {
+          font-size: 16px;
+          color: #555;
+          margin-bottom: 20px;
+        }
+        .btn {
+          padding: 10px 15px;
+          border-radius: 5px;
+          text-decoration: none;
+          cursor: pointer;
+          background-color: #dc3545;
+          color: white;
+          border: none;
+          display: inline-block;
+          margin-top: 20px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="failed-container">
+        <div class="failed-icon">
+          <img src="https://img.icons8.com/color/100/000000/cancel--v1.png" alt="Failed">
+        </div>
+        <h1>Payment Failed</h1>
+        <p>Unfortunately, your payment was canceled or failed. Please try again.</p>
+        <a href="http://localhost:3000/" class="btn">Go Back to Home</a>
+      </div>
+    </body>
+    </html>
+  `);
 });
 
 app.get("/success", async (req, res) => {
   const { paymentId, PayerID } = req.query;
 
   const globalData = global.GlobalFormData;
-
   try {
     const execute_payment_json = {
       payer_id: PayerID,
@@ -149,9 +215,15 @@ app.get("/success", async (req, res) => {
           throw error;
         } else {
           const formData = globalData; // Retrieve form data from session
-
-          await axios.post("http://localhost:5000/api/submit-form", formData);
-
+          // console.log(formData);
+          let titleVal = "";
+          if (globalData.dataFor === "flightReservation") {
+            titleVal = "Flight Reservation";
+          } else if (globalData.dataFor === "FlightNHotelReservation") {
+            titleVal = "Flight & Hotel Reservation";
+          } else if (globalData.dataFor === "hotelBooking") {
+            titleVal = "Hotel Reservation";
+          }
 
           const filteredData = Object.entries(formData).reduce(
             (acc, [key, value]) => {
@@ -159,17 +231,17 @@ app.get("/success", async (req, res) => {
                 let keyVal = key;
                 let valueVal = value;
                 if (valueVal !== "") {
-                  acc['Payment-Id'] = paymentId;
-                  acc['Payer-ID'] = PayerID;
+                  acc["Payment-Id"] = paymentId;
+                  acc["Payer-ID"] = PayerID;
                 }
                 if (key.startsWith("travelTitle")) {
                   const index = key.replace("travelTitle", "");
                   const firstNameKey = `travelerFirstName${index}`;
                   const lastNameKey = `travelerLastName${index}`;
-      
+
                   const firstName = req.body[firstNameKey] || "";
                   const lastName = req.body[lastNameKey] || "";
-      
+
                   const travelerLabelMap = {
                     0: "First Traveler Name",
                     1: "Second Traveler Name",
@@ -182,19 +254,19 @@ app.get("/success", async (req, res) => {
                     8: "Ninth Traveler Name",
                     9: "Tenth Traveler Name",
                   };
-      
+
                   keyVal =
                     travelerLabelMap[index] ||
                     `Traveler Name - ${parseInt(index, 10) + 1}`;
-      
+
                   valueVal = `${value} ${firstName} ${lastName}`.trim();
-      
+
                   if (valueVal !== "") {
                     acc[keyVal] = valueVal;
                   }
                   return acc;
                 }
-      
+
                 switch (key) {
                   case "tripType":
                     keyVal = "Trip";
@@ -210,7 +282,7 @@ app.get("/success", async (req, res) => {
                         break;
                     }
                     break;
-      
+
                   case "fromInput":
                     keyVal = "From";
                     break;
@@ -431,7 +503,7 @@ app.get("/success", async (req, res) => {
                     keyVal = "Number of Hotels";
                     break;
                 }
-      
+
                 if (valueVal !== "") {
                   acc[keyVal] = valueVal;
                 }
@@ -440,11 +512,91 @@ app.get("/success", async (req, res) => {
             },
             {}
           );
-      
+
           sendMailFun({ userdata: filteredData });
-
-
-          res.send("Payment successful and data saved!");
+          sendMail2Fun(
+            formData.travelerFirstName0,
+            titleVal,
+            formData.travelerEmail
+          );
+          await axios.post("http://localhost:5000/api/submit-form", formData);
+          res.send(`
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Payment Success</title>
+            <style>
+              body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f9f9f9;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+              }
+              .success-container {
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                padding: 30px;
+                max-width: 400px;
+                text-align: center;
+              }
+              .success-icon {
+                margin-bottom: 20px;
+              }
+              .success-icon img {
+                width: 100px;
+                height: 100px;
+              }
+              h1 {
+                font-size: 24px;
+                color: #28a745;
+                margin-bottom: 20px;
+              }
+              p {
+                font-size: 16px;
+                color: #555;
+                margin-bottom: 20px;
+              }
+              .order-summary {
+                margin: 20px 0;
+                text-align: center;
+              }
+              .btn {
+                padding: 10px 15px;
+                border-radius: 5px;
+                text-decoration: none;
+                cursor: pointer;
+                background-color: #28a745;
+                color: white;
+                border: none;
+                display: inline-block;
+                margin-top: 20px;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="success-container">
+              <div class="success-icon">
+                <img src="https://img.icons8.com/color/100/000000/checked--v1.png" alt="Success">
+              </div>
+              <h1>Payment Successful!</h1>
+              <p>Thank you for your purchase. Your order number is #${payment.id}.</p>
+              <div class="order-summary">
+                <p><strong>Order Summary:</strong></p>
+                <p>Payment For: ${titleVal}</p>
+                <p>Total Amount: $${globalData.amount}</p>
+              </div>
+              <a href="http://localhost:3000/" class="btn">Go Back to Home</a>
+            </div>
+          </body>
+          </html>
+        `);
         }
       }
     );
@@ -510,293 +662,6 @@ app.post("/api/submit-form", async (req, res) => {
     const newFormData = new FormData(req.body);
     await newFormData.save();
 
-    const filteredData = Object.entries(req.body).reduce(
-      (acc, [key, value]) => {
-        if (key !== "dataFor" && value && value.trim() !== "") {
-          let keyVal = key;
-          let valueVal = value;
-
-          if (key.startsWith("travelTitle")) {
-            const index = key.replace("travelTitle", "");
-            const firstNameKey = `travelerFirstName${index}`;
-            const lastNameKey = `travelerLastName${index}`;
-
-            const firstName = req.body[firstNameKey] || "";
-            const lastName = req.body[lastNameKey] || "";
-
-            const travelerLabelMap = {
-              0: "First Traveler Name",
-              1: "Second Traveler Name",
-              2: "Third Traveler Name",
-              3: "Fourth Traveler Name",
-              4: "Fifth Traveler Name",
-              5: "Sixth Traveler Name",
-              6: "Seventh Traveler Name",
-              7: "Eighth Traveler Name",
-              8: "Ninth Traveler Name",
-              9: "Tenth Traveler Name",
-            };
-
-            keyVal =
-              travelerLabelMap[index] ||
-              `Traveler Name - ${parseInt(index, 10) + 1}`;
-
-            valueVal = `${value} ${firstName} ${lastName}`.trim();
-
-            if (valueVal !== "") {
-              acc[keyVal] = valueVal;
-            }
-            return acc;
-          }
-
-          switch (key) {
-            case "tripType":
-              keyVal = "Trip";
-              switch (valueVal) {
-                case "oneWay":
-                  valueVal = "One Way";
-                  break;
-                case "returnTrip":
-                  valueVal = "Return Trip";
-                  break;
-                case "multipleCities":
-                  valueVal = "Multiple Cities";
-                  break;
-              }
-              break;
-
-            case "fromInput":
-              keyVal = "From";
-              break;
-            case "fromInput0":
-              keyVal = "From - 1";
-              break;
-            case "fromInput1":
-              keyVal = "From - 2";
-              break;
-            case "fromInput2":
-              keyVal = "From - 3";
-              break;
-            case "fromInput3":
-              keyVal = "From - 4";
-              break;
-            case "fromInput4":
-              keyVal = "From - 5";
-              break;
-            case "fromInput5":
-              keyVal = "From - 6";
-              break;
-            case "toInput":
-              keyVal = "To";
-              break;
-            case "toInput0":
-              keyVal = "To - 1";
-              break;
-            case "toInput1":
-              keyVal = "To - 2";
-              break;
-            case "toInput2":
-              keyVal = "To - 3";
-              break;
-            case "toInput3":
-              keyVal = "To - 4";
-              break;
-            case "toInput4":
-              keyVal = "To - 5";
-              break;
-            case "toInput5":
-              keyVal = "To - 6";
-              break;
-            case "departDateInput":
-              keyVal = "Departure Date";
-              break;
-            case "departDateInput0":
-              keyVal = "Departure Date - 1";
-              break;
-            case "departDateInput1":
-              keyVal = "Departure Date - 2";
-              break;
-            case "departDateInput2":
-              keyVal = "Departure Date - 3";
-              break;
-            case "departDateInput3":
-              keyVal = "Departure Date - 4";
-              break;
-            case "departDateInput4":
-              keyVal = "Departure Date - 5";
-              break;
-            case "departDateInput5":
-              keyVal = "Departure Date - 6";
-              break;
-            case "returnDateInput":
-              keyVal = "Return Date";
-              break;
-            case "travelersNCabin":
-              keyVal = "Number of Travelers";
-              break;
-            case "additionalPreferencesForFlight":
-              keyVal = "Additional Preferences for Flight";
-              break;
-            case "additionalPreferencesForFlightYes":
-              keyVal = "Additional Preferences for Flight (Yes)";
-              break;
-            case "additionalPreferencesForHotel":
-              keyVal = "Additional Preferences for Hotel";
-              break;
-            case "additionalPreferencesForHotelYes":
-              keyVal = "Additional Preferences for Hotel (Yes)";
-              break;
-            case "noOfTravelers":
-              keyVal = "Number of Travelers";
-              break;
-            case "travelerEmail":
-              keyVal = "Traveler Email";
-              break;
-            case "travelerNo":
-              keyVal = "Traveler No";
-              break;
-            case "travelTitle0":
-              keyVal = "Traveler Title - 1";
-              break;
-            case "travelTitle1":
-              keyVal = "Traveler Title - 2";
-              break;
-            case "travelTitle2":
-              keyVal = "Traveler Title - 3";
-              break;
-            case "travelTitle3":
-              keyVal = "Traveler Title - 4";
-              break;
-            case "travelTitle4":
-              keyVal = "Traveler Title - 5";
-              break;
-            case "travelTitle5":
-              keyVal = "Traveler Title - 6";
-              break;
-            case "travelTitle6":
-              keyVal = "Traveler Title - 7";
-              break;
-            case "travelTitle7":
-              keyVal = "Traveler Title - 8";
-              break;
-            case "travelTitle8":
-              keyVal = "Traveler Title - 9";
-              break;
-            case "travelTitle9":
-              keyVal = "Traveler Title - 10";
-              break;
-            case "travelerFirstName0":
-              keyVal = "First Name - 1";
-              break;
-            case "travelerFirstName1":
-              keyVal = "First Name - 2";
-              break;
-            case "travelerFirstName2":
-              keyVal = "First Name - 3";
-              break;
-            case "travelerFirstName3":
-              keyVal = "First Name - 4";
-              break;
-            case "travelerFirstName4":
-              keyVal = "First Name - 5";
-              break;
-            case "travelerFirstName5":
-              keyVal = "First Name - 6";
-              break;
-            case "travelerFirstName6":
-              keyVal = "First Name - 7";
-              break;
-            case "travelerFirstName7":
-              keyVal = "First Name - 8";
-              break;
-            case "travelerFirstName8":
-              keyVal = "First Name - 9";
-              break;
-            case "travelerFirstName9":
-              keyVal = "First Name - 10";
-              break;
-            case "travelerLastName0":
-              keyVal = "Last Name - 1";
-              break;
-            case "travelerLastName1":
-              keyVal = "Last Name - 2";
-              break;
-            case "travelerLastName2":
-              keyVal = "Last Name - 3";
-              break;
-            case "travelerLastName3":
-              keyVal = "Last Name - 4";
-              break;
-            case "travelerLastName4":
-              keyVal = "Last Name - 5";
-              break;
-            case "travelerLastName5":
-              keyVal = "Last Name - 6";
-              break;
-            case "travelerLastName6":
-              keyVal = "Last Name - 7";
-              break;
-            case "travelerLastName7":
-              keyVal = "Last Name - 8";
-              break;
-            case "travelerLastName8":
-              keyVal = "Last Name - 9";
-              break;
-            case "travelerLastName9":
-              keyVal = "Last Name - 10";
-              break;
-            case "hearAboutUs":
-              keyVal = "How did you hear about us?";
-              break;
-            case "consulateApplying":
-              keyVal = "Consulate Applying";
-              break;
-            case "flightItinerary":
-              keyVal = "Flight Itinerary";
-              break;
-            case "visaInterviewDate":
-              keyVal = "Visa Interview Date";
-              break;
-            case "timeZone":
-              keyVal = "Time Zone";
-              break;
-            case "amount":
-              keyVal = "Amount";
-              break;
-            case "MUID":
-              keyVal = "MUID";
-              break;
-            case "transactionId":
-              keyVal = "Transaction ID";
-              break;
-            case "CheckIn":
-              keyVal = "Check-In";
-              break;
-            case "CheckOut":
-              keyVal = "Check-Out";
-              break;
-            case "destinationOrHotelName":
-              keyVal = "Destination/Hotel Name";
-              break;
-            case "guestsNRoom":
-              keyVal = "Guests & Room";
-              break;
-            case "onOfHotels":
-              keyVal = "Number of Hotels";
-              break;
-          }
-
-          if (valueVal !== "") {
-            acc[keyVal] = valueVal;
-          }
-        }
-        return acc;
-      },
-      {}
-    );
-
-    sendMailFun({ userdata: filteredData });
-
     res.send("Form data received and email sent!");
   } catch (error) {
     console.error(error);
@@ -805,22 +670,70 @@ app.post("/api/submit-form", async (req, res) => {
 });
 
 function sendMailFun({ userdata }) {
+  let titleVal = "";
+
+  if (userdata.dataFor === "flightReservation") {
+    titleVal = "Flight Reservation";
+  } else if (userdata.dataFor === "FlightNHotelReservation") {
+    titleVal = "Flight & Hotel Reservation";
+  } else if (userdata.dataFor === "hotelBooking") {
+    titleVal = "Hotel Reservation";
+  }
   const mailOptions = {
     from: "prashant.digitrix@gmail.com",
     to: "prashantbasnet111@gmail.com",
-    subject: `Reservation Confirmation for ${userdata.dataFor}`,
+    subject: `Reservation Confirmation`,
     html: `
-      <h1>${
-        userdata.dataFor === "flightReservation"
-          ? "New Flight Reservation"
-          : userdata.dataFor === "hotelBooking"
-          ? "New Hotel Reservation"
-          : "New Flight & Hotel Reservation"
-      }</h1>
+      <h1>New ${titleVal}</h1>
       <p>${Object.entries(userdata)
         .map(([key, value]) => `<strong>${key}:</strong> ${value}`)
         .join("<br>")}</p>
     `,
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error("Error sending email:", error);
+    } else {
+      console.log("Email sent:", info.response);
+    }
+  });
+}
+function sendMail2Fun(userName, dataTitle, email) {
+  const mailOptions = {
+    from: "prashant.digitrix@gmail.com",
+    to: email,
+    subject: `Reservation Confirmation`,
+    html: `<!DOCTYPE html>
+              <html>
+              <head>
+                  <style>
+                      body { font-family: Arial, sans-serif; }
+                      .container { width: 80%; margin: auto; padding: 20px; }
+                      .header { background-color: #f4f4f4; padding: 10px; text-align: center; }
+                      .content { margin: 20px 0; }
+                      .footer { font-size: 0.8em; color: #777; text-align: center; }
+                  </style>
+              </head>
+              <body>
+                  <div class="container">
+                      <div class="header">
+                          <h1>${dataTitle} Received</h1>
+                      </div>
+                      <div class="content">
+                          <p>Dear ${userName},</p>
+                          <p>Thank you for your reservation request!</p>
+                          <p>We have received your reservation data and are currently processing it. Our team will review the information and get back to you within the next 48 hours.</p>
+                          <p>If you have any questions in the meantime, please do not hesitate to contact us.</p>
+                          <p>Thank you for choosing Flight & Hotel reservations.</p>
+                      </div>
+                      <div class="footer">
+                          <p>Best regards,<br>Flight & Hotel reservations<br>FlightHotelreservations@mail.com</p>
+                      </div>
+                  </div>
+              </body>
+              </html>
+              `,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
