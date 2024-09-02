@@ -620,7 +620,7 @@
     position: fixed;
     flex-direction: column;
     background: black;
-    width: 70%;
+    width: 72%;
     height: 90.3%;
     top: 7.5%;
     right: 1px;
@@ -1740,7 +1740,7 @@
     font-weight: 600;
     line-height: 43.58px;
     text-align: left;
-    width: 254px;
+    /* width: 254px; */
     height: 44px;
     top: 278px;
     left: 238px;

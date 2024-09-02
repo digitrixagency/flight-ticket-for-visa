@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import $ from "jquery";
+import i18next from "i18next";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,8 +13,10 @@ import {
   faPhone,
   faInfoCircle,
   faSignInAlt,
-  faTicket
+  faGlobe,
+  faTicket,
 } from "@fortawesome/free-solid-svg-icons";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Header = () => {
   useEffect(() => {
@@ -90,27 +93,32 @@ const Header = () => {
               <FontAwesomeIcon icon={faHouse} className="hideElementCls" />
               <span>Home</span>
             </Link>
-            <a href="#" className="btn text-white mx-2">
+            <a href="/Blog" className="btn text-white mx-2">
               <FontAwesomeIcon icon={faFileAlt} className="hideElementCls" />
               <span>Blog</span>
             </a>
-            <a href="#" className="btn text-white mx-2">
+            <a href="/Contact-Us" className="btn text-white mx-2">
               <FontAwesomeIcon icon={faPhone} className="hideElementCls" />
               <span>Contact Us</span>
             </a>
-            <a href="#" className="btn text-white mx-2">
+            <a href="/About-Us" className="btn text-white mx-2">
               <FontAwesomeIcon icon={faInfoCircle} className="hideElementCls" />
               <span>About Us</span>
             </a>
-            <a href="http://localhost:3001/" className="btn text-white mx-2" id="getDummyTicketA">
-              <FontAwesomeIcon icon={faTicket} className="hideElementCls colorForWBG"/>
+            <a
+              href="http://localhost:3001/"
+              className="btn text-white mx-2"
+              id="getDummyTicketA"
+            >
+              <FontAwesomeIcon
+                icon={faTicket}
+                className="hideElementCls colorForWBG"
+              />
               <span>Get Dummy Ticket</span>
             </a>
-            <a href="#" className="btn text-white mx-2">
-              <FontAwesomeIcon icon={faSignInAlt} className="hideElementCls" />
-              <span>Login</span>
-            </a>
-            <button class="sign-up-button">Sign Up</button>
+
+            <LanguageSwitcher />
+            <button class="sign-up-button">Sign Up / Login</button>
           </div>
           <div className="smallMenuDiv">
             <button className="btn text-white" id="menuButton">
