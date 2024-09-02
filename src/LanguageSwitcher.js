@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
-  const navigate = useNavigate(); // Use useNavigate instead of useHistory
-  const [selectedLanguage, setSelectedLanguage] = useState('en');
+  const navigate = useNavigate();
+  const { lng } = useParams(); // Get current language from URL
+  const [selectedLanguage, setSelectedLanguage] = useState(lng || 'en');
 
-  // Initialize language state based on URL or default to 'en'
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const urlLanguage = urlParams.get('lng') || 'en';
-    i18n.changeLanguage(urlLanguage);
-    setSelectedLanguage(urlLanguage);
-  }, [i18n]);
+    if (lng) {
+      i18n.changeLanguage(lng);
+      setSelectedLanguage(lng);
+    }
+  }, [lng, i18n]);
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
     setSelectedLanguage(lng);
 
     // Update URL without reloading the page
-    const urlParams = new URLSearchParams(window.location.search);
-    urlParams.set('lng', lng);
-    navigate(`?${urlParams.toString()}`); // Use navigate to update the URL
+    const url = new URL(window.location.href);
+    const newPathname = `/${lng}${url.pathname.replace(/^\/[a-z]{2}/, '')}`;
+    navigate(newPathname + url.search);
   };
 
   return (

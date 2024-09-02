@@ -17,8 +17,13 @@ import {
   faTicket,
 } from "@fortawesome/free-solid-svg-icons";
 import LanguageSwitcher from "./LanguageSwitcher";
-
+import { useTranslation } from 'react-i18next';
 const Header = () => {
+
+  const { i18n } = useTranslation(); // Get current language from i18n
+  const currentLanguage = i18n.language || 'en'; // Default to 'en' if language is not set
+
+
   useEffect(() => {
     // Attach event handler for menuButton
     $("#menuButton").on("click", function () {
@@ -89,22 +94,31 @@ const Header = () => {
             <button className="btn text-white" id="closeButton">
               <FontAwesomeIcon icon={faXmark} />
             </button>
-            <Link to="/" className="btn text-white mx-2">
+            <Link to={`/${currentLanguage}`} className="btn text-white mx-2">
               <FontAwesomeIcon icon={faHouse} className="hideElementCls" />
               <span>Home</span>
             </Link>
-            <a href="/Blog" className="btn text-white mx-2">
+            <Link
+              to={`/${currentLanguage}/Blog`}
+              className="btn text-white mx-2"
+            >
               <FontAwesomeIcon icon={faFileAlt} className="hideElementCls" />
               <span>Blog</span>
-            </a>
-            <a href="/Contact-Us" className="btn text-white mx-2">
+            </Link>
+            <Link
+              to={`/${currentLanguage}/Contact-Us`}
+              className="btn text-white mx-2"
+            >
               <FontAwesomeIcon icon={faPhone} className="hideElementCls" />
               <span>Contact Us</span>
-            </a>
-            <a href="/About-Us" className="btn text-white mx-2">
+            </Link>
+            <Link
+              to={`/${currentLanguage}/About-Us`}
+              className="btn text-white mx-2"
+            >
               <FontAwesomeIcon icon={faInfoCircle} className="hideElementCls" />
               <span>About Us</span>
-            </a>
+            </Link>
             <a
               href="http://localhost:3001/"
               className="btn text-white mx-2"

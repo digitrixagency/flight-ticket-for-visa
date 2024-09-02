@@ -8,18 +8,21 @@ import ot from "./images/ot.png";
 import { useTranslation } from "react-i18next";
 
 const Home = () => {
-  const { t } = useTranslation();
-
+  const { t, i18n } = useTranslation(); // Get current language from i18n
   const navigate = useNavigate();
+  
+  const currentLanguage = i18n.language || 'en'; // Default to 'en' if language is not set
 
   const redirectToFR = () => {
-    navigate("/Flight-Reservation");
+    navigate(`/${currentLanguage}/Flight-Reservation`);
   };
+
   const redirectToHB = () => {
-    navigate("/Hotel-Booking");
+    navigate(`/${currentLanguage}/Hotel-Booking`);
   };
+
   const redirectToRNHR = () => {
-    navigate("/Flight+Hotel-Reservation");
+    navigate(`/${currentLanguage}/Flight+Hotel-Reservation`);
   };
 
   return (
