@@ -1273,35 +1273,35 @@ const FlightNHotelReservation = () => {
                       <option selected disabled>
                         —Please choose an option—
                       </option>
-                      <option value="1" price="15">
-                        1 Traveler($15)
+                      <option value="1" price="1">
+                        1 Traveler($24)
                       </option>
-                      <option value="2" price="25">
-                        2 Travelers($25)
+                      <option value="2" price="2">
+                        2 Travelers($40)
                       </option>
-                      <option value="3" price="35">
-                        3 Travelers($35)
+                      <option value="3" price="3">
+                        3 Travelers($56)
                       </option>
-                      <option value="4" price="45">
-                        4 Travelers($45)
+                      <option value="4" price="4">
+                        4 Travelers($72)
                       </option>
-                      <option value="5" price="55">
-                        5 Travelers($55)
+                      <option value="5" price="5">
+                        5 Travelers($88)
                       </option>
-                      <option value="6" price="65">
-                        6 Travelers($65)
+                      <option value="6" price="6">
+                        6 Travelers($104)
                       </option>
-                      <option value="7" price="75">
-                        7 Travelers($75)
+                      <option value="7" price="7">
+                        7 Travelers($120)
                       </option>
-                      <option value="8" price="85">
-                        8 Travelers($85)
+                      <option value="8" price="8">
+                        8 Travelers($136)
                       </option>
-                      <option value="9" price="95">
-                        9 Travelers($95)
+                      <option value="9" price="9">
+                        9 Travelers($152)
                       </option>
-                      <option value="10" price="105">
-                        10 Travelers($105)
+                      <option value="10" price="10">
+                        10 Travelers($168)
                       </option>
                     </select>
                   </div>
@@ -1461,7 +1461,7 @@ const FlightNHotelReservation = () => {
                 <div className="col-lg-12 col-md-12 col-sm-12">
                   <div id="travelerHotelDetailDiv">
                     <div id="destinationOrHotelNameDiv">
-                    <div className="mb-3 inputDiv">
+                      <div className="mb-3 inputDiv">
                         <label
                           htmlFor="destinationOrHotelName"
                           className="form-label"
