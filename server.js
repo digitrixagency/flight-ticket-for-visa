@@ -107,7 +107,7 @@ const formDataSchema = new mongoose.Schema({
   flightItinerary: String,
   visaInterviewDate: String,
   timeZone: String,
-  amount: Number,
+  amount: String,
   MUID: String,
   transactionId: String,
   CheckIn: String,
@@ -201,7 +201,7 @@ app.get("/success", async (req, res) => {
         {
           amount: {
             currency: "USD",
-            total: globalData.amount, // Ensure amount is passed and stored in session
+            total: `${globalData.amount}`, // Ensure amount is passed and stored in session
           },
         },
       ],
@@ -225,9 +225,11 @@ app.get("/success", async (req, res) => {
             titleVal = "Hotel Reservation";
           }
 
+          console.log(formData);
           const filteredData = Object.entries(formData).reduce(
             (acc, [key, value]) => {
-              if (key !== "dataFor" && value && value.trim() !== "") {
+              // if (key !== "dataFor" && value && value.trim() !== "") {
+              if (key !== "dataFor" && value ) {
                 let keyVal = key;
                 let valueVal = value;
                 if (valueVal !== "") {
@@ -608,6 +610,7 @@ app.get("/success", async (req, res) => {
 
 app.post("/api/process-payment", async (req, res) => {
   try {
+    // console.log(req);
     const { amount, transactionId } = req.body.formData;
     global.GlobalFormData = req.body.formData;
     const create_payment_json = {

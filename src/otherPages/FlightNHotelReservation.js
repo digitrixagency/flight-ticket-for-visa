@@ -247,62 +247,127 @@ const FlightNHotelReservation = () => {
     handleDropdownChange(e);
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     // Set MUID and transactionId
+
+  //     const mailData = {
+  //       userdata: formData,
+  //     };
+
+  //     const MUIDVal = "MUID" + Date.now();
+  //     const transIdVal = "TransId" + Date.now();
+  //     setFormData({
+  //       ...formData,
+  //       ["MUID"]: MUIDVal,
+  //       ["transactionId"]: transIdVal,
+  //       ["amount"]: hiddenInputRef.current.value,
+  //     });
+
+  //     // Step 1: Handle payment with your payment gateway
+  //     const paymentResponse = await axios.post(
+  //       "http://localhost:5000/api/process-payment",
+  //       {
+  //         amount: hiddenInputRef.current.value,
+  //         transactionId: transIdVal, // Ensure transaction ID is consistent
+  //         MUID: MUIDVal, // Ensure transaction ID is consistent
+  //       }
+  //     );
+
+  //     if (paymentResponse.data.success) {
+  //       // Step 2: If payment is successful, submit form data to the backend
+  //       const response = await axios.post(
+  //         "http://localhost:5000/api/submit-form",
+  //         formData
+  //       );
+  //       // alert(response.data); // Should show 'Form submitted successfully!'
+  //       swal({
+  //         title: "Payment success",
+  //         text: response.data,
+  //         icon: "success",
+  //         button: "Ok",
+  //       });
+  //       sendMailFun(mailData);
+  //     } else {
+  //       // Handle payment failure
+  //       swal({
+  //         title: paymentResponse.message,
+  //         text: "Please try again",
+  //         icon: "error",
+  //         button: "Ok",
+  //       });
+  //     }
+  //   } catch (error) {
+  //     // Handle errors during payment or form submission
+  //     swal({
+  //       title: `${error.message}`,
+  //       text: "Please try again",
+  //       icon: "error",
+  //       button: "Ok",
+  //     });
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      // Set MUID and transactionId
-
-      const mailData = {
-        userdata: formData,
-      };
-
+      // Generate MUID and transactionId
       const MUIDVal = "MUID" + Date.now();
       const transIdVal = "TransId" + Date.now();
-      setFormData({
+
+      // Update formData with additional fields
+      setFormData((formData) => ({
         ...formData,
-        ["MUID"]: MUIDVal,
-        ["transactionId"]: transIdVal,
-        ["amount"]: hiddenInputRef.current.value,
-      });
+        MUID: MUIDVal,
+        transactionId: transIdVal,
+        amount: hiddenInputRef.current.value,
+      }));
 
       // Step 1: Handle payment with your payment gateway
       const paymentResponse = await axios.post(
         "http://localhost:5000/api/process-payment",
         {
-          amount: hiddenInputRef.current.value,
-          transactionId: transIdVal, // Ensure transaction ID is consistent
-          MUID: MUIDVal, // Ensure transaction ID is consistent
+          formData,
         }
       );
-
-      if (paymentResponse.data.success) {
-        // Step 2: If payment is successful, submit form data to the backend
-        const response = await axios.post(
-          "http://localhost:5000/api/submit-form",
-          formData
+      console.log(paymentResponse);
+      // Check if response is successful and contains links
+      if (
+        paymentResponse.data.httpStatusCode === 201 &&
+        paymentResponse.data.links
+      ) {
+        const approvalUrl = paymentResponse.data.links.find(
+          (link) => link.rel === "approval_url"
         );
-        // alert(response.data); // Should show 'Form submitted successfully!'
-        swal({
-          title: "Payment success",
-          text: response.data,
-          icon: "success",
-          button: "Ok",
-        });
-        sendMailFun(mailData);
+
+        if (approvalUrl) {
+          // Open the PayPal approval page in a new window
+          window.open(approvalUrl.href, "_blank", "noopener,noreferrer");
+          // window.location.href = approvalUrl.href;
+        } else {
+          swal({
+            title: "Error",
+            text: "Approval URL not found. Please try again.",
+            icon: "error",
+            button: "Ok",
+          });
+        }
       } else {
-        // Handle payment failure
         swal({
-          title: paymentResponse.message,
-          text: "Please try again",
+          title: "Error",
+          text: "Unexpected response from payment gateway. Please try again.",
           icon: "error",
           button: "Ok",
         });
       }
     } catch (error) {
-      // Handle errors during payment or form submission
+      // Display error message using SweetAlert
       swal({
-        title: `${error.message}`,
-        text: "Please try again",
+        title: "Error",
+        text:
+          error.response?.data?.message || error.message || "Please try again ",
         icon: "error",
         button: "Ok",
       });
