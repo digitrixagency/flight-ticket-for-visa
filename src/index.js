@@ -19,17 +19,18 @@ const AppRoutes = () => {
     const pathParts = location.pathname.split('/');
     const urlLang = pathParts[1];
 
-    // Set language from URL if valid
     if (['en', 'hi'].includes(urlLang)) {
+      // Set language from URL
       i18n.changeLanguage(urlLang);
       localStorage.setItem('language', urlLang);
-      // Redirect to correct path to avoid language being in the URL path
+      
+      // Ensure URL doesn't contain language twice
       if (pathParts.length > 2) {
-        navigate(`/${urlLang}${location.pathname.replace(`/${urlLang}`, '')}`);
+        navigate(`/${urlLang}${location.pathname.replace(`/${urlLang}`, '')}`, { replace: true });
       }
     } else {
       // Redirect to default language if not valid
-      navigate(`/en${location.pathname}`);
+      navigate(`/en${location.pathname}`, { replace: true });
     }
   }, [location, i18n, navigate]);
 
