@@ -18,19 +18,19 @@ const steps = () => {
                     <div className="d-flex align-items-center justify-content-center">
                         <div className='text-center'>
                             <img src={step1}  className='stepImg'/>
-                            <h1 className='stepHeader'>Select Plan</h1>
-                            <p className='stepText'>Select from wide array of plans that best suits your needs.</p>
+                            <h1 className='stepHeader'>Choose Your Plan</h1>
+                            <p className='stepText'>Select from flight reservations, hotel bookings, or travel insurance.</p>
                         </div>
                         <div><img src={nextStep} className='nextStepImg' /></div>
                         <div className='text-center'>
                             <img src={step2}  className='stepImg'/>
-                            <h1 className='stepHeader'>Submit Travel Details & Pay</h1>
-                            <p className='stepText'>Provide all mandatory details and make the payment (s).</p></div>
+                            <h1 className='stepHeader'>Fill the Form</h1>
+                            <p className='stepText'>Complete the order form with accurate details.</p></div>
                         <div><img src={nextStep} className='nextStepImg' /></div>
                         <div className='text-center'>
                             <img src={step3}  className='stepImg'/>
-                            <h1 className='stepHeader'>Document at Your Email</h1>
-                            <p className='stepText'>Select from wide array of plans that best suits your needs.</p>
+                            <h1 className='stepHeader'> Receive Documents</h1>
+                            <p className='stepText'>Get your verified documents via email quickly and securely.</p>
                         </div>
                     </div>
                 </div>

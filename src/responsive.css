@@ -1279,6 +1279,7 @@
   .display-5 {
     font-size: 25px;
     font-weight: 400;
+    width: 350px;
   }
 
   .display-6 {
@@ -1549,6 +1550,7 @@
   .display-5 {
     font-weight: 400;
     font-size: 30px;
+    width: 425px;
   }
 
   .display-6 {
@@ -1583,7 +1585,7 @@
   }
 
   .positionDiv {
-    bottom: 30%;
+    bottom: 36%;
   }
 
   .w-75 {
@@ -1726,15 +1728,11 @@
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .display-5 {
     font-weight: 400;
-    font-size: 40px;
+    font-size: 35px;
     line-height: 54.47px;
     text-align: left;
-    width: 492px;
     height: 108px;
-    top: 140px;
-    left: 238px;
-    gap: 0px;
-    opacity: 0px;
+    width: 571px;
   }
 
   .display-6 {
@@ -1753,10 +1751,10 @@
   .textUnderTitlesHome {
     font-size: 16px;
     font-weight: 400;
-    line-height: 21.79px;
+    line-height: 22px;
     text-align: left;
     width: 445px;
-    height: 70px;
+    height: 115px;
   }
 
   .homePageBtn {
@@ -1811,6 +1809,11 @@
   .positionDiv {
     bottom: 20%;
   }
+
+  .display-5 {
+    width: 600px;
+  }
+
 }
 
 @media only screen and (min-width: 2560px) {

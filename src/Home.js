@@ -24,21 +24,19 @@ const Home = () => {
         <div className="row align-items-center ms-4 me-5 mt-5 backGroundImage">
           <div className="col-md-6 ps-0 pt-5 zIndex1">
             <h2 className="display-5 mb-4">
-              Get Verifiable Flight and Hotel Reservations
+              Get Your Flight Reservations and Hotel Bookings for Visa Here
             </h2>
             <h2 className="display-6 fw-normal text-secondary mb-3">
               ONE-STOP SHOP
             </h2>
             <p className="lead textUnderTitlesHome">
-              xyzwebsite.com offers fast, reliable flight and hotel reservations
-              tailored for visa applications. Receive your verifiable itinerary
-              within 4 to 8 hours, accepted worldwide.
+            Secure your visa with ease using our verifiable flight reservations and hotel bookings. Whether you need a single document or a complete package, we provide authentic and affordable options to streamline your visa application process. Trust us for quick, reliable service.
             </p>
-            <p className="textUnderTitlesHome">
+            {/* <p className="textUnderTitlesHome">
               Trusted by thousands, we simplify visa processing with documents
               that meet embassy standards, ensuring a smooth travel planning
               experience.
-            </p>
+            </p> */}
             <div className="d-flex justify-content-between px-2 threeBtnInHome">
               <button
                 type="button"
