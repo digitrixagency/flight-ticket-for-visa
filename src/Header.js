@@ -20,10 +20,11 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import { useTranslation } from 'react-i18next';
 const Header = () => {
 
-  const { i18n } = useTranslation(); // Get current language from i18n
-  const currentLanguage = i18n.language || 'en'; // Default to 'en' if language is not set
+  // const { i18n } = useTranslation(); // Get current language from i18n
+  // const currentLanguage = i18n.language || 'en'; // Default to 'en' if language is not set
 
-
+  const { i18n } = useTranslation();
+  const currentLanguage = i18n.language || localStorage.getItem('language') || 'en'; // Fallback to localStorage if i18n.language is not set
   useEffect(() => {
     // Attach event handler for menuButton
     $("#menuButton").on("click", function () {

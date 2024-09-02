@@ -3,8 +3,9 @@ import { initReactI18next } from 'react-i18next';
 import enTranslation from './locales/en/translation.json';
 import hiTranslation from './locales/hi/translation.json';
 
-// Get language from localStorage or default to 'en'
-const language = localStorage.getItem('language') || 'en';
+const getLanguage = () => {
+  return localStorage.getItem('language') || 'en';
+};
 
 i18n
   .use(initReactI18next)
@@ -17,11 +18,15 @@ i18n
         translation: hiTranslation,
       },
     },
-    lng: language, // Set initial language
-    fallbackLng: 'en', // Fallback language
+    lng: getLanguage(),
+    fallbackLng: 'en',
     interpolation: {
       escapeValue: false,
     },
   });
+
+i18n.on('languageChanged', (lng) => {
+  localStorage.setItem('language', lng);
+});
 
 export default i18n;
