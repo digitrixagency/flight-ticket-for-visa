@@ -23,7 +23,7 @@ const Header = () => {
   // const { i18n } = useTranslation(); // Get current language from i18n
   // const currentLanguage = i18n.language || 'en'; // Default to 'en' if language is not set
 
-  const { i18n } = useTranslation();
+  const { t,i18n } = useTranslation();
   const currentLanguage = i18n.language || localStorage.getItem('language') || 'en'; // Fallback to localStorage if i18n.language is not set
   useEffect(() => {
     // Attach event handler for menuButton
@@ -97,28 +97,28 @@ const Header = () => {
             </button>
             <Link to={`/${currentLanguage}`} className="btn text-white mx-2">
               <FontAwesomeIcon icon={faHouse} className="hideElementCls" />
-              <span>Home</span>
+              <span>{t("header.HomeBtn")}</span>
             </Link>
             <Link
               to={`/${currentLanguage}/Blog`}
               className="btn text-white mx-2"
             >
               <FontAwesomeIcon icon={faFileAlt} className="hideElementCls" />
-              <span>Blog</span>
+              <span>{t("header.BlogBtn")}</span>
             </Link>
             <Link
               to={`/${currentLanguage}/Contact-Us`}
               className="btn text-white mx-2"
             >
               <FontAwesomeIcon icon={faPhone} className="hideElementCls" />
-              <span>Contact Us</span>
+              <span>{t("header.ContactUsBtn")}</span>
             </Link>
             <Link
               to={`/${currentLanguage}/About-Us`}
               className="btn text-white mx-2"
             >
               <FontAwesomeIcon icon={faInfoCircle} className="hideElementCls" />
-              <span>About Us</span>
+              <span>{t("header.AboutUsBtn")}</span>
             </Link>
             <a
               href="http://localhost:3001/"
@@ -129,11 +129,11 @@ const Header = () => {
                 icon={faTicket}
                 className="hideElementCls colorForWBG"
               />
-              <span>Get Dummy Ticket</span>
+              <span>{t("header.TestTicketBtn")}</span>
             </a>
 
             <LanguageSwitcher />
-            <button class="sign-up-button">Sign Up / Login</button>
+            <button class="sign-up-button">{t("header.SignUpNLoginBtn")}</button>
           </div>
           <div className="smallMenuDiv">
             <button className="btn text-white" id="menuButton">

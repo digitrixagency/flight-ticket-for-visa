@@ -30,11 +30,11 @@ const Home = () => {
       <div className="container px-5 homeDivInDiv">
         <div className="row align-items-center ms-4 me-5 mt-5 backGroundImage">
           <div className="col-md-6 ps-0 pt-5 zIndex1">
-            <h2 className="display-5 mb-4">{t("title1")}</h2>
+            <h2 className="display-5 mb-4">{t("home.Tile1")}</h2>
             <h2 className="display-6 fw-normal text-secondary mb-3">
-              {t("title2")}
+              {t("home.Tile2")}
             </h2>
-            <p className="lead textUnderTitlesHome">{t("description")}</p>
+            <p className="lead textUnderTitlesHome">{t("home.Description")}</p>
 
             <div className="d-flex justify-content-between px-2 threeBtnInHome">
               <button
@@ -42,21 +42,21 @@ const Home = () => {
                 className="btn btn-primary homePageBtn px-3"
                 onClick={redirectToFR}
               >
-                Flight Reservation
+                {t("home.FlightReservationBtn")}
               </button>
               <button
                 type="button"
                 className="btn btn-primary homePageBtn px-4"
                 onClick={redirectToHB}
               >
-                Hotel Booking
+                {t("home.HotelBookingBtn")}
               </button>
               <button
                 type="button"
                 className="btn btn-primary homePageBtn px-4"
                 onClick={redirectToRNHR}
               >
-                Flight + Hotel
+                {t("home.FlightHotelReservationBtn")}
               </button>
             </div>
           </div>
@@ -65,7 +65,7 @@ const Home = () => {
             <div className="positionDiv">
               <img
                 src={mobileImage}
-                alt="Flight and hotel reservations"
+                alt={t("home.MobileImageAlt")}
                 className="img-fluid"
               />
             </div>

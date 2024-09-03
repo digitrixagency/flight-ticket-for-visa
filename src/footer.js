@@ -28,6 +28,8 @@ const Footer = ({ hideDiv }) => {
 
   return (
     <>
+      {/* plans section start  */}
+
       {!hideDiv && (
         <div className="container-fluid footerBg1 pt-5">
           <div className="container pb-5">
@@ -347,6 +349,8 @@ const Footer = ({ hideDiv }) => {
           </div>
         </div>
       )}
+      {/* plans section end  */}
+      {/* FAQ section start  */}
       <hr className="hrStyle" />
       <div className="container-fluid footerBg2 pt-5">
         <div className="container pb-5">
@@ -354,231 +358,152 @@ const Footer = ({ hideDiv }) => {
             <div className="row faqRowDiv">
               <div className="col-5">
                 <div className="text-center">
-                  <p className="logoImg text-center">
-                    Frequently Asked Questions?
-                  </p>
-                  <img src={FAQ} className="FAQImg mt-5 pt-4" />
+                  <p className="logoImg text-center">{t("FAQ.Head")}</p>
+                  <img
+                    src={FAQ}
+                    className="FAQImg mt-5 pt-4"
+                    alt={t("FAQ.alt")}
+                  />
                 </div>
               </div>
               <div className="col-7 fixedHeightDetail">
                 <div className="detailDiv mb-3">
                   <details className="detailTab  py-2 px-3" open="true">
                     <summary className="summaryInDetail">
-                      <p className="m-0">
-                        What is a flight itinerary for a visa application?
-                      </p>
+                      <p className="m-0">{t("FAQ.question1")}</p>
                     </summary>
                     <div className="parDiv mt-3">
-                      <p className="py-2 px-3 m-0">
-                        A flight itinerary is a document showing your planned
-                        travel details, including flight dates and numbers,
-                        required by embassies to assess your visa application.
-                      </p>
+                      <p className="py-2 px-3 m-0">{t("FAQ.ans1")}</p>
                     </div>
                   </details>
                 </div>
                 <div className="detailDiv mb-3">
                   <details className="detailTab  py-2 px-3">
                     <summary className="summaryInDetail">
-                      <p className="m-0">
-                        How can I get a flight reservation for my visa?
-                      </p>
+                      <p className="m-0">{t("FAQ.question2")}</p>
                     </summary>
                     <div className="parDiv mt-3">
-                      <p className="py-2 px-3 m-0">
-                        You can obtain a flight reservation through our service.
-                        We provide verifiable flight itineraries that meet visa
-                        requirements quickly and efficiently.
-                      </p>
+                      <p className="py-2 px-3 m-0">{t("FAQ.ans2")}</p>
                     </div>
                   </details>
                 </div>
                 <div className="detailDiv mb-3">
                   <details className="detailTab  py-2 px-3">
                     <summary className="summaryInDetail">
-                      <p className="m-0">
-                        Do I need a hotel booking for my visa application?
-                      </p>
+                      <p className="m-0">{t("FAQ.question3")}</p>
                     </summary>
                     <div className="parDiv mt-3">
-                      <p className="py-2 px-3 m-0">
-                        Yes, most visa applications require proof of
-                        accommodation. We offer confirmed hotel bookings that
-                        ensure your stay is covered for the entire duration of
-                        your trip.
-                      </p>
+                      <p className="py-2 px-3 m-0">{t("FAQ.ans3")}</p>
                     </div>
                   </details>
                 </div>
                 <div className="detailDiv mb-3">
                   <details className="detailTab  py-2 px-3">
                     <summary className="summaryInDetail">
-                      <p className="m-0">
-                        What is included in your travel insurance?
-                      </p>
+                      <p className="m-0">{t("FAQ.question4")}</p>
                     </summary>
                     <div className="parDiv mt-3">
-                      <p className="py-2 px-3 m-0">
-                        Our travel insurance covers medical emergencies, trip
-                        cancellations, and other unforeseen events, providing
-                        the minimum coverage required for most visa
-                        applications.
-                      </p>
+                      <p className="py-2 px-3 m-0">{t("FAQ.ans4")}</p>
                     </div>
                   </details>
                 </div>
                 <div className="detailDiv mb-3">
                   <details className="detailTab  py-2 px-3">
                     <summary className="summaryInDetail">
-                      <p className="m-0">
-                        How long does it take to receive the documents?
-                      </p>
+                      <p className="m-0">{t("FAQ.question5")}</p>
                     </summary>
                     <div className="parDiv mt-3">
-                      <p className="py-2 px-3 m-0">
-                        Typically, documents are delivered via email within 24
-                        to 48 hours, ensuring you have ample time to submit them
-                        with your visa application.
-                      </p>
+                      <p className="py-2 px-3 m-0">{t("FAQ.ans5")}</p>
                     </div>
                   </details>
                 </div>
                 <div className="detailDiv mb-3">
                   <details className="detailTab  py-2 px-3">
                     <summary className="summaryInDetail">
-                      <p className="m-0">
-                        Can I make changes to my flight or hotel booking?
-                      </p>
+                      <p className="m-0">{t("FAQ.question6")}</p>
                     </summary>
                     <div className="parDiv mt-3">
-                      <p className="py-2 px-3 m-0">
-                        Yes, we offer unlimited corrections to your flight and
-                        hotel bookings at no additional charge, ensuring all
-                        details are accurate before submission.
-                      </p>
+                      <p className="py-2 px-3 m-0">{t("FAQ.ans6")}</p>
                     </div>
                   </details>
                 </div>
                 <div className="detailDiv mb-3">
                   <details className="detailTab  py-2 px-3">
                     <summary className="summaryInDetail">
-                      <p className="m-0">
-                        Is the travel insurance valid for all countries?
-                      </p>
+                      <p className="m-0">{t("FAQ.question7")}</p>
                     </summary>
                     <div className="parDiv mt-3">
-                      <p className="py-2 px-3 m-0">
-                        Our travel insurance is valid internationally and meets
-                        the coverage requirements for most visa applications,
-                        including Schengen and other major destinations.
-                      </p>
+                      <p className="py-2 px-3 m-0">{t("FAQ.ans7")}</p>
                     </div>
                   </details>
                 </div>
                 <div className="detailDiv mb-3">
                   <details className="detailTab  py-2 px-3">
                     <summary className="summaryInDetail">
-                      <p className="m-0">
-                        How do I know if my flight itinerary is verifiable?
-                      </p>
+                      <p className="m-0">{t("FAQ.question8")}</p>
                     </summary>
                     <div className="parDiv mt-3">
-                      <p className="py-2 px-3 m-0">
-                        Our flight itineraries are issued through our network of
-                        airlines and travel agencies, ensuring they are
-                        verifiable and accepted by consulates and embassies.
-                      </p>
+                      <p className="py-2 px-3 m-0">{t("FAQ.ans8")}</p>
                     </div>
                   </details>
                 </div>
                 <div className="detailDiv mb-3">
                   <details className="detailTab  py-2 px-3">
                     <summary className="summaryInDetail">
-                      <p className="m-0">What if my visa is denied?</p>
+                      <p className="m-0">{t("FAQ.question9")}</p>
                     </summary>
                     <div className="parDiv mt-3">
-                      <p className="py-2 px-3 m-0">
-                        If your visa application is denied, you may contact us
-                        to discuss possible solutions or request adjustments to
-                        your documents. Refund policies are outlined in our
-                        terms.
-                      </p>
+                      <p className="py-2 px-3 m-0">{t("FAQ.ans9")}</p>
                     </div>
                   </details>
                 </div>
                 <div className="detailDiv mb-3">
                   <details className="detailTab  py-2 px-3">
                     <summary className="summaryInDetail">
-                      <p className="m-0">
-                        Can I use the documents for multiple visa applications?
-                      </p>
+                      <p className="m-0">{t("FAQ.question10")}</p>
                     </summary>
                     <div className="parDiv mt-3">
-                      <p className="py-2 px-3 m-0">
-                        Documents such as flight itineraries and hotel bookings
-                        are typically specific to each visa application. For
-                        multiple applications, separate documents may be
-                        required.
-                      </p>
+                      <p className="py-2 px-3 m-0">{t("FAQ.ans10")}</p>
                     </div>
                   </details>
                 </div>
                 <div className="detailDiv mb-3">
                   <details className="detailTab  py-2 px-3">
                     <summary className="summaryInDetail">
-                      <p className="m-0">
-                        How do I choose the right plan for my needs?
-                      </p>
+                      <p className="m-0">{t("FAQ.question11")}</p>
                     </summary>
                     <div className="parDiv mt-3">
-                      <p className="py-2 px-3 m-0">
-                        Select a plan based on your travel requirements. We
-                        offer flexible options for flight reservations, hotel
-                        bookings, and insurance to suit various visa application
-                        needs.
-                      </p>
+                      <p className="py-2 px-3 m-0">{t("FAQ.ans11")}</p>
                     </div>
                   </details>
                 </div>
                 <div className="detailDiv mb-3">
                   <details className="detailTab  py-2 px-3">
                     <summary className="summaryInDetail">
-                      <p className="m-0">
-                      Are the documents you provide legally valid?
-                      </p>
+                      <p className="m-0">{t("FAQ.question12")}</p>
                     </summary>
                     <div className="parDiv mt-3">
-                      <p className="py-2 px-3 m-0">
-                      Yes, all documents provided are legally valid and meet the requirements set by embassies and consulates for visa applications.
-                      </p>
+                      <p className="py-2 px-3 m-0">{t("FAQ.ans12")}</p>
                     </div>
                   </details>
                 </div>
                 <div className="detailDiv mb-3">
                   <details className="detailTab  py-2 px-3">
                     <summary className="summaryInDetail">
-                      <p className="m-0">
-                      Can I cancel my order if needed?
-                      </p>
+                      <p className="m-0">{t("FAQ.question13")}</p>
                     </summary>
                     <div className="parDiv mt-3">
-                      <p className="py-2 px-3 m-0">
-                      Yes, you can cancel your order within our specified cancellation period. Please refer to our refund policy for details on how to process cancellations.
-                      </p>
+                      <p className="py-2 px-3 m-0">{t("FAQ.ans13")}</p>
                     </div>
                   </details>
                 </div>
                 <div className="detailDiv mb-3">
                   <details className="detailTab  py-2 px-3">
                     <summary className="summaryInDetail">
-                      <p className="m-0">
-                      What types of payment do you accept?
-                      </p>
+                      <p className="m-0">{t("FAQ.question14")}</p>
                     </summary>
                     <div className="parDiv mt-3">
-                      <p className="py-2 px-3 m-0">
-                      We accept various payment methods, including credit/debit cards and online payment systems, ensuring a secure and convenient transaction process for our customers.
-                      </p>
+                      <p className="py-2 px-3 m-0">{t("FAQ.ans14")}</p>
                     </div>
                   </details>
                 </div>
@@ -587,6 +512,10 @@ const Footer = ({ hideDiv }) => {
           </div>
         </div>
       </div>
+      {/* FAQ section end  */}
+
+      {/* footer section start*/}
+
       <hr className="hrStyle" />
       <div className="container-fluid footerBg3 pt-5">
         <div className="container pb-5">
@@ -597,9 +526,7 @@ const Footer = ({ hideDiv }) => {
                   {/* <img src={logo} className='logoImg'/> */}
                   <p className="logoImg">LOGO</p>
                   <p className="textUL">
-                    Lorem ipsum dolor sit amet, consectetur adipis elit. Sit
-                    enim nec, proin faucibus nibh et sagittis a. Lacinia purus
-                    ac amet.
+                    {t("footer.mainTitle")}
                   </p>
                 </div>
               </div>
@@ -607,62 +534,62 @@ const Footer = ({ hideDiv }) => {
                 <div className="row text-center g-1 linkFootROwDiv">
                   <div className="col-4 text-start d-flex flex-column ps-5 linkFootDiv">
                     <a href="#" className="linkIfoot">
-                      Contact Us
+                      {t("footer.subTitle1.title1")}
                     </a>
                     <a href="#" className="linkIfoot">
-                      Work With us
+                      {t("footer.subTitle1.title2")}
                     </a>
                     <a href="#" className="linkIfoot">
-                      Terms of Services
+                      {t("footer.subTitle1.title3")}
                     </a>
                     <a href="#" className="linkIfoot">
-                      Advertise
+                      {t("footer.subTitle1.title4")}
                     </a>
                     <a href="#" className="linkIfoot">
-                      Site Map
+                      {t("footer.subTitle1.title5")}
                     </a>
                     <a href="#" className="linkIfoot">
-                      Trust
-                    </a>
-                  </div>
-                  <div className="col-4 text-start d-flex flex-column ps-5 linkFootDiv">
-                    <a href="#" className="linkIfoot">
-                      About Us
-                    </a>
-                    <a href="#" className="linkIfoot">
-                      Privacy Policy
-                    </a>
-                    <a href="#" className="linkIfoot">
-                      Accessibility
-                    </a>
-                    <a href="#" className="linkIfoot">
-                      Terms of Sale
-                    </a>
-                    <a href="#" className="linkIfoot">
-                      Subscription
-                    </a>
-                    <a href="#" className="linkIfoot">
-                      Legal
+                      {t("footer.subTitle1.title6")}
                     </a>
                   </div>
                   <div className="col-4 text-start d-flex flex-column ps-5 linkFootDiv">
                     <a href="#" className="linkIfoot">
-                      DMCA Policy
+                      {t("footer.subTitle2.title1")}
                     </a>
                     <a href="#" className="linkIfoot">
-                      Guest Posting
+                      {t("footer.subTitle2.title2")}
                     </a>
                     <a href="#" className="linkIfoot">
-                      Blog/Articles
+                      {t("footer.subTitle2.title3")}
                     </a>
                     <a href="#" className="linkIfoot">
-                      Terms of Service
+                      {t("footer.subTitle2.title4")}
                     </a>
                     <a href="#" className="linkIfoot">
-                      FAQ
+                      {t("footer.subTitle2.title5")}
                     </a>
                     <a href="#" className="linkIfoot">
-                      Help
+                      {t("footer.subTitle2.title6")}
+                    </a>
+                  </div>
+                  <div className="col-4 text-start d-flex flex-column ps-5 linkFootDiv">
+                    <a href="#" className="linkIfoot">
+                      {t("footer.subTitle3.title1")}
+                    </a>
+                    <a href="#" className="linkIfoot">
+                      {t("footer.subTitle3.title2")}
+                    </a>
+                    <a href="#" className="linkIfoot">
+                      {t("footer.subTitle3.title3")}
+                    </a>
+                    <a href="#" className="linkIfoot">
+                      {t("footer.subTitle3.title4")}
+                    </a>
+                    <a href="#" className="linkIfoot">
+                      {t("footer.subTitle3.title5")}
+                    </a>
+                    <a href="#" className="linkIfoot">
+                      {t("footer.subTitle3.title6")}
                     </a>
                   </div>
                 </div>
@@ -671,6 +598,7 @@ const Footer = ({ hideDiv }) => {
           </div>
         </div>
       </div>
+      {/* footer section end  */}
     </>
   );
 };

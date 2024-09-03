@@ -8,7 +8,11 @@ import img3 from '../images/csupport.png';
 import img4 from '../images/payment.png';
 import img5 from '../images/badge.png';
 import img6 from '../images/bill.png';
+import { useTranslation as myTun } from "react-i18next";
+
 const Features = () => {
+  const { t } = myTun(); // Get current language from i18n
+
     return (
         <div className='container-fluid featuresBg mt-5 pt-5'>
             <div className='container featuresBgDiv px-5 pb-5'>
@@ -18,55 +22,55 @@ const Features = () => {
                     <div className="row row-cols-1 row-cols-lg-3 g-3 g-lg-3">
                         <div className="col-md-4">
                             <div className="card cardDiv d-flex align-items-center">
-                                <img src={img1} className="card-img-top" alt="..." />
+                                <img src={img1} className="card-img-top" alt={t("features.title1")} />
                                 <div className="card-body text-center d-flex align-items-center flex-column">
-                                    <h2>Easy Reservations</h2>
-                                    <p className="card-text">Book flights, hotels, and complete travel packages with ease through our user-friendly platform.</p>
+                                    <h2>{t("features.title1")}</h2>
+                                    <p className="card-text">{t("features.content1")}</p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-4">
                             <div className="card cardDiv d-flex align-items-center">
-                                <img src={img2} className="card-img-top" alt="..." />
+                                <img src={img2} className="card-img-top" alt={t("features.title2")} />
                                 <div className="card-body text-center d-flex align-items-center flex-column">
-                                    <h2>Verified Itineraries</h2>
-                                    <p className="card-text">Get authentic and verifiable travel itineraries accepted by embassies worldwide..</p>
+                                    <h2>{t("features.title2")}</h2>
+                                    <p className="card-text">{t("features.content2")}</p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-4 ">
                             <div className="card cardDiv d-flex align-items-center">
-                                <img src={img3} className="card-img-top" alt="..." />
+                                <img src={img3} className="card-img-top" alt={t("features.title3")} />
                                 <div className="card-body text-center d-flex align-items-center flex-column">
-                                    <h2>Comprehensive Support</h2>
-                                    <p className="card-text">Our team provides 24/7 support to assist you with all your travel and visa needs.</p>
+                                    <h2>{t("features.title3")}</h2>
+                                    <p className="card-text">{t("features.content3")}</p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-4 ">
                             <div className="card cardDiv d-flex align-items-center">
-                                <img src={img4} className="card-img-top" alt="..." />
+                                <img src={img4} className="card-img-top" alt={t("features.title4")} />
                                 <div className="card-body text-center d-flex align-items-center flex-column">
-                                    <h2>Secure Payments</h2>
-                                    <p className="card-text">Make payments safely and securely through our encrypted payment gateway options..</p>
+                                    <h2>{t("features.title4")}</h2>
+                                    <p className="card-text">{t("features.content4")}</p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-4 ">
                             <div className="card cardDiv d-flex align-items-center">
-                                <img src={img5} className="card-img-top" alt="..." />
+                                <img src={img5} className="card-img-top" alt={t("features.title5")} />
                                 <div className="card-body text-center d-flex align-items-center flex-column">
-                                    <h2>Best Price Deals</h2>
-                                    <p className="card-text">Enjoy competitive pricing on all our travel services, ensuring you get the best value for your money..</p>
+                                    <h2>{t("features.title5")}</h2>
+                                    <p className="card-text">{t("features.content5")}</p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-4 ">
                             <div className="card cardDiv d-flex align-items-center">
-                                <img src={img6} className="card-img-top" alt="..." />
+                                <img src={img6} className="card-img-top" alt={t("features.title6")} />
                                 <div className="card-body text-center d-flex align-items-center flex-column">
-                                    <h2>Flexible Policies</h2>
-                                    <p className="card-text">Benefit from flexible booking and cancellation policies designed to accommodate your travel plans.</p>
+                                    <h2>{t("features.title6")}</h2>
+                                    <p className="card-text">{t("features.content6")}</p>
                                 </div>
                             </div>
                         </div>
