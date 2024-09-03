@@ -13,7 +13,7 @@ const steps = () => {
             <div className='container pb-5'>
                 <div className='container w-75'>
                     <div className='text-center mb-5'>
-                        <h1>Three Easy Steps</h1>
+                        <h1>How It Works</h1>
                     </div>
                     <div className="d-flex align-items-center justify-content-center">
                         <div className='text-center'>

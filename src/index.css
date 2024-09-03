@@ -799,3 +799,15 @@ ul {
   border-color: #888;
 }
 
+
+.fixedHeightDetail {
+  height: 600px;
+  overflow-y: scroll;
+  cursor: pointer;
+}
+
+.fixedHeightDetail::-webkit-scrollbar {
+  display: none;
+}
+
+

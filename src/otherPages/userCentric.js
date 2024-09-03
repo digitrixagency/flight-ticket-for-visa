@@ -14,8 +14,8 @@ const userCentric = () => {
             <div className='container pb-5'>
                 <div className='container w-75'>
                     <div className='text-center mb-5'>
-                        <h1>Make every step user-centric</h1>
-                        <h6 className='fw-normal'>Lorem ipsum dolor sit amet, consectetur adipis elit.</h6>
+                        <h1>Why Choose Us</h1>
+                        <h6 className='fw-normal'>Experience the best with our verifiable itineraries, competitive pricing, and 24/7 support. Enjoy secure, quick service that makes your visa application process smooth and stress-free.</h6>
                     </div>
                     <div className="row row-cols-1 row-cols-lg-3 g-0 g-lg-0">
 
@@ -23,8 +23,8 @@ const userCentric = () => {
                             <div className="card cardBG card11">
                                 <div className="card-body text-center">
                                     <img src={headSet} className="cardImage2" alt="..." />
-                                    <h2>Support</h2>
-                                    <p className="text-center px-3">Lorem ipsum dolor sit amet, consectetur adipis elit. Sit enim nec, proin faucibus nibh et sagittis a. Lacinia purus ac amet.</p>
+                                    <h2>Verified Itineraries</h2>
+                                    <p className="text-center px-3">We provide authentic flight and hotel bookings directly verifiable with airlines and hotels for visa success.</p>
                                 </div>
                             </div>
                         </div>
@@ -33,8 +33,8 @@ const userCentric = () => {
                             <div className="card cardBG card12">
                                 <div className="card-body text-center">
                                     <img src={graph} className="cardImage2" alt="..." />
-                                    <h2>Sales</h2>
-                                    <p className="text-center px-3">Lorem ipsum dolor sit amet, consectetur adipis elit. Sit enim nec, proin faucibus nibh et sagittis a. Lacinia purus ac amet.</p>
+                                    <h2>Competitive Prices</h2>
+                                    <p className="text-center px-3">Enjoy high-quality services at affordable rates, ensuring the best value for your money without compromising quality.</p>
                                 </div>
                             </div>
                         </div>
@@ -43,8 +43,8 @@ const userCentric = () => {
                             <div className="card cardBG card13">
                                 <div className="card-body text-center">
                                     <img src={tabs} className="cardImage2" alt="..." />
-                                    <h2>Onboarding</h2>
-                                    <p className="text-center px-3">Lorem ipsum dolor sit amet, consectetur adipis elit. Sit enim nec, proin faucibus nibh et sagittis a. Lacinia purus ac amet.</p>
+                                    <h2>24/7 Support</h2>
+                                    <p className="text-center px-3">Our dedicated support team is available around the clock to assist with any inquiries or issues you may have.</p>
                                 </div>
                             </div>
                         </div>
@@ -53,8 +53,8 @@ const userCentric = () => {
                             <div className="card cardBG card21">
                                 <div className="card-body text-center">
                                     <img src={docu} className="cardImage2" alt="..." />
-                                    <h2>Product</h2>
-                                    <p className="text-center px-3">Lorem ipsum dolor sit amet, consectetur adipis elit. Sit enim nec, proin faucibus nibh et sagittis a. Lacinia purus ac amet.</p>
+                                    <h2>Secure Service</h2>
+                                    <p className="text-center px-3">We prioritize your security with encrypted transactions and secure payment methods to protect your personal information.</p>
                                 </div>
                             </div>
                         </div>
@@ -63,8 +63,8 @@ const userCentric = () => {
                             <div className="card cardBG card22">
                                 <div className="card-body text-center">
                                     <img src={folder} className="cardImage2" alt="..." />
-                                    <h2>Quality</h2>
-                                    <p className="text-center px-3">Lorem ipsum dolor sit amet, consectetur adipis elit. Sit enim nec, proin faucibus nibh et sagittis a. Lacinia purus ac amet.</p>
+                                    <h2>Quick and Easy</h2>
+                                    <p className="text-center px-3">Experience a streamlined process with fast delivery of documents, making your visa application hassle-free and efficient.</p>
                                 </div>
                             </div>
                         </div>
@@ -73,8 +73,8 @@ const userCentric = () => {
                             <div className="card cardBG card23">
                                 <div className="card-body text-center">
                                     <img src={pie} className="cardImage2" alt="..." />
-                                    <h2>Result</h2>
-                                    <p className="text-center px-3">Lorem ipsum dolor sit amet, consectetur adipis elit. Sit enim nec, proin faucibus nibh et sagittis a. Lacinia purus ac amet.</p>
+                                    <h2>Easy Process</h2>
+                                    <p className="text-center px-3">Enjoy a straightforward ordering experience with clear instructions and a fast turnaround. Our streamlined process ensures you receive your documents promptly and hassle-free.</p>
                                 </div>
                             </div>
                         </div>

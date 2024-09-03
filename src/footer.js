@@ -5,21 +5,25 @@ import "./otherPages/steps.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FAQ from "./images/FAQ.png";
 import { FaCheckCircle } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const Footer = ({ hideDiv }) => {
+  const { t, i18n } = useTranslation(); // Get current language from i18n
   const navigate = useNavigate();
 
+  const currentLanguage = i18n.language || "en"; // Default to 'en' if language is not set
+
   const redirectToFR = () => {
-    navigate("/Flight-Reservation");
-     window.scrollTo(0, 0); // Scroll to the top after redirect
+    navigate(`/${currentLanguage}/Flight-Reservation`);
+    window.scrollTo(0, 0); // Scroll to the top after redirect
   };
   const redirectToHB = () => {
-    navigate("/Hotel-Booking");
-     window.scrollTo(0, 0); // Scroll to the top after redirect
+    navigate(`/${currentLanguage}/Hotel-Booking`);
+    window.scrollTo(0, 0); // Scroll to the top after redirect
   };
   const redirectToRNHR = () => {
-    navigate("/Flight+Hotel-Reservation");
-     window.scrollTo(0, 0); // Scroll to the top after redirect
+    navigate(`/${currentLanguage}/Flight+Hotel-Reservation`);
+    window.scrollTo(0, 0); // Scroll to the top after redirect
   };
 
   return (
@@ -356,50 +360,19 @@ const Footer = ({ hideDiv }) => {
                   <img src={FAQ} className="FAQImg mt-5 pt-4" />
                 </div>
               </div>
-              <div className="col-7">
+              <div className="col-7 fixedHeightDetail">
                 <div className="detailDiv mb-3">
                   <details className="detailTab  py-2 px-3" open="true">
                     <summary className="summaryInDetail">
                       <p className="m-0">
-                        What app can download videos from Pinterest?
+                        What is a flight itinerary for a visa application?
                       </p>
                     </summary>
                     <div className="parDiv mt-3">
                       <p className="py-2 px-3 m-0">
-                        There are several third-party apps available for
-                        downloading videos from Pinterest. However, using an
-                        online Pinterest video downloader tool like ours
-                        eliminates the need for any additional apps.
-                      </p>
-                    </div>
-                  </details>
-                </div>
-                <div className="detailDiv mb-3">
-                  <details className="detailTab  py-2 px-3">
-                    <summary className="summaryInDetail">
-                      <p className="m-0">How to download video from link?</p>
-                    </summary>
-                    <div className="parDiv mt-3">
-                      <p className="py-2 px-3 m-0">
-                        There are several third-party apps available for
-                        downloading videos from Pinterest. However, using an
-                        online Pinterest video downloader tool like ours
-                        eliminates the need for any additional apps.
-                      </p>
-                    </div>
-                  </details>
-                </div>
-                <div className="detailDiv mb-3">
-                  <details className="detailTab  py-2 px-3">
-                    <summary className="summaryInDetail">
-                      <p className="m-0">How can I download a video?</p>
-                    </summary>
-                    <div className="parDiv mt-3">
-                      <p className="py-2 px-3 m-0">
-                        There are several third-party apps available for
-                        downloading videos from Pinterest. However, using an
-                        online Pinterest video downloader tool like ours
-                        eliminates the need for any additional apps.
+                        A flight itinerary is a document showing your planned
+                        travel details, including flight dates and numbers,
+                        required by embassies to assess your visa application.
                       </p>
                     </div>
                   </details>
@@ -408,16 +381,14 @@ const Footer = ({ hideDiv }) => {
                   <details className="detailTab  py-2 px-3">
                     <summary className="summaryInDetail">
                       <p className="m-0">
-                        How to download Pinterest videos in gallery without any
-                        app?
+                        How can I get a flight reservation for my visa?
                       </p>
                     </summary>
                     <div className="parDiv mt-3">
                       <p className="py-2 px-3 m-0">
-                        There are several third-party apps available for
-                        downloading videos from Pinterest. However, using an
-                        online Pinterest video downloader tool like ours
-                        eliminates the need for any additional apps.
+                        You can obtain a flight reservation through our service.
+                        We provide verifiable flight itineraries that meet visa
+                        requirements quickly and efficiently.
                       </p>
                     </div>
                   </details>
@@ -426,15 +397,15 @@ const Footer = ({ hideDiv }) => {
                   <details className="detailTab  py-2 px-3">
                     <summary className="summaryInDetail">
                       <p className="m-0">
-                        Is it legal to download images from Pinterest?
+                        Do I need a hotel booking for my visa application?
                       </p>
                     </summary>
                     <div className="parDiv mt-3">
                       <p className="py-2 px-3 m-0">
-                        There are several third-party apps available for
-                        downloading videos from Pinterest. However, using an
-                        online Pinterest video downloader tool like ours
-                        eliminates the need for any additional apps.
+                        Yes, most visa applications require proof of
+                        accommodation. We offer confirmed hotel bookings that
+                        ensure your stay is covered for the entire duration of
+                        your trip.
                       </p>
                     </div>
                   </details>
@@ -443,15 +414,15 @@ const Footer = ({ hideDiv }) => {
                   <details className="detailTab  py-2 px-3">
                     <summary className="summaryInDetail">
                       <p className="m-0">
-                        Where can I download the Pinterest app?
+                        What is included in your travel insurance?
                       </p>
                     </summary>
                     <div className="parDiv mt-3">
                       <p className="py-2 px-3 m-0">
-                        There are several third-party apps available for
-                        downloading videos from Pinterest. However, using an
-                        online Pinterest video downloader tool like ours
-                        eliminates the need for any additional apps.
+                        Our travel insurance covers medical emergencies, trip
+                        cancellations, and other unforeseen events, providing
+                        the minimum coverage required for most visa
+                        applications.
                       </p>
                     </div>
                   </details>
@@ -460,30 +431,14 @@ const Footer = ({ hideDiv }) => {
                   <details className="detailTab  py-2 px-3">
                     <summary className="summaryInDetail">
                       <p className="m-0">
-                        How to download reels from Pinterest?
+                        How long does it take to receive the documents?
                       </p>
                     </summary>
                     <div className="parDiv mt-3">
                       <p className="py-2 px-3 m-0">
-                        There are several third-party apps available for
-                        downloading videos from Pinterest. However, using an
-                        online Pinterest video downloader tool like ours
-                        eliminates the need for any additional apps.
-                      </p>
-                    </div>
-                  </details>
-                </div>
-                <div className="detailDiv mb-3">
-                  <details className="detailTab  py-2 px-3">
-                    <summary className="summaryInDetail">
-                      <p className="m-0">How to download video in gallery?</p>
-                    </summary>
-                    <div className="parDiv mt-3">
-                      <p className="py-2 px-3 m-0">
-                        There are several third-party apps available for
-                        downloading videos from Pinterest. However, using an
-                        online Pinterest video downloader tool like ours
-                        eliminates the need for any additional apps.
+                        Typically, documents are delivered via email within 24
+                        to 48 hours, ensuring you have ample time to submit them
+                        with your visa application.
                       </p>
                     </div>
                   </details>
@@ -492,15 +447,14 @@ const Footer = ({ hideDiv }) => {
                   <details className="detailTab  py-2 px-3">
                     <summary className="summaryInDetail">
                       <p className="m-0">
-                        How do I download a video from a reel?
+                        Can I make changes to my flight or hotel booking?
                       </p>
                     </summary>
                     <div className="parDiv mt-3">
                       <p className="py-2 px-3 m-0">
-                        There are several third-party apps available for
-                        downloading videos from Pinterest. However, using an
-                        online Pinterest video downloader tool like ours
-                        eliminates the need for any additional apps.
+                        Yes, we offer unlimited corrections to your flight and
+                        hotel bookings at no additional charge, ensuring all
+                        details are accurate before submission.
                       </p>
                     </div>
                   </details>
@@ -509,15 +463,121 @@ const Footer = ({ hideDiv }) => {
                   <details className="detailTab  py-2 px-3">
                     <summary className="summaryInDetail">
                       <p className="m-0">
-                        How do I download videos from YouTube?
+                        Is the travel insurance valid for all countries?
                       </p>
                     </summary>
                     <div className="parDiv mt-3">
                       <p className="py-2 px-3 m-0">
-                        There are several third-party apps available for
-                        downloading videos from Pinterest. However, using an
-                        online Pinterest video downloader tool like ours
-                        eliminates the need for any additional apps.
+                        Our travel insurance is valid internationally and meets
+                        the coverage requirements for most visa applications,
+                        including Schengen and other major destinations.
+                      </p>
+                    </div>
+                  </details>
+                </div>
+                <div className="detailDiv mb-3">
+                  <details className="detailTab  py-2 px-3">
+                    <summary className="summaryInDetail">
+                      <p className="m-0">
+                        How do I know if my flight itinerary is verifiable?
+                      </p>
+                    </summary>
+                    <div className="parDiv mt-3">
+                      <p className="py-2 px-3 m-0">
+                        Our flight itineraries are issued through our network of
+                        airlines and travel agencies, ensuring they are
+                        verifiable and accepted by consulates and embassies.
+                      </p>
+                    </div>
+                  </details>
+                </div>
+                <div className="detailDiv mb-3">
+                  <details className="detailTab  py-2 px-3">
+                    <summary className="summaryInDetail">
+                      <p className="m-0">What if my visa is denied?</p>
+                    </summary>
+                    <div className="parDiv mt-3">
+                      <p className="py-2 px-3 m-0">
+                        If your visa application is denied, you may contact us
+                        to discuss possible solutions or request adjustments to
+                        your documents. Refund policies are outlined in our
+                        terms.
+                      </p>
+                    </div>
+                  </details>
+                </div>
+                <div className="detailDiv mb-3">
+                  <details className="detailTab  py-2 px-3">
+                    <summary className="summaryInDetail">
+                      <p className="m-0">
+                        Can I use the documents for multiple visa applications?
+                      </p>
+                    </summary>
+                    <div className="parDiv mt-3">
+                      <p className="py-2 px-3 m-0">
+                        Documents such as flight itineraries and hotel bookings
+                        are typically specific to each visa application. For
+                        multiple applications, separate documents may be
+                        required.
+                      </p>
+                    </div>
+                  </details>
+                </div>
+                <div className="detailDiv mb-3">
+                  <details className="detailTab  py-2 px-3">
+                    <summary className="summaryInDetail">
+                      <p className="m-0">
+                        How do I choose the right plan for my needs?
+                      </p>
+                    </summary>
+                    <div className="parDiv mt-3">
+                      <p className="py-2 px-3 m-0">
+                        Select a plan based on your travel requirements. We
+                        offer flexible options for flight reservations, hotel
+                        bookings, and insurance to suit various visa application
+                        needs.
+                      </p>
+                    </div>
+                  </details>
+                </div>
+                <div className="detailDiv mb-3">
+                  <details className="detailTab  py-2 px-3">
+                    <summary className="summaryInDetail">
+                      <p className="m-0">
+                      Are the documents you provide legally valid?
+                      </p>
+                    </summary>
+                    <div className="parDiv mt-3">
+                      <p className="py-2 px-3 m-0">
+                      Yes, all documents provided are legally valid and meet the requirements set by embassies and consulates for visa applications.
+                      </p>
+                    </div>
+                  </details>
+                </div>
+                <div className="detailDiv mb-3">
+                  <details className="detailTab  py-2 px-3">
+                    <summary className="summaryInDetail">
+                      <p className="m-0">
+                      Can I cancel my order if needed?
+                      </p>
+                    </summary>
+                    <div className="parDiv mt-3">
+                      <p className="py-2 px-3 m-0">
+                      Yes, you can cancel your order within our specified cancellation period. Please refer to our refund policy for details on how to process cancellations.
+                      </p>
+                    </div>
+                  </details>
+                </div>
+                <div className="detailDiv mb-3">
+                  <details className="detailTab  py-2 px-3">
+                    <summary className="summaryInDetail">
+                      <p className="m-0">
+                      What types of payment do you accept?
+                      </p>
+                    </summary>
+                    <div className="parDiv mt-3">
+                      <p className="py-2 px-3 m-0">
+                      We accept various payment methods, including credit/debit cards and online payment systems, ensuring a secure and convenient transaction process for our customers.
                       </p>
                     </div>
                   </details>
