@@ -35,19 +35,19 @@ const Footer = ({ hideDiv }) => {
           <div className="container pb-5">
             <div className="container footerFoot">
               <div className="text-center mb-5">
-                <h1 className="plansHeader">Pricing & Plans</h1>
+                <h1 className="plansHeader">{t("plans.mainHead")}</h1>
                 <p className="plansSubHeader">
-                  Amet minim mollit non deserunt ullamco.
+                {t("plans.subHead")}
                 </p>
               </div>
               <div className="d-flex justify-content-center">
                 <div className="col-4 plansBG p-0 mx-3" id="mainDiv1">
                   <div className="text-start px-4 py-3 plansBG2" id="subDiv1">
-                    <p className="planTitle">Flight Reservation</p>
+                    <p className="planTitle">{t("plans.flightReservation.title")}</p>
                     <p className="planPrice">
-                      <span className="planAmount">$15</span>/ Per Person
+                      <span className="planAmount">{t("plans.flightReservation.amount")}</span>/ {t("plans.flightReservation.for")}
                     </p>
-                    <p className="planText">Verifiable on Airlines Website.</p>
+                    <p className="planText">{t("plans.flightReservation.package")}</p>
                     <hr className="oneLine" />
                     <ul className="PlanList ps-0">
                       <li>
@@ -55,84 +55,84 @@ const Footer = ({ hideDiv }) => {
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Unlimited Flights
+                        &nbsp;{t("plans.flightReservation.subTitle1")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Airlines Confirmation
+                        &nbsp;{t("plans.flightReservation.subTitle2")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Upto 4 Corrections
+                        &nbsp;{t("plans.flightReservation.subTitle3")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Confirmed PNR
+                        &nbsp;{t("plans.flightReservation.subTitle4")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Multi Traveler Discount
+                        &nbsp;{t("plans.flightReservation.subTitle5")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Free Cancellations
+                        &nbsp;{t("plans.flightReservation.subTitle6")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;No Obligations
+                        &nbsp;{t("plans.flightReservation.subTitle7")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Verifiable Flight Itinerary
+                        &nbsp;{t("plans.flightReservation.subTitle8")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Free Cover & NOC Letter
+                        &nbsp;{t("plans.flightReservation.subTitle9")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Free Urgent Delivery
+                        &nbsp;{t("plans.flightReservation.subTitle10")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Upto 2 Weeks Validity
+                        &nbsp;{t("plans.flightReservation.subTitle11")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Worldwide Confirmation
+                        &nbsp;{t("plans.flightReservation.subTitle12")}
                       </li>
                     </ul>
 
@@ -142,7 +142,7 @@ const Footer = ({ hideDiv }) => {
                         id="orderBtn1"
                         onClick={redirectToFR}
                       >
-                        Order Now
+                        {t("plans.orderBtn")}
                       </button>
                     </div>
                   </div>
@@ -155,11 +155,11 @@ const Footer = ({ hideDiv }) => {
                     className="text-start px-4 py-3 plansBG2 plansBorderImp"
                     id="subDiv2"
                   >
-                    <p className="planTitle">Flight + &nbsp; Hotel</p>
+                    <p className="planTitle">{t("plans.flightNHotelReservation.title")}</p>
                     <p className="planPrice">
-                      <span className="planAmount">$24</span>/ Per Person
+                      <span className="planAmount">{t("plans.flightNHotelReservation.amount")}</span>/ {t("plans.flightNHotelReservation.for")}
                     </p>
-                    <p className="planText">(Combo Package)</p>
+                    <p className="planText">{t("plans.flightNHotelReservation.package")}</p>
                     <hr className="oneLine" />
                     <ul className="PlanList ps-0">
                       <li>
@@ -167,70 +167,70 @@ const Footer = ({ hideDiv }) => {
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Unlimited Flights & Hotels
+                        &nbsp;{t("plans.flightNHotelReservation.subTitle1")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Upto 4 Corrections
+                        &nbsp;{t("plans.flightNHotelReservation.subTitle2")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;100% Confirm bookings
+                        &nbsp;{t("plans.flightNHotelReservation.subTitle3")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Free Cancellations
+                        &nbsp;{t("plans.flightNHotelReservation.subTitle4")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;No Obligations
+                        &nbsp;{t("plans.flightNHotelReservation.subTitle5")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Verifiable Bookings
+                        &nbsp;{t("plans.flightNHotelReservation.subTitle6")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Upto 2 Weeks Validity
+                        &nbsp;{t("plans.flightNHotelReservation.subTitle7")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Free Cover & NOC Letter
+                        &nbsp;{t("plans.flightNHotelReservation.subTitle8")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Free Urgent Delivery
+                        &nbsp;{t("plans.flightNHotelReservation.subTitle9")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Worldwide Confirmation
+                        &nbsp;{t("plans.flightNHotelReservation.subTitle10")}
                       </li>
                     </ul>
 
@@ -240,18 +240,18 @@ const Footer = ({ hideDiv }) => {
                         id="orderBtn2"
                         onClick={redirectToRNHR}
                       >
-                        Order Now
+                        {t("plans.orderBtn")}
                       </button>
                     </div>
                   </div>
                 </div>
                 <div className="col-4 plansBG p-0 mx-3" id="mainDiv3">
                   <div className="text-start px-4 py-3 plansBG2" id="subDiv3">
-                    <p className="planTitle">Hotel Booking</p>
+                    <p className="planTitle">{t("plans.hotelReservation.title")}</p>
                     <p className="planPrice">
-                      <span className="planAmount">$15</span>/ Per Person
+                      <span className="planAmount">{t("plans.hotelReservation.amount")}</span>/ {t("plans.hotelReservation.for")}
                     </p>
-                    <p className="planText">Proof of Accommodation</p>
+                    <p className="planText">{t("plans.hotelReservation.package")}</p>
                     <hr className="oneLine" />
                     <ul className="PlanList ps-0">
                       <li>
@@ -259,77 +259,77 @@ const Footer = ({ hideDiv }) => {
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Unlimited Hotels
+                        &nbsp;{t("plans.hotelReservation.subTitle1")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Verify by Email & Phone
+                        &nbsp;{t("plans.hotelReservation.subTitle2")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Upto 4 Corrections
+                        &nbsp;{t("plans.hotelReservation.subTitle3")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Upto 2 Weeks Validity
+                        &nbsp;{t("plans.hotelReservation.subTitle4")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Multi Traveler Discount
+                        &nbsp;{t("plans.hotelReservation.subTitle5")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Free Cancellations
+                        &nbsp;{t("plans.hotelReservation.subTitle6")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;100% Valid Booking
+                        &nbsp;{t("plans.hotelReservation.subTitle7")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;No Obligations
+                        &nbsp;{t("plans.hotelReservation.subTitle8")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Free Cover & NOC Letter
+                        &nbsp;{t("plans.hotelReservation.subTitle9")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Free Urgent Delivery
+                        &nbsp;{t("plans.hotelReservation.subTitle10")}
                       </li>
                       <li>
                         <FaCheckCircle
                           size={15}
                           color="rgba(113, 113, 122, 1)"
                         />
-                        &nbsp;Worldwide Confirmation
+                        &nbsp;{t("plans.hotelReservation.subTitle11")}
                       </li>
                     </ul>
 
@@ -339,7 +339,7 @@ const Footer = ({ hideDiv }) => {
                         id="orderBtn3"
                         onClick={redirectToHB}
                       >
-                        Order Now
+                        {t("plans.orderBtn")}
                       </button>
                     </div>
                   </div>
