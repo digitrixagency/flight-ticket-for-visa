@@ -222,7 +222,18 @@
     "Hotel-Booking": {
       "mainHead": "Instant Hotel Booking for Visa and Travel",
       "viewContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and  ...",
-      "allContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+      "allContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "noOfTravelersOP1": "—Please choose an option—",
+      "noOfTravelersOP2": "1 Traveler($15)",
+      "noOfTravelersOP3": "2 Travelers($25)",
+      "noOfTravelersOP4": "3 Travelers($35)",
+      "noOfTravelersOP5": "4 Travelers($45)",
+      "noOfTravelersOP6": "5 Travelers($55)",
+      "noOfTravelersOP7": "6 Travelers($65)",
+      "noOfTravelersOP8": "7 Travelers($75)",
+      "noOfTravelersOP9": "8 Travelers($85)",
+      "noOfTravelersOP10": "9 Travelers($95)",
+      "noOfTravelersOP11": "10 Travelers($105)"
     },
     "Flight&Hotel-Reservation": {
       "mainHead": "Instant Flight Plus Hotel Bookings for Visa",

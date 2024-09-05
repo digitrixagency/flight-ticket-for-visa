@@ -938,7 +938,7 @@ const FlightNHotelReservation = () => {
                     >
                       {t(
                         "bookingPages.Flight&Hotel-Reservation.travelerFlightDetails"
-                      )}{" "}
+                      )}
                       <span>*</span>
                     </label>
                     {/* <p>Format: Departure city (date) - Arrival city/airport</p> */}
@@ -1314,7 +1314,7 @@ const FlightNHotelReservation = () => {
                 <div className="col-lg-4 col-md-4 col-sm-12">
                   <div className="mb-3">
                     <label htmlFor="noOfTravelers" className="form-label">
-                      {t("bookingPages.Flight&Hotel-Reservation.noOfTravelers")}{" "}
+                      {t("bookingPages.Flight&Hotel-Reservation.noOfTravelers")}
                       <span>*</span>
                     </label>
                     <select
@@ -1385,7 +1385,7 @@ const FlightNHotelReservation = () => {
                 <div className="col-lg-4 col-md-4 col-sm-12">
                   <div className="mb-3">
                     <label htmlFor="travelerEmail" className="form-label">
-                      {t("bookingPages.Flight&Hotel-Reservation.emailaddress")}{" "}
+                      {t("bookingPages.Flight&Hotel-Reservation.emailaddress")}
                       <span>*</span>
                     </label>
                     <input
@@ -1404,7 +1404,7 @@ const FlightNHotelReservation = () => {
                 <div className="col-lg-4 col-md-4 col-sm-12">
                   <div className="mb-3">
                     <label htmlFor="travelerNo" className="form-label">
-                      {t("bookingPages.Flight&Hotel-Reservation.phoneNo")}{" "}
+                      {t("bookingPages.Flight&Hotel-Reservation.phoneNo")}
                       <span>*</span>
                     </label>
                     <input
@@ -1429,7 +1429,7 @@ const FlightNHotelReservation = () => {
                           htmlFor={`travelTitle${index + 1}`}
                           className="form-label"
                         >
-                          {t("bookingPages.Flight&Hotel-Reservation.title")}{" "}
+                          {t("bookingPages.Flight&Hotel-Reservation.title")}
                           <span>*</span>
                         </label>
                         <select
@@ -1519,7 +1519,7 @@ const FlightNHotelReservation = () => {
                             `bookingPages.Flight&Hotel-Reservation.lastName${
                               index + 1
                             }`
-                          )}{" "}
+                          )}
                           <span>*</span>
                         </label>
                         <input
@@ -1545,7 +1545,7 @@ const FlightNHotelReservation = () => {
 
                   <div id="radioBtnDiv">
                     <h5>
-                      {t("bookingPages.Flight&Hotel-Reservation.noOfHotels")}{" "}
+                      {t("bookingPages.Flight&Hotel-Reservation.noOfHotels")}
                       <span>*</span>
                     </h5>
 
@@ -1610,7 +1610,7 @@ const FlightNHotelReservation = () => {
                     >
                       {t(
                         "bookingPages.Flight&Hotel-Reservation.travelersHotelDetails"
-                      )}{" "}
+                      )}
                       <span>*</span>
                     </label>
                   </div>

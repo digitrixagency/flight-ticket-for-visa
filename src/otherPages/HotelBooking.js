@@ -9,10 +9,12 @@ import { faTimes, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { width } from "@fortawesome/free-brands-svg-icons/fa42Group";
 import axios from "axios";
 import swal from "sweetalert";
-
+import { useTranslation } from "react-i18next";
 import airportsJsonData from "../jsonData/airports.json";
 
 const FlightReservation = () => {
+  const { t, i18n } = useTranslation(); // Get current language from i18n
+
   const hiddenInputRef = useRef(null); // Create a ref for the hidden input
 
   const [errors, setErrors] = useState({});
@@ -459,7 +461,6 @@ const FlightReservation = () => {
     }
   };
 
-
   const [isReadMore, setIsReadMore] = useState(true);
 
   const toggleReadMore = () => {
@@ -631,13 +632,13 @@ const FlightReservation = () => {
           <div className="container w-75 mb-4">
             <div className="row">
               <div className="col-lg-12 col-md-12 col-sm-12">
-                <h1>Instant Hotel Booking for Visa and Travel</h1>
+                <h1>{t("bookingPages.Hotel-Booking.mainHead")}</h1>
               </div>
               <div className="col-lg-12 col-md-12 col-sm-12">
                 <p>
                   {isReadMore
-                    ? "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and  ..."
-                    : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."}
+                    ? `${t("bookingPages.Hotel-Booking.viewContent")}`
+                    : `${t("bookingPages.Hotel-Booking.allContent")}`}
                   <span
                     onClick={toggleReadMore}
                     style={{
@@ -646,7 +647,11 @@ const FlightReservation = () => {
                       marginLeft: "5px",
                     }}
                   >
-                    {isReadMore ? "Read More" : "Show Less"}
+                    {isReadMore
+                      ? `${t("bookingPages.Flight&Hotel-Reservation.readMore")}`
+                      : `${t(
+                          "bookingPages.Flight&Hotel-Reservation.showLess"
+                        )}`}
                   </span>
                 </p>
               </div>
@@ -654,13 +659,16 @@ const FlightReservation = () => {
           </div>
 
           <div className="container w-75">
-            <h2 id="frH2">Traveler Information</h2>
+            <h2 id="frH2">
+              {t("bookingPages.Flight&Hotel-Reservation.TravelerInformation")}
+            </h2>
             <form onSubmit={handleSubmit}>
               <div className="row">
                 <div className="col-lg-4 col-md-4 col-sm-12">
                   <div className="mb-3">
                     <label htmlFor="noOfTravelers" className="form-label">
-                      No. Of Travelers <span>*</span>
+                      {t("bookingPages.Flight&Hotel-Reservation.noOfTravelers")}
+                      <span>*</span>
                     </label>
                     <select
                       id="noOfTravelers"
@@ -670,37 +678,37 @@ const FlightReservation = () => {
                       required
                     >
                       <option selected disabled>
-                        —Please choose an option—
+                        {t("bookingPages.Hotel-Booking.noOfTravelersOP1")}
                       </option>
                       <option value="1" price="15">
-                        1 Traveler($15)
+                        {t("bookingPages.Hotel-Booking.noOfTravelersOP2")}
                       </option>
                       <option value="2" price="25">
-                        2 Travelers($25)
+                        {t("bookingPages.Hotel-Booking.noOfTravelersOP3")}
                       </option>
                       <option value="3" price="35">
-                        3 Travelers($35)
+                        {t("bookingPages.Hotel-Booking.noOfTravelersOP4")}
                       </option>
                       <option value="4" price="45">
-                        4 Travelers($45)
+                        {t("bookingPages.Hotel-Booking.noOfTravelersOP5")}
                       </option>
                       <option value="5" price="55">
-                        5 Travelers($55)
+                        {t("bookingPages.Hotel-Booking.noOfTravelersOP6")}
                       </option>
                       <option value="6" price="65">
-                        6 Travelers($65)
+                        {t("bookingPages.Hotel-Booking.noOfTravelersOP7")}
                       </option>
                       <option value="7" price="75">
-                        7 Travelers($75)
+                        {t("bookingPages.Hotel-Booking.noOfTravelersOP8")}
                       </option>
                       <option value="8" price="85">
-                        8 Travelers($85)
+                        {t("bookingPages.Hotel-Booking.noOfTravelersOP9")}
                       </option>
                       <option value="9" price="95">
-                        9 Travelers($95)
+                        {t("bookingPages.Hotel-Booking.noOfTravelersOP10")}
                       </option>
                       <option value="10" price="105">
-                        10 Travelers($105)
+                        {t("bookingPages.Hotel-Booking.noOfTravelersOP11")}
                       </option>
                     </select>
                   </div>
@@ -708,14 +716,17 @@ const FlightReservation = () => {
                 <div className="col-lg-4 col-md-4 col-sm-12">
                   <div className="mb-3">
                     <label htmlFor="travelerEmail" className="form-label">
-                      Email address <span>*</span>
+                      {t("bookingPages.Flight&Hotel-Reservation.emailaddress")}
+                      <span>*</span>
                     </label>
                     <input
                       type="email"
                       className="form-control"
                       id="travelerEmail"
                       name="travelerEmail"
-                      placeholder="example@mail.com"
+                      placeholder={t(
+                        "bookingPages.Flight&Hotel-Reservation.emailaddressPH"
+                      )}
                       required
                       onChange={handleChange}
                     />
@@ -724,14 +735,17 @@ const FlightReservation = () => {
                 <div className="col-lg-4 col-md-4 col-sm-12">
                   <div className="mb-3">
                     <label htmlFor="travelerNo" className="form-label">
-                      Phone No. <span>*</span>
+                      {t("bookingPages.Flight&Hotel-Reservation.phoneNo")}
+                      <span>*</span>
                     </label>
                     <input
                       type="tel"
                       className="form-control"
                       id="travelerNo"
                       name="travelerNo"
-                      placeholder="123-4567-8901"
+                      placeholder={t(
+                        "bookingPages.Flight&Hotel-Reservation.phoneNoPH"
+                      )}
                       onChange={handleChange}
                       required
                     />
@@ -746,7 +760,8 @@ const FlightReservation = () => {
                           htmlFor={`travelTitle${index + 1}`}
                           className="form-label"
                         >
-                          Title <span>*</span>
+                          {t("bookingPages.Flight&Hotel-Reservation.title")}
+                          <span>*</span>
                         </label>
                         <select
                           id={`travelTitle${index + 1}`}
@@ -756,12 +771,30 @@ const FlightReservation = () => {
                           required
                         >
                           <option value="" selected disabled>
-                            —Please choose an option—
+                            {t(
+                              "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP1"
+                            )}
                           </option>
-                          <option value="Mr.">Mr.</option>
-                          <option value="Mrs.">Mrs.</option>
-                          <option value="Miss.">Miss.</option>
-                          <option value="Other">Other</option>
+                          <option value="Mr.">
+                            {t(
+                              "bookingPages.Flight&Hotel-Reservation.titleOp1"
+                            )}
+                          </option>
+                          <option value="Mrs.">
+                            {t(
+                              "bookingPages.Flight&Hotel-Reservation.titleOp2"
+                            )}
+                          </option>
+                          <option value="Miss.">
+                            {t(
+                              "bookingPages.Flight&Hotel-Reservation.titleOp3"
+                            )}
+                          </option>
+                          <option value="Other">
+                            {t(
+                              "bookingPages.Flight&Hotel-Reservation.titleOp4"
+                            )}
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -771,14 +804,21 @@ const FlightReservation = () => {
                           htmlFor={`travelerFirstName${index + 1}`}
                           className="form-label"
                         >
-                          Traveler {index + 1} First Name <span>*</span>
+                          {t(
+                            `bookingPages.Flight&Hotel-Reservation.firstName${
+                              index + 1
+                            }`
+                          )}
+                          <span>*</span>
                         </label>
                         <input
                           type="text"
                           className="form-control"
                           id={`travelerFirstName${index + 1}`}
                           name={`travelerFirstName${index}`}
-                          placeholder="First name"
+                          placeholder={t(
+                            "bookingPages.Flight&Hotel-Reservation.firstNamePH"
+                          )}
                           required
                           onChange={handleChange}
                         />
@@ -790,14 +830,21 @@ const FlightReservation = () => {
                           htmlFor={`travelerLastName${index + 1}`}
                           className="form-label"
                         >
-                          Traveler {index + 1} Last Name <span>*</span>
+                          {t(
+                            `bookingPages.Flight&Hotel-Reservation.lastName${
+                              index + 1
+                            }`
+                          )}
+                          <span>*</span>
                         </label>
                         <input
                           type="text"
                           className="form-control"
                           id={`travelerLastName${index + 1}`}
                           name={`travelerLastName${index}`}
-                          placeholder="Last name"
+                          placeholder={t(
+                            "bookingPages.Flight&Hotel-Reservation.lastNamePH"
+                          )}
                           required
                           onChange={handleChange}
                         />
@@ -809,13 +856,15 @@ const FlightReservation = () => {
                 <div className="col-lg-12 col-md-12 col-sm-12">
                   <div id="radioBtnDiv">
                     <h5>
-                      NO. OF HOTELS <span>*</span>
+                      {t("bookingPages.Flight&Hotel-Reservation.noOfHotels")}
+                      <span>*</span>
                     </h5>
 
                     <div className="form-check" style={formCheckStyle}>
                       <label htmlFor="onOfHotels" className="form-label">
-                        (Maximum 4 hotels free in 1 trip, Will be charged $8 for
-                        each additional hotels.)
+                        {t(
+                          "bookingPages.Flight&Hotel-Reservation.noteForHotels"
+                        )}
                       </label>
                       <select
                         id="onOfHotels"
@@ -825,20 +874,40 @@ const FlightReservation = () => {
                         onChange={handlecalculationOnOfHotels2}
                       >
                         <option selected disabled>
-                          —Please choose an option—
+                          {t(
+                            "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP1"
+                          )}
                         </option>
-                        <option value="1-4 Hotels/Free">1-4 Hotels/Free</option>
-                        <option value="5th Hotel($8/Hotel)" price="8">
-                          5th Hotel($8/Hotel)
+                        <option
+                          value={t(
+                            "bookingPages.Flight&Hotel-Reservation.1To4"
+                          )}
+                        >
+                          {t("bookingPages.Flight&Hotel-Reservation.1To4")}
                         </option>
-                        <option value="6th Hotel($8/Hotel)" price="16">
-                          6th Hotel($8/Hotel)
+                        <option
+                          value={t("bookingPages.Flight&Hotel-Reservation.5TH")}
+                          price="8"
+                        >
+                          {t("bookingPages.Flight&Hotel-Reservation.5TH")}
                         </option>
-                        <option value="7th Hotel($8/Hotel)" price="24">
-                          7th Hotel($8/Hotel)
+                        <option
+                          value={t("bookingPages.Flight&Hotel-Reservation.6TH")}
+                          price="16"
+                        >
+                          {t("bookingPages.Flight&Hotel-Reservation.6TH")}
                         </option>
-                        <option value="8th Hotel($8/Hotel)" price="32">
-                          8th Hotel($8/Hotel)
+                        <option
+                          value={t("bookingPages.Flight&Hotel-Reservation.7TH")}
+                          price="24"
+                        >
+                          {t("bookingPages.Flight&Hotel-Reservation.7TH")}
+                        </option>
+                        <option
+                          value={t("bookingPages.Flight&Hotel-Reservation.8Th")}
+                          price="32"
+                        >
+                          {t("bookingPages.Flight&Hotel-Reservation.8Th")}
                         </option>
                       </select>
                     </div>
@@ -850,7 +919,10 @@ const FlightReservation = () => {
                       htmlFor="travelerFlightDetails"
                       className="form-label"
                     >
-                      Travelers Hotel Details <span>*</span>
+                      {t(
+                        "bookingPages.Flight&Hotel-Reservation.travelersHotelDetails"
+                      )}
+                      <span>*</span>
                     </label>
                   </div>
                 </div>
@@ -863,14 +935,18 @@ const FlightReservation = () => {
                           htmlFor="destinationOrHotelName"
                           className="form-label"
                         >
-                          Where do you want to stay?
+                          {t(
+                            "bookingPages.Flight&Hotel-Reservation.whereToStay"
+                          )}
                         </label>
                         <input
                           type="text"
                           className="form-control"
                           id="destinationOrHotelName"
                           name="destinationOrHotelName"
-                          placeholder="Enter destination or hotel name"
+                          placeholder={t(
+                            "bookingPages.Flight&Hotel-Reservation.whereToStayPH"
+                          )}
                           value={cityName}
                           onChange={handleCityNameChange}
                           onFocus={() => setShowSuggestions(true)} // Show suggestions on focus
@@ -892,14 +968,18 @@ const FlightReservation = () => {
 
                       {showSuggestions && hotels.length === 0 && (
                         <div className="dropdown-suggestions">
-                          <div className="dropdown-item">No hotels found</div>
+                          <div className="dropdown-item">
+                            {t(
+                              "bookingPages.Flight&Hotel-Reservation.nohotelsFound"
+                            )}
+                          </div>
                         </div>
                       )}
                     </div>
                     <div id="CheckInDiv">
                       <div className="mb-3 inputDiv">
                         <label htmlFor="CheckIn" className="form-label">
-                          Check-in
+                          {t("bookingPages.Flight&Hotel-Reservation.checkIn")}
                         </label>
                         <input
                           type={inputType}
@@ -909,14 +989,16 @@ const FlightReservation = () => {
                           className="form-control"
                           id="CheckIn"
                           name="CheckIn"
-                          placeholder="Add date"
+                          placeholder={t(
+                            "bookingPages.Flight&Hotel-Reservation.returnPH"
+                          )}
                         />
                       </div>
                     </div>
                     <div id="CheckOutDiv">
                       <div className="mb-3 inputDiv">
                         <label htmlFor="CheckOut" className="form-label">
-                          Check-out
+                          {t("bookingPages.Flight&Hotel-Reservation.checkOut")}
                         </label>
                         <input
                           type={inputType}
@@ -926,21 +1008,27 @@ const FlightReservation = () => {
                           className="form-control"
                           id="CheckOut"
                           name="CheckOut"
-                          placeholder="Add date"
+                          placeholder={t(
+                            "bookingPages.Flight&Hotel-Reservation.returnPH"
+                          )}
                         />
                       </div>
                     </div>
                     <div id="guestsNRoomDiv">
                       <div className="mb-3 inputDiv">
                         <label htmlFor="guestsNRoom" className="form-label">
-                          Travelers and Cabin
+                          {t(
+                            "bookingPages.Flight&Hotel-Reservation.guestsNRooms"
+                          )}
                         </label>
                         <input
                           type="text"
                           className="form-control"
                           id="guestsNRoom"
                           name="guestsNRoom"
-                          placeholder="2 Adult, 1 room"
+                          placeholder={t(
+                            "bookingPages.Flight&Hotel-Reservation.travelersNCabinPH"
+                          )}
                           onChange={handleChange}
                         />
                       </div>
@@ -951,7 +1039,10 @@ const FlightReservation = () => {
                 <div className="col-lg-7 col-md-7 col-sm-12">
                   <div id="additionalPreferencesDiv">
                     <p className="me-2">
-                      Have You Any Additional Hotel Preferences/Details?:
+                      {t(
+                        "bookingPages.Flight&Hotel-Reservation.additionalPreferencesH"
+                      )}
+                      :
                     </p>
                     <div className="form-check ms-2">
                       <input
@@ -964,7 +1055,7 @@ const FlightReservation = () => {
                         onChange={handleChange}
                       />
                       <label className="form-check-label" htmlFor="ap1">
-                        Yes
+                        {t("bookingPages.Flight&Hotel-Reservation.Yes")}
                       </label>
                     </div>
                     <div className="form-check ms-2">
@@ -978,7 +1069,7 @@ const FlightReservation = () => {
                         onChange={handleChange}
                       />
                       <label className="form-check-label" htmlFor="ap2">
-                        No
+                        {t("bookingPages.Flight&Hotel-Reservation.No")}
                       </label>
                     </div>
                   </div>
@@ -988,7 +1079,12 @@ const FlightReservation = () => {
                 {showHideVal === "yes" && (
                   <div className="col-lg-12 col-md-12 col-sm-12">
                     <p>
-                      <label>Additional Hotel Detail:</label>
+                      <label>
+                        {t(
+                          "bookingPages.Flight&Hotel-Reservation.additionalHotelDetail"
+                        )}
+                        :
+                      </label>
                       <textarea
                         cols="40"
                         rows="5"
@@ -996,18 +1092,22 @@ const FlightReservation = () => {
                         maxlength="2000"
                         class="form-control"
                         onChange={handleChange}
-                        placeholder="Please mention your special instructions for your hotel here, we are trying to make it accordingly to your details."
+                        placeholder={t(
+                          "bookingPages.Flight&Hotel-Reservation.additionalHotelDetailPH"
+                        )}
                       ></textarea>
                     </p>
                   </div>
                 )}
               </div>
-              <h2>General Details</h2>
+              <h2>
+                {t("bookingPages.Flight&Hotel-Reservation.generalDetails")}
+              </h2>
               <div className="row">
                 <div className="col-lg-6 col-md-6 col-sm-12">
                   <div className="mb-3">
                     <label htmlFor="hearAboutUs" className="form-label">
-                      How Did You Hear About Us?
+                      {t("bookingPages.Flight&Hotel-Reservation.hearAboutUs")}
                     </label>
                     <select
                       id="hearAboutUs"
@@ -1016,16 +1116,48 @@ const FlightReservation = () => {
                       onChange={handleChange}
                     >
                       <option selected disabled>
-                        —Please choose an option—
+                        {t(
+                          "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP1"
+                        )}
                       </option>
-                      <option value="Search Engine (Google)">
-                        Search Engine (Google)
+                      <option
+                        value={t(
+                          "bookingPages.Flight&Hotel-Reservation.searchEngineGoogle"
+                        )}
+                      >
+                        {t(
+                          "bookingPages.Flight&Hotel-Reservation.searchEngineGoogle"
+                        )}
                       </option>
-                      <option value="Facebook">Facebook</option>
-                      <option value="Blog Articles">Blog Articles</option>
-                      <option value="Quora">Quora</option>
-                      <option value="Friend &amp; Family">
-                        Friend &amp; Family
+                      <option
+                        value={t(
+                          "bookingPages.Flight&Hotel-Reservation.facebook"
+                        )}
+                      >
+                        {t("bookingPages.Flight&Hotel-Reservation.facebook")}
+                      </option>
+                      <option
+                        value={t(
+                          "bookingPages.Flight&Hotel-Reservation.blogArticles"
+                        )}
+                      >
+                        {t(
+                          "bookingPages.Flight&Hotel-Reservation.blogArticles"
+                        )}
+                      </option>
+                      <option
+                        value={t("bookingPages.Flight&Hotel-Reservation.quora")}
+                      >
+                        {t("bookingPages.Flight&Hotel-Reservation.quora")}
+                      </option>
+                      <option
+                        value={t(
+                          "bookingPages.Flight&Hotel-Reservation.friendFamily"
+                        )}
+                      >
+                        {t(
+                          "bookingPages.Flight&Hotel-Reservation.friendFamily"
+                        )}
                       </option>
                     </select>
                   </div>
@@ -1033,14 +1165,16 @@ const FlightReservation = () => {
                 <div className="col-lg-6 col-md-6 col-sm-12">
                   <div className="mb-3">
                     <label htmlFor="consulateApplying" className="form-label">
-                      What Consulate Are You Applying At?
+                      {t("bookingPages.Flight&Hotel-Reservation.consulate")}
                     </label>
                     <input
                       type="text"
                       className="form-control"
                       id="consulateApplying"
                       name="consulateApplying"
-                      placeholder="Like: William@gmail.com"
+                      placeholder={t(
+                        "bookingPages.Flight&Hotel-Reservation.consulatePH"
+                      )}
                       onChange={handleChange}
                     />
                   </div>
@@ -1048,7 +1182,9 @@ const FlightReservation = () => {
                 <div className="col-lg-12 col-md-12 col-sm-12">
                   <div className="mb-3">
                     <label htmlFor="flightItinerary" className="form-label">
-                      When you might to get your flight itinerary?
+                      {t(
+                        "bookingPages.Flight&Hotel-Reservation.flightItinerary"
+                      )}
                     </label>
                     <select
                       id="flightItinerary"
@@ -1057,21 +1193,28 @@ const FlightReservation = () => {
                       onChange={handleSelectChange}
                     >
                       <option selected disabled>
-                        —Please choose an option—
+                        {t(
+                          "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP1"
+                        )}
                       </option>
-                      <option value="Get hotel reservation within 1-2 hours">
-                        Get hotel reservation within 1-2 hours
+                      <option value="Get both reservation within 1-2 hours">
+                        {t(
+                          "bookingPages.Flight&Hotel-Reservation.flightItineraryOP1"
+                        )}
                       </option>
-                      <option value="Get hotel reservation on different date (E.g. 2 days before visa interview)">
-                        Get hotel reservation on different date (E.g. 2 days
-                        before visa interview)
+                      <option value="Get both reservation on different date (E.g. 2 days before visa interview)">
+                        {t(
+                          "bookingPages.Flight&Hotel-Reservation.flightItineraryOP2"
+                        )}
                       </option>
                     </select>
                   </div>
                 </div>
                 {/* Conditionally render the div based on the selected option */}
                 {selectedOption1 ===
-                  "Get hotel reservation on different date (E.g. 2 days before visa interview)" && (
+                  `${t(
+                    "bookingPages.Flight&Hotel-Reservation.flightItineraryOP2"
+                  )}` && (
                   <>
                     <div className="col-lg-6 col-md-6 col-sm-12">
                       <div className="mb-3">
@@ -1079,7 +1222,10 @@ const FlightReservation = () => {
                           htmlFor="visaInterviewDate"
                           className="form-label"
                         >
-                          Visa Interview Date:
+                          {t(
+                            "bookingPages.Flight&Hotel-Reservation.visaInterviewDate"
+                          )}
+                          :
                         </label>
                         <input
                           type="date"
@@ -1093,9 +1239,9 @@ const FlightReservation = () => {
                     <div className="col-lg-6 col-md-6 col-sm-12">
                       <div className="mb-3">
                         <label htmlFor="timeZone" className="form-label">
-                          Visa Interview Time/ Time Zone
+                          {t("bookingPages.Flight&Hotel-Reservation.timeZone")}
                         </label>
-                        <select
+                        {/* <select
                           id="timeZone"
                           name="timeZone"
                           className="form-select"
@@ -1110,7 +1256,17 @@ const FlightReservation = () => {
                               {timezone.country}
                             </option>
                           ))}
-                        </select>
+                        </select> */}
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="timeZone"
+                          name="timeZone"
+                          onChange={handleChange}
+                          placeholder={t(
+                            "bookingPages.Flight&Hotel-Reservation.timeZonePH"
+                          )}
+                        />
                       </div>
                     </div>
                   </>
@@ -1118,12 +1274,17 @@ const FlightReservation = () => {
               </div>
 
               <div id="payNowMainDiv">
-                <h2 className="px-3 py-4">Order Summary</h2>
+                <h2 className="px-3 py-4">
+                  {t("bookingPages.Flight&Hotel-Reservation.orderSummary")}
+                </h2>
                 <div className="row px-3">
                   <div className="col-lg-12 col-md-12 col-sm-12 fitRow1">
                     <div id="flightItineraryTotalDiv">
                       <p id="flightItineraryTotalText">
-                        Flight Itinerary Total:
+                        {t(
+                          "bookingPages.Flight&Hotel-Reservation.flightItineraryTotal"
+                        )}
+                        :
                       </p>
                       <p id="flightItineraryTotal">
                         ${priceCalData2.flightItineraryTotalVal}
@@ -1141,65 +1302,172 @@ const FlightReservation = () => {
                   <div className="col-lg-7 col-md-7 col-sm-12">
                     <ul>
                       <li>
-                        <img src={tickImg} className="tickImg" />
-                        <span> 100% satisfaction guaranteed </span>
-                      </li>
-                      <li>
-                        <img src={tickImg} className="tickImg" />
-                        <span> Directly verifiable from airlines </span>
-                      </li>
-                      <li>
-                        <img src={tickImg} className="tickImg" />
-                        <span> 100% confirmed PNR or Reservation Number </span>
-                      </li>
-                      <li>
-                        <img src={tickImg} className="tickImg" />
+                        <img
+                          src={tickImg}
+                          className="tickImg"
+                          atl={t(
+                            "bookingPages.Flight&Hotel-Reservation.tickAtl"
+                          )}
+                        />
                         <span>
-                          Valid and confirmed flight Itinerary for visa
+                          {t("bookingPages.Flight&Hotel-Reservation.terms1")}
                         </span>
                       </li>
                       <li>
-                        <img src={tickImg} className="tickImg" />
-                        <span> Embassy or consulate recommended </span>
-                      </li>
-                      <li>
-                        <img src={tickImg} className="tickImg" />
-                        <span> Accept payments via debit/credit card </span>
-                      </li>
-                      <li>
-                        <img src={tickImg} className="tickImg" />
+                        <img
+                          src={tickImg}
+                          className="tickImg"
+                          atl={t(
+                            "bookingPages.Flight&Hotel-Reservation.tickAtl"
+                          )}
+                        />
                         <span>
-                          Secure Connection with SSL certificate + PCI Layers +
-                          SHA-2
+                          {t("bookingPages.Flight&Hotel-Reservation.terms2")}
                         </span>
                       </li>
                       <li>
-                        <img src={tickImg} className="tickImg" />
-                        <span> Upto 2 weeks validity </span>
+                        <img
+                          src={tickImg}
+                          className="tickImg"
+                          atl={t(
+                            "bookingPages.Flight&Hotel-Reservation.tickAtl"
+                          )}
+                        />
+                        <span>
+                          {t("bookingPages.Flight&Hotel-Reservation.terms3")}
+                        </span>
                       </li>
                       <li>
-                        <img src={tickImg} className="tickImg" />
-                        <span> Get best airline class booking </span>
+                        <img
+                          src={tickImg}
+                          className="tickImg"
+                          atl={t(
+                            "bookingPages.Flight&Hotel-Reservation.tickAtl"
+                          )}
+                        />
+                        <span>
+                          {t("bookingPages.Flight&Hotel-Reservation.terms4")}
+                        </span>
                       </li>
                       <li>
-                        <img src={tickImg} className="tickImg" />
-                        <span> 24/7 live support </span>
+                        <img
+                          src={tickImg}
+                          className="tickImg"
+                          atl={t(
+                            "bookingPages.Flight&Hotel-Reservation.tickAtl"
+                          )}
+                        />
+                        <span>
+                          {t("bookingPages.Flight&Hotel-Reservation.terms5")}
+                        </span>
                       </li>
                       <li>
-                        <img src={tickImg} className="tickImg" />
-                        <span> No charges for urgent delivery </span>
+                        <img
+                          src={tickImg}
+                          className="tickImg"
+                          atl={t(
+                            "bookingPages.Flight&Hotel-Reservation.tickAtl"
+                          )}
+                        />
+                        <span>
+                          {t("bookingPages.Flight&Hotel-Reservation.terms6")}
+                        </span>
                       </li>
                       <li>
-                        <img src={tickImg} className="tickImg" />
-                        <span> Happy customers feedback </span>
+                        <img
+                          src={tickImg}
+                          className="tickImg"
+                          atl={t(
+                            "bookingPages.Flight&Hotel-Reservation.tickAtl"
+                          )}
+                        />
+                        <span>
+                          {t("bookingPages.Flight&Hotel-Reservation.terms7")}
+                        </span>
                       </li>
                       <li>
-                        <img src={tickImg} className="tickImg" />
-                        <span> Global services provider </span>
+                        <img
+                          src={tickImg}
+                          className="tickImg"
+                          atl={t(
+                            "bookingPages.Flight&Hotel-Reservation.tickAtl"
+                          )}
+                        />
+                        <span>
+                          {t("bookingPages.Flight&Hotel-Reservation.terms8")}
+                        </span>
                       </li>
                       <li>
-                        <img src={tickImg} className="tickImg" />
-                        <span> Covers both visa and travel purposes </span>
+                        <img
+                          src={tickImg}
+                          className="tickImg"
+                          atl={t(
+                            "bookingPages.Flight&Hotel-Reservation.tickAtl"
+                          )}
+                        />
+                        <span>
+                          {t("bookingPages.Flight&Hotel-Reservation.terms9")}
+                        </span>
+                      </li>
+                      <li>
+                        <img
+                          src={tickImg}
+                          className="tickImg"
+                          atl={t(
+                            "bookingPages.Flight&Hotel-Reservation.tickAtl"
+                          )}
+                        />
+                        <span>
+                          {t("bookingPages.Flight&Hotel-Reservation.terms10")}
+                        </span>
+                      </li>
+                      <li>
+                        <img
+                          src={tickImg}
+                          className="tickImg"
+                          atl={t(
+                            "bookingPages.Flight&Hotel-Reservation.tickAtl"
+                          )}
+                        />
+                        <span>
+                          {t("bookingPages.Flight&Hotel-Reservation.terms11")}
+                        </span>
+                      </li>
+                      <li>
+                        <img
+                          src={tickImg}
+                          className="tickImg"
+                          atl={t(
+                            "bookingPages.Flight&Hotel-Reservation.tickAtl"
+                          )}
+                        />
+                        <span>
+                          {t("bookingPages.Flight&Hotel-Reservation.terms12")}
+                        </span>
+                      </li>
+                      <li>
+                        <img
+                          src={tickImg}
+                          className="tickImg"
+                          atl={t(
+                            "bookingPages.Flight&Hotel-Reservation.tickAtl"
+                          )}
+                        />
+                        <span>
+                          {t("bookingPages.Flight&Hotel-Reservation.terms13")}
+                        </span>
+                      </li>
+                      <li>
+                        <img
+                          src={tickImg}
+                          className="tickImg"
+                          atl={t(
+                            "bookingPages.Flight&Hotel-Reservation.tickAtl"
+                          )}
+                        />
+                        <span>
+                          {t("bookingPages.Flight&Hotel-Reservation.terms14")}
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -1219,15 +1487,16 @@ const FlightReservation = () => {
                   <div className="col-lg-12 col-md-12 col-sm-12 fitRow2">
                     <div id="payNowBtnDiv">
                       <button id="payNowBtn" type="submit">
-                        PAY NOW
+                        {t("bookingPages.Flight&Hotel-Reservation.payNow")}
                       </button>
                     </div>
                   </div>
                   <div className="col-lg-12 col-md-12 col-sm-12 ">
                     <div id="termNConditionDiv">
                       <p id="termNConditionText">
-                        You agree to our privacy policy and term & conditions
-                        after tapping pay now.
+                        {t(
+                          "bookingPages.Flight&Hotel-Reservation.termNConditions"
+                        )}
                       </p>
                       <img id="termNConditionImg" src={tncImg} />
                     </div>
