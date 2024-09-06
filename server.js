@@ -286,6 +286,9 @@ app.get("/success", async (req, res) => {
                       case "multipleCities":
                         valueVal = "Multiple Cities";
                         break;
+                      default:
+                        valueVal = value;
+                        break;
                     }
                     break;
 
