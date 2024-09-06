@@ -3,15 +3,16 @@ import { Modal, Button, Form, Spinner, Alert } from "react-bootstrap";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-
+import Swal from "sweetalert2";
+import { useAuth } from '../AuthContext'; // Import the useAuth hook
 const buttonStyle = {
-  backgroundColor: '#3059eb',
-  color: 'white',
-  border: 'none',
+  backgroundColor: "#3059eb",
+  color: "white",
+  border: "none",
 };
 
 const buttonLinkStyle = {
-  color: '#3059eb',
+  color: "#3059eb",
 };
 
 const LoginSignupModal = ({ show, handleClose }) => {
@@ -22,24 +23,46 @@ const LoginSignupModal = ({ show, handleClose }) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const { login } = useAuth(); // Use the login function from context
 
+  // Inside the handleSubmit function
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError("");
     try {
       if (isLogin) {
-        await axios.post("/api/login", { email, password });
+        const response = await axios.post("http://localhost:5000/api/login", { email, password });
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful",
+          text: "Welcome back!",
+        });
+        login(); // Set authentication state on successful login
       } else {
         if (password !== confirmPassword) {
-          setError("Passwords do not match");
-          setLoading(false);
+          // Show SweetAlert for password mismatch
+          Swal.fire({
+            icon: "error",
+            title: "Passwords do not match",
+            text: "Please ensure both passwords are the same.",
+          });
+          setLoading(false); // Stop loading spinner
           return;
         }
-        await axios.post("/api/signup", { email, password });
+        const response = await axios.post("http://localhost:5000/api/signup", { email, password });
+        Swal.fire({
+          icon: "success",
+          title: "Signup Successful",
+          text: "Your account has been created!",
+        });
       }
       handleClose(); // Close modal on success
     } catch (err) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: err.response?.data?.message || "An error occurred. Please try again.",
+      });
       setError("An error occurred");
     } finally {
       setLoading(false);
@@ -78,7 +101,13 @@ const LoginSignupModal = ({ show, handleClose }) => {
               />
               <Button
                 variant="link"
-                style={{ ...buttonLinkStyle, position: 'absolute', top: '50%', right: '0', transform: 'translateY(-50%)' }}
+                style={{
+                  ...buttonLinkStyle,
+                  position: "absolute",
+                  top: "50%",
+                  right: "0",
+                  transform: "translateY(-50%)",
+                }}
                 onClick={() => setShowPassword(!showPassword)}
               >
                 <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
@@ -104,7 +133,13 @@ const LoginSignupModal = ({ show, handleClose }) => {
             className="w-100 mb-3"
             disabled={loading}
           >
-            {loading ? <Spinner animation="border" size="sm" /> : (isLogin ? "Login" : "Sign Up")}
+            {loading ? (
+              <Spinner animation="border" size="sm" />
+            ) : isLogin ? (
+              "Login"
+            ) : (
+              "Sign Up"
+            )}
           </Button>
         </Form>
         <div className="d-flex justify-content-between">

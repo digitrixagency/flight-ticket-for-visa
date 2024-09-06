@@ -5,7 +5,8 @@
     "ContactUsBtn": "Contact Us",
     "AboutUsBtn": "About Us",
     "TestTicketBtn": "Get Dummy Ticket",
-    "SignUpNLoginBtn": "Sign Up / Login"
+    "SignUpNLoginBtn": "Sign Up / Login",
+    "LogoutBtn": "Logout"
   },
   "home": {
     "Tile1": "Get Verifiable Flight and Hotel Reservations",

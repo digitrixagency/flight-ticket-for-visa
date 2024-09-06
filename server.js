@@ -6,9 +6,19 @@ const nodemailer = require("nodemailer");
 const paypal = require("paypal-rest-sdk");
 const axios = require("axios");
 require("dotenv").config(); // Use dotenv to load environment variables
-
+const session = require('express-session');
 const app = express();
 const port = 5000;
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+app.use(
+  session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 // Middleware
 app.use(bodyParser.json());
@@ -757,6 +767,85 @@ function sendMail2Fun(userName, dataTitle, email) {
     }
   });
 }
+
+
+
+// User Schema
+const userSchema = new mongoose.Schema({
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  lastLoggedIn: { type: Date, default: null } // Default to null or a valid Date
+  // Other fields...
+});
+
+
+const User = mongoose.model('User', userSchema);
+
+// Signup Route
+app.post('/api/signup', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Check if user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: 'User already exists' });
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 12);
+
+    // Create new user
+    const newUser = new User({
+      email,
+      password: hashedPassword,
+    });
+
+    await newUser.save();
+    res.status(201).json({ message: 'User created successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Login Route
+app.post('/api/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Check if user exists
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
+
+    // Check password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
+
+    // Update last login time
+    user.lastLoggedIn = new Date(); // Ensure a valid Date object
+    await user.save();
+
+    // Create JWT
+    const token = jwt.sign({ userId: user._id }, 'your_jwt_secret', { expiresIn: '1h' });
+
+    res.json({ token });
+  } catch (error) {
+    console.error("Error during login:", error); // Log error for debugging
+    res.status(500).json({ message: 'Server error, please try again later.' });
+  }
+});
+
+
+
+// Catch-all 404 route
+app.use((req, res, next) => {
+  res.status(404).send('404 Not Found');
+});
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

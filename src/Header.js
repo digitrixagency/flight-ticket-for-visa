@@ -19,8 +19,12 @@ import {
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useTranslation } from "react-i18next";
 import LoginSignupModal from "./otherPages/LoginSignupModal";
+import { useAuth } from "./AuthContext";
+import { Button } from "react-bootstrap";
 
 const Header = () => {
+  const { isAuthenticated, logout } = useAuth();
+  // console.log(isAuthenticated);
   const [showModal, setShowModal] = useState(false);
 
   const handleShow = () => setShowModal(true);
@@ -144,13 +148,15 @@ const Header = () => {
               </a>
 
               <LanguageSwitcher />
-              <button
-                class="sign-up-button"
+              <Button
+                className="sign-up-button"
                 variant="primary"
-                onClick={handleShow}
+                onClick={isAuthenticated ? logout : handleShow} // Use logout if authenticated, else show modal
               >
-                {t("header.SignUpNLoginBtn")}
-              </button>
+                {isAuthenticated
+                  ? t("header.LogoutBtn")
+                  : t("header.SignUpNLoginBtn")}
+              </Button>
             </div>
             <div className="smallMenuDiv">
               <button className="btn text-white" id="menuButton">

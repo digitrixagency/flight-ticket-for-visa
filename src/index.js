@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+// src/index.js
+import React,{useEffect} from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import './index.css';
@@ -8,6 +9,7 @@ import FlightReservationPage from './routePages/FlightReservationPage';
 import HotelBookingPage from './routePages/HotelBookingPage';
 import FlightNHotelReservationPage from './routePages/FlightNHotelReservationPage';
 import { useTranslation } from 'react-i18next';
+import { AuthProvider } from './AuthContext'; // Import AuthProvider
 
 const AppRoutes = () => {
   const { i18n } = useTranslation();
@@ -47,7 +49,9 @@ const AppRoutes = () => {
 
 const App = () => (
   <Router>
-    <AppRoutes />
+    <AuthProvider>
+      <AppRoutes />
+    </AuthProvider>
   </Router>
 );
 
