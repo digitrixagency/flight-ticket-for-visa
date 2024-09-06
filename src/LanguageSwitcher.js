@@ -21,7 +21,7 @@ const LanguageSwitcher = () => {
         className="language-dropdown"
       >
         <option value="en">English</option>
-        <option value="hi">Hindi</option>
+        <option value="hi">हिन्दी</option>
       </select>
     </div>
   );
