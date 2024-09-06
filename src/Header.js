@@ -17,14 +17,21 @@ import {
   faTicket,
 } from "@fortawesome/free-solid-svg-icons";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
+import LoginSignupModal from "./otherPages/LoginSignupModal";
+
 const Header = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleShow = () => setShowModal(true);
+  const handleClose = () => setShowModal(false);
 
   // const { i18n } = useTranslation(); // Get current language from i18n
   // const currentLanguage = i18n.language || 'en'; // Default to 'en' if language is not set
 
-  const { t,i18n } = useTranslation();
-  const currentLanguage = i18n.language || localStorage.getItem('language') || 'en'; // Fallback to localStorage if i18n.language is not set
+  const { t, i18n } = useTranslation();
+  const currentLanguage =
+    i18n.language || localStorage.getItem("language") || "en"; // Fallback to localStorage if i18n.language is not set
   useEffect(() => {
     // Attach event handler for menuButton
     $("#menuButton").on("click", function () {
@@ -50,6 +57,7 @@ const Header = () => {
   }, []); // Empty dependency array means this effect runs only once
 
   return (
+    <>
     <div className="container-fluid navbarDiv">
       <div className="container px-5">
         <nav className="d-flex justify-content-evenly">
@@ -133,7 +141,9 @@ const Header = () => {
             </a>
 
             <LanguageSwitcher />
-            <button class="sign-up-button">{t("header.SignUpNLoginBtn")}</button>
+            <button class="sign-up-button" variant="primary" onClick={handleShow}>
+              {t("header.SignUpNLoginBtn")}
+            </button>
           </div>
           <div className="smallMenuDiv">
             <button className="btn text-white" id="menuButton">
@@ -146,6 +156,10 @@ const Header = () => {
         </nav>
       </div>
     </div>
+
+    <LoginSignupModal show={showModal} handleClose={handleClose} />
+
+    </>
   );
 };
 

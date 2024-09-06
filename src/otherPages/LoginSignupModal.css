@@ -1,0 +1,40 @@
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.top-50 {
+  top: 50%;
+}
+
+.end-0 {
+  right: 0;
+}
+
+.translate-middle-y {
+  transform: translateY(-50%);
+}
+
+/* Custom styles for buttons */
+.btn-primary {
+  background-color: #3059eb !important;
+  color: white !important;
+  border: none; /* Removes default border if needed */
+}
+
+.btn-primary:hover {
+  background-color: #0048c8; /* Slightly darker shade on hover */
+}
+
+.btn-link {
+  color: #3059eb; /* Link color matching the button background */
+}
+
+.btn-link:hover {
+  color: #0048c8; /* Darker shade on hover */
+}
+
+/* Custom styles for the modal and other elements can be added here */
