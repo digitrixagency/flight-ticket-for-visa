@@ -225,26 +225,29 @@ app.get("/success", async (req, res) => {
             titleVal = "Hotel Reservation";
           }
 
-
           const filteredData = Object.entries(formData).reduce(
             (acc, [key, value]) => {
-              if (key !== "dataFor" && typeof value === "string" && value.trim() !== "") {
+              if (
+                key !== "dataFor" &&
+                typeof value === "string" &&
+                value.trim() !== ""
+              ) {
                 let keyVal = key;
                 let valueVal = value;
-                
+
                 if (valueVal !== "") {
                   acc["Payment-Id"] = paymentId;
                   acc["Payer-ID"] = PayerID;
                 }
-          
+
                 if (key.startsWith("travelTitle")) {
                   const index = key.replace("travelTitle", "");
                   const firstNameKey = `travelerFirstName${index}`;
                   const lastNameKey = `travelerLastName${index}`;
-          
+
                   const firstName = req.body[firstNameKey] || "";
                   const lastName = req.body[lastNameKey] || "";
-          
+
                   const travelerLabelMap = {
                     0: "First Traveler Name",
                     1: "Second Traveler Name",
@@ -257,19 +260,19 @@ app.get("/success", async (req, res) => {
                     8: "Ninth Traveler Name",
                     9: "Tenth Traveler Name",
                   };
-          
+
                   keyVal =
                     travelerLabelMap[index] ||
                     `Traveler Name - ${parseInt(index, 10) + 1}`;
-          
+
                   valueVal = `${value} ${firstName} ${lastName}`.trim();
-          
+
                   if (valueVal !== "") {
                     acc[keyVal] = valueVal;
                   }
                   return acc;
                 }
-          
+
                 switch (key) {
                   case "tripType":
                     keyVal = "Trip";
@@ -285,7 +288,7 @@ app.get("/success", async (req, res) => {
                         break;
                     }
                     break;
-          
+
                   case "fromInput":
                     keyVal = "From";
                     break;
@@ -505,8 +508,11 @@ app.get("/success", async (req, res) => {
                   case "onOfHotels":
                     keyVal = "Number of Hotels";
                     break;
+                  default:
+                    keyVal = key;
+                    break;
                 }
-          
+
                 if (valueVal !== "") {
                   acc[keyVal] = valueVal;
                 }
@@ -515,7 +521,6 @@ app.get("/success", async (req, res) => {
             },
             {}
           );
-          
 
           sendMailFun({ userdata: filteredData });
           sendMail2Fun(
