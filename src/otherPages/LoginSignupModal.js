@@ -63,7 +63,7 @@ const LoginSignupModal = ({ show, handleClose }) => {
         title: "Oops...",
         text: err.response?.data?.message || "An error occurred. Please try again.",
       });
-      setError("An error occurred");
+      // setError("An error occurred");
     } finally {
       setLoading(false);
     }
