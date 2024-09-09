@@ -1536,10 +1536,9 @@
     font-size: 14px;
   }
 
-  .cardBG >.card-body {
+  .cardBG > .card-body {
     height: 282px;
   }
-
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -1732,7 +1731,6 @@
   .cardBG > .card-body {
     height: 335px;
   }
-
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
@@ -1776,6 +1774,7 @@
   }
   .otImg {
     left: 31%;
+    top: 19%;
   }
 
   .w-75 {
@@ -1807,7 +1806,7 @@
 
   .cardBG > .card-body {
     height: 290px;
-  }  
+  }
   .card-body {
     height: auto;
     border-radius: 20px 0px 0px 0px;
@@ -1845,5 +1844,4 @@
   .cardBG > .card-body {
     height: 300px;
   }
-
 }

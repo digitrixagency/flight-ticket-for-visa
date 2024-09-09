@@ -8,6 +8,8 @@ import HomePage from './routePages/HomePage';
 import FlightReservationPage from './routePages/FlightReservationPage';
 import HotelBookingPage from './routePages/HotelBookingPage';
 import FlightNHotelReservationPage from './routePages/FlightNHotelReservationPage';
+import ResetPasswordPage from './otherPages/ResetPasswordPage';
+import ResetPassword from './otherPages/ResetPassword';
 import { useTranslation } from 'react-i18next';
 import { AuthProvider } from './AuthContext'; // Import AuthProvider
 
@@ -43,6 +45,8 @@ const AppRoutes = () => {
       <Route path="/:lng/Flight-Reservation" element={<FlightReservationPage />} />
       <Route path="/:lng/Hotel-Booking" element={<HotelBookingPage />} />
       <Route path="/:lng/Flight+Hotel-Reservation" element={<FlightNHotelReservationPage />} />
+      <Route path="/:lng/Forgot-Password" element={<ResetPasswordPage />} />
+      <Route path="/:lng/Reset-password/:token" element={<ResetPassword />} />
     </Routes>
   );
 };

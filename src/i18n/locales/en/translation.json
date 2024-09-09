@@ -360,5 +360,18 @@
       "termNConditions": "You agree to our privacy policy and term & conditions after tapping pay now.",
       "tickAtl": "Tick GIF"
     }
+  },
+  "loginNSignUp" :{
+    "title1" : "Login",
+    "title2" : "Sign Up",
+    "label1" : "Email address",
+    "placeHolder1" : "Enter email",
+    "label2" : "Password",
+    "placeHolder2" : "Password",
+    "label3" : "Confirm Password",
+    "placeHolder3" : "Confirm Password",
+    "forgotPassBtn" : "Forgot Password?",
+    "signUpBtn" : "Need an account? Sign Up",
+    "LoginBtn" : "Already have an account? Login"
   }
 }

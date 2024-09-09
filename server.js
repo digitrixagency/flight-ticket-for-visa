@@ -6,15 +6,16 @@ const nodemailer = require("nodemailer");
 const paypal = require("paypal-rest-sdk");
 const axios = require("axios");
 require("dotenv").config(); // Use dotenv to load environment variables
-const session = require('express-session');
+const session = require("express-session");
 const app = express();
 const port = 5000;
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
+const moment = require("moment");
 app.use(
   session({
-    secret: 'your-secret-key',
+    secret: "your-secret-key",
     resave: false,
     saveUninitialized: false,
   })
@@ -768,28 +769,27 @@ function sendMail2Fun(userName, dataTitle, email) {
   });
 }
 
-
-
 // User Schema
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  lastLoggedIn: { type: Date, default: null } // Default to null or a valid Date
+  lastLoggedIn: { type: Date, default: null },
+  resetPasswordToken: { type: String, default: null }, // Token for password reset
+  resetPasswordExpires: { type: Date, default: null }, // Expiration time for the token
   // Other fields...
 });
 
-
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 
 // Signup Route
-app.post('/api/signup', async (req, res) => {
+app.post("/api/signup", async (req, res) => {
   const { email, password } = req.body;
 
   try {
     // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ message: 'User already exists' });
+      return res.status(400).json({ message: "User already exists" });
     }
 
     // Hash password
@@ -802,27 +802,28 @@ app.post('/api/signup', async (req, res) => {
     });
 
     await newUser.save();
-    res.status(201).json({ message: 'User created successfully' });
+    res.status(201).json({ message: "User created successfully" });
   } catch (error) {
-    res.status(500).json({ message: 'Server error' });
+    console.log(error);
+    res.status(500).json({ message: "Server error" });
   }
 });
 
 // Login Route
-app.post('/api/login', async (req, res) => {
+app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
     // Check if user exists
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: 'Invalid credentials' });
+      return res.status(400).json({ message: "Invalid credentials" });
     }
 
     // Check password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: 'Invalid credentials' });
+      return res.status(400).json({ message: "Invalid credentials" });
     }
 
     // Update last login time
@@ -830,22 +831,98 @@ app.post('/api/login', async (req, res) => {
     await user.save();
 
     // Create JWT
-    const token = jwt.sign({ userId: user._id }, 'your_jwt_secret', { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user._id }, "your_jwt_secret", {
+      expiresIn: "1h",
+    });
 
     res.json({ token });
   } catch (error) {
     console.error("Error during login:", error); // Log error for debugging
-    res.status(500).json({ message: 'Server error, please try again later.' });
+    res.status(500).json({ message: "Server error, please try again later." });
   }
 });
 
+// Inside your /send-reset-password-email route
+app.post("/send-reset-password-email", async (req, res) => {
+  const { email, language } = req.body; // Assume `language` is passed in the request body
 
+  try {
+    // Check if the email exists in the database
+    const user = await User.findOne({ email });
+    // const user = await User.findOne({ email });
+
+    if (!user) {
+      console.log("User Not found:", user);
+      return res
+        .status(400)
+        .send({ message: "No account found with that email address." });
+    }
+
+    // Generate a reset token
+    const resetToken = crypto.randomBytes(32).toString("hex");
+    const resetTokenExpiration = moment().add(10, "minutes").toDate(); // Token expires in 10 minutes
+
+    console.log("resetToken:", resetToken);
+    console.log("resetTokenExpiration:", resetTokenExpiration);
+    // Store the token and expiration time in the user's database record
+    user.resetPasswordToken = resetToken; // Ensure a valid Date object
+    user.resetPasswordExpires = resetTokenExpiration; // Ensure a valid Date object
+    await user.save();
+
+    // Dynamically build the reset link based on selected language
+    const resetLink = `http://192.168.0.161:3000/${language}/Reset-password/${resetToken}`;
+
+    let mailOptions = {
+      from: "prashant.digitrix@gmail.com",
+      to: email,
+      subject: "Password Reset Request",
+      text: `Please click the link below to reset your password. The link is valid for 10 minutes.`,
+      html: `<p>Please click the link below to reset your password. The link is valid for 10 minutes:</p><a href="${resetLink}">Reset Password</a>`,
+    };
+
+    await transporter.sendMail(mailOptions);
+    res.status(200).send({ message: "Email sent successfully!" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: "Failed to send email" });
+  }
+});
+
+// Inside your /reset-password route
+app.post("/reset-password", async (req, res) => {
+  const { token, newPassword } = req.body;
+
+  try {
+    // Find the user with the provided token
+    const user = await User.findOne({
+      resetPasswordToken: token,
+      resetPasswordExpires: { $gt: Date.now() }, // Ensure the token has not expired
+    });
+
+    // console.log(user);
+
+    if (!user) {
+      return res.status(400).send({ message: "Invalid or expired token" });
+    }
+
+    // Update the user's password
+    const hashedPassword = await bcrypt.hash(newPassword, 12);
+    user.password = hashedPassword; // Ensure you hash the password before saving
+    user.resetPasswordToken = undefined; // Clear the reset token
+    user.resetPasswordExpires = undefined; // Clear the token expiration time
+    await user.save();
+
+    res.status(200).send({ message: "Password reset successfully!" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: "Failed to reset password" });
+  }
+});
 
 // Catch-all 404 route
 app.use((req, res, next) => {
-  res.status(404).send('404 Not Found');
+  res.status(404).send("404 Not Found");
 });
-
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
