@@ -235,6 +235,18 @@ const FlightNHotelReservation = () => {
     dataFor: "FlightNHotelReservation",
   });
 
+  const authVal = JSON.parse(localStorage.getItem("isAuthenticated"));
+  const userMail = localStorage.getItem("userMail").trim(); // trim to remove any leading or trailing whitespace
+
+  useEffect(() => {
+    if (authVal === true && userMail !== "") {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        UserMail: userMail,
+      }));
+    }
+  }, [authVal, userMail]); // Add authVal and userMail as dependencies
+
   const handleChange = (event) => {
     setFormData({
       ...formData,
@@ -344,8 +356,7 @@ const FlightNHotelReservation = () => {
 
         if (approvalUrl) {
           // Open the PayPal approval page in a new window
-          window.open(approvalUrl.href, "_blank", "noopener,noreferrer");
-          // window.location.href = approvalUrl.href;
+          window.location.href = approvalUrl.href;
         } else {
           swal({
             title: "Error",
@@ -1329,52 +1340,52 @@ const FlightNHotelReservation = () => {
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP1"
                         )}
                       </option>
-                      <option value="1" price="1">
+                      <option value="1" price="24">
                         {t(
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP2"
                         )}
                       </option>
-                      <option value="2" price="2">
+                      <option value="2" price="40">
                         {t(
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP3"
                         )}
                       </option>
-                      <option value="3" price="3">
+                      <option value="3" price="56">
                         {t(
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP4"
                         )}
                       </option>
-                      <option value="4" price="4">
+                      <option value="4" price="72">
                         {t(
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP5"
                         )}
                       </option>
-                      <option value="5" price="5">
+                      <option value="5" price="88">
                         {t(
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP6"
                         )}
                       </option>
-                      <option value="6" price="6">
+                      <option value="6" price="104">
                         {t(
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP7"
                         )}
                       </option>
-                      <option value="7" price="7">
+                      <option value="7" price="120">
                         {t(
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP8"
                         )}
                       </option>
-                      <option value="8" price="8">
+                      <option value="8" price="136">
                         {t(
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP9"
                         )}
                       </option>
-                      <option value="9" price="9">
+                      <option value="9" price="152">
                         {t(
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP10"
                         )}
                       </option>
-                      <option value="10" price="10">
+                      <option value="10" price="168">
                         {t(
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP11"
                         )}
@@ -2177,14 +2188,16 @@ const FlightNHotelReservation = () => {
                   <div className="col-lg-12 col-md-12 col-sm-12 fitRow2">
                     <div id="payNowBtnDiv">
                       <button id="payNowBtn" type="submit">
-                      {t("bookingPages.Flight&Hotel-Reservation.payNow")}
+                        {t("bookingPages.Flight&Hotel-Reservation.payNow")}
                       </button>
                     </div>
                   </div>
                   <div className="col-lg-12 col-md-12 col-sm-12 ">
                     <div id="termNConditionDiv">
                       <p id="termNConditionText">
-                      {t("bookingPages.Flight&Hotel-Reservation.termNConditions")}
+                        {t(
+                          "bookingPages.Flight&Hotel-Reservation.termNConditions"
+                        )}
                       </p>
                       <img id="termNConditionImg" src={tncImg} />
                     </div>

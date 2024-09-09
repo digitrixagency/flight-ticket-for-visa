@@ -32,7 +32,7 @@ const LoginSignupModal = ({ show, handleClose }) => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const { login } = useAuth(); // Use the login function from context
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   // Inside the handleSubmit function
   const handleSubmit = async (e) => {
@@ -54,7 +54,7 @@ const LoginSignupModal = ({ show, handleClose }) => {
             title: "Login Successful",
             text: "Welcome back!",
           });
-          login(); // Set authentication state on successful login
+          login(email); // Set authentication state on successful login
         } else {
           // Handle unexpected response status
           Swal.fire({

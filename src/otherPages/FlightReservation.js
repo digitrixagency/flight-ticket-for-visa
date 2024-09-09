@@ -299,6 +299,17 @@ const FlightReservation = () => {
   const [formData, setFormData] = useState({
     dataFor: "flightReservation",
   });
+  const authVal = JSON.parse(localStorage.getItem("isAuthenticated"));
+  const userMail = localStorage.getItem("userMail").trim(); // trim to remove any leading or trailing whitespace
+
+  useEffect(() => {
+    if (authVal === true && userMail !== "") {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        UserMail: userMail,
+      }));
+    }
+  }, [authVal, userMail]); // Add authVal and userMail as dependencies
 
   const handleChange = (event) => {
     setFormData({

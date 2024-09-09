@@ -16,9 +16,10 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const login = () => {
+  const login = (userMail) => {
     setIsAuthenticated(true);
     localStorage.setItem('isAuthenticated', 'true');
+    localStorage.setItem('userMail', userMail);
   };
 
   const logout = () => {
@@ -30,6 +31,7 @@ export const AuthProvider = ({ children }) => {
     }).then(() => {
       setIsAuthenticated(false);
       localStorage.removeItem('isAuthenticated');
+      localStorage.removeItem('userMail');
     });
   };
 

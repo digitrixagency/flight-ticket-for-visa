@@ -126,6 +126,7 @@ const formDataSchema = new mongoose.Schema({
   destinationOrHotelName: String,
   guestsNRoom: String,
   onOfHotels: String,
+  UserMail: String,
 });
 
 const FormData = mongoose.model("flightNHotelData", formDataSchema);

@@ -3,10 +3,12 @@ import ForgotPassword from "./ForgotPassword";
 import CheckEmail from "./CheckEmail";
 import ResetPassword from "./ResetPassword";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 const ForgotPasswordFlow = () => {
   const { i18n } = useTranslation();
   const [step, setStep] = useState(1);
-  const [email, setEmail] = useState("");
+  const [email] = useState("");
+  const navigate = useNavigate();
 
   const handleSend = () => {
     setStep(2);
@@ -14,10 +16,12 @@ const ForgotPasswordFlow = () => {
 
   const handleReset = () => {
     setStep(3);
+    navigate(-1); // Go back one step in history
   };
-
+  
   const handleCancel = () => {
     setStep(1);
+    navigate(-1); // Go back one step in history
   };
 
   return (
