@@ -928,7 +928,7 @@ const FlightReservation = () => {
                 <div className="col-lg-6 col-md-6 col-sm-12">
                   <div className="mb-3">
                     <label
-                      htmlFor="travelerFlightDetails"
+                      htmlFor="destinationOrHotelName"
                       className="form-label"
                     >
                       {t(

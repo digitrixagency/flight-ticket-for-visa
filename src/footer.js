@@ -368,7 +368,7 @@ const Footer = ({ hideDiv }) => {
               </div>
               <div className="col-7 fixedHeightDetail">
                 <div className="detailDiv mb-3">
-                  <details className="detailTab  py-2 px-3" open="true">
+                  <details className="detailTab  py-2 px-3" open={true}>
                     <summary className="summaryInDetail">
                       <p className="m-0">{t("FAQ.question1")}</p>
                     </summary>
