@@ -373,5 +373,26 @@
     "forgotPassBtn" : "Forgot Password?",
     "signUpBtn" : "Need an account? Sign Up",
     "LoginBtn" : "Already have an account? Login"
+  },
+  "forgotPassword" : {
+    "title" : "Forgot Password?",
+    "subTitle" : "Enter the email address associated with your account.",
+    "label" : "Email",
+    "placeHolder" : "Enter Email Address",
+    "Cancel" : "Cancel",
+    "Next" : "Next"
+  },
+  "checkEmail" : {
+    "title" : "Check your email",
+    "subTitle" : "We've sent password recovery instructions to ",
+    "openMail" : "Open Mail"
+  },
+  "resetPassword" : {
+    "title" : "Reset Password",
+    "newPassword" : "New Password",
+    "confirmPassword" : "Confirm Password",
+    "passwordsNotMatch" : "Passwords do not match",
+    "Cancel" : "Cancel",
+    "Next" : "Next"
   }
 }

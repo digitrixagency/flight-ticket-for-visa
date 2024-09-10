@@ -774,7 +774,7 @@ const FlightNHotelReservation = () => {
       console.error("Error sending email:", error);
     }
   };
-  const { t, i18n } = useTranslation(); // Get current language from i18n
+  const { t } = useTranslation(); // Get current language from i18n
 
   return (
     <>

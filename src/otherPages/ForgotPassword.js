@@ -3,7 +3,11 @@ import "./ForgotPassword.css";
 import axios from "axios";
 import Swal from "sweetalert2";
 import fpBgImg from "../images/fpBgImg.png";
+import { useTranslation } from "react-i18next";
+
 const ForgotPassword = ({ onCancel, onSend, language }) => {
+  const { t, i18n } = useTranslation(); // Get current language from i18n
+
   const [email, setEmail] = useState("");
 
   const handleSubmit = async (e) => {
@@ -25,7 +29,8 @@ const ForgotPassword = ({ onCancel, onSend, language }) => {
           onSend(email);
         });
       } else {
-        const errorMessage = response.data?.message || "Failed to send reset password email.";
+        const errorMessage =
+          response.data?.message || "Failed to send reset password email.";
         Swal.fire({
           title: "Error!",
           text: errorMessage,
@@ -54,24 +59,24 @@ const ForgotPassword = ({ onCancel, onSend, language }) => {
     <div className="forgot-password-container">
       <img src={fpBgImg} alt="Forgot Password" />
       <div className="forgot-password-content">
-        <h2>Forgot Password?</h2>
-        <p>Enter the email address associated with your account.</p>
+        <h2>{t("forgotPassword.title")}</h2>
+        <p>{t("forgotPassword.subTitle")}</p>
 
         <form onSubmit={handleSubmit}>
-          <label>Email</label>
+          <label>{t("forgotPassword.label")}</label>
           <input
             type="email"
-            placeholder="Enter Email Address"
+            placeholder={t("forgotPassword.placeHolder")}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
           <div className="button-group">
             <button type="button" className="cancel-button" onClick={onCancel}>
-              Cancel
+            {t("forgotPassword.Cancel")}
             </button>
             <button type="submit" className="send-button">
-              Next
+            {t("forgotPassword.Next")}
             </button>
           </div>
         </form>
