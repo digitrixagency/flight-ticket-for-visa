@@ -7,11 +7,12 @@ import { useNavigate } from "react-router-dom";
 const ForgotPasswordFlow = () => {
   const { i18n } = useTranslation();
   const [step, setStep] = useState(1);
-  const [email] = useState("");
+  const [email , setEmail] = useState("");
   const navigate = useNavigate();
 
-  const handleSend = () => {
+  const handleSend = (email) => {
     setStep(2);
+    setEmail(email)
   };
 
   const handleReset = () => {

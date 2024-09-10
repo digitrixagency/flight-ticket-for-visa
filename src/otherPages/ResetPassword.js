@@ -6,7 +6,7 @@ import './ResetPassword.css';
 import fpBgImg from "../images/fpBgImg.png";
 
 
-const ResetPassword = () => {
+const ResetPassword = ({ onCancel, onSend, language }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
