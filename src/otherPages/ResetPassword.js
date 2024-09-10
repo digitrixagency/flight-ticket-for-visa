@@ -9,13 +9,13 @@ import fpBgImg from "../images/fpBgImg.png";
 const ResetPassword = ({ onCancel, onSend, language }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  // const [errorMessage, setErrorMessage] = useState('');
   const { token } = useParams();
   const navigate = useNavigate();
 
   const handleResetPassword = async () => {
     if (password !== confirmPassword) {
-      setErrorMessage("Passwords don't match");
+      // setErrorMessage("Passwords don't match");
       return;
     }
 

@@ -19,7 +19,6 @@ const FlightNHotelReservation = () => {
 
   const [multipleCities, setMultipleCities] = useState(0);
   const borderRAdArr1 = { borderRadius: "5px" };
-  const [errors, setErrors] = useState({});
 
   const [inputType, setInputType] = useState("text");
   const dateInputRef = useRef(null);
@@ -35,182 +34,182 @@ const FlightNHotelReservation = () => {
   };
 
   // Store the array of timezones in state
-  const [timezones] = useState([
-    {
-      timezone: "Pacific/Midway",
-      country: "United States",
-      gmt_offset: "-11:00",
-      local_time: "06:00 AM",
-    },
-    {
-      timezone: "Pacific/Honolulu",
-      country: "United States",
-      gmt_offset: "-10:00",
-      local_time: "07:00 AM",
-    },
-    {
-      timezone: "America/Anchorage",
-      country: "United States",
-      gmt_offset: "-09:00",
-      local_time: "08:00 AM",
-    },
-    {
-      timezone: "America/Los_Angeles",
-      country: "United States",
-      gmt_offset: "-08:00",
-      local_time: "09:00 AM",
-    },
-    {
-      timezone: "America/Denver",
-      country: "United States",
-      gmt_offset: "-07:00",
-      local_time: "10:00 AM",
-    },
-    {
-      timezone: "America/Chicago",
-      country: "United States",
-      gmt_offset: "-06:00",
-      local_time: "11:00 AM",
-    },
-    {
-      timezone: "America/New_York",
-      country: "United States",
-      gmt_offset: "-05:00",
-      local_time: "12:00 PM",
-    },
-    {
-      timezone: "America/Caracas",
-      country: "Venezuela",
-      gmt_offset: "-04:00",
-      local_time: "01:00 PM",
-    },
-    {
-      timezone: "America/Halifax",
-      country: "Canada",
-      gmt_offset: "-04:00",
-      local_time: "02:00 PM",
-    },
-    {
-      timezone: "America/St_Johns",
-      country: "Canada",
-      gmt_offset: "-03:30",
-      local_time: "02:30 PM",
-    },
-    {
-      timezone: "America/Sao_Paulo",
-      country: "Brazil",
-      gmt_offset: "-03:00",
-      local_time: "03:00 PM",
-    },
-    {
-      timezone: "Atlantic/South_Georgia",
-      country: "South Georgia and the South Sandwich Islands",
-      gmt_offset: "-02:00",
-      local_time: "04:00 PM",
-    },
-    {
-      timezone: "Atlantic/Azores",
-      country: "Portugal",
-      gmt_offset: "-01:00",
-      local_time: "05:00 PM",
-    },
-    {
-      timezone: "Europe/London",
-      country: "United Kingdom",
-      gmt_offset: "+00:00",
-      local_time: "06:00 PM",
-    },
-    {
-      timezone: "Europe/Berlin",
-      country: "Germany",
-      gmt_offset: "+01:00",
-      local_time: "07:00 PM",
-    },
-    {
-      timezone: "Europe/Athens",
-      country: "Greece",
-      gmt_offset: "+02:00",
-      local_time: "08:00 PM",
-    },
-    {
-      timezone: "Europe/Moscow",
-      country: "Russia",
-      gmt_offset: "+03:00",
-      local_time: "09:00 PM",
-    },
-    {
-      timezone: "Asia/Tehran",
-      country: "Iran",
-      gmt_offset: "+03:30",
-      local_time: "09:30 PM",
-    },
-    {
-      timezone: "Asia/Dubai",
-      country: "United Arab Emirates",
-      gmt_offset: "+04:00",
-      local_time: "10:00 PM",
-    },
-    {
-      timezone: "Asia/Kabul",
-      country: "Afghanistan",
-      gmt_offset: "+04:30",
-      local_time: "10:30 PM",
-    },
-    {
-      timezone: "Asia/Karachi",
-      country: "Pakistan",
-      gmt_offset: "+05:00",
-      local_time: "11:00 PM",
-    },
-    {
-      timezone: "Asia/Kolkata",
-      country: "India",
-      gmt_offset: "+05:30",
-      local_time: "11:30 PM",
-    },
-    {
-      timezone: "Asia/Dhaka",
-      country: "Bangladesh",
-      gmt_offset: "+06:00",
-      local_time: "12:00 AM",
-    },
-    {
-      timezone: "Asia/Bangkok",
-      country: "Thailand",
-      gmt_offset: "+07:00",
-      local_time: "01:00 AM",
-    },
-    {
-      timezone: "Asia/Shanghai",
-      country: "China",
-      gmt_offset: "+08:00",
-      local_time: "02:00 AM",
-    },
-    {
-      timezone: "Asia/Tokyo",
-      country: "Japan",
-      gmt_offset: "+09:00",
-      local_time: "03:00 AM",
-    },
-    {
-      timezone: "Australia/Sydney",
-      country: "Australia",
-      gmt_offset: "+10:00",
-      local_time: "04:00 AM",
-    },
-    {
-      timezone: "Pacific/Noumea",
-      country: "New Caledonia",
-      gmt_offset: "+11:00",
-      local_time: "05:00 AM",
-    },
-    {
-      timezone: "Pacific/Auckland",
-      country: "New Zealand",
-      gmt_offset: "+12:00",
-      local_time: "06:00 AM",
-    },
-  ]);
+  // const [timezones] = useState([
+  //   {
+  //     timezone: "Pacific/Midway",
+  //     country: "United States",
+  //     gmt_offset: "-11:00",
+  //     local_time: "06:00 AM",
+  //   },
+  //   {
+  //     timezone: "Pacific/Honolulu",
+  //     country: "United States",
+  //     gmt_offset: "-10:00",
+  //     local_time: "07:00 AM",
+  //   },
+  //   {
+  //     timezone: "America/Anchorage",
+  //     country: "United States",
+  //     gmt_offset: "-09:00",
+  //     local_time: "08:00 AM",
+  //   },
+  //   {
+  //     timezone: "America/Los_Angeles",
+  //     country: "United States",
+  //     gmt_offset: "-08:00",
+  //     local_time: "09:00 AM",
+  //   },
+  //   {
+  //     timezone: "America/Denver",
+  //     country: "United States",
+  //     gmt_offset: "-07:00",
+  //     local_time: "10:00 AM",
+  //   },
+  //   {
+  //     timezone: "America/Chicago",
+  //     country: "United States",
+  //     gmt_offset: "-06:00",
+  //     local_time: "11:00 AM",
+  //   },
+  //   {
+  //     timezone: "America/New_York",
+  //     country: "United States",
+  //     gmt_offset: "-05:00",
+  //     local_time: "12:00 PM",
+  //   },
+  //   {
+  //     timezone: "America/Caracas",
+  //     country: "Venezuela",
+  //     gmt_offset: "-04:00",
+  //     local_time: "01:00 PM",
+  //   },
+  //   {
+  //     timezone: "America/Halifax",
+  //     country: "Canada",
+  //     gmt_offset: "-04:00",
+  //     local_time: "02:00 PM",
+  //   },
+  //   {
+  //     timezone: "America/St_Johns",
+  //     country: "Canada",
+  //     gmt_offset: "-03:30",
+  //     local_time: "02:30 PM",
+  //   },
+  //   {
+  //     timezone: "America/Sao_Paulo",
+  //     country: "Brazil",
+  //     gmt_offset: "-03:00",
+  //     local_time: "03:00 PM",
+  //   },
+  //   {
+  //     timezone: "Atlantic/South_Georgia",
+  //     country: "South Georgia and the South Sandwich Islands",
+  //     gmt_offset: "-02:00",
+  //     local_time: "04:00 PM",
+  //   },
+  //   {
+  //     timezone: "Atlantic/Azores",
+  //     country: "Portugal",
+  //     gmt_offset: "-01:00",
+  //     local_time: "05:00 PM",
+  //   },
+  //   {
+  //     timezone: "Europe/London",
+  //     country: "United Kingdom",
+  //     gmt_offset: "+00:00",
+  //     local_time: "06:00 PM",
+  //   },
+  //   {
+  //     timezone: "Europe/Berlin",
+  //     country: "Germany",
+  //     gmt_offset: "+01:00",
+  //     local_time: "07:00 PM",
+  //   },
+  //   {
+  //     timezone: "Europe/Athens",
+  //     country: "Greece",
+  //     gmt_offset: "+02:00",
+  //     local_time: "08:00 PM",
+  //   },
+  //   {
+  //     timezone: "Europe/Moscow",
+  //     country: "Russia",
+  //     gmt_offset: "+03:00",
+  //     local_time: "09:00 PM",
+  //   },
+  //   {
+  //     timezone: "Asia/Tehran",
+  //     country: "Iran",
+  //     gmt_offset: "+03:30",
+  //     local_time: "09:30 PM",
+  //   },
+  //   {
+  //     timezone: "Asia/Dubai",
+  //     country: "United Arab Emirates",
+  //     gmt_offset: "+04:00",
+  //     local_time: "10:00 PM",
+  //   },
+  //   {
+  //     timezone: "Asia/Kabul",
+  //     country: "Afghanistan",
+  //     gmt_offset: "+04:30",
+  //     local_time: "10:30 PM",
+  //   },
+  //   {
+  //     timezone: "Asia/Karachi",
+  //     country: "Pakistan",
+  //     gmt_offset: "+05:00",
+  //     local_time: "11:00 PM",
+  //   },
+  //   {
+  //     timezone: "Asia/Kolkata",
+  //     country: "India",
+  //     gmt_offset: "+05:30",
+  //     local_time: "11:30 PM",
+  //   },
+  //   {
+  //     timezone: "Asia/Dhaka",
+  //     country: "Bangladesh",
+  //     gmt_offset: "+06:00",
+  //     local_time: "12:00 AM",
+  //   },
+  //   {
+  //     timezone: "Asia/Bangkok",
+  //     country: "Thailand",
+  //     gmt_offset: "+07:00",
+  //     local_time: "01:00 AM",
+  //   },
+  //   {
+  //     timezone: "Asia/Shanghai",
+  //     country: "China",
+  //     gmt_offset: "+08:00",
+  //     local_time: "02:00 AM",
+  //   },
+  //   {
+  //     timezone: "Asia/Tokyo",
+  //     country: "Japan",
+  //     gmt_offset: "+09:00",
+  //     local_time: "03:00 AM",
+  //   },
+  //   {
+  //     timezone: "Australia/Sydney",
+  //     country: "Australia",
+  //     gmt_offset: "+10:00",
+  //     local_time: "04:00 AM",
+  //   },
+  //   {
+  //     timezone: "Pacific/Noumea",
+  //     country: "New Caledonia",
+  //     gmt_offset: "+11:00",
+  //     local_time: "05:00 AM",
+  //   },
+  //   {
+  //     timezone: "Pacific/Auckland",
+  //     country: "New Zealand",
+  //     gmt_offset: "+12:00",
+  //     local_time: "06:00 AM",
+  //   },
+  // ]);
 
   // State to track the selected option
   const [selectedOption1, setSelectedOption1] = useState("");
@@ -252,73 +251,6 @@ const FlightNHotelReservation = () => {
       [event.target.name]: event.target.value,
     });
   };
-
-  const handleDropdownChangeNValueChange = (e) => {
-    handleChange(e);
-    handleDropdownChange(e);
-  };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     // Set MUID and transactionId
-
-  //     const mailData = {
-  //       userdata: formData,
-  //     };
-
-  //     const MUIDVal = "MUID" + Date.now();
-  //     const transIdVal = "TransId" + Date.now();
-  //     setFormData({
-  //       ...formData,
-  //       ["MUID"]: MUIDVal,
-  //       ["transactionId"]: transIdVal,
-  //       ["amount"]: hiddenInputRef.current.value,
-  //     });
-
-  //     // Step 1: Handle payment with your payment gateway
-  //     const paymentResponse = await axios.post(
-  //       "http://localhost:5000/api/process-payment",
-  //       {
-  //         amount: hiddenInputRef.current.value,
-  //         transactionId: transIdVal, // Ensure transaction ID is consistent
-  //         MUID: MUIDVal, // Ensure transaction ID is consistent
-  //       }
-  //     );
-
-  //     if (paymentResponse.data.success) {
-  //       // Step 2: If payment is successful, submit form data to the backend
-  //       const response = await axios.post(
-  //         "http://localhost:5000/api/submit-form",
-  //         formData
-  //       );
-  //       // alert(response.data); // Should show 'Form submitted successfully!'
-  //       swal({
-  //         title: "Payment success",
-  //         text: response.data,
-  //         icon: "success",
-  //         button: "Ok",
-  //       });
-  //       sendMailFun(mailData);
-  //     } else {
-  //       // Handle payment failure
-  //       swal({
-  //         title: paymentResponse.message,
-  //         text: "Please try again",
-  //         icon: "error",
-  //         button: "Ok",
-  //       });
-  //     }
-  //   } catch (error) {
-  //     // Handle errors during payment or form submission
-  //     swal({
-  //       title: `${error.message}`,
-  //       text: "Please try again",
-  //       icon: "error",
-  //       button: "Ok",
-  //     });
-  //   }
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
