@@ -5,7 +5,7 @@ import { faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from "react-i18next";
 
 const CheckEmail = ({ email }) => {
-  const { t, i18n } = useTranslation(); // Get current language from i18n
+  const { t } = useTranslation(); // Get current language from i18n
 
   return (
     <div className="check-email-container">
