@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useRef, useEffect } from "react";
 import secure from "../images/secureImg.png";
 import payment from "../images/paymentImg.png";
@@ -1316,7 +1317,7 @@ const FlightReservation = () => {
                         <img
                           src={tickImg}
                           className="tickImg"
-                          atl={t(
+                          alt={t(
                             "bookingPages.Flight&Hotel-Reservation.tickAtl"
                           )}
                         />
@@ -1328,7 +1329,7 @@ const FlightReservation = () => {
                         <img
                           src={tickImg}
                           className="tickImg"
-                          atl={t(
+                          alt={t(
                             "bookingPages.Flight&Hotel-Reservation.tickAtl"
                           )}
                         />
@@ -1340,7 +1341,7 @@ const FlightReservation = () => {
                         <img
                           src={tickImg}
                           className="tickImg"
-                          atl={t(
+                          alt={t(
                             "bookingPages.Flight&Hotel-Reservation.tickAtl"
                           )}
                         />
@@ -1352,7 +1353,7 @@ const FlightReservation = () => {
                         <img
                           src={tickImg}
                           className="tickImg"
-                          atl={t(
+                          alt={t(
                             "bookingPages.Flight&Hotel-Reservation.tickAtl"
                           )}
                         />
@@ -1364,7 +1365,7 @@ const FlightReservation = () => {
                         <img
                           src={tickImg}
                           className="tickImg"
-                          atl={t(
+                          alt={t(
                             "bookingPages.Flight&Hotel-Reservation.tickAtl"
                           )}
                         />
@@ -1376,7 +1377,7 @@ const FlightReservation = () => {
                         <img
                           src={tickImg}
                           className="tickImg"
-                          atl={t(
+                          alt={t(
                             "bookingPages.Flight&Hotel-Reservation.tickAtl"
                           )}
                         />
@@ -1388,7 +1389,7 @@ const FlightReservation = () => {
                         <img
                           src={tickImg}
                           className="tickImg"
-                          atl={t(
+                          alt={t(
                             "bookingPages.Flight&Hotel-Reservation.tickAtl"
                           )}
                         />
@@ -1400,7 +1401,7 @@ const FlightReservation = () => {
                         <img
                           src={tickImg}
                           className="tickImg"
-                          atl={t(
+                          alt={t(
                             "bookingPages.Flight&Hotel-Reservation.tickAtl"
                           )}
                         />
@@ -1412,7 +1413,7 @@ const FlightReservation = () => {
                         <img
                           src={tickImg}
                           className="tickImg"
-                          atl={t(
+                          alt={t(
                             "bookingPages.Flight&Hotel-Reservation.tickAtl"
                           )}
                         />
@@ -1424,7 +1425,7 @@ const FlightReservation = () => {
                         <img
                           src={tickImg}
                           className="tickImg"
-                          atl={t(
+                          alt={t(
                             "bookingPages.Flight&Hotel-Reservation.tickAtl"
                           )}
                         />
@@ -1436,7 +1437,7 @@ const FlightReservation = () => {
                         <img
                           src={tickImg}
                           className="tickImg"
-                          atl={t(
+                          alt={t(
                             "bookingPages.Flight&Hotel-Reservation.tickAtl"
                           )}
                         />
@@ -1448,7 +1449,7 @@ const FlightReservation = () => {
                         <img
                           src={tickImg}
                           className="tickImg"
-                          atl={t(
+                          alt={t(
                             "bookingPages.Flight&Hotel-Reservation.tickAtl"
                           )}
                         />
@@ -1460,7 +1461,7 @@ const FlightReservation = () => {
                         <img
                           src={tickImg}
                           className="tickImg"
-                          atl={t(
+                          alt={t(
                             "bookingPages.Flight&Hotel-Reservation.tickAtl"
                           )}
                         />
@@ -1472,7 +1473,7 @@ const FlightReservation = () => {
                         <img
                           src={tickImg}
                           className="tickImg"
-                          atl={t(
+                          alt={t(
                             "bookingPages.Flight&Hotel-Reservation.tickAtl"
                           )}
                         />
@@ -1485,13 +1486,13 @@ const FlightReservation = () => {
                   <div className="col-lg-5 col-md-5 col-sm-12">
                     <div className="row">
                       <div className="col-lg-6 col-md-6 col-sm-1">
-                        <img src={secure} id="secureImg" />
+                        <img src={secure} id="secureImg" alt={t("secure")}/>
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-1">
-                        <img src={pci} id="pciImg" />
+                        <img src={pci} id="pciImg" alt={t("pci")}/>
                       </div>
                       <div className="col-lg-12 col-md-12 col-sm-12 paymentImgDiv">
-                        <img src={payment} id="paymentImg" />
+                        <img src={payment} id="paymentImg" alt={t("payment")}/>
                       </div>
                     </div>
                   </div>
@@ -1509,7 +1510,7 @@ const FlightReservation = () => {
                           "bookingPages.Flight&Hotel-Reservation.termNConditions"
                         )}
                       </p>
-                      <img id="termNConditionImg" src={tncImg} />
+                      <img id="termNConditionImg" src={tncImg} alt={t("TermsNCondition")}/>
                     </div>
                   </div>
                 </div>

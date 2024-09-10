@@ -394,5 +394,9 @@
     "passwordsNotMatch" : "Passwords do not match",
     "Cancel" : "Cancel",
     "Next" : "Next"
-  }
+  },
+  "TermsNCondition": "Terms & Condition",
+  "secure": "Secure",
+  "pci": "PCI",
+  "payment": "Payment"
 }
