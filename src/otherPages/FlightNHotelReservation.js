@@ -235,18 +235,17 @@ const FlightNHotelReservation = () => {
     dataFor: "FlightNHotelReservation",
   });
 
-  const authVal = JSON.parse(localStorage.getItem("isAuthenticated"));
-  const userMail = localStorage.getItem("userMail").trim(); // trim to remove any leading or trailing whitespace
-
   useEffect(() => {
-    if (authVal === true && userMail !== "") {
+    const authVal = JSON.parse(localStorage.getItem("isAuthenticated"));
+    const userMail = localStorage.getItem("userMail");
+
+    if (authVal === true && userMail && userMail.trim() !== "") {
       setFormData((prevFormData) => ({
         ...prevFormData,
-        UserMail: userMail,
+        UserMail: userMail.trim(),
       }));
     }
-  }, [authVal, userMail]); // Add authVal and userMail as dependencies
-
+  }, []);
   const handleChange = (event) => {
     setFormData({
       ...formData,
