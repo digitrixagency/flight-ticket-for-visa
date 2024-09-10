@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import Swal from 'sweetalert2'; // Import SweetAlert2
-import './ResetPassword.css'; // Ensure correct import
+import Swal from 'sweetalert2';
+import './ResetPassword.css';
+import fpBgImg from "../images/fpBgImg.png";
+
 
 const ResetPassword = () => {
   const [password, setPassword] = useState('');
@@ -30,7 +32,7 @@ const ResetPassword = () => {
           icon: 'success',
           confirmButtonText: 'OK'
         }).then(() => {
-          navigate('/'); // Redirect to login page
+          navigate('/');
         });
       } else {
         Swal.fire({
@@ -53,32 +55,43 @@ const ResetPassword = () => {
 
   return (
     <div className="reset-password-container">
-      <h2>Reset Your Password</h2>
-      <form>
-        <input
-          type="password"
-          placeholder="New Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-        {password && confirmPassword && password !== confirmPassword && (
-          <p className="password-matching">Passwords do not match</p>
-        )}
-        <div className="button-group">
-          <button className="cancel-button" type="button" onClick={() => navigate('/')}>
-            Cancel
-          </button>
-          <button className="reset-button" type="button" onClick={handleResetPassword}>
-            Reset Password
-          </button>
-        </div>
-      </form>
+      {/* Illustration section */}
+      <div className="illustration-section">
+        <img src={fpBgImg} alt="Reset Password" />
+      </div>
+
+      {/* Form section */}
+      <div className="form-section">
+        <h2 className="reset-password-header">Reset Password</h2>
+
+        <form>
+          <input
+            className="reset-password-input"
+            type="password"
+            placeholder="New Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <input
+            className="reset-password-input"
+            type="password"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+          {password && confirmPassword && password !== confirmPassword && (
+            <p className="password-matching">Passwords do not match</p>
+          )}
+          <div className="button-group">
+            <button className="button-cancel" type="button" onClick={() => navigate('/')}>
+              Cancel
+            </button>
+            <button className="button-reset button-reset-password" type="button" onClick={handleResetPassword}>
+              Next
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

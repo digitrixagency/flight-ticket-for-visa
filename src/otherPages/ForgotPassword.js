@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./ForgotPassword.css";
 import axios from "axios";
 import Swal from "sweetalert2";
-import fpBgImg from "../images/fpBgImg.png"
+import fpBgImg from "../images/fpBgImg.png";
 const ForgotPassword = ({ onCancel, onSend, language }) => {
   const [email, setEmail] = useState("");
 
