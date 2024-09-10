@@ -1,5 +1,4 @@
-// src/index.js
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import './index.css';
@@ -60,4 +59,10 @@ const App = () => (
 );
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+
+// Wrapping the App in StrictMode
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
