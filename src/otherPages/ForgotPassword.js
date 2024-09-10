@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./ForgotPassword.css";
 import axios from "axios";
 import Swal from "sweetalert2";
-
+import fpBgImg from "../images/fpBgImg.png"
 const ForgotPassword = ({ onCancel, onSend, language }) => {
   const [email, setEmail] = useState("");
 
@@ -10,77 +10,72 @@ const ForgotPassword = ({ onCancel, onSend, language }) => {
     e.preventDefault();
 
     try {
-      // Make an API call to send the reset password email
       const response = await axios.post(
         "http://localhost:5000/send-reset-password-email",
-        {
-          email: email, // Email state value
-          language: language // Language state value
-        }
+        { email, language }
       );
 
       if (response.status === 200) {
-        // Success: Show SweetAlert2 success message
         Swal.fire({
-          title: 'Success!',
-          text: 'A reset password email has been sent.',
-          icon: 'success',
-          confirmButtonText: 'OK'
+          title: "Success!",
+          text: "A reset password email has been sent.",
+          icon: "success",
+          confirmButtonText: "OK",
         }).then(() => {
-          onSend();
+          onSend(email);
         });
       } else {
-        // Failure: Show SweetAlert2 error message with response data if available
-        const errorMessage = response.data?.message || 'Failed to send reset password email.';
+        const errorMessage = response.data?.message || "Failed to send reset password email.";
         Swal.fire({
-          title: 'Error!',
+          title: "Error!",
           text: errorMessage,
-          icon: 'error',
-          confirmButtonText: 'OK'
+          icon: "error",
+          confirmButtonText: "OK",
         });
       }
     } catch (error) {
-      // Error: Show SweetAlert2 error message with detailed error information
-      let errorMessage = 'An error occurred while sending the email.';
-
-      // Check if error has a response from the server
-      if (error.response && error.response.data && error.response.data.message) {
+      let errorMessage = "An error occurred while sending the email.";
+      if (error.response?.data?.message) {
         errorMessage = error.response.data.message;
       } else if (error.message) {
         errorMessage = error.message;
       }
 
       Swal.fire({
-        title: 'Error!',
+        title: "Error!",
         text: errorMessage,
-        icon: 'error',
-        confirmButtonText: 'OK'
+        icon: "error",
+        confirmButtonText: "OK",
       });
     }
   };
 
   return (
     <div className="forgot-password-container">
-      <h2>Forgot password?</h2>
-      {/* <p>No worries, we'll send you reset instructions.</p> */}
-      <form onSubmit={handleSubmit}>
-        <label>Email</label>
-        <input
-          type="email"
-          placeholder="name@example.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <div className="button-group">
-          <button type="button" className="cancel-button" onClick={onCancel}>
-            Cancel
-          </button>
-          <button type="submit" className="send-button">
-            Send
-          </button>
-        </div>
-      </form>
+      <img src={fpBgImg} alt="Forgot Password" />
+      <div className="forgot-password-content">
+        <h2>Forgot Password?</h2>
+        <p>Enter the email address associated with your account.</p>
+
+        <form onSubmit={handleSubmit}>
+          <label>Email</label>
+          <input
+            type="email"
+            placeholder="Enter Email Address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <div className="button-group">
+            <button type="button" className="cancel-button" onClick={onCancel}>
+              Cancel
+            </button>
+            <button type="submit" className="send-button">
+              Next
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
