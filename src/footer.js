@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import FAQ from "./images/FAQ.png";
 import { FaCheckCircle } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
-
+import PropTypes from "prop-types";
 const Footer = ({ hideDiv }) => {
   const { t, i18n } = useTranslation(); // Get current language from i18n
   const navigate = useNavigate();
@@ -36,18 +36,23 @@ const Footer = ({ hideDiv }) => {
             <div className="container footerFoot">
               <div className="text-center mb-5">
                 <h1 className="plansHeader">{t("plans.mainHead")}</h1>
-                <p className="plansSubHeader">
-                {t("plans.subHead")}
-                </p>
+                <p className="plansSubHeader">{t("plans.subHead")}</p>
               </div>
               <div className="d-flex justify-content-center">
                 <div className="col-4 plansBG p-0 mx-3" id="mainDiv1">
                   <div className="text-start px-4 py-3 plansBG2" id="subDiv1">
-                    <p className="planTitle">{t("plans.flightReservation.title")}</p>
-                    <p className="planPrice">
-                      <span className="planAmount">{t("plans.flightReservation.amount")}</span>/ {t("plans.flightReservation.for")}
+                    <p className="planTitle">
+                      {t("plans.flightReservation.title")}
                     </p>
-                    <p className="planText">{t("plans.flightReservation.package")}</p>
+                    <p className="planPrice">
+                      <span className="planAmount">
+                        {t("plans.flightReservation.amount")}
+                      </span>
+                      / {t("plans.flightReservation.for")}
+                    </p>
+                    <p className="planText">
+                      {t("plans.flightReservation.package")}
+                    </p>
                     <hr className="oneLine" />
                     <ul className="PlanList ps-0">
                       <li>
@@ -155,11 +160,18 @@ const Footer = ({ hideDiv }) => {
                     className="text-start px-4 py-3 plansBG2 plansBorderImp"
                     id="subDiv2"
                   >
-                    <p className="planTitle">{t("plans.flightNHotelReservation.title")}</p>
-                    <p className="planPrice">
-                      <span className="planAmount">{t("plans.flightNHotelReservation.amount")}</span>/ {t("plans.flightNHotelReservation.for")}
+                    <p className="planTitle">
+                      {t("plans.flightNHotelReservation.title")}
                     </p>
-                    <p className="planText">{t("plans.flightNHotelReservation.package")}</p>
+                    <p className="planPrice">
+                      <span className="planAmount">
+                        {t("plans.flightNHotelReservation.amount")}
+                      </span>
+                      / {t("plans.flightNHotelReservation.for")}
+                    </p>
+                    <p className="planText">
+                      {t("plans.flightNHotelReservation.package")}
+                    </p>
                     <hr className="oneLine" />
                     <ul className="PlanList ps-0">
                       <li>
@@ -247,11 +259,18 @@ const Footer = ({ hideDiv }) => {
                 </div>
                 <div className="col-4 plansBG p-0 mx-3" id="mainDiv3">
                   <div className="text-start px-4 py-3 plansBG2" id="subDiv3">
-                    <p className="planTitle">{t("plans.hotelReservation.title")}</p>
-                    <p className="planPrice">
-                      <span className="planAmount">{t("plans.hotelReservation.amount")}</span>/ {t("plans.hotelReservation.for")}
+                    <p className="planTitle">
+                      {t("plans.hotelReservation.title")}
                     </p>
-                    <p className="planText">{t("plans.hotelReservation.package")}</p>
+                    <p className="planPrice">
+                      <span className="planAmount">
+                        {t("plans.hotelReservation.amount")}
+                      </span>
+                      / {t("plans.hotelReservation.for")}
+                    </p>
+                    <p className="planText">
+                      {t("plans.hotelReservation.package")}
+                    </p>
                     <hr className="oneLine" />
                     <ul className="PlanList ps-0">
                       <li>
@@ -525,9 +544,7 @@ const Footer = ({ hideDiv }) => {
                 <div>
                   {/* <img src={logo} className='logoImg'/> */}
                   <p className="logoImg">LOGO</p>
-                  <p className="textUL">
-                    {t("footer.mainTitle")}
-                  </p>
+                  <p className="textUL">{t("footer.mainTitle")}</p>
                 </div>
               </div>
               <div className="col-7">
@@ -601,6 +618,10 @@ const Footer = ({ hideDiv }) => {
       {/* footer section end  */}
     </>
   );
+};
+
+Footer.propTypes = {
+  hideDiv: PropTypes.bool.isRequired, // Adjust the type as needed
 };
 
 export default Footer;
