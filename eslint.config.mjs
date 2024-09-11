@@ -1,6 +1,7 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
 import pluginReact from "eslint-plugin-react";
+import pluginUnusedImports from "eslint-plugin-unused-imports";
 
 export default [
   {
@@ -20,11 +21,14 @@ export default [
     },
     plugins: {
       react: pluginReact,
+      "unused-imports": pluginUnusedImports,
     },
     rules: {
       ...pluginJs.configs.recommended.rules,
       ...pluginReact.configs.flat.recommended.rules,
-      // Custom rules or overrides can be added here
+      // Custom rules or overrides
+      "unused-imports/no-unused-imports": "error",
+      "unused-imports/no-unused-vars": ["error", { "vars": "all", "args": "none" }],
     },
     settings: {
       react: {

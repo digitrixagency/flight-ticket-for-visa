@@ -557,29 +557,13 @@ const FlightNHotelReservation = () => {
   };
 
   const handleDropdownChange2 = (event) => {
-    const selectedOption = event.target.options[event.target.selectedIndex];
+    // const selectedOption = event.target.options[event.target.selectedIndex];
     const numberOfTravelers = parseInt(event.target.value, 10);
-    const travelerPrice = parseInt(
-      selectedOption.getAttribute("data-price"),
-      10
-    );
+    // const travelerPrice = parseInt(
+    //   selectedOption.getAttribute("data-price"),
+    //   10
+    // );
     setNumTravelers2(numberOfTravelers);
-  };
-
-  const [numTravelers, setNumTravelers] = useState(1);
-  const [price, setPrice] = useState(0);
-
-  const handleDropdownChange = (event) => {
-    const selectedOption = event.target.options[event.target.selectedIndex];
-    const numberOfTravelers = parseInt(event.target.value, 10);
-    const travelerPrice = parseInt(selectedOption.getAttribute("price"), 10);
-    setNumTravelers(numberOfTravelers);
-    if (price === 3) {
-      const newPrice = travelerPrice + 3;
-      setPrice(newPrice);
-    } else {
-      setPrice(travelerPrice);
-    }
   };
 
   const [selectedOption, setSelectedOption] = useState("");
@@ -589,7 +573,6 @@ const FlightNHotelReservation = () => {
 
   // Handle radio button change
   const handleRadioChange = (event) => {
-    const e = event;
     const value = event.target.value;
     setSelectedOption(value);
     if (value === "multipleCities") {
@@ -722,61 +705,7 @@ const FlightNHotelReservation = () => {
     setCityName(hotelName);
     setShowSuggestions(false); // Hide suggestions once a selection is made
   };
-  // Handle changes for input
-  const handle2FunctionForInput = (e) => {
-    handleChange(e); // Assuming handleChange is defined elsewhere
-    handleCityNameChange(e);
-  };
 
-  const sendMailFun = async (mailData) => {
-    const HBhtmlTemplate = `
-              <!DOCTYPE html>
-              <html>
-              <head>
-                  <style>
-                      body { font-family: Arial, sans-serif; }
-                      .container { width: 80%; margin: auto; padding: 20px; }
-                      .header { background-color: #f4f4f4; padding: 10px; text-align: center; }
-                      .content { margin: 20px 0; }
-                      .footer { font-size: 0.8em; color: #777; text-align: center; }
-                  </style>
-              </head>
-              <body>
-                  <div class="container">
-                      <div class="header">
-                          <h1>Reservation Received</h1>
-                      </div>
-                      <div class="content">
-                          <p>Dear ${mailData.userdata.travelerFirstName0},</p>
-                          <p>Thank you for your reservation request!</p>
-                          <p>We have received your reservation data and are currently processing it. Our team will review the information and get back to you within the next 48 hours.</p>
-                          <p>If you have any questions in the meantime, please do not hesitate to contact us.</p>
-                          <p>Thank you for choosing Flight & Hotel reservations.</p>
-                      </div>
-                      <div class="footer">
-                          <p>Best regards,<br>Flight & Hotel reservations<br>FlightHotelreservations@mail.com</p>
-                      </div>
-                  </div>
-              </body>
-              </html>
-              `;
-
-    const emailData = {
-      to: mailData.userdata.travelerEmail,
-      subject: "Reservation Received",
-      html: `${HBhtmlTemplate}`,
-    };
-
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/send-email",
-        emailData
-      );
-      console.log("Email sent successfully:", response.data);
-    } catch (error) {
-      console.error("Error sending email:", error);
-    }
-  };
   const { t } = useTranslation(); // Get current language from i18n
 
   return (

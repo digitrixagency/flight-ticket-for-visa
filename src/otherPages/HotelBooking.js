@@ -5,20 +5,15 @@ import payment from "../images/paymentImg.png";
 import pci from "../images/pciImg.png";
 import tncImg from "../images/terms&conditionImg.png";
 import tickImg from "../images/tickImg.gif";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { width } from "@fortawesome/free-brands-svg-icons/fa42Group";
 import axios from "axios";
 import swal from "sweetalert";
 import { useTranslation } from "react-i18next";
-import airportsJsonData from "../jsonData/airports.json";
 
 const FlightReservation = () => {
-  const { t, i18n } = useTranslation(); // Get current language from i18n
+  const { t } = useTranslation(); // Get current language from i18n
 
   const hiddenInputRef = useRef(null); // Create a ref for the hidden input
 
-  const [errors, setErrors] = useState({});
 
   const [inputType, setInputType] = useState("text");
   const dateInputRef = useRef(null);
@@ -114,12 +109,12 @@ const FlightReservation = () => {
   };
 
   const handleDropdownChange2 = (event) => {
-    const selectedOption = event.target.options[event.target.selectedIndex];
+    // const selectedOption = event.target.options[event.target.selectedIndex];
     const numberOfTravelers = parseInt(event.target.value, 10);
-    const travelerPrice = parseInt(
-      selectedOption.getAttribute("data-price"),
-      10
-    );
+    // const travelerPrice = parseInt(
+    //   selectedOption.getAttribute("data-price"),
+    //   10
+    // );
     setNumTravelers2(numberOfTravelers);
   };
 
@@ -338,66 +333,7 @@ const FlightReservation = () => {
     });
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     // Set MUID and transactionId
-  //     const mailData = {
-  //       userdata: formData,
-  //     };
-  //     const MUIDVal = "MUID" + Date.now();
-  //     const transIdVal = "TransId" + Date.now();
-  //     setFormData({
-  //       ...formData,
-  //       ["MUID"]: MUIDVal,
-  //       ["transactionId"]: transIdVal,
-  //       ["amount"]: hiddenInputRef.current.value,
-  //     });
-
-  //     // Step 1: Handle payment with your payment gateway
-  //     const paymentResponse = await axios.post(
-  //       "http://localhost:5000/api/process-payment",
-  //       {
-  //         amount: hiddenInputRef.current.value,
-  //         transactionId: transIdVal, // Ensure transaction ID is consistent
-  //         MUID: MUIDVal, // Ensure transaction ID is consistent
-  //       }
-  //     );
-
-  //     if (paymentResponse.data.success) {
-  //       // Step 2: If payment is successful, submit form data to the backend
-  //       const response = await axios.post(
-  //         "http://localhost:5000/api/submit-form",
-  //         formData
-  //       );
-  //       // alert(response.data); // Should show 'Form submitted successfully!'
-  //       swal({
-  //         title: "Payment success",
-  //         text: response.data,
-  //         icon: "success",
-  //         button: "Ok",
-  //       });
-  //       sendMailFun(mailData);
-  //     } else {
-  //       // Handle payment failure
-  //       swal({
-  //         title: paymentResponse.message,
-  //         text: "Please try again",
-  //         icon: "error",
-  //         button: "Ok",
-  //       });
-  //     }
-  //   } catch (error) {
-  //     // Handle errors during payment or form submission
-  //     swal({
-  //       title: `${error.message}`,
-  //       text: "Please try again",
-  //       icon: "error",
-  //       button: "Ok",
-  //     });
-  //   }
-  // };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -577,55 +513,6 @@ const FlightReservation = () => {
     setShowSuggestions(false); // Hide suggestions once a selection is made
   };
 
-  const sendMailFun = async (mailData) => {
-    const HBhtmlTemplate = `
-              <!DOCTYPE html>
-              <html>
-              <head>
-                  <style>
-                      body { font-family: Arial, sans-serif; }
-                      .container { width: 80%; margin: auto; padding: 20px; }
-                      .header { background-color: #f4f4f4; padding: 10px; text-align: center; }
-                      .content { margin: 20px 0; }
-                      .footer { font-size: 0.8em; color: #777; text-align: center; }
-                  </style>
-              </head>
-              <body>
-                  <div class="container">
-                      <div class="header">
-                          <h1>Reservation Received</h1>
-                      </div>
-                      <div class="content">
-                          <p>Dear ${mailData.userdata.travelerFirstName0},</p>
-                          <p>Thank you for your reservation request!</p>
-                          <p>We have received your reservation data and are currently processing it. Our team will review the information and get back to you within the next 48 hours.</p>
-                          <p>If you have any questions in the meantime, please do not hesitate to contact us.</p>
-                          <p>Thank you for choosing Flight & Hotel reservations.</p>
-                      </div>
-                      <div class="footer">
-                          <p>Best regards,<br>Flight & Hotel reservations<br>FlightHotelreservations@mail.com</p>
-                      </div>
-                  </div>
-              </body>
-              </html>
-              `;
-
-    const emailData = {
-      to: mailData.userdata.travelerEmail,
-      subject: "Reservation Received",
-      html: `${HBhtmlTemplate}`,
-    };
-
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/send-email",
-        emailData
-      );
-      console.log("Email sent successfully:", response.data);
-    } catch (error) {
-      console.error("Error sending email:", error);
-    }
-  };
 
   return (
     <>
