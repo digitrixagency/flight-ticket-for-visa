@@ -205,9 +205,9 @@
   },
   "bookingPages": {
     "Flight-Reservation": {
-      "mainHead": "Instant Flight Itinerary for Visa & Travel",
-      "viewContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and  ...",
-      "allContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "mainHead": "Quick Flight Itinerary for Visa & Travel",
+      "viewContent": "A confirmed flight itinerary is a crucial part of your visa application process. Our service offers fast, reliable flight itineraries without the need to book actual flights. Whether you're  ...",
+      "allContent": "A confirmed flight itinerary is a crucial part of your visa application process. Our service offers fast, reliable flight itineraries without the need to book actual flights. Whether you're applying for a visa or planning future travel, we provide instant itineraries that meet embassy requirements. This flexible solution ensures your visa process runs smoothly, while also helping you organise your travel plans without commitment. Get your itinerary in minutes and proceed with confidence.",
       "noOfTravelersOP1": "—Please choose an option—",
       "noOfTravelersOP2": "1 Traveler($15)",
       "noOfTravelersOP3": "2 Travelers($25)",
@@ -221,9 +221,9 @@
       "noOfTravelersOP11": "10 Travelers($105)"
     },
     "Hotel-Booking": {
-      "mainHead": "Instant Hotel Booking for Visa and Travel",
-      "viewContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and  ...",
-      "allContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "mainHead": "Quick Hotel Booking for Visa and Travel",
+      "viewContent": "Securing hotel bookings is essential for both visa applications and travel planning. Our fast and easy hotel booking service provides immediate confirmations, ideal for meeting visa  ...",
+      "allContent": "Securing hotel bookings is essential for both visa applications and travel planning. Our fast and easy hotel booking service provides immediate confirmations, ideal for meeting visa requirements without any travel uncertainty. Whether you're booking for an upcoming trip or just need a reservation for your visa process, our service ensures you get a confirmed hotel booking in no time, making the application smoother and your travel planning stress-free.",
       "noOfTravelersOP1": "—Please choose an option—",
       "noOfTravelersOP2": "1 Traveler($15)",
       "noOfTravelersOP3": "2 Travelers($25)",
@@ -237,9 +237,9 @@
       "noOfTravelersOP11": "10 Travelers($105)"
     },
     "Flight&Hotel-Reservation": {
-      "mainHead": "Instant Flight Plus Hotel Bookings for Visa",
-      "viewContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and  ...",
-      "allContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "mainHead": "Quick Flight and Hotel Reservations for Visa Applications",
+      "viewContent": "When applying for a visa, having flight and hotel bookings ready is crucial for approval. Our service provides fast, reliable reservations tailored for visa applications, ensuring you meet  ...",
+      "allContent": "When applying for a visa, having flight and hotel bookings ready is crucial for approval. Our service provides fast, reliable reservations tailored for visa applications, ensuring you meet all necessary requirements. You can secure flight and hotel bookings instantly, even without confirmed travel plans, making the process hassle-free and efficient. Whether you're planning a vacation or a business trip, our service is designed to help you move forward with your visa application confidently.",
       "TravelerInformation": "Traveler Information",
       "readMore": "Read More",
       "showLess": "Show Less",
