@@ -815,7 +815,7 @@ const FlightNHotelReservation = () => {
           </div>
 
           <div className="container w-75">
-            <h2 class="frH2">
+            <h2 className="frH2">
               {t("bookingPages.Flight&Hotel-Reservation.TravelerInformation")}
             </h2>
             <form onSubmit={handleSubmit}>
@@ -1241,8 +1241,8 @@ const FlightNHotelReservation = () => {
                         cols="40"
                         rows="5"
                         name="additionalPreferencesForFlightYes"
-                        maxlength="2000"
-                        class="form-control"
+                        maxLength="2000"
+                        className="form-control"
                         onChange={handleChange}
                         placeholder={t(
                           "bookingPages.Flight&Hotel-Reservation.additionalFlightDetailsPH"
@@ -1482,7 +1482,7 @@ const FlightNHotelReservation = () => {
                 ))}
 
                 <div className="col-lg-12 col-md-12 col-sm-12">
-                  <h2 class="frH2">
+                  <h2 className="frH2">
                     {t("bookingPages.Flight&Hotel-Reservation.hotelDetails")}
                   </h2>
 
@@ -1721,8 +1721,8 @@ const FlightNHotelReservation = () => {
                         cols="40"
                         rows="5"
                         name="additionalPreferencesForHotelYes"
-                        maxlength="2000"
-                        class="form-control"
+                        maxLength="2000"
+                        className="form-control"
                         onChange={handleChange}
                         placeholder={t(
                           "bookingPages.Flight&Hotel-Reservation.additionalHotelDetailPH"

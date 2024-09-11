@@ -1148,8 +1148,8 @@ const FlightReservation = () => {
                         cols="40"
                         rows="5"
                         name="additionalPreferencesForFlightYes"
-                        maxlength="2000"
-                        class="form-control"
+                        maxLength="2000"
+                        className="form-control"
                         onChange={handleChange}
                         placeholder={t(
                           "bookingPages.Flight&Hotel-Reservation.additionalFlightDetailsPH"

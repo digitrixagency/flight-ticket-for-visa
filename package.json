@@ -51,7 +51,9 @@
     "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -72,6 +74,10 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.1.1"
+    "@eslint/js": "^9.10.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.35.2",
+    "gh-pages": "^6.1.1",
+    "globals": "^15.9.0"
   }
 }
