@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'; // Import PropTypes
 import './CheckEmail.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons'; 
@@ -16,11 +17,16 @@ const CheckEmail = ({ email }) => {
         <h2>{t("checkEmail.title")}</h2>
         <p>{t("checkEmail.subTitle")} {email}</p>
         <button className="open-gmail-button">
-          <a href="https://mail.google.com">{t("checkEmail.openMail")}</a>
+          <a href="https://mail.google.com" target="_blank" rel="noopener noreferrer">{t("checkEmail.openMail")}</a>
         </button>
       </div>
     </div>
   );
+};
+
+// Define prop types for CheckEmail
+CheckEmail.propTypes = {
+  email: PropTypes.string.isRequired,
 };
 
 export default CheckEmail;

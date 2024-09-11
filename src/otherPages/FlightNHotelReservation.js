@@ -483,7 +483,7 @@ const FlightNHotelReservation = () => {
   const handlecalculation2 = (event) => {
     const { name, value, options, selectedIndex } = event.target;
     const selectedOption = options[selectedIndex];
-    const price = parseFloat(selectedOption.getAttribute("price")) || 0;
+    const price = parseFloat(selectedOption.getAttribute("data-price")) || 0;
 
     setpriceCalData2((prevData) => {
       let updatedPrice = prevData.flightItineraryTotalVal;
@@ -502,7 +502,7 @@ const FlightNHotelReservation = () => {
             parseFloat(
               document
                 .querySelector("#onOfHotels option:checked")
-                .getAttribute("price")
+                .getAttribute("data-price")
             ) || 0;
 
           if (value == 1) {
@@ -513,7 +513,6 @@ const FlightNHotelReservation = () => {
         }
       } else if (name === "onOfHotels") {
         // Step 2: Update price based on onOfHotels selection
-        // updatedPrice = price;
         updatedPrice = price;
 
         // Add the price from the first select if it has a value
@@ -522,7 +521,7 @@ const FlightNHotelReservation = () => {
             parseFloat(
               document
                 .querySelector("#noOfTravelers option:checked")
-                .getAttribute("price")
+                .getAttribute("data-price")
             ) || 0;
           const numTravelers22 =
             parseFloat(
@@ -560,7 +559,10 @@ const FlightNHotelReservation = () => {
   const handleDropdownChange2 = (event) => {
     const selectedOption = event.target.options[event.target.selectedIndex];
     const numberOfTravelers = parseInt(event.target.value, 10);
-    const travelerPrice = parseInt(selectedOption.getAttribute("price"), 10);
+    const travelerPrice = parseInt(
+      selectedOption.getAttribute("data-price"),
+      10
+    );
     setNumTravelers2(numberOfTravelers);
   };
 
@@ -1272,52 +1274,52 @@ const FlightNHotelReservation = () => {
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP1"
                         )}
                       </option>
-                      <option value="1" price="24">
+                      <option value="1" data-price="24">
                         {t(
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP2"
                         )}
                       </option>
-                      <option value="2" price="40">
+                      <option value="2" data-price="40">
                         {t(
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP3"
                         )}
                       </option>
-                      <option value="3" price="56">
+                      <option value="3" data-price="56">
                         {t(
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP4"
                         )}
                       </option>
-                      <option value="4" price="72">
+                      <option value="4" data-price="72">
                         {t(
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP5"
                         )}
                       </option>
-                      <option value="5" price="88">
+                      <option value="5" data-price="88">
                         {t(
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP6"
                         )}
                       </option>
-                      <option value="6" price="104">
+                      <option value="6" data-price="104">
                         {t(
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP7"
                         )}
                       </option>
-                      <option value="7" price="120">
+                      <option value="7" data-price="120">
                         {t(
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP8"
                         )}
                       </option>
-                      <option value="8" price="136">
+                      <option value="8" data-price="136">
                         {t(
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP9"
                         )}
                       </option>
-                      <option value="9" price="152">
+                      <option value="9" data-price="152">
                         {t(
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP10"
                         )}
                       </option>
-                      <option value="10" price="168">
+                      <option value="10" data-price="168">
                         {t(
                           "bookingPages.Flight&Hotel-Reservation.noOfTravelersOP11"
                         )}
@@ -1514,30 +1516,31 @@ const FlightNHotelReservation = () => {
                           value={t(
                             "bookingPages.Flight&Hotel-Reservation.1To4"
                           )}
+                          data-price="0"
                         >
                           {t("bookingPages.Flight&Hotel-Reservation.1To4")}
                         </option>
                         <option
                           value={t("bookingPages.Flight&Hotel-Reservation.5TH")}
-                          price="8"
+                          data-price="8"
                         >
                           {t("bookingPages.Flight&Hotel-Reservation.5TH")}
                         </option>
                         <option
                           value={t("bookingPages.Flight&Hotel-Reservation.6TH")}
-                          price="16"
+                          data-price="16"
                         >
                           {t("bookingPages.Flight&Hotel-Reservation.6TH")}
                         </option>
                         <option
                           value={t("bookingPages.Flight&Hotel-Reservation.7TH")}
-                          price="24"
+                          data-price="24"
                         >
                           {t("bookingPages.Flight&Hotel-Reservation.7TH")}
                         </option>
                         <option
                           value={t("bookingPages.Flight&Hotel-Reservation.8Th")}
-                          price="32"
+                          data-price="32"
                         >
                           {t("bookingPages.Flight&Hotel-Reservation.8Th")}
                         </option>
@@ -2107,13 +2110,13 @@ const FlightNHotelReservation = () => {
                   <div className="col-lg-5 col-md-5 col-sm-12">
                     <div className="row">
                       <div className="col-lg-6 col-md-6 col-sm-1">
-                        <img src={secure} id="secureImg" alt={t("secure")}/>
+                        <img src={secure} id="secureImg" alt={t("secure")} />
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-1">
-                        <img src={pci} id="pciImg" alt={t("pci")}/>
+                        <img src={pci} id="pciImg" alt={t("pci")} />
                       </div>
                       <div className="col-lg-12 col-md-12 col-sm-12 paymentImgDiv">
-                        <img src={payment} id="paymentImg" alt={t("payment")}/>
+                        <img src={payment} id="paymentImg" alt={t("payment")} />
                       </div>
                     </div>
                   </div>
@@ -2131,7 +2134,11 @@ const FlightNHotelReservation = () => {
                           "bookingPages.Flight&Hotel-Reservation.termNConditions"
                         )}
                       </p>
-                      <img id="termNConditionImg" src={tncImg} alt={t("TermsNCondition")}/>
+                      <img
+                        id="termNConditionImg"
+                        src={tncImg}
+                        alt={t("TermsNCondition")}
+                      />
                     </div>
                   </div>
                 </div>

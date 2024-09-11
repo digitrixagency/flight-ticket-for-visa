@@ -47,7 +47,10 @@ const FlightReservation = () => {
   const handleDropdownChange = (event) => {
     const selectedOption1 = event.target.options[event.target.selectedIndex];
     const numberOfTravelers = parseInt(event.target.value, 10);
-    const travelerPrice = parseInt(selectedOption1.getAttribute("price"), 10);
+    const travelerPrice = parseInt(
+      selectedOption1.getAttribute("data-price"),
+      10
+    );
     setNumTravelers(numberOfTravelers);
     if (selectedOption === "multipleCities") {
       const newPrice = travelerPrice + numberOfTravelers * 3;
@@ -588,56 +591,6 @@ const FlightReservation = () => {
     handleToInputChange(e, inputNo);
   };
 
-  const sendMailFun = async (mailData) => {
-    const HBhtmlTemplate = `
-              <!DOCTYPE html>
-              <html>
-              <head>
-                  <style>
-                      body { font-family: Arial, sans-serif; }
-                      .container { width: 80%; margin: auto; padding: 20px; }
-                      .header { background-color: #f4f4f4; padding: 10px; text-align: center; }
-                      .content { margin: 20px 0; }
-                      .footer { font-size: 0.8em; color: #777; text-align: center; }
-                  </style>
-              </head>
-              <body>
-                  <div class="container">
-                      <div class="header">
-                          <h1>Reservation Received</h1>
-                      </div>
-                      <div class="content">
-                          <p>Dear ${mailData.userdata.travelerFirstName0},</p>
-                          <p>Thank you for your reservation request!</p>
-                          <p>We have received your reservation data and are currently processing it. Our team will review the information and get back to you within the next 48 hours.</p>
-                          <p>If you have any questions in the meantime, please do not hesitate to contact us.</p>
-                          <p>Thank you for choosing Flight & Hotel reservations.</p>
-                      </div>
-                      <div class="footer">
-                          <p>Best regards,<br>Flight & Hotel reservations<br>FlightHotelreservations@mail.com</p>
-                      </div>
-                  </div>
-              </body>
-              </html>
-              `;
-
-    const emailData = {
-      to: mailData.userdata.travelerEmail,
-      subject: "Reservation Received",
-      html: `${HBhtmlTemplate}`,
-    };
-
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/send-email",
-        emailData
-      );
-      console.log("Email sent successfully:", response.data);
-    } catch (error) {
-      console.error("Error sending email:", error);
-    }
-  };
-
   return (
     <>
       <div className="container-fluid FlightReservation pt-5">
@@ -1174,34 +1127,34 @@ const FlightReservation = () => {
                       <option selected disabled>
                         {t("bookingPages.Flight-Reservation.noOfTravelersOP1")}
                       </option>
-                      <option value="1" price="15">
+                      <option value="1" data-price="15">
                         {t("bookingPages.Flight-Reservation.noOfTravelersOP2")}
                       </option>
-                      <option value="2" price="25">
+                      <option value="2" data-price="25">
                         {t("bookingPages.Flight-Reservation.noOfTravelersOP3")}
                       </option>
-                      <option value="3" price="35">
+                      <option value="3" data-price="35">
                         {t("bookingPages.Flight-Reservation.noOfTravelersOP4")}
                       </option>
-                      <option value="4" price="45">
+                      <option value="4" data-price="45">
                         {t("bookingPages.Flight-Reservation.noOfTravelersOP5")}
                       </option>
-                      <option value="5" price="55">
+                      <option value="5" data-price="55">
                         {t("bookingPages.Flight-Reservation.noOfTravelersOP6")}
                       </option>
-                      <option value="6" price="65">
+                      <option value="6" data-price="65">
                         {t("bookingPages.Flight-Reservation.noOfTravelersOP7")}
                       </option>
-                      <option value="7" price="75">
+                      <option value="7" data-price="75">
                         {t("bookingPages.Flight-Reservation.noOfTravelersOP8")}
                       </option>
-                      <option value="8" price="85">
+                      <option value="8" data-price="85">
                         {t("bookingPages.Flight-Reservation.noOfTravelersOP9")}
                       </option>
-                      <option value="9" price="95">
+                      <option value="9" data-price="95">
                         {t("bookingPages.Flight-Reservation.noOfTravelersOP10")}
                       </option>
-                      <option value="10" price="105">
+                      <option value="10" data-price="105">
                         {t("bookingPages.Flight-Reservation.noOfTravelersOP11")}
                       </option>
                     </select>
@@ -1749,13 +1702,13 @@ const FlightReservation = () => {
                   <div className="col-lg-5 col-md-5 col-sm-12">
                     <div className="row">
                       <div className="col-lg-6 col-md-6 col-sm-1">
-                        <img src={secure} id="secureImg" alt={t("secure")}/>
+                        <img src={secure} id="secureImg" alt={t("secure")} />
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-1">
-                        <img src={pci} id="pciImg" alt={t("pci")}/>
+                        <img src={pci} id="pciImg" alt={t("pci")} />
                       </div>
                       <div className="col-lg-12 col-md-12 col-sm-12 paymentImgDiv">
-                        <img src={payment} id="paymentImg" alt={t("payment")}/>
+                        <img src={payment} id="paymentImg" alt={t("payment")} />
                       </div>
                     </div>
                   </div>
@@ -1772,7 +1725,11 @@ const FlightReservation = () => {
                         You agree to our privacy policy and term & conditions
                         after tapping pay now.
                       </p>
-                      <img id="termNConditionImg" src={tncImg} alt={t("TermsNCondition")}/>
+                      <img
+                        id="termNConditionImg"
+                        src={tncImg}
+                        alt={t("TermsNCondition")}
+                      />
                     </div>
                   </div>
                 </div>

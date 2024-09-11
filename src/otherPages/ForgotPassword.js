@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import "./ForgotPassword.css";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -73,16 +74,22 @@ const ForgotPassword = ({ onCancel, onSend, language }) => {
           />
           <div className="button-group">
             <button type="button" className="cancel-button" onClick={onCancel}>
-            {t("forgotPassword.Cancel")}
+              {t("forgotPassword.Cancel")}
             </button>
             <button type="submit" className="send-button">
-            {t("forgotPassword.Next")}
+              {t("forgotPassword.Next")}
             </button>
           </div>
         </form>
       </div>
     </div>
   );
+};
+
+ForgotPassword.propTypes = {
+  onCancel: PropTypes.func.isRequired,
+  onSend: PropTypes.func.isRequired,
+  language: PropTypes.string.isRequired,
 };
 
 export default ForgotPassword;

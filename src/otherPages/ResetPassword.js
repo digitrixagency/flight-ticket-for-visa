@@ -7,7 +7,7 @@ import fpBgImg from "../images/fpBgImg.png";
 import { useTranslation } from "react-i18next";
 
 
-const ResetPassword = ({ onCancel, onSend, language }) => {
+const ResetPassword = () => {
   const { t } = useTranslation(); // Get current language from i18n
 
   const [password, setPassword] = useState('');

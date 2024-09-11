@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import $ from "jquery";
-import i18next from "i18next";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,8 +11,6 @@ import {
   faFileAlt,
   faPhone,
   faInfoCircle,
-  faSignInAlt,
-  faGlobe,
   faTicket,
 } from "@fortawesome/free-solid-svg-icons";
 import LanguageSwitcher from "./LanguageSwitcher";

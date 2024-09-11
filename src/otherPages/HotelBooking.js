@@ -52,49 +52,40 @@ const FlightReservation = () => {
     handlecalculation2(e);
   };
   const handlecalculationOnOfHotels2 = (e) => {
-    handleChange(e);
-    handlecalculation2(e);
+    handleChange(e); // Ensure this updates the form data correctly
+    handlecalculation2(e); // Ensure this function performs the price calculations
   };
 
   const handlecalculation2 = (event) => {
     const { name, value, options, selectedIndex } = event.target;
     const selectedOption = options[selectedIndex];
-    const price = parseFloat(selectedOption.getAttribute("price")) || 0;
+    const price = parseFloat(selectedOption.getAttribute("data-price")) || 0;
 
     setpriceCalData2((prevData) => {
       let updatedPrice = prevData.flightItineraryTotalVal;
 
       if (name === "noOfTravelers") {
-        // Step 1: Update price based on noOfTravelers selection
         updatedPrice = price;
 
-        // Add the price from the second select if it has a value
         if (prevData.onOfHotels) {
           const hotelPrice =
             parseFloat(
               document
                 .querySelector("#onOfHotels option:checked")
-                .getAttribute("price")
+                .getAttribute("data-price")
             ) || 0;
 
-          if (value == 1) {
-            updatedPrice += hotelPrice;
-          } else {
-            updatedPrice += hotelPrice * value;
-          }
+          updatedPrice += value == 1 ? hotelPrice : hotelPrice * value;
         }
       } else if (name === "onOfHotels") {
-        // Step 2: Update price based on onOfHotels selection
-        // updatedPrice = price;
         updatedPrice = price;
 
-        // Add the price from the first select if it has a value
         if (prevData.noOfTravelers) {
           const travelerPrice =
             parseFloat(
               document
                 .querySelector("#noOfTravelers option:checked")
-                .getAttribute("price")
+                .getAttribute("data-price")
             ) || 0;
           const numTravelers22 =
             parseFloat(
@@ -102,22 +93,18 @@ const FlightReservation = () => {
                 .querySelector("#noOfTravelers option:checked")
                 .getAttribute("value")
             ) || 0;
-          if (numTravelers22 == 1) {
-            updatedPrice = price;
-          } else {
-            updatedPrice = price * numTravelers22;
-          }
+          updatedPrice = numTravelers22 == 1 ? price : price * numTravelers22;
 
           updatedPrice += travelerPrice;
         }
       }
 
-      // Update form data and hidden input field
       document.getElementById("flightItineraryTotalVal").value = updatedPrice;
       setFormData({
         ...formData,
         ["amount"]: updatedPrice,
       });
+
       return {
         ...prevData,
         [name]: value,
@@ -129,187 +116,190 @@ const FlightReservation = () => {
   const handleDropdownChange2 = (event) => {
     const selectedOption = event.target.options[event.target.selectedIndex];
     const numberOfTravelers = parseInt(event.target.value, 10);
-    const travelerPrice = parseInt(selectedOption.getAttribute("price"), 10);
+    const travelerPrice = parseInt(
+      selectedOption.getAttribute("data-price"),
+      10
+    );
     setNumTravelers2(numberOfTravelers);
   };
 
   // Store the array of timezones in state
-  const [timezones] = useState([
-    {
-      timezone: "Pacific/Midway",
-      country: "United States",
-      gmt_offset: "-11:00",
-      local_time: "06:00 AM",
-    },
-    {
-      timezone: "Pacific/Honolulu",
-      country: "United States",
-      gmt_offset: "-10:00",
-      local_time: "07:00 AM",
-    },
-    {
-      timezone: "America/Anchorage",
-      country: "United States",
-      gmt_offset: "-09:00",
-      local_time: "08:00 AM",
-    },
-    {
-      timezone: "America/Los_Angeles",
-      country: "United States",
-      gmt_offset: "-08:00",
-      local_time: "09:00 AM",
-    },
-    {
-      timezone: "America/Denver",
-      country: "United States",
-      gmt_offset: "-07:00",
-      local_time: "10:00 AM",
-    },
-    {
-      timezone: "America/Chicago",
-      country: "United States",
-      gmt_offset: "-06:00",
-      local_time: "11:00 AM",
-    },
-    {
-      timezone: "America/New_York",
-      country: "United States",
-      gmt_offset: "-05:00",
-      local_time: "12:00 PM",
-    },
-    {
-      timezone: "America/Caracas",
-      country: "Venezuela",
-      gmt_offset: "-04:00",
-      local_time: "01:00 PM",
-    },
-    {
-      timezone: "America/Halifax",
-      country: "Canada",
-      gmt_offset: "-04:00",
-      local_time: "02:00 PM",
-    },
-    {
-      timezone: "America/St_Johns",
-      country: "Canada",
-      gmt_offset: "-03:30",
-      local_time: "02:30 PM",
-    },
-    {
-      timezone: "America/Sao_Paulo",
-      country: "Brazil",
-      gmt_offset: "-03:00",
-      local_time: "03:00 PM",
-    },
-    {
-      timezone: "Atlantic/South_Georgia",
-      country: "South Georgia and the South Sandwich Islands",
-      gmt_offset: "-02:00",
-      local_time: "04:00 PM",
-    },
-    {
-      timezone: "Atlantic/Azores",
-      country: "Portugal",
-      gmt_offset: "-01:00",
-      local_time: "05:00 PM",
-    },
-    {
-      timezone: "Europe/London",
-      country: "United Kingdom",
-      gmt_offset: "+00:00",
-      local_time: "06:00 PM",
-    },
-    {
-      timezone: "Europe/Berlin",
-      country: "Germany",
-      gmt_offset: "+01:00",
-      local_time: "07:00 PM",
-    },
-    {
-      timezone: "Europe/Athens",
-      country: "Greece",
-      gmt_offset: "+02:00",
-      local_time: "08:00 PM",
-    },
-    {
-      timezone: "Europe/Moscow",
-      country: "Russia",
-      gmt_offset: "+03:00",
-      local_time: "09:00 PM",
-    },
-    {
-      timezone: "Asia/Tehran",
-      country: "Iran",
-      gmt_offset: "+03:30",
-      local_time: "09:30 PM",
-    },
-    {
-      timezone: "Asia/Dubai",
-      country: "United Arab Emirates",
-      gmt_offset: "+04:00",
-      local_time: "10:00 PM",
-    },
-    {
-      timezone: "Asia/Kabul",
-      country: "Afghanistan",
-      gmt_offset: "+04:30",
-      local_time: "10:30 PM",
-    },
-    {
-      timezone: "Asia/Karachi",
-      country: "Pakistan",
-      gmt_offset: "+05:00",
-      local_time: "11:00 PM",
-    },
-    {
-      timezone: "Asia/Kolkata",
-      country: "India",
-      gmt_offset: "+05:30",
-      local_time: "11:30 PM",
-    },
-    {
-      timezone: "Asia/Dhaka",
-      country: "Bangladesh",
-      gmt_offset: "+06:00",
-      local_time: "12:00 AM",
-    },
-    {
-      timezone: "Asia/Bangkok",
-      country: "Thailand",
-      gmt_offset: "+07:00",
-      local_time: "01:00 AM",
-    },
-    {
-      timezone: "Asia/Shanghai",
-      country: "China",
-      gmt_offset: "+08:00",
-      local_time: "02:00 AM",
-    },
-    {
-      timezone: "Asia/Tokyo",
-      country: "Japan",
-      gmt_offset: "+09:00",
-      local_time: "03:00 AM",
-    },
-    {
-      timezone: "Australia/Sydney",
-      country: "Australia",
-      gmt_offset: "+10:00",
-      local_time: "04:00 AM",
-    },
-    {
-      timezone: "Pacific/Noumea",
-      country: "New Caledonia",
-      gmt_offset: "+11:00",
-      local_time: "05:00 AM",
-    },
-    {
-      timezone: "Pacific/Auckland",
-      country: "New Zealand",
-      gmt_offset: "+12:00",
-      local_time: "06:00 AM",
-    },
-  ]);
+  // const [timezones] = useState([
+  //   {
+  //     timezone: "Pacific/Midway",
+  //     country: "United States",
+  //     gmt_offset: "-11:00",
+  //     local_time: "06:00 AM",
+  //   },
+  //   {
+  //     timezone: "Pacific/Honolulu",
+  //     country: "United States",
+  //     gmt_offset: "-10:00",
+  //     local_time: "07:00 AM",
+  //   },
+  //   {
+  //     timezone: "America/Anchorage",
+  //     country: "United States",
+  //     gmt_offset: "-09:00",
+  //     local_time: "08:00 AM",
+  //   },
+  //   {
+  //     timezone: "America/Los_Angeles",
+  //     country: "United States",
+  //     gmt_offset: "-08:00",
+  //     local_time: "09:00 AM",
+  //   },
+  //   {
+  //     timezone: "America/Denver",
+  //     country: "United States",
+  //     gmt_offset: "-07:00",
+  //     local_time: "10:00 AM",
+  //   },
+  //   {
+  //     timezone: "America/Chicago",
+  //     country: "United States",
+  //     gmt_offset: "-06:00",
+  //     local_time: "11:00 AM",
+  //   },
+  //   {
+  //     timezone: "America/New_York",
+  //     country: "United States",
+  //     gmt_offset: "-05:00",
+  //     local_time: "12:00 PM",
+  //   },
+  //   {
+  //     timezone: "America/Caracas",
+  //     country: "Venezuela",
+  //     gmt_offset: "-04:00",
+  //     local_time: "01:00 PM",
+  //   },
+  //   {
+  //     timezone: "America/Halifax",
+  //     country: "Canada",
+  //     gmt_offset: "-04:00",
+  //     local_time: "02:00 PM",
+  //   },
+  //   {
+  //     timezone: "America/St_Johns",
+  //     country: "Canada",
+  //     gmt_offset: "-03:30",
+  //     local_time: "02:30 PM",
+  //   },
+  //   {
+  //     timezone: "America/Sao_Paulo",
+  //     country: "Brazil",
+  //     gmt_offset: "-03:00",
+  //     local_time: "03:00 PM",
+  //   },
+  //   {
+  //     timezone: "Atlantic/South_Georgia",
+  //     country: "South Georgia and the South Sandwich Islands",
+  //     gmt_offset: "-02:00",
+  //     local_time: "04:00 PM",
+  //   },
+  //   {
+  //     timezone: "Atlantic/Azores",
+  //     country: "Portugal",
+  //     gmt_offset: "-01:00",
+  //     local_time: "05:00 PM",
+  //   },
+  //   {
+  //     timezone: "Europe/London",
+  //     country: "United Kingdom",
+  //     gmt_offset: "+00:00",
+  //     local_time: "06:00 PM",
+  //   },
+  //   {
+  //     timezone: "Europe/Berlin",
+  //     country: "Germany",
+  //     gmt_offset: "+01:00",
+  //     local_time: "07:00 PM",
+  //   },
+  //   {
+  //     timezone: "Europe/Athens",
+  //     country: "Greece",
+  //     gmt_offset: "+02:00",
+  //     local_time: "08:00 PM",
+  //   },
+  //   {
+  //     timezone: "Europe/Moscow",
+  //     country: "Russia",
+  //     gmt_offset: "+03:00",
+  //     local_time: "09:00 PM",
+  //   },
+  //   {
+  //     timezone: "Asia/Tehran",
+  //     country: "Iran",
+  //     gmt_offset: "+03:30",
+  //     local_time: "09:30 PM",
+  //   },
+  //   {
+  //     timezone: "Asia/Dubai",
+  //     country: "United Arab Emirates",
+  //     gmt_offset: "+04:00",
+  //     local_time: "10:00 PM",
+  //   },
+  //   {
+  //     timezone: "Asia/Kabul",
+  //     country: "Afghanistan",
+  //     gmt_offset: "+04:30",
+  //     local_time: "10:30 PM",
+  //   },
+  //   {
+  //     timezone: "Asia/Karachi",
+  //     country: "Pakistan",
+  //     gmt_offset: "+05:00",
+  //     local_time: "11:00 PM",
+  //   },
+  //   {
+  //     timezone: "Asia/Kolkata",
+  //     country: "India",
+  //     gmt_offset: "+05:30",
+  //     local_time: "11:30 PM",
+  //   },
+  //   {
+  //     timezone: "Asia/Dhaka",
+  //     country: "Bangladesh",
+  //     gmt_offset: "+06:00",
+  //     local_time: "12:00 AM",
+  //   },
+  //   {
+  //     timezone: "Asia/Bangkok",
+  //     country: "Thailand",
+  //     gmt_offset: "+07:00",
+  //     local_time: "01:00 AM",
+  //   },
+  //   {
+  //     timezone: "Asia/Shanghai",
+  //     country: "China",
+  //     gmt_offset: "+08:00",
+  //     local_time: "02:00 AM",
+  //   },
+  //   {
+  //     timezone: "Asia/Tokyo",
+  //     country: "Japan",
+  //     gmt_offset: "+09:00",
+  //     local_time: "03:00 AM",
+  //   },
+  //   {
+  //     timezone: "Australia/Sydney",
+  //     country: "Australia",
+  //     gmt_offset: "+10:00",
+  //     local_time: "04:00 AM",
+  //   },
+  //   {
+  //     timezone: "Pacific/Noumea",
+  //     country: "New Caledonia",
+  //     gmt_offset: "+11:00",
+  //     local_time: "05:00 AM",
+  //   },
+  //   {
+  //     timezone: "Pacific/Auckland",
+  //     country: "New Zealand",
+  //     gmt_offset: "+12:00",
+  //     local_time: "06:00 AM",
+  //   },
+  // ]);
 
   // State to track the selected option
   const [selectedOption1, setSelectedOption1] = useState("");
@@ -692,34 +682,34 @@ const FlightReservation = () => {
                       <option selected disabled>
                         {t("bookingPages.Hotel-Booking.noOfTravelersOP1")}
                       </option>
-                      <option value="1" price="15">
+                      <option value="1" data-price="15">
                         {t("bookingPages.Hotel-Booking.noOfTravelersOP2")}
                       </option>
-                      <option value="2" price="25">
+                      <option value="2" data-price="25">
                         {t("bookingPages.Hotel-Booking.noOfTravelersOP3")}
                       </option>
-                      <option value="3" price="35">
+                      <option value="3" data-price="35">
                         {t("bookingPages.Hotel-Booking.noOfTravelersOP4")}
                       </option>
-                      <option value="4" price="45">
+                      <option value="4" data-price="45">
                         {t("bookingPages.Hotel-Booking.noOfTravelersOP5")}
                       </option>
-                      <option value="5" price="55">
+                      <option value="5" data-price="55">
                         {t("bookingPages.Hotel-Booking.noOfTravelersOP6")}
                       </option>
-                      <option value="6" price="65">
+                      <option value="6" data-price="65">
                         {t("bookingPages.Hotel-Booking.noOfTravelersOP7")}
                       </option>
-                      <option value="7" price="75">
+                      <option value="7" data-price="75">
                         {t("bookingPages.Hotel-Booking.noOfTravelersOP8")}
                       </option>
-                      <option value="8" price="85">
+                      <option value="8" data-price="85">
                         {t("bookingPages.Hotel-Booking.noOfTravelersOP9")}
                       </option>
-                      <option value="9" price="95">
+                      <option value="9" data-price="95">
                         {t("bookingPages.Hotel-Booking.noOfTravelersOP10")}
                       </option>
-                      <option value="10" price="105">
+                      <option value="10" data-price="105">
                         {t("bookingPages.Hotel-Booking.noOfTravelersOP11")}
                       </option>
                     </select>
@@ -899,25 +889,25 @@ const FlightReservation = () => {
                         </option>
                         <option
                           value={t("bookingPages.Flight&Hotel-Reservation.5TH")}
-                          price="8"
+                          data-price="8"
                         >
                           {t("bookingPages.Flight&Hotel-Reservation.5TH")}
                         </option>
                         <option
                           value={t("bookingPages.Flight&Hotel-Reservation.6TH")}
-                          price="16"
+                          data-price="16"
                         >
                           {t("bookingPages.Flight&Hotel-Reservation.6TH")}
                         </option>
                         <option
                           value={t("bookingPages.Flight&Hotel-Reservation.7TH")}
-                          price="24"
+                          data-price="24"
                         >
                           {t("bookingPages.Flight&Hotel-Reservation.7TH")}
                         </option>
                         <option
                           value={t("bookingPages.Flight&Hotel-Reservation.8Th")}
-                          price="32"
+                          data-price="32"
                         >
                           {t("bookingPages.Flight&Hotel-Reservation.8Th")}
                         </option>
@@ -1486,13 +1476,13 @@ const FlightReservation = () => {
                   <div className="col-lg-5 col-md-5 col-sm-12">
                     <div className="row">
                       <div className="col-lg-6 col-md-6 col-sm-1">
-                        <img src={secure} id="secureImg" alt={t("secure")}/>
+                        <img src={secure} id="secureImg" alt={t("secure")} />
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-1">
-                        <img src={pci} id="pciImg" alt={t("pci")}/>
+                        <img src={pci} id="pciImg" alt={t("pci")} />
                       </div>
                       <div className="col-lg-12 col-md-12 col-sm-12 paymentImgDiv">
-                        <img src={payment} id="paymentImg" alt={t("payment")}/>
+                        <img src={payment} id="paymentImg" alt={t("payment")} />
                       </div>
                     </div>
                   </div>
@@ -1510,7 +1500,11 @@ const FlightReservation = () => {
                           "bookingPages.Flight&Hotel-Reservation.termNConditions"
                         )}
                       </p>
-                      <img id="termNConditionImg" src={tncImg} alt={t("TermsNCondition")}/>
+                      <img
+                        id="termNConditionImg"
+                        src={tncImg}
+                        alt={t("TermsNCondition")}
+                      />
                     </div>
                   </div>
                 </div>
