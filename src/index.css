@@ -60,7 +60,7 @@
   position: absolute;
   max-width: 300px !important;
   max-height: 500px;
-  left: 32%;
+  left: 31%;
   z-index: 0;
 }
 
@@ -799,7 +799,6 @@ ul {
   border-color: #888;
 }
 
-
 .fixedHeightDetail {
   height: 600px;
   overflow-y: scroll;
@@ -810,4 +809,252 @@ ul {
   display: none;
 }
 
+/* General Styles */
+.navbarDiv {
+  background-color: #000000; /* Dark background color */
+  color: white;
+}
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .logo img {
+  max-width: 100%; /* Make sure the image scales with the container */
+  height: auto; /* Maintain aspect ratio */
+  width: auto; /* Ensure the width adjusts according to the container */
+}
+
+/* Responsive Logo Sizes */
+@media (min-width: 1200px) {
+  .header .logo img {
+    width: 250px; /* Larger width for large screens */
+  }
+}
+
+@media (max-width: 1199px) {
+  .header .logo img {
+    width: 200px; /* Medium width for medium screens */
+  }
+}
+
+@media (max-width: 991px) {
+  .header .logo img {
+    width: 150px; /* Smaller width for smaller screens */
+  }
+}
+
+@media (max-width: 767px) {
+  .header .logo img {
+    width: 140px; /* Even smaller width for extra-small screens */
+  }
+}
+
+/* Sidebar Styles */
+.sideMenu {
+  position: fixed;
+  top: 0;
+  left: -500px; /* Initially hidden off-screen */
+  height: 100%;
+  width: 300px; /* Adjust width as needed */
+  background-color: #000000; /* Dark background color */
+  color: #ffffff; /* Text color matching the header */
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for better visibility */
+  transition: left 0.3s ease; /* Smooth sliding effect */
+  z-index: 1000;
+}
+
+.sideMenu.visible {
+  left: 0; /* Slide in from the left */
+}
+
+.sideMenu .closeMenu {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.sideMenu .btn {
+  margin: 0.5rem 0;
+  color: #ffffff;
+  font-size: 1.2rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.sideMenu .btn:hover {
+  background-color: #f1f1f1; /* Light gray background on hover */
+  border-radius: 5px;
+  padding: 0.5rem;
+  color: #000000;
+}
+
+.sideMenu .btn span {
+  margin-left: 0.5rem; /* Space between icon and text */
+}
+
+/* Styles for Menu Button */
+.menuButton {
+  display: none; /* Hide by default on large screens */
+  font-size: 28px !important;
+}
+
+/* Styles for Sidebar Visibility */
+@media (max-width: 991px) {
+  .menuButton {
+    display: block; /* Show menu button on small screens */
+  }
+
+  .sideMenu {
+    width: 250px; /* Adjust width for smaller screens */
+  }
+}
+
+@media (max-width: 767px) {
+  .sideMenu {
+    width: 100%; /* Full width on extra-small screens */
+  }
+}
+
+/* General Styles for Header Buttons */
+.header .btn {
+  color: #ffffff; /* Text color */
+  background-color: transparent; /* Background color */
+  border: none; /* No border */
+  padding: 0.5rem 1rem; /* Padding */
+  font-size: 1rem; /* Font size */
+  cursor: pointer; /* Pointer cursor */
+}
+.header .getDummyTicket:hover {
+  color: #000000; /* Text color */
+  background-color: #ffffff; /* Background color */
+  border: none; /* No border */
+  padding: 0.5rem 1rem; /* Padding */
+  font-size: 1rem; /* Font size */
+  cursor: pointer; /* Pointer cursor */
+}
+
+/* Language Switcher Styles */
+.languageSwitcher {
+  display: flex;
+  align-items: center;
+  margin: 0 1rem;
+}
+
+.languageSwitcher select {
+  background-color: transparent; /* Transparent background */
+  border: 1px solid #ffffff; /* Border color */
+  color: #ffffff; /* Text color */
+  padding: 0.5rem; /* Padding */
+  font-size: 1rem; /* Font size */
+  border-radius: 5px; /* Rounded corners */
+}
+
+/* Get Dummy Ticket Button Styles */
+.getDummyTicketButton {
+  display: flex;
+  align-items: center;
+  margin: 0 1rem;
+  color: #ffffff; /* Text color */
+  font-size: 1rem; /* Font size */
+  text-decoration: none; /* Remove underline */
+}
+
+/* Login/Signup Button Styles */
+.loginSignupButton {
+  display: flex;
+  align-items: center;
+  margin: 0 1rem;
+  color: #ffffff; /* Text color */
+  font-size: 1rem; /* Font size */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1199px) {
+  .header .btn {
+    font-size: 0.9rem; /* Smaller font size for medium screens */
+    padding: 0.4rem 0.8rem; /* Smaller padding */
+  }
+
+  .languageSwitcher select {
+    font-size: 0.9rem; /* Smaller font size */
+    padding: 0.4rem; /* Smaller padding */
+  }
+
+  .getDummyTicketButton,
+  .loginSignupButton {
+    font-size: 0.9rem; /* Smaller font size */
+    margin: 0 0.5rem; /* Smaller margin */
+  }
+}
+
+@media (max-width: 767px) {
+  .header {
+    flex-direction: column; /* Stack elements vertically */
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .header .logo {
+    margin-bottom: 1rem; /* Margin below logo */
+  }
+
+  .header .btn {
+    font-size: 0.8rem; /* Smaller font size for small screens */
+    padding: 0.3rem 0.6rem; /* Smaller padding */
+  }
+
+  .languageSwitcher,
+  .getDummyTicketButton,
+  .loginSignupButton {
+    margin: 0.5rem 0; /* Margin for vertical alignment */
+  }
+
+  .navbarDiv > .header > div > .sign-up-button {
+    display: none !important;
+  }
+  .navbarDiv > .header > div > .language-switcher {
+    display: none !important;
+  }
+  .sideMenu > .sign-up-button {
+    display: block !important;
+  }
+  .sideMenu > .language-switcher {
+    display: block !important;
+  }
+  .sideMenu > .language-switcher > select {
+    width: 100%;
+  }
+
+  .header {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navbarDiv {
+    width: 100%;
+  }
+}
+
+.navbarDiv > .header > div > .sign-up-button {
+  display: block;
+}
+.navbarDiv > .header > div > .language-switcher {
+  display: block;
+}
+.sideMenu > .sign-up-button {
+  display: none;
+}
+.sideMenu > .language-switcher {
+  display: none;
+}

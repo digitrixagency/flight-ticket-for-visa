@@ -7,6 +7,9 @@ import FAQ from "./images/FAQ.png";
 import { FaCheckCircle } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
+import headLogo350x75px from "./images/headLogo350x75px.png";
+import { Link } from "react-router-dom";
+
 const Footer = ({ hideDiv }) => {
   const { t, i18n } = useTranslation(); // Get current language from i18n
   const navigate = useNavigate();
@@ -543,7 +546,9 @@ const Footer = ({ hideDiv }) => {
               <div className="col-5">
                 <div>
                   {/* <img src={logo} className='logoImg'/> */}
-                  <p className="logoImg">LOGO</p>
+                  <p className="logoImg"><Link to={`/${currentLanguage}`}>
+              <img src={headLogo350x75px} alt="Logo" />
+            </Link></p>
                   <p className="textUL">{t("footer.mainTitle")}</p>
                 </div>
               </div>

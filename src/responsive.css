@@ -1841,6 +1841,9 @@
     right: 36%;
   }
 
+  .otImg {
+    left: 39%;
+  }
   .cardBG > .card-body {
     height: 300px;
   }
