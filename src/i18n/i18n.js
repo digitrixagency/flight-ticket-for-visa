@@ -2,6 +2,7 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import enTranslation from './locales/en/translation.json';
 import hiTranslation from './locales/hi/translation.json';
+import idTranslation from './locales/id/translation.json';
 
 // Function to get the language from localStorage or default to 'en'
 const getLanguage = () => {
@@ -18,6 +19,9 @@ i18n
       },
       hi: {
         translation: hiTranslation,
+      },
+      id: {
+        translation: idTranslation,
       },
     },
     lng: getLanguage(), // Set initial language

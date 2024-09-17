@@ -10,6 +10,14 @@ const LanguageSwitcher = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
 
+  // Define available languages
+  const languages = [
+    { code: 'en', label: 'English', countryCode: 'US' },
+    { code: 'hi', label: 'हिन्दी', countryCode: 'IN' },
+    { code: 'id', label: 'Indonesian', countryCode: 'ID' }
+    // Add more languages here
+  ];
+
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
     localStorage.setItem("language", lng);
@@ -31,56 +39,38 @@ const LanguageSwitcher = () => {
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
-        {selectedLanguage === "en" && (
+        {languages.find(lang => lang.code === selectedLanguage) && (
           <>
             <ReactCountryFlag
-              countryCode="US"
+              countryCode={languages.find(lang => lang.code === selectedLanguage).countryCode}
               svg
               className="flag-icon"
-              aria-label="English"
+              aria-label={languages.find(lang => lang.code === selectedLanguage).label}
             />
-            <span className="language-text">English</span>
-          </>
-        )}
-        {selectedLanguage === "hi" && (
-          <>
-            <ReactCountryFlag
-              countryCode="IN"
-              svg
-              className="flag-icon"
-              aria-label="Hindi"
-            />
-            <span className="language-text">हिन्दी</span>
+            <span className="language-text">
+              {languages.find(lang => lang.code === selectedLanguage).label}
+            </span>
           </>
         )}
         <span className="dropdown-arrow">{isOpen ? "▲" : "▼"}</span>
       </div>
       {isOpen && (
         <ul className="dropdown-menu">
-          <li
-            onClick={() => changeLanguage("en")}
-            className="dropdown-item"
-            aria-label="Switch to English"
-          >
-            <ReactCountryFlag
-              countryCode="US"
-              svg
-              className="flag-icon"
-            />
-            <span className="language-text">English</span>
-          </li>
-          <li
-            onClick={() => changeLanguage("hi")}
-            className="dropdown-item"
-            aria-label="Switch to Hindi"
-          >
-            <ReactCountryFlag
-              countryCode="IN"
-              svg
-              className="flag-icon"
-            />
-            <span className="language-text">हिन्दी</span>
-          </li>
+          {languages.map((lang) => (
+            <li
+              key={lang.code}
+              onClick={() => changeLanguage(lang.code)}
+              className="dropdown-item"
+              aria-label={`Switch to ${lang.label}`}
+            >
+              <ReactCountryFlag
+                countryCode={lang.countryCode}
+                svg
+                className="flag-icon"
+              />
+              <span className="language-text">{lang.label}</span>
+            </li>
+          ))}
         </ul>
       )}
     </div>

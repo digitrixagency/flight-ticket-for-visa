@@ -22,7 +22,8 @@ const AppRoutes = () => {
     const pathParts = location.pathname.split('/');
     const urlLang = pathParts[1];
 
-    if (['en', 'hi'].includes(urlLang)) {
+    const validLanguages = ['en', 'hi','id']; // Add more valid languages here
+    if (validLanguages.includes(urlLang)) {
       // Set language from URL
       i18n.changeLanguage(urlLang);
       localStorage.setItem('language', urlLang);
