@@ -1022,16 +1022,19 @@ ul {
   .navbarDiv > .header > div > .sign-up-button {
     display: none !important;
   }
-  .navbarDiv > .header > div > .language-switcher {
+  .navbarDiv > .header > div > .custom-dropdown {
     display: none !important;
   }
   .sideMenu > .sign-up-button {
     display: block !important;
   }
-  .sideMenu > .language-switcher {
+  .sideMenu > .custom-dropdown {
     display: block !important;
   }
-  .sideMenu > .language-switcher > select {
+  .sideMenu > .custom-dropdown > .dropdown-header {
+    width: 100%;
+  }
+  .sideMenu > .custom-dropdown > .dropdown-menu {
     width: 100%;
   }
 
@@ -1049,12 +1052,12 @@ ul {
 .navbarDiv > .header > div > .sign-up-button {
   display: block;
 }
-.navbarDiv > .header > div > .language-switcher {
+.navbarDiv > .header > div > .custom-dropdown {
   display: block;
 }
 .sideMenu > .sign-up-button {
   display: none;
 }
-.sideMenu > .language-switcher {
+.sideMenu > .custom-dropdown {
   display: none;
 }
