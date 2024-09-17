@@ -720,7 +720,8 @@ function sendMailFun({ userdata }) {
             background-color: #f4f4f4;
           }
           .container {
-            width: 80%;
+            width: 90%;
+            max-width: 600px;
             margin: auto;
             padding: 20px;
             background-color: #ffffff;
@@ -730,16 +731,24 @@ function sendMailFun({ userdata }) {
           .header {
             background-color: #3059eb;
             color: white;
-            padding: 10px 0;
+            padding: 15px;
             text-align: center;
             border-radius: 8px 8px 0 0;
+          }
+          .header h1 {
+            margin: 0;
+            font-size: 24px;
           }
           .content {
             padding: 20px;
             line-height: 1.6;
           }
-          .content strong {
-            color: #333;
+          .summary {
+            background-color: #e8f0fe;
+            border-left: 5px solid #3059eb;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
           }
           .footer {
             margin-top: 20px;
@@ -747,6 +756,24 @@ function sendMailFun({ userdata }) {
             text-align: center;
             background-color: #eaeaea;
             border-radius: 0 0 8px 8px;
+          }
+          .footer p {
+            margin: 0;
+          }
+          .contact-info {
+            margin-top: 20px;
+            padding: 10px;
+            text-align: center;
+          }
+          .contact-info a {
+            color: #3059eb;
+            text-decoration: none;
+          }
+          ul {
+            padding-left: 20px;
+          }
+          li {
+            margin-bottom: 10px;
           }
         </style>
       </head>
@@ -756,12 +783,108 @@ function sendMailFun({ userdata }) {
             <h1>New ${titleVal}</h1>
           </div>
           <div class="content">
-            ${Object.entries(userdata)
-              .map(([key, value]) => `<p><strong>${key}:</strong> ${value}</p>`)
-              .join("")}
+            <div class="summary">
+              <h2>Reservation Summary</h2>
+            </div>
+            <h2>Reservation Details</h2>
+            <ul>
+              ${Object.entries(userdata)
+                .map(([key, value]) => `<li><strong>${key}:</strong> ${value}</li>`)
+                .join("")}
+            </ul>
           </div>
           <div class="footer">
-            <p>Thank you for your reservation!</p>
+          </div>
+          <div class="contact-info">
+            <p>If you have any questions, please contact us at <a href="mailto:support@example.com">support@example.com</a> or call us at <a href="tel:+1234567890">+1234567890</a>.</p>
+          </div>
+        </div>
+      </body>
+      </html>
+    `,
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error("Error sending email:", error);
+    } else {
+      console.log("Email sent:", info.response);
+    }
+  });
+}
+function sendMail2Fun(userName, dataTitle, email) {
+  const mailOptions = {
+    from: "prashant.digitrix@gmail.com",
+    to: email,
+    subject: `Reservation Confirmation`,
+    html: `<!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+          }
+          .container {
+            width: 90%;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          }
+          .header {
+            background-color: #3059eb;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+          }
+          .header h1 {
+            margin: 0;
+            font-size: 24px;
+          }
+          .content {
+            padding: 20px;
+            line-height: 1.6;
+          }
+          .content p {
+            margin: 10px 0;
+          }
+          .footer {
+            font-size: 0.8em;
+            color: #777;
+            text-align: center;
+            padding: 10px;
+            background-color: #eaeaea;
+            border-radius: 0 0 8px 8px;
+          }
+          .footer p {
+            margin: 0;
+          }
+          .footer a {
+            color: #3059eb;
+            text-decoration: none;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h1>${dataTitle} Received</h1>
+          </div>
+          <div class="content">
+            <p>Dear ${userName},</p>
+            <p>Thank you for your reservation request!</p>
+            <p>We have received your reservation data and are currently processing it. Our team will review the information and get back to you within the next 48 hours.</p>
+            <p>If you have any questions in the meantime, please do not hesitate to contact us.</p>
+            <p>Thank you for choosing Flight & Hotel reservations.</p>
+          </div>
+          <div class="footer">
+            <p>Best regards,<br>Flight & Hotel Reservations<br><a href="mailto:FlightHotelreservations@mail.com">FlightHotelreservations@mail.com</a></p>
           </div>
         </div>
       </body>
@@ -778,51 +901,6 @@ function sendMailFun({ userdata }) {
   });
 }
 
-function sendMail2Fun(userName, dataTitle, email) {
-  const mailOptions = {
-    from: "prashant.digitrix@gmail.com",
-    to: email,
-    subject: `Reservation Confirmation`,
-    html: `<!DOCTYPE html>
-              <html>
-              <head>
-                  <style>
-                      body { font-family: Arial, sans-serif; }
-                      .container { width: 80%; margin: auto; padding: 20px; }
-                      .header { background-color: #f4f4f4; padding: 10px; text-align: center; }
-                      .content { margin: 20px 0; }
-                      .footer { font-size: 0.8em; color: #777; text-align: center; }
-                  </style>
-              </head>
-              <body>
-                  <div class="container">
-                      <div class="header">
-                          <h1>${dataTitle} Received</h1>
-                      </div>
-                      <div class="content">
-                          <p>Dear ${userName},</p>
-                          <p>Thank you for your reservation request!</p>
-                          <p>We have received your reservation data and are currently processing it. Our team will review the information and get back to you within the next 48 hours.</p>
-                          <p>If you have any questions in the meantime, please do not hesitate to contact us.</p>
-                          <p>Thank you for choosing Flight & Hotel reservations.</p>
-                      </div>
-                      <div class="footer">
-                          <p>Best regards,<br>Flight & Hotel reservations<br>FlightHotelreservations@mail.com</p>
-                      </div>
-                  </div>
-              </body>
-              </html>
-              `,
-  };
-
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error("Error sending email:", error);
-    } else {
-      console.log("Email sent:", info.response);
-    }
-  });
-}
 
 // User Schema
 const userSchema = new mongoose.Schema({
