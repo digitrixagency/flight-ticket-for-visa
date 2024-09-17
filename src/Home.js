@@ -14,15 +14,15 @@ const Home = () => {
   const currentLanguage = i18n.language || 'en'; // Default to 'en' if language is not set
 
   const redirectToFR = () => {
-    navigate(`/${currentLanguage}/Flight-Reservation`);
+    navigate(`/${currentLanguage}/flight-reservation`);
   };
 
   const redirectToHB = () => {
-    navigate(`/${currentLanguage}/Hotel-Booking`);
+    navigate(`/${currentLanguage}/hotel-booking`);
   };
 
   const redirectToRNHR = () => {
-    navigate(`/${currentLanguage}/Flight+Hotel-Reservation`);
+    navigate(`/${currentLanguage}/flight-hotel-reservation`);
   };
 
   return (

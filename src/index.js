@@ -41,9 +41,9 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/:lng" element={<HomePage />} />
-      <Route path="/:lng/Flight-Reservation" element={<FlightReservationPage />} />
-      <Route path="/:lng/Hotel-Booking" element={<HotelBookingPage />} />
-      <Route path="/:lng/Flight+Hotel-Reservation" element={<FlightNHotelReservationPage />} />
+      <Route path="/:lng/flight-reservation" element={<FlightReservationPage />} />
+      <Route path="/:lng/hotel-booking" element={<HotelBookingPage />} />
+      <Route path="/:lng/flight-hotel-reservation" element={<FlightNHotelReservationPage />} />
       <Route path="/:lng/Forgot-Password" element={<ResetPasswordPage />} />
       <Route path="/:lng/Reset-password/:token" element={<ResetPassword />} />
     </Routes>
