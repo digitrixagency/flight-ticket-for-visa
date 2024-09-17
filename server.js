@@ -704,15 +704,68 @@ function sendMailFun({ userdata }) {
   } else if (userdata.dataFor === "hotelBooking") {
     titleVal = "Hotel Reservation";
   }
+
   const mailOptions = {
     from: "prashant.digitrix@gmail.com",
     to: "prashantbasnet111@gmail.com",
     subject: `Reservation Confirmation`,
     html: `
-      <h1>New ${titleVal}</h1>
-      <p>${Object.entries(userdata)
-        .map(([key, value]) => `<strong>${key}:</strong> ${value}`)
-        .join("<br>")}</p>
+      <html>
+      <head>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+          }
+          .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          }
+          .header {
+            background-color: #3059eb;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+          }
+          .content {
+            padding: 20px;
+            line-height: 1.6;
+          }
+          .content strong {
+            color: #333;
+          }
+          .footer {
+            margin-top: 20px;
+            padding: 10px;
+            text-align: center;
+            background-color: #eaeaea;
+            border-radius: 0 0 8px 8px;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h1>New ${titleVal}</h1>
+          </div>
+          <div class="content">
+            ${Object.entries(userdata)
+              .map(([key, value]) => `<p><strong>${key}:</strong> ${value}</p>`)
+              .join("")}
+          </div>
+          <div class="footer">
+            <p>Thank you for your reservation!</p>
+          </div>
+        </div>
+      </body>
+      </html>
     `,
   };
 
@@ -724,6 +777,7 @@ function sendMailFun({ userdata }) {
     }
   });
 }
+
 function sendMail2Fun(userName, dataTitle, email) {
   const mailOptions = {
     from: "prashant.digitrix@gmail.com",
