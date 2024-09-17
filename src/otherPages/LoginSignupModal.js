@@ -30,10 +30,12 @@ const LoginSignupModal = ({ show, handleClose }) => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const { login } = useAuth(); // Use the login function from context
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation(); // Get current language from i18n
+  
+  const currentLanguage = i18n.language || 'en'; 
 
   const handleForgotPasswordClick = () => {
-    navigate("/forgot-password"); // Redirect to the forgot password page
+    navigate(`/${currentLanguage}/forgot-password`); // Redirect to the forgot password page
   };
 
   const handleSubmit = async (e) => {
