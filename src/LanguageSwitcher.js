@@ -13,7 +13,7 @@ const LanguageSwitcher = () => {
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
     localStorage.setItem("language", lng);
-    const currentPath = window.location.pathname.replace(/^\/[^\/]*/, "");
+    const currentPath = window.location.pathname.replace(/^\/[^/]*/, "");
     navigate(`/${lng}${currentPath}`, { replace: true });
     setSelectedLanguage(lng);
     setIsOpen(false);
