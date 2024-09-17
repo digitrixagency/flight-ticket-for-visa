@@ -789,7 +789,9 @@ function sendMailFun({ userdata }) {
             <h2>Reservation Details</h2>
             <ul>
               ${Object.entries(userdata)
-                .map(([key, value]) => `<li><strong>${key}:</strong> ${value}</li>`)
+                .map(
+                  ([key, value]) => `<li><strong>${key}:</strong> ${value}</li>`
+                )
                 .join("")}
             </ul>
           </div>
@@ -900,7 +902,6 @@ function sendMail2Fun(userName, dataTitle, email) {
     }
   });
 }
-
 
 // User Schema
 const userSchema = new mongoose.Schema({
